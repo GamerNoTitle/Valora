@@ -38,7 +38,7 @@ def market():
                                weapon1={"name": weapon1.name, "cost": weapon1.cost, "img": weapon1.base_img}, 
                                weapon2={"name": weapon2.name, "cost": weapon2.cost, "img": weapon2.base_img}, 
                                weapon3={"name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img})
-    else:
+    else:   # Login Expired
         response = make_response(redirect('/', 302))
         for cookie in request.cookies:
             response.delete_cookie(cookie)
@@ -86,5 +86,5 @@ def serve_static(filename):
     return send_from_directory('assets', filename)
 
 if __name__ == '__main__':
-    # _thread.start_new_thread(updateCache, ())
+    _thread.start_new_thread(updateCache, ())
     app.run(host='0.0.0.0', port=8080, debug=True)
