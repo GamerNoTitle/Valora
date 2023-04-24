@@ -20,7 +20,9 @@ $ pip install -r requirements.txt
 
 安装完成后，你可以在`app.py`中对服务的监听地址和端口进行修改，默认端口为8080
 
-接着，使用如下命令访问服务器
+接着，你需要在服务器添加名为`SECRET_KEY`的环境变量（这非常重要）
+
+使用如下命令打开服务器
 
 ```shell
 $ python app.py
