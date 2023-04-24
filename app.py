@@ -28,7 +28,7 @@ def market():
     region = cookie.get('region')
     userid = cookie.get('user_id')
     user = player(access_token, entitlement, region, userid)
-    weapon0, weapon1, weapon2, weapon3= {}, {}, {}, {}
+    weapon0, weapon1, weapon2, weapon3 = {}, {}, {}, {}
     if user.auth:
         shop = user.shop['SkinsPanelLayout']    # Flite the daily skin
         weapon0 = weapon(shop['SingleItemStoreOffers'][0]['OfferID'],
@@ -79,24 +79,23 @@ def black():
                          blackmarket['BonusStoreOffers'][5]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], blackmarket['BonusStoreOffers'][5]['DiscountPercent'])
         print(weapon1.data)
         return render_template('myMarket.html', black=True,
-                            weapon0={
-                                "name": weapon0.name, "cost": weapon0.cost, "img": weapon0.base_img, "discount": weapon0.discount, "per": weapon0.per},
-                            weapon1={
-                                "name": weapon1.name, "cost": weapon1.cost, "img": weapon1.base_img, "discount": weapon1.discount, "per": weapon2.per},
-                            weapon2={
-                                "name": weapon2.name, "cost": weapon2.cost, "img": weapon2.base_img, "discount": weapon2.discount, "per": weapon2.per},
-                            weapon3={
-                                "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img, "discount": weapon3.discount, "per": weapon3.per},
-                            weapon4={
-                                "name": weapon4.name, "cost": weapon4.cost, "img": weapon4.base_img, "discount": weapon4.discount, "per": weapon4.per},
-                            weapon5={
-                                "name": weapon5.name, "cost": weapon5.cost, "img": weapon5.base_img, "discount": weapon5.discount, "per": weapon5.per})
+                               weapon0={
+                                   "name": weapon0.name, "cost": weapon0.cost, "img": weapon0.base_img, "discount": weapon0.discount, "per": weapon0.per},
+                               weapon1={
+                                   "name": weapon1.name, "cost": weapon1.cost, "img": weapon1.base_img, "discount": weapon1.discount, "per": weapon2.per},
+                               weapon2={
+                                   "name": weapon2.name, "cost": weapon2.cost, "img": weapon2.base_img, "discount": weapon2.discount, "per": weapon2.per},
+                               weapon3={
+                                   "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img, "discount": weapon3.discount, "per": weapon3.per},
+                               weapon4={
+                                   "name": weapon4.name, "cost": weapon4.cost, "img": weapon4.base_img, "discount": weapon4.discount, "per": weapon4.per},
+                               weapon5={
+                                   "name": weapon5.name, "cost": weapon5.cost, "img": weapon5.base_img, "discount": weapon5.discount, "per": weapon5.per})
     else:   # Login Expired
         response = make_response(redirect('/', 302))
         for cookie in request.cookies:
             response.delete_cookie(cookie)
         return response
-
 
 
 @app.route('/EULA', methods=["GET", "POST"])
@@ -130,12 +129,14 @@ def RiotLogin():
                 render_template('index.html', loginerror=True))
         return response
 
+
 @app.route('/api/logout', methods=['GET', 'POST'])
 def logout():
     response = make_response(redirect('/', 302))
     for cookie in request.cookies:
         response.delete_cookie(cookie)
     return response
+
 
 @app.route('/assets/<path:filename>')
 def serve_static(filename):
