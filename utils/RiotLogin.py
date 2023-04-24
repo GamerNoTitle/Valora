@@ -38,17 +38,17 @@ class SSLAdapter(HTTPAdapter):
 
 
 class Auth:
-    def __init__(self, username, password):
+    def __init__(self, username, password, session=None):
         self.username = username
         self.password = password
-        self.session = requests.Session()
+        self.session = requests.Session() if not session else session
         self.session.headers = OrderedDict({"User-Agent": "RiotClient/58.0.0.4640299.4552318 %s (Windows;10;;Professional, x64)","Accept-Language": "en-US,en;q=0.9","Accept": "application/json, text/plain, */*"})
         self.session.mount('https://', SSLAdapter()) 
         self.authed = False
         self.MFA = False
 
-    def auth(self):
-        tokens = self.authorize()
+    def auth(self, MFACode=''):
+        tokens = self.authorize(MFACode)
         if 'x' in tokens:
             return
         self.authed = True
@@ -71,7 +71,7 @@ class Auth:
         self.session.headers.update(self.Region_headers)
         self.Region = self.get_Region()
         self.p = self.print()
-    def authorize(self, MFACode):
+    def authorize(self, MFACode=''):
         data = {"acr_values": "urn:riot:bronze","claims": "","client_id": "riot-client","nonce": "oYnVwCSrlS5IHKh7iI16oQ","redirect_uri": "http://localhost/redirect","response_type": "token id_token","scope": "openid link ban lol_region",}
         data2 = {"language": "en_US","password": self.password,"remember": "true","type": "auth","username": self.username,}
 
@@ -96,7 +96,10 @@ class Auth:
             return 'x'
         elif self.MFA:
             # ver_code = input(F'{Fore.GREEN}2FA Auth Enabled{Fore.RESET}. Enter the verification code: \n')
-            ver_code = MFACode
+            if __name__ == '__main__':
+                ver_code = input('Please input your ver code: ')
+            else:
+                ver_code = MFACode
             authdata = {
                 'type': 'multifactor',
                 'code': ver_code,
@@ -116,7 +119,6 @@ class Auth:
                 print(F"{Fore.RED}[ERROR] {Fore.RESET} {self.username}:{self.password}")
         else:
             self.MFA = True
-            print('2FA enabled. Example code does not support that.')
             return 'x'
 
 

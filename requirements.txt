@@ -4,3 +4,4 @@ pandas
 requests
 colorama
 typing
+flask_session

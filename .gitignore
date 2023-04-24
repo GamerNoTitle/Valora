@@ -3,3 +3,4 @@ sections
 docs
 pages
 store.json
+flask_session

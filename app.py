@@ -1,4 +1,5 @@
-from flask import Flask, render_template, redirect, send_from_directory, request, make_response
+from flask import Flask, render_template, redirect, send_from_directory, request, make_response, session
+from flask_session import Session
 from utils.RiotLogin import Auth
 from utils.GetPlayer import player
 from utils.Cache import updateCache
@@ -6,8 +7,11 @@ from utils.Weapon import weapon
 import _thread
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'A7C55959-3577-5F44-44B6-11540853E272'
+app.config['SESSION_TYPE'] = 'filesystem'
 app.template_folder = 'templates'
 
+Session(app)
 
 @app.route('/', methods=['GET'])
 def home():
@@ -102,6 +106,12 @@ def black():
 def EULA():
     return render_template('EULA.html')
 
+@app.route('/2FA', methods=["GET", "POST"])
+def MFAuth():
+    if not session['user']:
+        return redirect('/', 302)
+    return render_template('MFA.html')
+
 
 @app.route('/api/login', methods=['POST'])
 def RiotLogin():
@@ -124,6 +134,12 @@ def RiotLogin():
             response.set_cookie('user_id', user.Sub)
             response.set_cookie('logged', '1')
             response.status_code = 200
+        elif user.MFA:
+            session['user'] = user
+            session['user-session'] = user.session
+            session['username'] = username
+            session['password'] = password
+            return redirect('/2FA')
         else:
             response = make_response(
                 render_template('index.html', loginerror=True))
@@ -137,6 +153,27 @@ def logout():
         response.delete_cookie(cookie)
     return response
 
+@app.route('/api/verify', methods=['GET', 'POST'])
+def verify():
+    MFACode = request.form.get('MFACode')
+    user = Auth(session['username'], session['password'], session['user-session'])
+    user.MFACode = MFACode
+    user.MFA = True
+    user.auth(MFACode)
+    if user.authed:
+        response = make_response(render_template('myMarket.html'))
+        response.set_cookie('access_token', user.access_token)
+        response.set_cookie('entitlement_token', user.entitlement)
+        response.set_cookie('region', user.Region)
+        response.set_cookie('username', user.Name)
+        response.set_cookie('tag', user.Tag)
+        response.set_cookie('user_id', user.Sub)
+        response.set_cookie('logged', '1')
+        response.status_code = 200
+    else:
+        response = make_response(
+            render_template('index.html', loginerror=True))
+    return response
 
 @app.route('/assets/<path:filename>')
 def serve_static(filename):
