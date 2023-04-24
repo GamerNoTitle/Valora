@@ -16,6 +16,10 @@ def home():
         response.set_cookie('logged', '0', max_age=24*60*60*365*10)
     return response
 
+@app.route('/EULA', methods=["GET","POST"])
+def EULA():
+    return render_template('EULA.html')
+
 @app.route('/api/login', methods=['POST'])
 def RiotLogin():
     # print(request.form)
