@@ -36,6 +36,8 @@ $ python app.py
 
 [Valorant-API](https://valorant-api.com/)
 
+[Soft-ui-design-system](https://github.com/creativetimofficial/soft-ui-design-system)
+
 ## Sponsor
 
 [https://bili33.top/sponsors/](https://bili33.top/sponsors/)
