@@ -121,4 +121,71 @@
     </div>
   </div> 
 
+  {% if market %}
+  <div class="container-fluid px-0 overflow-hidden">
+    <div class="row text-center py-2 mt-3">
+      <div class="col-12 mx-auto">  
+        <table class="table table-horizontal">
+    <thead>
+        <tr>
+            <th>皮肤名称</th>
+            <th>皮肤图片</th>
+            <th>皮肤售价</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>John</td>
+            <td>25</td>
+            <td>Developer</td>
+        </tr>
+        <tr>
+            <td>Jane</td>
+            <td>30</td>
+            <td>Designer</td>
+        </tr>
+        <tr>
+            <td>Bob</td>
+            <td>35</td>
+            <td>Manager</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+</div> 
+<div class="container py-7">
+  <div class="row mt-3">
+    <div class="col-sm-4 col-6 mx-auto">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Your modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Society has put up so many boundaries, so many limitations on what’s right and wrong that it’s almost impossible to get a pure thought out.
+              <br><br>
+              It’s like a little kid, a little boy, looking at colors, and no one told him what colors are good, before somebody tells you you shouldn’t like pink because that’s for girls, or you’d instantly become a gay two-year-old.
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn bg-gradient-dark" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn bg-gradient-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+{% endif %}
   </body>

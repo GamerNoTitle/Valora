@@ -178,4 +178,6 @@ class Auth:
         print(f"Bantype: {self.typeban}")
 
 if __name__ == '__main__':
-    Auth(username="",password="")
+    user = Auth(username="ApexLumine",password="ApexLumine@Riotgames.com!")
+    user.auth()
+    user.print()
