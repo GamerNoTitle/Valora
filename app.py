@@ -53,9 +53,5 @@ def RiotLogin():
 def serve_static(filename):
     return send_from_directory('assets', filename)
 
-def create_app():
-    app.run(host='0.0.0.0', port=8000, debug=True)
-
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
