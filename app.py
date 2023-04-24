@@ -130,6 +130,12 @@ def RiotLogin():
                 render_template('index.html', loginerror=True))
         return response
 
+@app.route('/api/logout', methods=['GET', 'POST'])
+def logout():
+    response = make_response(redirect('/', 302))
+    for cookie in request.cookies:
+        response.delete_cookie(cookie)
+    return response
 
 @app.route('/assets/<path:filename>')
 def serve_static(filename):
