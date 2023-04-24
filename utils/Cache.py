@@ -25,6 +25,8 @@ def updateCache():
 
         with open('assets/dict/zh_TW.json', 'wt', encoding='utf8') as f:
             f.write(json.dumps(dt))
+        
+        del res, dt # Free RAM
         time.sleep(3600)    # refresh cache every 1 hr
  
 if __name__ == '__main__':
