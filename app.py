@@ -5,9 +5,10 @@ from utils.GetPlayer import player
 from utils.Cache import updateCache
 from utils.Weapon import weapon
 import _thread
+import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'A7C55959-3577-5F44-44B6-11540853E272'
+app.config['SECRET_KEY'] = 'A7C55959-3577-5F44-44B6-11540853E272' if not os.environ.get('SECRET_KEY') else os.environ.get('SECRET_KEY')
 app.config['SESSION_TYPE'] = 'filesystem'
 app.template_folder = 'templates'
 
@@ -151,6 +152,7 @@ def logout():
     response = make_response(redirect('/', 302))
     for cookie in request.cookies:
         response.delete_cookie(cookie)
+    session.clear()
     return response
 
 @app.route('/api/verify', methods=['GET', 'POST'])
