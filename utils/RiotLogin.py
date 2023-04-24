@@ -7,6 +7,7 @@ import pandas
 from re import compile
 from colorama import Fore
 import time
+import sys
 
 CIPHERS = [
 	'ECDHE-ECDSA-AES128-GCM-SHA256',
@@ -44,6 +45,7 @@ class Auth:
         self.session.headers = OrderedDict({"User-Agent": "RiotClient/58.0.0.4640299.4552318 %s (Windows;10;;Professional, x64)","Accept-Language": "en-US,en;q=0.9","Accept": "application/json, text/plain, */*"})
         self.session.mount('https://', SSLAdapter()) 
         self.authed = False
+        self.MFA = False
 
     def auth(self):
         tokens = self.authorize()
@@ -69,7 +71,7 @@ class Auth:
         self.session.headers.update(self.Region_headers)
         self.Region = self.get_Region()
         self.p = self.print()
-    def authorize(self):
+    def authorize(self, MFACode):
         data = {"acr_values": "urn:riot:bronze","claims": "","client_id": "riot-client","nonce": "oYnVwCSrlS5IHKh7iI16oQ","redirect_uri": "http://localhost/redirect","response_type": "token id_token","scope": "openid link ban lol_region",}
         data2 = {"language": "en_US","password": self.password,"remember": "true","type": "auth","username": self.username,}
 
@@ -92,8 +94,9 @@ class Auth:
             print(F"{Fore.YELLOW}[RATE] {Fore.RESET} {self.username}:{self.password}")
             time.sleep(40)
             return 'x'
-        else:
-            ver_code = input(F'{Fore.GREEN}2FA Auth Enabled{Fore.RESET}. Enter the verification code: \n')
+        elif self.MFA:
+            # ver_code = input(F'{Fore.GREEN}2FA Auth Enabled{Fore.RESET}. Enter the verification code: \n')
+            ver_code = MFACode
             authdata = {
                 'type': 'multifactor',
                 'code': ver_code,
@@ -111,6 +114,10 @@ class Auth:
                 print(F"{Fore.RED}[ERROR] {Fore.RESET} {self.username}:{self.password}") # banned (?)
             else:
                 print(F"{Fore.RED}[ERROR] {Fore.RESET} {self.username}:{self.password}")
+        else:
+            self.MFA = True
+            print('2FA enabled. Example code does not support that.')
+            return 'x'
 
 
     def get_entitlement_token(self):
@@ -178,6 +185,7 @@ class Auth:
         print(f"Bantype: {self.typeban}")
 
 if __name__ == '__main__':
-    user = Auth(username="ApexLumine",password="ApexLumine@Riotgames.com!")
+    username, password = sys.argv[1], sys.argv[2]
+    user = Auth(username,password)
     user.auth()
     user.print()
