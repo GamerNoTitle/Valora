@@ -2,3 +2,5 @@ flask
 asyncio
 pandas
 requests
+colorama
+typing
