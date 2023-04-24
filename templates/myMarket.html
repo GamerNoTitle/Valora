@@ -20,10 +20,19 @@
   <link id="pagestyle" href="/assets/css/soft-design-system.css?v=1.0.9" rel="stylesheet" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <script>
-    if (document.location.pathname != "/market") {
+    if (document.location.pathname != "/market" && document.location.pathname != "/market/black") {
       window.location = document.location.origin + "/market"
     }
   </script>
+  <!-- 引入 fancybox CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <!-- 引入 jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- 引入 fancybox JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
 </head>
 
 <body class="index-page">
@@ -114,7 +123,6 @@
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
         <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg">每日商店</button></a>
-        <a href="/market/bundle"><button type="button" class="btn bg-gradient-success btn-lg">精选套装</button></a>
         <a href="/market/black"><button type="button" class="btn bg-gradient-warning btn-lg">折扣夜市</button></a>
       </div>
     </div>
@@ -122,7 +130,7 @@
 
   {% if market %}
   <div class="container">
-    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">今日商店</h1>
+    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">今日商店 | Daily Shop</h1>
     <br>
     <table class="table" id="market-table">
       <thead>
@@ -135,77 +143,120 @@
       <tbody>
         <tr>
           <td class="text-center"><h3 class="text-gradient text-primary mb-0 mt-2">{{weapon0.name|safe}}</h3></td>
-          <td class="text-center"><img src={{weapon0.img|safe}}></td>
+          <td class="text-center"><div class="gun-image"><a href="{{weapon0.img|safe}}" data-fancybox="gallery"><img height=50px src={{weapon0.img|safe}}></a></div></td>
           <td class="text-center"><h3 class="text-gradient text-dark mb-0 mt-2">{{weapon0.cost|safe}}</h3></td>
         </tr>
         <tr>
           <td class="text-center"><h3 class="text-gradient text-primary mb-0 mt-2">{{weapon1.name|safe}}</h3></td>
-          <td class="text-center"><img src={{weapon1.img|safe}}></td>
+          <td class="text-center"><div class="gun-image"><a href="{{weapon1.img|safe}}" data-fancybox="gallery"><img height=50px src={{weapon1.img|safe}}></a></div></td>
           <td class="text-center"><h3 class="text-gradient text-dark mb-0 mt-2">{{weapon1.cost|safe}}</h3></td>
         </tr>
         <tr>
           <td class="text-center"><h3 class="text-gradient text-primary mb-0 mt-2">{{weapon2.name|safe}}</h3></td>
-          <td class="text-center"><img src={{weapon2.img|safe}}></td>
+          <td class="text-center"><div class="gun-image"><a href="{{weapon2.img|safe}}" data-fancybox="gallery"><img height=50px src={{weapon2.img|safe}}></a></div></td>
           <td class="text-center"><h3 class="text-gradient text-dark mb-0 mt-2">{{weapon2.cost|safe}}</h3></td>
         </tr>
         <tr>
           <td class="text-center"><h3 class="text-gradient text-primary mb-0 mt-2">{{weapon3.name|safe}}</h3></td>
-          <td class="text-center"><img src={{weapon3.img|safe}}></td>
+          <td class="text-center"><div class="gun-image"><a href="{{weapon3.img|safe}}" data-fancybox="gallery"><img height=50px src={{weapon3.img|safe}}></a></div></td>
           <td class="text-center"><h3 class="text-gradient text-dark mb-0 mt-2">{{weapon3.cost|safe}}</h3></td>
+        </tr>
+      </tbody>    
+    </table>
+  </div>
+  
+  {% endif %}
+  
+  {% if black %}
+  <div class="container">
+    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">黑市 | Black Market</h1>
+    <br>
+    <table class="table" id="market-table">
+      <thead>
+        <tr>
+          <th class="text-center">皮肤名称</th>
+          <th class="text-center">皮肤图片</th>
+          <th class="text-center"><img src="/assets/img/icons8-valorant.svg"> 皮肤价格</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center"><h3 class="text-gradient text-primary mb-0 mt-2">{{weapon0.name|safe}}</h3></td>
+          <td class="text-center"><a href="{{weapon0.img|safe}}" data-fancybox="gallery"><img height=50px src={{weapon0.img|safe}}></a></td>
+          <td class="text-center">
+            <h3 class="text-gradient text-dark mb-0 mt-2">
+              <span style="text-decoration: line-through">{{weapon0.cost|safe}}</span> ->
+              {{weapon0.discount|safe}} ({{weapon0.per|safe}}% off)
+            </h3>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center"><h3 class="text-gradient text-primary mb-0 mt-2">{{weapon1.name|safe}}</h3></td>
+          <td class="text-center"><a href="{{weapon1.img|safe}}" data-fancybox="gallery"><img height=50px src={{weapon1.img|safe}}></a></td>
+          <td class="text-center">
+            <h3 class="text-gradient text-dark mb-0 mt-2">
+              <span style="text-decoration: line-through">{{weapon1.cost|safe}}</span> ->
+              {{weapon1.discount|safe}} ({{weapon1.per|safe}}% off)
+            </h3>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center"><h3 class="text-gradient text-primary mb-0 mt-2">{{weapon2.name|safe}}</h3></td>
+          <td class="text-center"><a href="{{weapon2.img|safe}}" data-fancybox="gallery"><img height=50px src={{weapon2.img|safe}}></a></td>
+          <td class="text-center">
+            <h3 class="text-gradient text-dark mb-0 mt-2">
+              <span style="text-decoration: line-through">{{weapon2.cost|safe}}</span> ->
+              {{weapon2.discount|safe}} ({{weapon2.per|safe}}% off)
+            </h3>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center"><h3 class="text-gradient text-primary mb-0 mt-2">{{weapon3.name|safe}}</h3></td>
+          <td class="text-center"><a href="{{weapon3.img|safe}}" data-fancybox="gallery"><img height=50px src={{weapon3.img|safe}}></a></td>
+          <td class="text-center">
+            <h3 class="text-gradient text-dark mb-0 mt-2">
+              <span style="text-decoration: line-through">{{weapon3.cost|safe}}</span> ->
+              {{weapon3.discount|safe}} ({{weapon3.per|safe}}% off)
+            </h3>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center"><h3 class="text-gradient text-primary mb-0 mt-2">{{weapon4.name|safe}}</h3></td>
+          <td class="text-center"><a href="{{weapon4.img|safe}}" data-fancybox="gallery"><img height=50px src={{weapon4.img|safe}}></a></td>
+          <td class="text-center">
+            <h3 class="text-gradient text-dark mb-0 mt-2">
+              <span style="text-decoration: line-through">{{weapon4.cost|safe}}</span> ->
+              {{weapon4.discount|safe}} ({{weapon4.per|safe}}% off)
+            </h3>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center"><h3 class="text-gradient text-primary mb-0 mt-2">{{weapon5.name|safe}}</h3></td>
+          <td class="text-center"><a href="{{weapon5.img|safe}}" data-fancybox="gallery"><img height=50px src={{weapon5.img|safe}}></a></td>
+          <td class="text-center">
+            <h3 class="text-gradient text-dark mb-0 mt-2">
+              <span style="text-decoration: line-through">{{weapon5.cost|safe}}</span> ->
+              {{weapon5.discount|safe}} ({{weapon5.per|safe}}% off)
+            </h3>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <style>
-    #market-table img {
-      max-height: 80%;
-    }
-
-    td, th {
-      vertical-align: middle;
-    }
-  </style>
-  <!-- 引入 Bootstrap JavaScript -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.bili33.top/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.bili33.top/npm/bootstrap@5.0.0-dist/js/bootstrap.min.js"></script>
-  <!-- <div class="container-fluid px-0 overflow-hidden">
-    <div class="row text-center py-2 mt-3">
-      <div class="col-12 mx-auto">
-        <table class="table table-horizontal">
-          <thead>
-            <tr>
-              <th>皮肤名称</th>
-              <th>皮肤图片</th>
-              <th>皮肤售价</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{weapon0.name}</td>
-              <td><img src={weapon0.img}></td>
-              <td>{weapon0.cost}</td>
-            </tr>
-            <tr>
-              <td>{weapon1.name}</td>
-              <td><img src={weapon1.img}></td>
-              <td>{weapon1.cost}</td>
-            </tr>
-            <tr>
-              <td>{weapon2.name}</td>
-              <td><img src={weapon2.img}></td>
-              <td>{weapon2.cost}</td>
-            </tr>
-            <tr>
-              <td>{weapon3.name}</td>
-              <td><img src={weapon3.img}></td>
-              <td>{weapon3.cost}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div> -->
-
+  <scipt>
+    $(document).ready(function() {
+      $("[data-fancybox]").fancybox({
+          buttons: [
+            "zoom",
+            "slideShow",
+            "fullScreen",
+            "download",
+            "thumbs",
+            "close"
+          ]
+      });
+    });
+    
+  </scipt>
   {% endif %}
-</body>
+  </body>
