@@ -44,7 +44,7 @@ def market():
             response.delete_cookie(cookie)
         return response
 
-@app.route('/market/suite', methods=['GET'])
+@app.route('/market/bundle', methods=['GET'])
 def suite():
     return render_template('myMarket.html', suite=True)
 
