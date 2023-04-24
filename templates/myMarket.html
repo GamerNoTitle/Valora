@@ -19,8 +19,7 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="/assets/css/soft-design-system.css?v=1.0.9" rel="stylesheet" />
   <script>
-    if (document.location.pathname != "/market")
-    {
+    if (document.location.pathname != "/market") {
       window.location = document.location.origin + "/market"
     }
   </script>
@@ -36,18 +35,17 @@
         <nav
           class="navbar navbar-expand-lg  blur blur-rounded top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
           <div class="container-fluid px-0">
-            <a class="navbar-brand font-weight-bolder ms-sm-3"
-              href="/" rel="tooltip"
+            <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip"
               title="Valorant Shop Checker | 瓦罗兰特商店查看" data-placement="bottom" target="_blank">
               Valorant Shop Checker | 瓦罗兰特商店查看
             </a>
-    
+
             <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
               <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
                 <li class="nav-item dropdown dropdown-hover mx-2">
                 <li class="nav-item ms-lg-auto">
-                  <a class="nav-link nav-link-icon me-2"
-                    href="https://github.com/GamerNoTitle/Valorant-Shop-Query" target="_blank">
+                  <a class="nav-link nav-link-icon me-2" href="https://github.com/GamerNoTitle/Valorant-Shop-Query"
+                    target="_blank">
                     <i class="fa fa-github me-1"></i>
                     <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
                       data-bs-placement="bottom" title="在Github查看本项目">Github</p>
@@ -119,73 +117,46 @@
         <a href="/market/black"><button type="button" class="btn bg-gradient-warning btn-lg">折扣夜市</button></a>
       </div>
     </div>
-  </div> 
+  </div>
 
   {% if market %}
   <div class="container-fluid px-0 overflow-hidden">
     <div class="row text-center py-2 mt-3">
-      <div class="col-12 mx-auto">  
+      <div class="col-12 mx-auto">
         <table class="table table-horizontal">
-    <thead>
-        <tr>
-            <th>皮肤名称</th>
-            <th>皮肤图片</th>
-            <th>皮肤售价</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>John</td>
-            <td>25</td>
-            <td>Developer</td>
-        </tr>
-        <tr>
-            <td>Jane</td>
-            <td>30</td>
-            <td>Designer</td>
-        </tr>
-        <tr>
-            <td>Bob</td>
-            <td>35</td>
-            <td>Manager</td>
-        </tr>
-    </tbody>
-</table>
-</div>
-</div>
-</div> 
-<div class="container py-7">
-  <div class="row mt-3">
-    <div class="col-sm-4 col-6 mx-auto">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-      </button>
-
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Your modal title</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              Society has put up so many boundaries, so many limitations on what’s right and wrong that it’s almost impossible to get a pure thought out.
-              <br><br>
-              It’s like a little kid, a little boy, looking at colors, and no one told him what colors are good, before somebody tells you you shouldn’t like pink because that’s for girls, or you’d instantly become a gay two-year-old.
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn bg-gradient-dark" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn bg-gradient-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
+          <thead>
+            <tr>
+              <th>皮肤名称</th>
+              <th>皮肤图片</th>
+              <th>皮肤售价</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{weapon0.name}</td>
+              <td><img src={weapon0.img}></td>
+              <td>{weapon0.cost}</td>
+            </tr>
+            <tr>
+              <td>{weapon1.name}</td>
+              <td><img src={weapon1.img}></td>
+              <td>{weapon1.cost}</td>
+            </tr>
+            <tr>
+              <td>{weapon2.name}</td>
+              <td><img src={weapon2.img}></td>
+              <td>{weapon2.cost}</td>
+            </tr>
+            <tr>
+              <td>{weapon3.name}</td>
+              <td><img src={weapon3.img}></td>
+              <td>{weapon3.cost}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-</div>
 
-  
-{% endif %}
-  </body>
+  {% endif %}
+</body>
