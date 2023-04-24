@@ -176,4 +176,4 @@ class Auth:
         print(f"Bantype: {self.typeban}")
 
 if __name__ == '__main__':
-    Auth(username="GreenHand76",password="")
+    Auth(username="",password="")
