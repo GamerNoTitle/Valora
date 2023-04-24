@@ -10,11 +10,16 @@ app.template_folder = 'templates'
 @app.route('/', methods=['GET'])
 def home():
     if request.cookies.get('logged') == '1':
-        return redirect('/myMarket', 301)
+        return redirect('/market', 301)
     else:
         response = make_response(render_template('index.html', loginerror=False))
         response.set_cookie('logged', '0', max_age=24*60*60*365*10)
     return response
+
+@app.route('/market', methods=['GET'])
+def market():
+    print(request.cookies)
+    return render_template('myMarket.html')
 
 @app.route('/EULA', methods=["GET","POST"])
 def EULA():
@@ -34,9 +39,9 @@ def RiotLogin():
     if username == '' or password == '' or not checked_eula or not checked_rule:
         return render_template('index.html', infoerror=True)
     else:
-        CREDS = username, password
         user = Auth(username, password)
-        if user.auth:
+        user.auth()
+        if user.authed:
             response = make_response(render_template('myMarket.html'))
             response.set_cookie('access_token', user.access_token)
             response.set_cookie('entitlement_token', user.entitlement)

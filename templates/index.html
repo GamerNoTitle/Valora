@@ -16,8 +16,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/img-navi-valorant-white.svg">
+  <link rel="icon" type="image/png" href="/assets/img/img-navi-valorant-white.svg">
   <title>
     Valorant Shop Checker | GamerNoTitle
   </title>
@@ -31,23 +31,6 @@
   <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="/assets/css/soft-design-system.css?v=1.0.9" rel="stylesheet" />
-  <script>
-    // 获取表单元素
-    const form = document.querySelector('form[name="login"]');
-
-    // 监听表单提交事件
-    form.addEventListener('submit', (event) => {
-      // 获取两个复选框元素
-      const checkedRuleCheckbox = form.querySelector('input[name="CheckedRule"]');
-      const checkedEulaCheckbox = form.querySelector('input[name="CheckedEULA"]');
-
-      // 如果复选框没被选中，则阻止表单的提交
-      if (!checkedRuleCheckbox.checked || !checkedEulaCheckbox.checked) {
-        event.preventDefault();
-        alert('必须知晓网站不存储用户数据且同意EULA才能进行登陆！');
-      }
-    });
-  </script>
 </head>
 
 <body class="index-page">
@@ -60,8 +43,7 @@
         <nav
           class="navbar navbar-expand-lg  blur blur-rounded top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
           <div class="container-fluid px-0">
-            <a class="navbar-brand font-weight-bolder ms-sm-3"
-              href="/" rel="tooltip"
+            <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip"
               title="Valorant Shop Checker | 瓦罗兰特商店查看" data-placement="bottom" target="_blank">
               Valorant Shop Checker | 瓦罗兰特商店查看
             </a>
@@ -69,8 +51,8 @@
               <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
                 <li class="nav-item dropdown dropdown-hover mx-2">
                 <li class="nav-item ms-lg-auto">
-                  <a class="nav-link nav-link-icon me-2"
-                    href="https://github.com/GamerNoTitle/Valorant-Shop-Query" target="_blank">
+                  <a class="nav-link nav-link-icon me-2" href="https://github.com/GamerNoTitle/Valorant-Shop-Query"
+                    target="_blank">
                     <i class="fa fa-github me-1"></i>
                     <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
                       data-bs-placement="bottom" title="在Github查看本项目">Github</p>
@@ -226,7 +208,8 @@
                   </div>
                   {% endif %}
                   <div class="col-md-12">
-                    <button type="submit" class="btn bg-gradient-dark w-100">登陆</button>
+                    <button type="submit" class="btn bg-gradient-dark w-100"><img
+                        src="/assets/img/img-navi-valorant-white.svg">登陆</button>
                   </div>
                 </div>
               </div>
