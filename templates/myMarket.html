@@ -18,6 +18,7 @@
   <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="/assets/css/soft-design-system.css?v=1.0.9" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <script>
     if (document.location.pathname != "/market") {
       window.location = document.location.origin + "/market"
@@ -120,69 +121,45 @@
   </div>
 
   {% if market %}
-  <section>
-    <div class="container py-4" align="center">
-      <div class="row">
-        <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
-          <div class="row">
-            <div class="col-md-3">
-              <h3>皮肤名称</h3>
-            </div>
-            <div class="col-md-3 ps-2">
-              <h3>皮肤图片</h3>
-            </div>
-            <div class="col-md-3 ps-3">
-              <h3>皮肤售价</h3>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-3">
-              <h3>{{weapon0.name|safe}}</h3>
-            </div>
-            <div class="col-md-3 ps-2">
-              <img src={{weapon0.img|safe}}>
-            </div>
-            <div class="col-md-3 ps-3">
-              <h3>{{weapon0.cost|safe}}</h3>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-3">
-              <h3>{{weapon1.name|safe}}</h3>
-            </div>
-            <div class="col-md-3 ps-2">
-              <img src={{weapon1.img|safe}}>
-            </div>
-            <div class="col-md-3 ps-3">
-              <h3>{{weapon1.cost|safe}}</h3>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-3">
-              <h3>{{weapon2.name|safe}}</h3>
-            </div>
-            <div class="col-md-3 ps-2">
-              <img src={{weapon2.img|safe}}>
-            </div>
-            <div class="col-md-3 ps-3">
-              <h3>{{weapon2.cost|safe}}</h3>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-3">
-              <h3>{{weapon3.name|safe}}</h3>
-            </div>
-            <div class="col-md-3 ps-2">
-              <img src={{weapon3.img|safe}}>
-            </div>
-            <div class="col-md-3 ps-3">
-              <h3>{{weapon3.cost|safe}}</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div class="container">
+    <h3>今日商店</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">皮肤名称</th>
+          <th class="text-center">皮肤图片</th>
+          <th class="text-center"><img src="/assets/img/icons8-valorant.svg"> 皮肤售价</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center">{{weapon0.name|safe}}</td>
+          <td class="text-center"><img src={{weapon0.img|safe}} width=50%></td>
+          <td class="text-center">{{weapon0.cost|safe}}</td>
+        </tr>
+        <tr>
+          <td class="text-center">{{weapon1.name|safe}}</td>
+          <td class="text-center"><img src={{weapon1.img|safe}} width=50%></td>
+          <td class="text-center">{{weapon1.cost|safe}}</td>
+        </tr>
+        <tr>
+          <td class="text-center">{{weapon2.name|safe}}</td>
+          <td class="text-center"><img src={{weapon2.img|safe}} width=50%></td>
+          <td class="text-center">{{weapon2.cost|safe}}</td>
+        </tr>
+        <tr>
+          <td class="text-center">{{weapon3.name|safe}}</td>
+          <td class="text-center"><img src={{weapon3.img|safe}} width=50%></td>
+          <td class="text-center">{{weapon3.cost|safe}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 引入 Bootstrap JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.bili33.top/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.bili33.top/npm/bootstrap@5.0.0-dist/js/bootstrap.min.js"></script>
   <!-- <div class="container-fluid px-0 overflow-hidden">
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
