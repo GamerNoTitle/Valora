@@ -4,6 +4,7 @@ from utils.RiotLogin import Auth
 from utils.GetPlayer import player
 from utils.Cache import updateCache
 from utils.Weapon import weapon
+import sentry_sdk
 import _thread
 import os
 
@@ -13,6 +14,15 @@ app.config['SESSION_TYPE'] = 'filesystem'
 app.template_folder = 'templates'
 
 Session(app)
+
+sentry_sdk.init(
+    dsn="https://d49e7961629840df81a18ecffa42a15a@o361988.ingest.sentry.io/4505069577371648",
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0
+)
 
 @app.route('/', methods=['GET'])
 def home():

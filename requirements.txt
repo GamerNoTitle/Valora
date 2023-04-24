@@ -5,3 +5,4 @@ requests
 colorama
 typing
 flask_session
+sentry-sdk
