@@ -71,7 +71,7 @@ class Auth:
         self.Region_headers =  {'Content-Type': 'application/json', 'Authorization': f'Bearer {self.access_token}'}
         self.session.headers.update(self.Region_headers)
         self.Region = self.get_Region()
-        self.p = self.print()
+        # self.p = self.print()
     def authorize(self, MFACode=''):
         data = {"acr_values": "urn:riot:bronze","claims": "","client_id": "riot-client","nonce": "oYnVwCSrlS5IHKh7iI16oQ","redirect_uri": "http://localhost/redirect","response_type": "token id_token","scope": "openid link ban lol_region",}
         data2 = {"language": "en_US","password": self.password,"remember": "true","type": "auth","username": self.username,}

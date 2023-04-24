@@ -92,7 +92,6 @@ def black():
                          blackmarket['BonusStoreOffers'][4]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], blackmarket['BonusStoreOffers'][4]['DiscountPercent'])
         weapon5 = weapon(blackmarket['BonusStoreOffers'][5]['Offer']['OfferID'], blackmarket['BonusStoreOffers'][5]['Offer']['Cost']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"],
                          blackmarket['BonusStoreOffers'][5]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], blackmarket['BonusStoreOffers'][5]['DiscountPercent'])
-        print(weapon1.data)
         return render_template('myMarket.html', black=True,
                                weapon0={
                                    "name": weapon0.name, "cost": weapon0.cost, "img": weapon0.base_img, "discount": weapon0.discount, "per": weapon0.per},
@@ -119,7 +118,7 @@ def EULA():
 
 @app.route('/2FA', methods=["GET", "POST"])
 def MFAuth():
-    if not session['user']:
+    if not session.get('user'):
         return redirect('/', 302)
     return render_template('MFA.html')
 
