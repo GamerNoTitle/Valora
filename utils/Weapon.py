@@ -6,7 +6,7 @@ class weapon:
         self.uuid = uuid
         self.cost = cost
         self.weapon_id = None
-        with open('assets/dict/zh_CN.json') as f:
+        with open('assets/dict/zh_CN.json', encoding='utf8') as f:
             data = json.loads(f.read())
             f.close()
         self.name = requests.get(f'https://valorant-api.com/v1/weapons/skinlevels/{self.uuid}?language=zh-CN', timeout=30).json()['data']['displayName']
