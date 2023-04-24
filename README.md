@@ -27,3 +27,10 @@ $ python app.py
 ```
 
 现在，你可以访问[http://127.0.0.1:8080](http://127.0.0.1:8080)，当你看到网站主页面的时候，就说明你成功啦！
+
+## Credit
+
+[Prodzify/Riot-auth (github.com)](https://github.com/Prodzify/Riot-auth)
+
+[Valorant-API](https://valorant-api.com/)
+
