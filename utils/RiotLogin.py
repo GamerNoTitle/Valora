@@ -46,6 +46,7 @@ class Auth:
         self.session.mount('https://', SSLAdapter()) 
         self.authed = False
         self.MFA = False
+        self.remember = False
 
     def auth(self, MFACode=''):
         tokens = self.authorize(MFACode)
@@ -103,6 +104,7 @@ class Auth:
             authdata = {
                 'type': 'multifactor',
                 'code': ver_code,
+                "rememberDevice": self.remember,
             }
             r = self.session.put(url=URLS.AUTH_URL, json=authdata)
             data = r.json()

@@ -168,9 +168,12 @@ def logout():
 @app.route('/api/verify', methods=['GET', 'POST'])
 def verify():
     MFACode = request.form.get('MFACode')
+    remember = request.form.get('remember')
     user = Auth(session['username'], session['password'], session['user-session'])
     user.MFACode = MFACode
     user.MFA = True
+    if remember:
+        user.remember = True
     user.auth(MFACode)
     if user.authed:
         response = make_response(render_template('myMarket.html'))
