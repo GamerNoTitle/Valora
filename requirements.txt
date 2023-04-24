@@ -1,0 +1,5 @@
+flask
+git+https://github.com/Ultronxr/python-riot-auth.git
+asyncio
+pandas
+requests
