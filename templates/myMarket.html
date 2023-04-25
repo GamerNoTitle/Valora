@@ -41,7 +41,11 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
-  <style>.alert-primary{color: #FFFFFF !important}</style>
+  <style>
+    .alert-primary {
+      color: #FFFFFF !important
+    }
+  </style>
 
 
 </head>
@@ -134,7 +138,8 @@
       <div class="col-12 mx-auto">
         <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg">每日商店</button></a>
         <a href="/market/black"><button type="button" class="btn bg-gradient-warning btn-lg">折扣夜市</button></a>
-        <a href="//account.riotgames.com"><button type="button" class="btn bg-gradient-secondary btn-lg">账户管理</button></a>
+        <a href="//account.riotgames.com"><button type="button"
+            class="btn bg-gradient-secondary btn-lg">账户管理</button></a>
         <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg">退出登录</button></a>
       </div>
     </div>
@@ -221,96 +226,100 @@
   {% endif %}
 
   {% if black %}
-  <div class="table-responsive">
-    <table class="table" id="market-table">
-      <thead>
-        <tr>
-          <th class="text-center">皮肤名称</th>
-          <th class="text-center">皮肤图片（点击可查看大图）</th>
-          <th class="text-center"><img src="/assets/img/icons8-valorant.svg"> 皮肤价格</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="text-center">
-            <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon0.name|safe}}</h3>
-          </td>
-          <td class="text-center"><a href="{{weapon0.img|safe}}" data-fancybox="gallery"><img height=50px
-                src={{weapon0.img|safe}}></a></td>
-          <td class="text-center">
-            <h3 class="text-gradient text-dark mb-0 mt-2">
-              <span style="text-decoration: line-through">{{weapon0.cost|safe}}</span> ->
-              {{weapon0.discount|safe}} ({{weapon0.per|safe}}% off)
-            </h3>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-center">
-            <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon1.name|safe}}</h3>
-          </td>
-          <td class="text-center"><a href="{{weapon1.img|safe}}" data-fancybox="gallery"><img height=50px
-                src={{weapon1.img|safe}}></a></td>
-          <td class="text-center">
-            <h3 class="text-gradient text-dark mb-0 mt-2">
-              <span style="text-decoration: line-through">{{weapon1.cost|safe}}</span> ->
-              {{weapon1.discount|safe}} ({{weapon1.per|safe}}% off)
-            </h3>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-center">
-            <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon2.name|safe}}</h3>
-          </td>
-          <td class="text-center"><a href="{{weapon2.img|safe}}" data-fancybox="gallery"><img height=50px
-                src={{weapon2.img|safe}}></a></td>
-          <td class="text-center">
-            <h3 class="text-gradient text-dark mb-0 mt-2">
-              <span style="text-decoration: line-through">{{weapon2.cost|safe}}</span> ->
-              {{weapon2.discount|safe}} ({{weapon2.per|safe}}% off)
-            </h3>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-center">
-            <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon3.name|safe}}</h3>
-          </td>
-          <td class="text-center"><a href="{{weapon3.img|safe}}" data-fancybox="gallery"><img height=50px
-                src={{weapon3.img|safe}}></a></td>
-          <td class="text-center">
-            <h3 class="text-gradient text-dark mb-0 mt-2">
-              <span style="text-decoration: line-through">{{weapon3.cost|safe}}</span> ->
-              {{weapon3.discount|safe}} ({{weapon3.per|safe}}% off)
-            </h3>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-center">
-            <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon4.name|safe}}</h3>
-          </td>
-          <td class="text-center"><a href="{{weapon4.img|safe}}" data-fancybox="gallery"><img height=50px
-                src={{weapon4.img|safe}}></a></td>
-          <td class="text-center">
-            <h3 class="text-gradient text-dark mb-0 mt-2">
-              <span style="text-decoration: line-through">{{weapon4.cost|safe}}</span> ->
-              {{weapon4.discount|safe}} ({{weapon4.per|safe}}% off)
-            </h3>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-center">
-            <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon5.name|safe}}</h3>
-          </td>
-          <td class="text-center"><a href="{{weapon5.img|safe}}" data-fancybox="gallery"><img height=50px
-                src={{weapon5.img|safe}}></a></td>
-          <td class="text-center">
-            <h3 class="text-gradient text-dark mb-0 mt-2">
-              <span style="text-decoration: line-through">{{weapon5.cost|safe}}</span> ->
-              {{weapon5.discount|safe}} ({{weapon5.per|safe}}% off)
-            </h3>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="container">
+    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">黑市 | Black Market</h1>
+    <br>
+    <div class="table-responsive">
+      <table class="table" id="market-table">
+        <thead>
+          <tr>
+            <th class="text-center">皮肤名称</th>
+            <th class="text-center">皮肤图片（点击可查看大图）</th>
+            <th class="text-center"><img src="/assets/img/icons8-valorant.svg"> 皮肤价格</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center">
+              <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon0.name|safe}}</h3>
+            </td>
+            <td class="text-center"><a href="{{weapon0.img|safe}}" data-fancybox="gallery"><img height=50px
+                  src={{weapon0.img|safe}}></a></td>
+            <td class="text-center">
+              <h3 class="text-gradient text-dark mb-0 mt-2">
+                <span style="text-decoration: line-through">{{weapon0.cost|safe}}</span> ->
+                {{weapon0.discount|safe}} ({{weapon0.per|safe}}% off)
+              </h3>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon1.name|safe}}</h3>
+            </td>
+            <td class="text-center"><a href="{{weapon1.img|safe}}" data-fancybox="gallery"><img height=50px
+                  src={{weapon1.img|safe}}></a></td>
+            <td class="text-center">
+              <h3 class="text-gradient text-dark mb-0 mt-2">
+                <span style="text-decoration: line-through">{{weapon1.cost|safe}}</span> ->
+                {{weapon1.discount|safe}} ({{weapon1.per|safe}}% off)
+              </h3>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon2.name|safe}}</h3>
+            </td>
+            <td class="text-center"><a href="{{weapon2.img|safe}}" data-fancybox="gallery"><img height=50px
+                  src={{weapon2.img|safe}}></a></td>
+            <td class="text-center">
+              <h3 class="text-gradient text-dark mb-0 mt-2">
+                <span style="text-decoration: line-through">{{weapon2.cost|safe}}</span> ->
+                {{weapon2.discount|safe}} ({{weapon2.per|safe}}% off)
+              </h3>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon3.name|safe}}</h3>
+            </td>
+            <td class="text-center"><a href="{{weapon3.img|safe}}" data-fancybox="gallery"><img height=50px
+                  src={{weapon3.img|safe}}></a></td>
+            <td class="text-center">
+              <h3 class="text-gradient text-dark mb-0 mt-2">
+                <span style="text-decoration: line-through">{{weapon3.cost|safe}}</span> ->
+                {{weapon3.discount|safe}} ({{weapon3.per|safe}}% off)
+              </h3>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon4.name|safe}}</h3>
+            </td>
+            <td class="text-center"><a href="{{weapon4.img|safe}}" data-fancybox="gallery"><img height=50px
+                  src={{weapon4.img|safe}}></a></td>
+            <td class="text-center">
+              <h3 class="text-gradient text-dark mb-0 mt-2">
+                <span style="text-decoration: line-through">{{weapon4.cost|safe}}</span> ->
+                {{weapon4.discount|safe}} ({{weapon4.per|safe}}% off)
+              </h3>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon5.name|safe}}</h3>
+            </td>
+            <td class="text-center"><a href="{{weapon5.img|safe}}" data-fancybox="gallery"><img height=50px
+                  src={{weapon5.img|safe}}></a></td>
+            <td class="text-center">
+              <h3 class="text-gradient text-dark mb-0 mt-2">
+                <span style="text-decoration: line-through">{{weapon5.cost|safe}}</span> ->
+                {{weapon5.discount|safe}} ({{weapon5.per|safe}}% off)
+              </h3>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <script>
