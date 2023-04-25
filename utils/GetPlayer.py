@@ -57,9 +57,12 @@ class player:
     
     def getWallet(self):
         data = requests.get(f'{self.server}{wallet}{self.user_id}', headers=self.__header, timeout=30).json()
-        self.vp = data['Balances']['85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741']
-        self.rp = data['Balances']['e59aa87c-4cbf-517a-5983-6e81511be9b7']
-    
+        try:
+            self.vp = data['Balances']['85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741']
+            self.rp = data['Balances']['e59aa87c-4cbf-517a-5983-6e81511be9b7']
+        except KeyError:
+            self.auth = False
+
 if __name__ == '__main__':
     p = player('',
                '',
