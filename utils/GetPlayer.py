@@ -36,7 +36,7 @@ class player:
             'Authorization': f'Bearer {self.access_token}',
             'X-Riot-Entitlements-JWT': self.entitlement,
             'X-Riot-ClientPlatform': 'ew0KCSJwbGF0Zm9ybVR5cGUiOiAiUEMiLA0KCSJwbGF0Zm9ybU9TIjogIldpbmRvd3MiLA0KCSJwbGF0Zm9ybU9TVmVyc2lvbiI6ICIxMC4wLjE5MDQyLjEuMjU2LjY0Yml0IiwNCgkicGxhdGZvcm1DaGlwc2V0IjogIlVua25vd24iDQp9',
-            'X-Riot-ClientVersion': 'release-06.07-shipping-16-866145', #requests.get('https://valorant-api.com/v1/version', timeout=30).json()['data']['riotClientVersion'],
+            'X-Riot-ClientVersion': requests.get('https://valorant-api.com/v1/version', timeout=30).json()['data']['riotClientVersion'],
             'Content-Type': 'application/json'
         }
         if region == 'ap':
