@@ -8,15 +8,15 @@
   <title>
     {% if market %}每日商店{% elif night %}折扣夜市{% else %}我的商店{% endif %} | VSC | GamerNoTitle
   </title>
-  <!--     Fonts and icons     -->
+  <!--     Fonts and icons     -→
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  <!-- Nucleo Icons -->
+  <!-- Nucleo Icons -→
   <link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
+  <!-- Font Awesome Icons -→
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- CSS Files -->
+  <!-- CSS Files -→
   <link id="pagestyle" href="/assets/css/soft-design-system.css?v=1.0.9" rel="stylesheet" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <script>
@@ -24,13 +24,13 @@
       window.location = document.location.origin + "/market"
     }
   </script>
-  <!-- 引入 fancybox CSS -->
+  <!-- 引入 fancybox CSS -→
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
 
-  <!-- 引入 jQuery -->
+  <!-- 引入 jQuery -→
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <!-- 引入 fancybox JavaScript -->
+  <!-- 引入 fancybox JavaScript -→
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
   <script>
     var _hmt = _hmt || [];
@@ -55,7 +55,7 @@
 <body class="index-page">
 
 
-  <!-- Navbar -->
+  <!-- Navbar -→
   <div class="container position-sticky z-index-sticky top-0">
     <div class="row">
       <div class="col-12">
@@ -83,12 +83,12 @@
           
           <a href="https://www.creative-tim.com/product/soft-ui-design-system-pro" class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0">Upgrade to Pro</a>
           
-        </li> -->
+        </li> -→
               </ul>
             </div>
           </div>
         </nav>
-        <!-- End Navbar -->
+        <!-- End Navbar -→
       </div>
     </div>
   </div>
@@ -161,7 +161,7 @@
     </div>
   </div>
   {% if pc %}
-  <!-- Desktop Devices -->
+  <!-- Desktop Devices -→
   {% if market %}
   <div class="container">
     <h1 class="text-gradient text-primary mb-0 mt-2" align="center">今日商店 | Daily Shop</h1>
@@ -219,7 +219,7 @@
                   src={{weapon.img|safe}}></a></div>
           </td>
           <td class="text-center">
-            <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.cost|safe}} -> {{weapon.discount|safe}} ({{weapon.per|safe}}% off)</h3>
+            <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.cost|safe}} → {{weapon.discount|safe}} ({{weapon.per|safe}}% off)</h3>
           </td>
         </tr>
         {% endfor %}
@@ -231,7 +231,7 @@
   {% endif %}
 
   {% else %}
-  <!-- Mobile Devices -->
+  <!-- Mobile Devices -→
   {% if market %}
   <div class="container">
     <h1 class="text-gradient text-primary mb-0 mt-2" align="center">今日商店 | Daily Shop</h1>
@@ -274,7 +274,7 @@
           <div class="card-body">
             <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
             <h3 class="text-gradient text-dark mb-0 mt-2"><img src="/assets/img/icons8-valorant.svg">
-              {{weapon.cost|safe}} -> {{weapon.discount|safe}} ({{weapon.per|safe}}% off)</h3>
+              {{weapon.cost|safe}} → {{weapon.discount|safe}} ({{weapon.per|safe}}% off)</h3>
           </div>
         </div>
       </div>
