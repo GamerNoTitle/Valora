@@ -186,6 +186,7 @@ def logout():
     session.clear()
     return response
 
+
 @app.route('/auth-info')
 def authinfo():
     cookie = request.cookies

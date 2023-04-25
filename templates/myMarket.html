@@ -212,7 +212,7 @@
                   src={{weapon.img|safe}}></a></div>
           </td>
           <td class="text-center">
-            <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.cost|safe}}</h3>
+            <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.cost|safe}} -> {{weapon.discount|safe}} ({{weapon.per|safe}}% off)</h3>
           </td>
         </tr>
         {% endfor %}
@@ -265,7 +265,7 @@
             </a>
           </div>
           <div class="card-body">
-            <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
+            <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}} -> {{weapon.discount|safe}} ({{weapon.per|safe}}% off)</h3>
             <h3 class="text-gradient text-dark mb-0 mt-2"><img src="/assets/img/icons8-valorant.svg">
               {{weapon.cost|safe}}</h3>
           </div>
