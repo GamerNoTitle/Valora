@@ -9,7 +9,8 @@ import _thread
 import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'A7C55959-3577-5F44-44B6-11540853E272' if not os.environ.get('SECRET_KEY') else os.environ.get('SECRET_KEY')
+app.config['SECRET_KEY'] = 'A7C55959-3577-5F44-44B6-11540853E272' if not os.environ.get(
+    'SECRET_KEY') else os.environ.get('SECRET_KEY')
 app.config['SESSION_TYPE'] = 'filesystem'
 app.template_folder = 'templates'
 
@@ -23,6 +24,7 @@ sentry_sdk.init(
     # We recommend adjusting this value in production.
     traces_sample_rate=1.0
 )
+
 
 @app.route('/', methods=['GET'])
 def home():
@@ -42,6 +44,8 @@ def market():
     entitlement = cookie.get('entitlement_token')
     region = cookie.get('region')
     userid = cookie.get('user_id')
+    name = cookie.get('username')
+    tag = cookie.get('tag')
     user = player(access_token, entitlement, region, userid)
     weapon0, weapon1, weapon2, weapon3 = {}, {}, {}, {}
     if user.auth:
@@ -61,7 +65,9 @@ def market():
                                    "name": weapon1.name, "cost": weapon1.cost, "img": weapon1.base_img},
                                weapon2={
                                    "name": weapon2.name, "cost": weapon2.cost, "img": weapon2.base_img},
-                               weapon3={"name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img})
+                               weapon3={
+                                   "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img},
+                               player={'name': name, 'tag': tag, 'vp': user.vp, 'rp': user.rp})
     else:   # Login Expired
         response = make_response(redirect('/', 302))
         for cookie in request.cookies:
@@ -76,6 +82,8 @@ def black():
     entitlement = cookie.get('entitlement_token')
     region = cookie.get('region')
     userid = cookie.get('user_id')
+    name = cookie.get('username')
+    tag = cookie.get('tag')
     user = player(access_token, entitlement, region, userid)
     weapon0, weapon1, weapon2, weapon3, weapon4, weapon5 = {}, {}, {}, {}, {}, {}
     if user.auth:
@@ -104,7 +112,8 @@ def black():
                                weapon4={
                                    "name": weapon4.name, "cost": weapon4.cost, "img": weapon4.base_img, "discount": weapon4.discount, "per": weapon4.per},
                                weapon5={
-                                   "name": weapon5.name, "cost": weapon5.cost, "img": weapon5.base_img, "discount": weapon5.discount, "per": weapon5.per})
+                                   "name": weapon5.name, "cost": weapon5.cost, "img": weapon5.base_img, "discount": weapon5.discount, "per": weapon5.per},
+                               player={'name': name, 'tag': tag, 'vp': user.vp, 'rp': user.rp})
     else:   # Login Expired
         response = make_response(redirect('/', 302))
         for cookie in request.cookies:
@@ -115,6 +124,7 @@ def black():
 @app.route('/EULA', methods=["GET", "POST"])
 def EULA():
     return render_template('EULA.html')
+
 
 @app.route('/2FA', methods=["GET", "POST"])
 def MFAuth():
@@ -135,7 +145,7 @@ def RiotLogin():
         user = Auth(username, password)
         user.auth()
         if user.authed:
-            response = make_response(render_template('myMarket.html'))
+            response = make_response(redirect('/market'))
             response.set_cookie('access_token', user.access_token)
             response.set_cookie('entitlement_token', user.entitlement)
             response.set_cookie('region', user.Region)
@@ -143,7 +153,7 @@ def RiotLogin():
             response.set_cookie('tag', user.Tag)
             response.set_cookie('user_id', user.Sub)
             response.set_cookie('logged', '1')
-            response.status_code = 200
+            response.status_code = 302
         elif user.MFA:
             session['user'] = user
             session['user-session'] = user.session
@@ -164,18 +174,20 @@ def logout():
     session.clear()
     return response
 
+
 @app.route('/api/verify', methods=['GET', 'POST'])
 def verify():
     MFACode = request.form.get('MFACode')
     remember = request.form.get('remember')
-    user = Auth(session['username'], session['password'], session['user-session'])
+    user = Auth(session['username'], session['password'],
+                session['user-session'])
     user.MFACode = MFACode
     user.MFA = True
     if remember:
         user.remember = True
     user.auth(MFACode)
     if user.authed:
-        response = make_response(render_template('myMarket.html'))
+        response = make_response(redirect('/market', 302))
         response.set_cookie('access_token', user.access_token)
         response.set_cookie('entitlement_token', user.entitlement)
         response.set_cookie('region', user.Region)
@@ -183,11 +195,12 @@ def verify():
         response.set_cookie('tag', user.Tag)
         response.set_cookie('user_id', user.Sub)
         response.set_cookie('logged', '1')
-        response.status_code = 200
+        response.status_code = 302
     else:
         response = make_response(
             render_template('index.html', loginerror=True))
     return response
+
 
 @app.route('/assets/<path:filename>')
 def serve_static(filename):

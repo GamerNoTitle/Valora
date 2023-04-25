@@ -47,10 +47,18 @@ class player:
             server = naServer
         else:
             server = krServer
+        self.server = server
+        self.user_id = user_id
         response = requests.get(f'{server}{store}{user_id}', headers=self.__header, timeout=30)
         self.shop = response.json()
         if response.status_code == 400 or response.status_code == 404: self.auth = False
         else: self.auth = True
+        self.getWallet()
+    
+    def getWallet(self):
+        data = requests.get(f'{self.server}{wallet}{self.user_id}', headers=self.__header, timeout=30).json()
+        self.vp = data['Balances']['85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741']
+        self.rp = data['Balances']['e59aa87c-4cbf-517a-5983-6e81511be9b7']
     
 if __name__ == '__main__':
     p = player('',
