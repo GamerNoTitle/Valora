@@ -38,7 +38,12 @@ $ python app.py
 
 [Soft-ui-design-system](https://github.com/creativetimofficial/soft-ui-design-system)
 
-[Referrance Doc](https://ultronxr2ws.notion.site/UAIOSC-valorant-GitHub-Valorant-API-0ac20cd4c5b744148a74c6cd0f3380dc)
+
+## Referrance
+
+因为网上现在没有较为完整的API文档，我找到了一篇别人的然后修改了一下，发在这里
+
+[Referrance Doc](https://gamernotitle.notion.site/Valorant-API-baffa2069fb848a781664432564e94d0)
 
 ## Sponsor
 
