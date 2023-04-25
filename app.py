@@ -186,6 +186,18 @@ def logout():
     session.clear()
     return response
 
+@app.route('/auth-info')
+def authinfo():
+    cookie = request.cookies
+    access_token = cookie.get('access_token')
+    entitlement = cookie.get('entitlement_token')
+    region = cookie.get('region')
+    userid = cookie.get('user_id')
+    name = cookie.get('username')
+    tag = cookie.get('tag')
+    ua = request.headers.get('User-Agent', '')
+    return render_template('auth-info.html', access_token=access_token, entitlement=entitlement, region=region, userid=userid, name=name, tag=tag, cookie=cookie, ua=ua)
+
 
 @app.route('/api/verify', methods=['GET', 'POST'])
 def verify():

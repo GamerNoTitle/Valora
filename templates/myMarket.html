@@ -6,7 +6,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/img-navi-valorant-white.svg">
   <link rel="icon" type="image/png" href="/assets/img/img-navi-valorant-white.svg">
   <title>
-    我的商店 | Valorant Shop Checker | GamerNoTitle
+    我的商店 | VSC | GamerNoTitle
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -41,11 +41,6 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
-  <style>
-    .alert-primary {
-      color: #FFFFFF !important
-    }
-  </style>
 
 
 </head>
@@ -62,7 +57,7 @@
           <div class="container-fluid px-0">
             <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip"
               title="Valorant Shop Checker | 瓦罗兰特商店查看" data-placement="bottom" target="_blank">
-              Valorant Shop Checker | 瓦罗兰特商店查看
+              VSC | 瓦罗兰特商店查看
             </a>
             <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
               <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
@@ -75,7 +70,7 @@
                   </a>
                 </li>
                 <!-- <li class="nav-item my-auto ms-3 ms-lg-0">
-          <a href="https://www.creative-tim.com/builder/soft-ui-design-system" class="btn btn-sm btn-outline-primary btn-round mb-0 me-1 mt-2 mt-md-0">Online Builder</a>
+          <a href="https://github.com/GamerNoTitle/VSC" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0">在Github查看</a>
         </li>
         <li class="nav-item my-auto ms-3 ms-lg-0">
           
@@ -139,6 +134,8 @@
         <a href="/market/black"><button type="button" class="btn bg-gradient-warning btn-lg">折扣夜市</button></a>
         <a href="//account.riotgames.com"><button type="button"
             class="btn bg-gradient-secondary btn-lg">账户管理</button></a>
+        <a href="/auth-info"><button type="button" class="btn bg-gradient-success btn-lg">认证信息</button></a>
+        <a href="//bili33.top/sponsors"><button type="button" class="btn bg-gradient-primary btn-lg">恰饭链接</button></a>
         <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg">退出登录</button></a>
       </div>
     </div>
@@ -147,9 +144,10 @@
   <div class="container">
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
-        <div class="alert alert-primary" role="alert">
+        <div class="alert alert-success text-white rounded role=" alert">
           <span class="alert-icon"><i class="ni ni-like-2"></i></span>
-          欢迎回来！<strong>{{player.name}}#{{player.tag}}</strong>{% if pc %}，{% else %}<br>{% endif %}你现在持有 <strong>{{player.vp}}</strong> VP 和
+          欢迎回来！<strong>{{player.name}}#{{player.tag}}</strong>{% if pc %}，{% else %}<br>{% endif %}你现在持有
+          <strong>{{player.vp}}</strong> VP 和
           <strong>{{player.rp}}</strong> RP
         </div>
       </div>
@@ -242,14 +240,15 @@
           </div>
           <div class="card-body">
             <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
-            <h3 class="text-gradient text-dark mb-0 mt-2"><img src="/assets/img/icons8-valorant.svg"> {{weapon.cost|safe}}</h3>
+            <h3 class="text-gradient text-dark mb-0 mt-2"><img src="/assets/img/icons8-valorant.svg">
+              {{weapon.cost|safe}}</h3>
           </div>
         </div>
       </div>
       {% endfor %}
     </div>
   </div>
-  
+
   {% endif %}
 
   {% if black %}
@@ -267,14 +266,15 @@
           </div>
           <div class="card-body">
             <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
-            <h3 class="text-gradient text-dark mb-0 mt-2"><img src="/assets/img/icons8-valorant.svg"> {{weapon.cost|safe}}</h3>
+            <h3 class="text-gradient text-dark mb-0 mt-2"><img src="/assets/img/icons8-valorant.svg">
+              {{weapon.cost|safe}}</h3>
           </div>
         </div>
       </div>
       {% endfor %}
     </div>
   </div>
-    {% endif %}
+  {% endif %}
 
   {% endif %}
   <script>

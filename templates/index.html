@@ -19,7 +19,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/img-navi-valorant-white.svg">
   <link rel="icon" type="image/png" href="/assets/img/img-navi-valorant-white.svg">
   <title>
-    Valorant Shop Checker | GamerNoTitle
+    VSC | GamerNoTitle
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -55,7 +55,7 @@
           <div class="container-fluid px-0">
             <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip"
               title="Valorant Shop Checker | 瓦罗兰特商店查看" data-placement="bottom" target="_blank">
-              Valorant Shop Checker | 瓦罗兰特商店查看
+              VSC | 瓦罗兰特商店查看
             </a>
             <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
               <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
@@ -152,40 +152,6 @@
                   </div>
                 </div>
               </div>
-              <!-- <div class="row">
-                <div class="col-md-3">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="APServer" id="AP" checked>
-                    <label class="form-check-label" for="AP">
-                      亚太 Asia Pacific
-                    </label>
-                  </div>
-                </div>
-                <div class="col-md-3 ps-2">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="NAServer" id="NA">
-                    <label class="form-check-label" for="NA">
-                      北美 North America
-                    </label>
-                  </div>
-                </div>
-                <div class="col-md-3 ps-3">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="EUServer" id="EU">
-                    <label class="form-check-label" for="EU">
-                      欧洲 Europe
-                    </label>
-                  </div>
-                </div>
-                <div class="col-md-3 ps-4">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="KRServer" id="KR">
-                    <label class="form-check-label" for="KR">
-                      韩国 Korea
-                    </label>
-                  </div>
-                </div>
-              </div> -->
               <br>
               <div class="row">
                 <div class="col-md-12">
@@ -205,14 +171,14 @@
                   </div>
                   {% if loginerror %}
                   <div class="container">
-                    <div align="center" class="alert alert-primary text-white font-weight-bold" role="alert">
-                      登录出错，请检查账号密码是否正确！
+                    <div align="center" class="alert alert-danger text-white font-weight-bold" role="alert">
+                      登录出错，请检查账号密码，然后重试！
                     </div>
                   </div>
                   {% endif %}
                   {% if infoerror %}
                   <div class="container">
-                    <div align="center" class="alert alert-primary text-white font-weight-bold" role="alert">
+                    <div align="center" class="alert alert-danger text-white font-weight-bold" role="alert">
                       请先正确输入用户名和密码，并勾选下面两项后再点登陆！
                     </div>
                   </div>
