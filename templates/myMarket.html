@@ -41,6 +41,13 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
+  <style>
+    .alert-pink {
+    color: #fb7299;
+    background-color: #fb7299;
+    border-color: #ffffff;
+    }
+  </style>
 
 
 </head>
@@ -144,7 +151,7 @@
   <div class="container">
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
-        <div class="alert alert-success text-white rounded role=" alert">
+        <div class="alert alert-pink text-white rounded role=" alert">
           <span class="alert-icon"><i class="ni ni-like-2"></i></span>
           欢迎回来！<strong>{{player.name}}#{{player.tag}}</strong>{% if pc %}，{% else %}<br>{% endif %}你现在持有
           <strong>{{player.vp}}</strong> VP 和
