@@ -6,7 +6,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/img-navi-valorant-white.svg">
   <link rel="icon" type="image/png" href="/assets/img/img-navi-valorant-white.svg">
   <title>
-    我的商店 | VSC | GamerNoTitle
+    {% if market %}每日商店{% elif night %}折扣夜市{% else %}我的商店{% endif %} | VSC | GamerNoTitle
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -20,7 +20,7 @@
   <link id="pagestyle" href="/assets/css/soft-design-system.css?v=1.0.9" rel="stylesheet" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <script>
-    if (document.location.pathname != "/market" && document.location.pathname != "/market/black") {
+    if (document.location.pathname != "/market" && document.location.pathname != "/market/night") {
       window.location = document.location.origin + "/market"
     }
   </script>
@@ -138,7 +138,7 @@
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
         <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg">每日商店</button></a>
-        <a href="/market/black"><button type="button" class="btn bg-gradient-warning btn-lg">折扣夜市</button></a>
+        <a href="/market/night"><button type="button" class="btn bg-gradient-warning btn-lg">折扣夜市</button></a>
         <a href="//account.riotgames.com"><button type="button"
             class="btn bg-gradient-secondary btn-lg">账户管理</button></a>
         <a href="/auth-info"><button type="button" class="btn bg-gradient-success btn-lg">认证信息</button></a>
@@ -196,9 +196,9 @@
   </div>
   {% endif %}
 
-  {% if black %}
+  {% if night %}
   <div class="container">
-    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">黑市 | Black Market</h1>
+    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">夜市 | Night Market</h1>
     <br>
     <div class="table-responsive">
       <table class="table" id="market-table">
@@ -258,9 +258,9 @@
 
   {% endif %}
 
-  {% if black %}
+  {% if night %}
   <div class="container">
-    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">黑市 | Black Market</h1>
+    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">夜市 | Night Market</h1>
     <br>
     <div class="row">
       {% for weapon in [weapon0, weapon1, weapon2, weapon3, weapon4, weapon5] %}
