@@ -47,6 +47,11 @@ def market():
     name = cookie.get('username')
     tag = cookie.get('tag')
     user = player(access_token, entitlement, region, userid)
+    device = request.headers.get('User-Agent', '')
+    if 'android' in device.lower() or 'iphone' in device.lower():
+        pc = False
+    else:
+        pc = True
     weapon0, weapon1, weapon2, weapon3 = {}, {}, {}, {}
     if user.auth:
         shop = user.shop['SkinsPanelLayout']    # Flite the daily skin
@@ -67,7 +72,7 @@ def market():
                                    "name": weapon2.name, "cost": weapon2.cost, "img": weapon2.base_img},
                                weapon3={
                                    "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img},
-                               player={'name': name, 'tag': tag, 'vp': user.vp, 'rp': user.rp})
+                               player={'name': name, 'tag': tag, 'vp': user.vp, 'rp': user.rp}, pc=pc)
     else:   # Login Expired
         response = make_response(redirect('/', 302))
         for cookie in request.cookies:
@@ -85,6 +90,11 @@ def black():
     name = cookie.get('username')
     tag = cookie.get('tag')
     user = player(access_token, entitlement, region, userid)
+    device = request.headers.get('User-Agent', '')
+    if 'android' in device.lower() or 'iphone' in device.lower():
+        pc = False
+    else:
+        pc = True
     weapon0, weapon1, weapon2, weapon3, weapon4, weapon5 = {}, {}, {}, {}, {}, {}
     if user.auth:
         blackmarket = user.shop['BonusStore']
@@ -113,7 +123,9 @@ def black():
                                    "name": weapon4.name, "cost": weapon4.cost, "img": weapon4.base_img, "discount": weapon4.discount, "per": weapon4.per},
                                weapon5={
                                    "name": weapon5.name, "cost": weapon5.cost, "img": weapon5.base_img, "discount": weapon5.discount, "per": weapon5.per},
-                               player={'name': name, 'tag': tag, 'vp': user.vp, 'rp': user.rp})
+                               player={'name': name, 'tag': tag,
+                                       'vp': user.vp, 'rp': user.rp},
+                               pc=pc)
     else:   # Login Expired
         response = make_response(redirect('/', 302))
         for cookie in request.cookies:
@@ -209,4 +221,4 @@ def serve_static(filename):
 
 if __name__ == '__main__':
     _thread.start_new_thread(updateCache, ())
-    app.run(host='0.0.0.0', port=8080, debug=False)
+    app.run(host='0.0.0.0', port=8080, debug=True)
