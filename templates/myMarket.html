@@ -43,9 +43,9 @@
   </script>
   <style>
     .alert-pink {
-    color: #fb7299;
-    background-color: #fb7299;
-    border-color: #ffffff;
+      color: #fb7299;
+      background-color: #fb7299;
+      border-color: #ffffff;
     }
   </style>
 
@@ -76,14 +76,14 @@
                       data-bs-placement="bottom" title="在Github查看本项目">Github</p>
                   </a>
                 </li>
+                <li class="nav-item my-auto ms-3 ms-lg-0">
+                  <a href="https://t.me/DohnaNyan"
+                    class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0">Telegram</a>
+                </li>
                 <!-- <li class="nav-item my-auto ms-3 ms-lg-0">
-          <a href="https://github.com/GamerNoTitle/VSC" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0">在Github查看</a>
-        </li>
-        <li class="nav-item my-auto ms-3 ms-lg-0">
-          
-          <a href="https://www.creative-tim.com/product/soft-ui-design-system-pro" class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0">Upgrade to Pro</a>
-          
-        </li> -->
+                  <a href="https://www.creative-tim.com/product/soft-ui-design-system-pro"
+                    class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0">Upgrade to Pro</a>
+                </li> -->
               </ul>
             </div>
           </div>
@@ -219,7 +219,8 @@
                   src={{weapon.img|safe}}></a></div>
           </td>
           <td class="text-center">
-            <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.cost|safe}} → {{weapon.discount|safe}} ({{weapon.per|safe}}% off)</h3>
+            <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.cost|safe}} → {{weapon.discount|safe}}
+              ({{weapon.per|safe}}% off)</h3>
           </td>
         </tr>
         {% endfor %}
