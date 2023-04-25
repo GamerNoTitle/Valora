@@ -1,4 +1,4 @@
-# Valorant-Shop-Query
+# VSC
 
 就是一个为了查瓦每日商店而做的网站，也算练手了
 
@@ -37,6 +37,8 @@ $ python app.py
 [Valorant-API](https://valorant-api.com/)
 
 [Soft-ui-design-system](https://github.com/creativetimofficial/soft-ui-design-system)
+
+[Referrance Doc](https://ultronxr2ws.notion.site/UAIOSC-valorant-GitHub-Valorant-API-0ac20cd4c5b744148a74c6cd0f3380dc)
 
 ## Sponsor
 
