@@ -218,7 +218,7 @@ def authinfo():
 def verify():
     MFACode = request.form.get('MFACode')
     remember = request.form.get('remember')
-    user = Auth(session['username'], session['password'],
+    user = Auth(session.get('username'), session.get('password'),
                 session['user-session'])
     user.MFACode = MFACode
     user.MFA = True
@@ -240,7 +240,7 @@ def verify():
         session['username'] = user.Name
         session['tag'] = user.Tag
         session['user_id'] = user.Sub
-        del session['username'], session['password']
+        del session['password']
         response.status_code = 302
     else:
         response = make_response(
@@ -255,4 +255,4 @@ def serve_static(filename):
 
 if __name__ == '__main__':
     _thread.start_new_thread(updateCache, ())
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=False)
