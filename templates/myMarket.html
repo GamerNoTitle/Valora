@@ -109,7 +109,7 @@
               </path>
             </svg>
             <br>
-            <p class="lead text-white mt-3">瓦罗兰特（无畏契约）商店查看，让你不用登陆游戏也能够查看每日商店（仅支持国际服）<br />所有的账号凭据保存在本地浏览器，服务器不对账号数据进行存取。
+            <p class="lead text-white mt-3">瓦罗兰特（无畏契约）商店查看，让你不用登陆游戏也能够查看每日商店（仅支持国际服）<br />所有的登录名和密码服务器均不进行存取。
             </p>
           </div>
         </div>
@@ -197,6 +197,17 @@
   {% endif %}
 
   {% if night %}
+  {% if nightmarket_notavaliable %}
+  <div class="container">
+    <div class="row text-center py-2 mt-3">
+      <div class="col-12 mx-auto">
+        <div class="alert alert-danger text-white rounded role=" alert">
+          夜市还没有开放哦，先去看看每日商店吧！
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
   <div class="container">
     <h1 class="text-gradient text-primary mb-0 mt-2" align="center">夜市 | Night Market</h1>
     <br>
@@ -228,7 +239,7 @@
       </table>
     </div>
   </div>
-
+  {% endif %}
   {% endif %}
 
   {% else %}
@@ -260,6 +271,18 @@
   {% endif %}
 
   {% if night %}
+  {% if nightmarket_notavaliable %}
+  <div class="container">
+    <div class="row text-center py-2 mt-3">
+      <div class="col-12 mx-auto">
+        <div class="alert alert-danger text-white rounded role=" alert">
+          夜市还没有开放哦，先去看看每日商店吧！
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+
   <div class="container">
     <h1 class="text-gradient text-primary mb-0 mt-2" align="center">夜市 | Night Market</h1>
     <br>
@@ -282,6 +305,7 @@
       {% endfor %}
     </div>
   </div>
+  {% endif %}
   {% endif %}
 
   {% endif %}
