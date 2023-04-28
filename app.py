@@ -83,7 +83,7 @@ def market():
         # for cookie in request.cookies:
         #     response.delete_cookie(cookie)
         # return response
-        return redirect('/reauth')
+        return redirect('/api/reauth')
 
 
 @app.route('/market/night', methods=['GET'])
@@ -146,7 +146,7 @@ def night():
         # for cookie in request.cookies:
         #     response.delete_cookie(cookie)
         # return response
-        return redirect('/reauth')
+        return redirect('/api/reauth')
 
 
 @app.route('/EULA', methods=["GET", "POST"])
@@ -260,7 +260,7 @@ def verify():
     return response
 
 
-@app.route('/reauth')
+@app.route('/api/reauth')
 def reauth():
     s: requests.Session = session.get('user-session')
     if type(s) == type(None):
