@@ -2,6 +2,8 @@ import _thread
 import os
 import uuid
 import sentry_sdk
+import requests
+from parse import parse
 from flask import Flask, render_template, redirect, send_from_directory, request, make_response, session
 from flask_session import Session
 from utils.RiotLogin import Auth
@@ -29,7 +31,7 @@ sentry_sdk.init(
 
 @app.route('/', methods=['GET'])
 def home():
-    if request.cookies.get('logged') == '1':
+    if session.get('username', None):
         return redirect('/market', 301)
     else:
         response = make_response(render_template(
@@ -47,6 +49,8 @@ def market():
     userid = session.get('user_id')
     name = session.get('username')
     tag = session.get('tag')
+    if not name:
+        redirect('/')
     user = player(access_token, entitlement, region, userid)
     device = request.headers.get('User-Agent', '')
     if 'android' in device.lower() or 'iphone' in device.lower():
@@ -75,10 +79,11 @@ def market():
                                    "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img},
                                player={'name': name, 'tag': tag, 'vp': user.vp, 'rp': user.rp}, pc=pc)
     else:   # Login Expired
-        response = make_response(redirect('/', 302))
-        for cookie in request.cookies:
-            response.delete_cookie(cookie)
-        return response
+        # response = make_response(redirect('/', 302))
+        # for cookie in request.cookies:
+        #     response.delete_cookie(cookie)
+        # return response
+        return redirect('/reauth')
 
 
 @app.route('/market/night', methods=['GET'])
@@ -90,6 +95,8 @@ def night():
     userid = session.get('user_id')
     name = session.get('username')
     tag = session.get('tag')
+    if not name:
+        redirect('/')
     user = player(access_token, entitlement, region, userid)
     device = request.headers.get('User-Agent', '')
     if 'android' in device.lower() or 'iphone' in device.lower():
@@ -101,44 +108,45 @@ def night():
         nightmarket = user.shop.get('BonusStore')
         if nightmarket:
             weapon0 = weapon(nightmarket['BonusStoreOffers'][0]['Offer']['OfferID'], nightmarket['BonusStoreOffers'][0]['Offer']['Cost']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"],
-                            nightmarket['BonusStoreOffers'][0]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][0]['DiscountPercent'])
+                             nightmarket['BonusStoreOffers'][0]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][0]['DiscountPercent'])
             weapon1 = weapon(nightmarket['BonusStoreOffers'][1]['Offer']['OfferID'], nightmarket['BonusStoreOffers'][1]['Offer']['Cost']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"],
-                            nightmarket['BonusStoreOffers'][1]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][1]['DiscountPercent'])
+                             nightmarket['BonusStoreOffers'][1]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][1]['DiscountPercent'])
             weapon2 = weapon(nightmarket['BonusStoreOffers'][2]['Offer']['OfferID'], nightmarket['BonusStoreOffers'][2]['Offer']['Cost']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"],
-                            nightmarket['BonusStoreOffers'][2]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][2]['DiscountPercent'])
+                             nightmarket['BonusStoreOffers'][2]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][2]['DiscountPercent'])
             weapon3 = weapon(nightmarket['BonusStoreOffers'][3]['Offer']['OfferID'], nightmarket['BonusStoreOffers'][3]['Offer']['Cost']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"],
-                            nightmarket['BonusStoreOffers'][3]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][3]['DiscountPercent'])
+                             nightmarket['BonusStoreOffers'][3]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][3]['DiscountPercent'])
             weapon4 = weapon(nightmarket['BonusStoreOffers'][4]['Offer']['OfferID'], nightmarket['BonusStoreOffers'][4]['Offer']['Cost']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"],
-                            nightmarket['BonusStoreOffers'][4]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][4]['DiscountPercent'])
+                             nightmarket['BonusStoreOffers'][4]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][4]['DiscountPercent'])
             weapon5 = weapon(nightmarket['BonusStoreOffers'][5]['Offer']['OfferID'], nightmarket['BonusStoreOffers'][5]['Offer']['Cost']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"],
-                            nightmarket['BonusStoreOffers'][5]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][5]['DiscountPercent'])
+                             nightmarket['BonusStoreOffers'][5]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][5]['DiscountPercent'])
             return render_template('myMarket.html', night=True,
-                                weapon0={
-                                    "name": weapon0.name, "cost": weapon0.cost, "img": weapon0.base_img, "discount": weapon0.discount, "per": weapon0.per},
-                                weapon1={
-                                    "name": weapon1.name, "cost": weapon1.cost, "img": weapon1.base_img, "discount": weapon1.discount, "per": weapon2.per},
-                                weapon2={
-                                    "name": weapon2.name, "cost": weapon2.cost, "img": weapon2.base_img, "discount": weapon2.discount, "per": weapon2.per},
-                                weapon3={
-                                    "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img, "discount": weapon3.discount, "per": weapon3.per},
-                                weapon4={
-                                    "name": weapon4.name, "cost": weapon4.cost, "img": weapon4.base_img, "discount": weapon4.discount, "per": weapon4.per},
-                                weapon5={
-                                    "name": weapon5.name, "cost": weapon5.cost, "img": weapon5.base_img, "discount": weapon5.discount, "per": weapon5.per},
-                                player={'name': name, 'tag': tag,
-                                        'vp': user.vp, 'rp': user.rp},
-                                pc=pc)
+                                   weapon0={
+                                       "name": weapon0.name, "cost": weapon0.cost, "img": weapon0.base_img, "discount": weapon0.discount, "per": weapon0.per},
+                                   weapon1={
+                                       "name": weapon1.name, "cost": weapon1.cost, "img": weapon1.base_img, "discount": weapon1.discount, "per": weapon2.per},
+                                   weapon2={
+                                       "name": weapon2.name, "cost": weapon2.cost, "img": weapon2.base_img, "discount": weapon2.discount, "per": weapon2.per},
+                                   weapon3={
+                                       "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img, "discount": weapon3.discount, "per": weapon3.per},
+                                   weapon4={
+                                       "name": weapon4.name, "cost": weapon4.cost, "img": weapon4.base_img, "discount": weapon4.discount, "per": weapon4.per},
+                                   weapon5={
+                                       "name": weapon5.name, "cost": weapon5.cost, "img": weapon5.base_img, "discount": weapon5.discount, "per": weapon5.per},
+                                   player={'name': name, 'tag': tag,
+                                           'vp': user.vp, 'rp': user.rp},
+                                   pc=pc)
         else:
             return render_template('myMarket.html', night=True,
-                                player={'name': name, 'tag': tag,
-                                        'vp': user.vp, 'rp': user.rp},
-                                pc=pc,
-                                nightmarket_notavaliable = True)
+                                   player={'name': name, 'tag': tag,
+                                           'vp': user.vp, 'rp': user.rp},
+                                   pc=pc,
+                                   nightmarket_notavaliable=True)
     else:   # Login Expired
-        response = make_response(redirect('/', 302))
-        for cookie in request.cookies:
-            response.delete_cookie(cookie)
-        return response
+        # response = make_response(redirect('/', 302))
+        # for cookie in request.cookies:
+        #     response.delete_cookie(cookie)
+        # return response
+        return redirect('/reauth')
 
 
 @app.route('/EULA', methods=["GET", "POST"])
@@ -148,7 +156,7 @@ def EULA():
 
 @app.route('/2FA', methods=["GET", "POST"])
 def MFAuth():
-    if not session.get('user'):
+    if not session.get('username'):
         return redirect('/', 302)
     return render_template('MFA.html')
 
@@ -179,6 +187,8 @@ def RiotLogin():
             session['username'] = user.Name
             session['tag'] = user.Tag
             session['user_id'] = user.Sub
+            session['cookie'] = user.session.cookies
+            session['user-session'] = user.session
             response.status_code = 302
         elif user.MFA:
             session['user'] = user
@@ -210,6 +220,7 @@ def authinfo():
     userid = session.get('user_id')
     name = session.get('username')
     tag = session.get('tag')
+    cookie = dict(session.get('cookie'))
     ua = request.headers.get('User-Agent', '')
     return render_template('auth-info.html', access_token=access_token, entitlement=entitlement, region=region, userid=userid, name=name, tag=tag, cookie=cookie, ua=ua)
 
@@ -240,12 +251,40 @@ def verify():
         session['username'] = user.Name
         session['tag'] = user.Tag
         session['user_id'] = user.Sub
+        session['cookie'] = user.session.cookies
         del session['password']
         response.status_code = 302
     else:
         response = make_response(
             render_template('index.html', loginerror=True))
     return response
+
+
+@app.route('/reauth')
+def reauth():
+    s: requests.Session = session.get('user-session')
+    if type(s) == type(None):
+        return redirect('/', 302)
+    # cookie = session.get('cookie')
+    reauth_url = 'https://auth.riotgames.com/authorize?redirect_uri=https%3A%2F%2Fplayvalorant.com%2Fopt_in&client_id=play-valorant-web-prod&response_type=token%20id_token&nonce=1'
+    res = s.get(reauth_url)
+    data = res.url
+    if '#' in data:
+        parsed = parse(
+            'https://playvalorant.com/opt_in#access_token={access_token}&scope=openid&iss=https%3A%2F%2Fauth.riotgames.com&id_token={id_token}&token_type=Bearer&session_state={session_state}&expires_in=3600', data)
+        access_token = parsed['access_token']
+    entitle_url = 'https://entitlements.auth.riotgames.com/api/token/v1'
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': f'Bearer {access_token}'
+    }
+    res = s.post(entitle_url, headers=headers)
+    entitlement = res.json().get('entitlements_token')
+    session['access_token'] = access_token
+    session['entitlement'] = entitlement
+    session['user-session'] = s
+    session['cookie'] = s.cookies
+    return redirect('/market')
 
 
 @app.route('/assets/<path:filename>')
