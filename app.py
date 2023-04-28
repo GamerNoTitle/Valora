@@ -220,7 +220,7 @@ def authinfo():
     userid = session.get('user_id')
     name = session.get('username')
     tag = session.get('tag')
-    cookie = dict(session.get('cookie'))
+    cookie = dict(session.get('cookie', {}))
     ua = request.headers.get('User-Agent', '')
     return render_template('auth-info.html', access_token=access_token, entitlement=entitlement, region=region, userid=userid, name=name, tag=tag, cookie=cookie, ua=ua)
 
