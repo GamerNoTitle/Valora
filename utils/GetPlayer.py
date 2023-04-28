@@ -2,10 +2,10 @@ import requests
 import json
 
 # server list
-apServer = 'https://pd.ap.a.pvp.net/'
-naServer = 'https://pd.na.a.pvp.net/'
-euServer = 'https://pd.eu.a.pvp.net/'
-krServer = 'https://pd.kr.a.pvp.net/'
+apServer = 'https://pd.ap.a.pvp.net'
+naServer = 'https://pd.na.a.pvp.net'
+euServer = 'https://pd.eu.a.pvp.net'
+krServer = 'https://pd.kr.a.pvp.net'
 
 # API path
 accountXP = '/account-xp/v1/players/'

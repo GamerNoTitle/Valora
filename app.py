@@ -1,19 +1,20 @@
+import _thread
+import os
+import uuid
+import sentry_sdk
 from flask import Flask, render_template, redirect, send_from_directory, request, make_response, session
 from flask_session import Session
 from utils.RiotLogin import Auth
 from utils.GetPlayer import player
 from utils.Cache import updateCache
 from utils.Weapon import weapon
-import sentry_sdk
-import _thread
-import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'A7C55959-3577-5F44-44B6-11540853E272' if not os.environ.get(
-    'SECRET_KEY') else os.environ.get('SECRET_KEY')
+secret = str(uuid.uuid4())
+app.secret_key = secret
+app.config['SECRET_KEY'] = secret
 app.config['SESSION_TYPE'] = 'filesystem'
 app.template_folder = 'templates'
-
 Session(app)
 
 sentry_sdk.init(
@@ -234,4 +235,4 @@ def serve_static(filename):
 
 if __name__ == '__main__':
     _thread.start_new_thread(updateCache, ())
-    app.run(host='0.0.0.0', port=8080, debug=False)
+    app.run(host='0.0.0.0', port=8080, debug=True)
