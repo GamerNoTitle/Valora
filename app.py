@@ -310,7 +310,7 @@ def internal_server_error(e):
 
 @app.errorhandler(404)
 def not_found_error(e):
-    return render_template('404.html'), 500
+    return render_template('404.html'), 404
 
 
 @app.route('/error/500', methods=['GET'])
