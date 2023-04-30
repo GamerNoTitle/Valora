@@ -313,9 +313,9 @@ def not_found_error(e):
     return render_template('404.html'), 404
 
 
-@app.route('/error/500', methods=['GET'])
-def internal_server_error_preview():
-    return render_template('500.html', error='This is a test-error.'), 500
+# @app.route('/error/500', methods=['GET'])
+# def internal_server_error_preview():
+#     return render_template('500.html', error='This is a test-error.'), 500
 
 
 if __name__ == '__main__':
