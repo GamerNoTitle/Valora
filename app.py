@@ -3,6 +3,7 @@ import os
 import uuid
 import sentry_sdk
 import requests
+import traceback
 from parse import parse
 from flask import Flask, render_template, redirect, send_from_directory, request, make_response, session
 from flask_session import Session
@@ -286,11 +287,32 @@ def reauth():
     session['cookie'] = s.cookies
     return redirect('/market')
 
+@app.route('/api/reset')
+def reset():
+    response = make_response(redirect('/', 302))
+    for cookie in request.cookies:
+        response.delete_cookie(cookie)
+    session.clear()
+    return response
 
 @app.route('/assets/<path:filename>')
 def serve_static(filename):
     return send_from_directory('assets', filename)
 
+
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    error_message = traceback.format_exc()
+    return render_template('500.html', error=error_message), 500
+
+@app.errorhandler(404)
+def not_found_error(e):
+    return render_template('404.html'), 500
+
+@app.route('/error/500', methods=['GET'])
+def internal_server_error_preview():
+    return render_template('500.html', error='This is a test-error.'), 500
 
 if __name__ == '__main__':
     _thread.start_new_thread(updateCache, ())
