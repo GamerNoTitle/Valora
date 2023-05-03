@@ -4,3 +4,4 @@ docs
 pages
 flask_session
 *.json
+lang
