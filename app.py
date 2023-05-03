@@ -71,13 +71,13 @@ def market():
                          shop['SingleItemStoreOffers'][3]["Cost"]["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"])
         return render_template('myMarket.html', market=True,
                                weapon0={
-                                   "name": weapon0.name, "cost": weapon0.cost, "img": weapon0.base_img},
+                                   "name": weapon0.name, "cost": weapon0.cost, "img": weapon0.base_img, "levels": weapon0.levels, "chromas": weapon0.chromas},
                                weapon1={
-                                   "name": weapon1.name, "cost": weapon1.cost, "img": weapon1.base_img},
+                                   "name": weapon1.name, "cost": weapon1.cost, "img": weapon1.base_img, "levels": weapon1.levels, "chromas": weapon1.chromas},
                                weapon2={
-                                   "name": weapon2.name, "cost": weapon2.cost, "img": weapon2.base_img},
+                                   "name": weapon2.name, "cost": weapon2.cost, "img": weapon2.base_img, "levels": weapon2.levels, "chromas": weapon2.chromas},
                                weapon3={
-                                   "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img},
+                                   "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img, "levels": weapon3.levels, "chromas": weapon3.chromas},
                                player={'name': name, 'tag': tag, 'vp': user.vp, 'rp': user.rp}, pc=pc)
     else:   # Login Expired
         # response = make_response(redirect('/', 302))
@@ -268,32 +268,39 @@ def verify():
 
 @app.route('/api/reauth')
 def reauth():
-    remember = session['remember']
-    if remember:
-        s: requests.Session = session.get('user-session')
-        if type(s) == type(None):
-            return redirect('/', 302)
-        # cookie = session.get('cookie')
-        reauth_url = 'https://auth.riotgames.com/authorize?redirect_uri=https%3A%2F%2Fplayvalorant.com%2Fopt_in&client_id=play-valorant-web-prod&response_type=token%20id_token&nonce=1'
-        res = s.get(reauth_url)
-        data = res.url
-        if '#' in data:
-            parsed = parse(
-                'https://playvalorant.com/opt_in#access_token={access_token}&scope=openid&iss=https%3A%2F%2Fauth.riotgames.com&id_token={id_token}&token_type=Bearer&session_state={session_state}&expires_in=3600', data)
-            access_token = parsed['access_token']
-        entitle_url = 'https://entitlements.auth.riotgames.com/api/token/v1'
-        headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f'Bearer {access_token}'
-        }
-        res = s.post(entitle_url, headers=headers)
-        entitlement = res.json().get('entitlements_token')
-        session['access_token'] = access_token
-        session['entitlement'] = entitlement
-        session['user-session'] = s
-        session['cookie'] = s.cookies
-        return redirect('/market')
-    else:
+    try:
+        remember = session['remember']
+        if remember:
+            s: requests.Session = session.get('user-session')
+            if type(s) == type(None):
+                return redirect('/', 302)
+            # cookie = session.get('cookie')
+            reauth_url = 'https://auth.riotgames.com/authorize?redirect_uri=https%3A%2F%2Fplayvalorant.com%2Fopt_in&client_id=play-valorant-web-prod&response_type=token%20id_token&nonce=1'
+            res = s.get(reauth_url)
+            data = res.url
+            if '#' in data:
+                parsed = parse(
+                    'https://playvalorant.com/opt_in#access_token={access_token}&scope=openid&iss=https%3A%2F%2Fauth.riotgames.com&id_token={id_token}&token_type=Bearer&session_state={session_state}&expires_in=3600', data)
+                access_token = parsed['access_token']
+            entitle_url = 'https://entitlements.auth.riotgames.com/api/token/v1'
+            headers = {
+                'Content-Type': 'application/json',
+                'Authorization': f'Bearer {access_token}'
+            }
+            res = s.post(entitle_url, headers=headers)
+            entitlement = res.json().get('entitlements_token')
+            session['access_token'] = access_token
+            session['entitlement'] = entitlement
+            session['user-session'] = s
+            session['cookie'] = s.cookies
+            return redirect('/market')
+        else:
+            response = make_response(redirect('/', 302))
+            for cookie in request.cookies:
+                response.delete_cookie(cookie)
+            session.clear()
+            return response
+    except KeyError:
         response = make_response(redirect('/', 302))
         for cookie in request.cookies:
             response.delete_cookie(cookie)
@@ -326,11 +333,11 @@ def not_found_error(e):
     return render_template('404.html'), 404
 
 
-# @app.route('/error/500', methods=['GET'])
-# def internal_server_error_preview():
-#     return render_template('500.html', error='This is a test-error.'), 500
+@app.route('/error/500', methods=['GET'])
+def internal_server_error_preview():
+    return render_template('500.html', error='This is a test-error.'), 500
 
 
 if __name__ == '__main__':
     _thread.start_new_thread(updateCache, ())
-    app.run(host='0.0.0.0', port=8080, debug=False)
+    app.run(host='0.0.0.0', port=8080, debug=True)

@@ -129,8 +129,10 @@
           </h1><br>
           <div class="alert alert-danger text-white rounded role=" alert">
             服务器发生了以下错误：<br>
-            <strong>{{error}}</strong><br>
-            你可以尝试点击下方的“重置网站数据”按钮来解决这个问题，如果仍然无法解决，请带着本框框内的消息联系开发者！
+            <strong>{{error|safe}}</strong><br>
+            你可以尝试点击下方的“重置网站数据”按钮来解决这个问题。<br>
+            如果你已经点击了下面的按钮，但仍然出现了这个问题，请尝试清除浏览器的cookie来重置会话<br>
+            如果上面这两种方法你都已经尝试过了，那么请带着此错误信息联系开发者！
           </div>
           <div class="container-fluid px-0 overflow-hidden">
             <div class="row text-center py-2 mt-3">
