@@ -2,5 +2,5 @@ __pycache__
 sections
 docs
 pages
-store.json
 flask_session
+*.json

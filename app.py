@@ -71,13 +71,13 @@ def market():
                          shop['SingleItemStoreOffers'][3]["Cost"]["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"])
         return render_template('myMarket.html', market=True,
                                weapon0={
-                                   "name": weapon0.name, "cost": weapon0.cost, "img": weapon0.base_img},
+                                   "name": weapon0.name, "cost": weapon0.cost, "img": weapon0.base_img, "levels": weapon0.levels, "chromas": weapon0.chromas},
                                weapon1={
-                                   "name": weapon1.name, "cost": weapon1.cost, "img": weapon1.base_img},
+                                   "name": weapon1.name, "cost": weapon1.cost, "img": weapon1.base_img, "levels": weapon1.levels, "chromas": weapon1.chromas},
                                weapon2={
-                                   "name": weapon2.name, "cost": weapon2.cost, "img": weapon2.base_img},
+                                   "name": weapon2.name, "cost": weapon2.cost, "img": weapon2.base_img, "levels": weapon2.levels, "chromas": weapon2.chromas},
                                weapon3={
-                                   "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img},
+                                   "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img, "levels": weapon3.levels, "chromas": weapon3.chromas},
                                player={'name': name, 'tag': tag, 'vp': user.vp, 'rp': user.rp}, pc=pc)
     else:   # Login Expired
         # response = make_response(redirect('/', 302))
@@ -340,4 +340,4 @@ def internal_server_error_preview():
 
 if __name__ == '__main__':
     _thread.start_new_thread(updateCache, ())
-    app.run(host='0.0.0.0', port=8080, debug=False)
+    app.run(host='0.0.0.0', port=8080, debug=True)
