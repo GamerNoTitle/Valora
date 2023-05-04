@@ -7,3 +7,4 @@ typing
 flask_session
 sentry-sdk
 parse
+redis
