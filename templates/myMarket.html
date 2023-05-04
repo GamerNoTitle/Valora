@@ -217,7 +217,8 @@
                         当前浏览器无法预览视频
                       </video>
                       <br>
-                      <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p>
+                      <p class="text-gradient text-danger mb-0 mt-2" align="center">
+                        请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
@@ -244,12 +245,17 @@
                       <h5 class="modal-title">{{weapon.name|safe}} {{chroma.displayName}}</h5>
                     </div>
                     <div class="modal-body">
+                      {% if chroma.streamedVideo %}
                       <video width=100% controls>
                         <source src="{{chroma.streamedVideo}}" type="video/mp4">
                         当前浏览器无法预览视频
                       </video>
                       <br>
-                      <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p>
+                      <p class="text-gradient text-danger mb-0 mt-2" align="center">
+                        请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p>
+                      {% else %}
+                      <img width="100%" src="{{chroma.fullRender}}">
+                      {% endif %}
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
@@ -328,7 +334,8 @@
                       当前浏览器无法预览视频
                     </video>
                     <br>
-                    <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p>
+                    <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
+                    </p>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
@@ -355,13 +362,18 @@
                     <h5 class="modal-title">{{weapon.name|safe}} {{chroma.displayName}}</h5>
                   </div>
                   <div class="modal-body">
+                    {% if chroma.streamedVideo %}
                     <video width=100% controls>
                       <source src="{{chroma.streamedVideo}}" type="video/mp4">
                       当前浏览器无法预览视频
                     </video>
                     <br>
-                    <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p>
-                </div>
+                    <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
+                    </p>
+                    {% else %}
+                    <img width="100%" src="{{chroma.fullRender}}">
+                    {% endif %}
+                  </div>
                   <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
                   </div>
@@ -372,7 +384,7 @@
             {% endif %}
             {% endfor %}
           </td>
-      </tr>
+        </tr>
         {% endfor %}
 
       </table>
@@ -400,69 +412,76 @@
             <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
             <h3 class="text-gradient text-dark mb-0 mt-2"><img src="/assets/img/icons8-valorant.svg">
               {{weapon.cost|safe}}</h3>
-              <br>
-              {% for level in weapon.levels %}
-              {% if level.displayName != '' %}
-              <!-- Button trigger modal -->
-              <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
-                data-bs-target="#WEAPON-{{level.uuid|escape}}">
-                {{level.displayName}}: {{level.levelItem}}
-              </button>
+            <br>
+            {% for level in weapon.levels %}
+            {% if level.displayName != '' %}
+            <!-- Button trigger modal -->
+            <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
+              data-bs-target="#WEAPON-{{level.uuid|escape}}">
+              {{level.displayName}}: {{level.levelItem}}
+            </button>
 
-              <!-- Modal -->
-              <div class="modal fade" id="WEAPON-{{level.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">{{weapon.name|safe}} {{level.displayName}}</h5>
-                    </div>
-                    <div class="modal-body">
-                      <video width=100% controls>
-                        <source src="{{level.streamedVideo}}" type="video/mp4">
-                        当前浏览器无法预览视频
-                      </video>
-                      <br>
-                      <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
-                    </div>
+            <!-- Modal -->
+            <div class="modal fade" id="WEAPON-{{level.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">{{weapon.name|safe}} {{level.displayName}}</h5>
+                  </div>
+                  <div class="modal-body">
+                    <video width=100% controls>
+                      <source src="{{level.streamedVideo}}" type="video/mp4">
+                      当前浏览器无法预览视频
+                    </video>
+                    <br>
+                    <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
                   </div>
                 </div>
               </div>
-              {% endif %}
-              {% endfor %}
-              <br>
-              {% for chroma in weapon.chromas %}
-              {% if chroma.displayName != '' %}
-              <!-- Button trigger modal -->
-              <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
-                data-bs-target="#WEAPON-{{chroma.uuid|escape}}">
-                {{chroma.displayName}}
-              </button>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <br>
+            {% for chroma in weapon.chromas %}
+            {% if chroma.displayName != '' %}
+            <!-- Button trigger modal -->
+            <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
+              data-bs-target="#WEAPON-{{chroma.uuid|escape}}">
+              {{chroma.displayName}}
+            </button>
 
-              <!-- Modal -->
-              <div class="modal fade" id="WEAPON-{{chroma.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">{{weapon.name|safe}} {{chroma.displayName}}</h5>
-                    </div>
-                    <div class="modal-body">
-                      <video width=100% controls>
-                        <source src="{{chroma.streamedVideo}}" type="video/mp4">
-                        当前浏览器无法预览视频
-                      </video>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
-                    </div>
+            <!-- Modal -->
+            <div class="modal fade" id="WEAPON-{{chroma.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">{{weapon.name|safe}} {{chroma.displayName}}</h5>
+                  </div>
+                  <div class="modal-body">
+                    {% if chroma.streamedVideo %}
+                    <video width=100% controls>
+                      <source src="{{chroma.streamedVideo}}" type="video/mp4">
+                      当前浏览器无法预览视频
+                    </video>
+                    <br>
+                    <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
+                    </p>
+                    {% else %}
+                    <img width="100%" src="{{chroma.fullRender}}"> {% endif %}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
                   </div>
                 </div>
               </div>
-              </script>
-              {% endif %}
-              {% endfor %}
+            </div>
+            </script>
+            {% endif %}
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -501,74 +520,83 @@
             <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
             <h3 class="text-gradient text-dark mb-0 mt-2"><img src="/assets/img/icons8-valorant.svg">
               {{weapon.cost|safe}} → {{weapon.discount|safe}} ({{weapon.per|safe}}% off)</h3>
-              <br>
-              {% for level in weapon.levels %}
-              {% if level.displayName != '' %}
-              <!-- Button trigger modal -->
-              <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
-                data-bs-target="#WEAPON-{{level.uuid|escape}}">
-                {{level.displayName}}: {{level.levelItem}}
-              </button>
+            <br>
+            {% for level in weapon.levels %}
+            {% if level.displayName != '' %}
+            <!-- Button trigger modal -->
+            <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
+              data-bs-target="#WEAPON-{{level.uuid|escape}}">
+              {{level.displayName}}: {{level.levelItem}}
+            </button>
 
-              <!-- Modal -->
-              <div class="modal fade" id="WEAPON-{{level.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">{{weapon.name|safe}} {{level.displayName}}</h5>
-                    </div>
-                    <div class="modal-body">
-                      <video width=100% controls>
-                        <source src="{{level.streamedVideo}}" type="video/mp4">
-                        当前浏览器无法预览视频
-                      </video>
-                      <br>
-                      <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
-                    </div>
+            <!-- Modal -->
+            <div class="modal fade" id="WEAPON-{{level.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">{{weapon.name|safe}} {{level.displayName}}</h5>
+                  </div>
+                  <div class="modal-body">
+                    <video width=100% controls>
+                      <source src="{{level.streamedVideo}}" type="video/mp4">
+                      当前浏览器无法预览视频
+                    </video>
+                    <br>
+                    <p class="text-gradient text-danger mb-0 mt-2" align="center">
+                      请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
                   </div>
                 </div>
               </div>
-              {% endif %}
-              {% endfor %}
-              <br>
-              {% for chroma in weapon.chromas %}
-              {% if chroma.displayName != '' %}
-              <!-- Button trigger modal -->
-              <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
-                data-bs-target="#WEAPON-{{chroma.uuid|escape}}">
-                {{chroma.displayName}}
-              </button>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <br>
+            {% for chroma in weapon.chromas %}
+            {% if chroma.displayName != '' %}
+            <!-- Button trigger modal -->
+            <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
+              data-bs-target="#WEAPON-{{chroma.uuid|escape}}">
+              {{chroma.displayName}}
+            </button>
 
-              <!-- Modal -->
-              <div class="modal fade" id="WEAPON-{{chroma.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">{{weapon.name|safe}} {{chroma.displayName}}</h5>
-                    </div>
-                    <div class="modal-body">
-                      <video width=100% controls>
-                        <source src="{{chroma.streamedVideo}}" type="video/mp4">
-                        当前浏览器无法预览视频
-                      </video>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
-                    </div>
+            <!-- Modal -->
+            <div class="modal fade" id="WEAPON-{{chroma.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">{{weapon.name|safe}} {{chroma.displayName}}</h5>
                   </div>
+                  <div class="modal-body">
+                    {% if chroma.streamedVideo %}
+                    <video width=100% controls>
+                      <source src="{{chroma.streamedVideo}}" type="video/mp4">
+                      当前浏览器无法预览视频
+                    </video>
+                    <br>
+                    <p class="text-gradient text-danger mb-0 mt-2" align="center">
+                      请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p>
+                  </div>
+                  {% else %}
+                  <img width=100% src="{{chroma.fullRender}}">
+                  {% endif %}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
                 </div>
               </div>
-              </script>
-              {% endif %}
-              {% endfor %}
+            </div>
           </div>
+          </script>
+          {% endif %}
+          {% endfor %}
         </div>
       </div>
-      {% endfor %}
     </div>
+    {% endfor %}
+  </div>
   </div>
   {% endif %}
   {% endif %}

@@ -8,7 +8,8 @@ class weapon:
             "EEquippableSkinLevelItem::VFX": '视觉效果',
             "EEquippableSkinLevelItem::Animation": '视觉动画',
             "EEquippableSkinLevelItem::Finisher": '终结特效',
-            "EEquippableSkinLevelItem::Voiceover": "本地化语音"
+            "EEquippableSkinLevelItem::Voiceover": "本地化语音",
+            "EEquippableSkinLevelItem::SoundEffects": "音效"
         }
         self.uuid = uuid
         self.cost = cost
@@ -38,8 +39,10 @@ class weapon:
                     level['levelItem'] = levelup_info[level['levelItem']]
             except KeyError:
                 level['levelItem'] = level['levelItem'].replace(
-                    'EEquippableSkinLevelItem::', '').title()
+                    'EEquippableSkinLevelItem::', '')
         for chroma in self.chromas:
             chroma['uuid'] = chroma['uuid'].upper()
             chroma['displayName'] = chroma['displayName'].replace(self.name, '').replace('\n', '').replace(
                 '（', '').replace('）', '').replace('等級4', '').replace('等級3', '').replace('等級2', '').replace('等級5', '').replace(' / ', '').replace('／', '/')
+        # print(self.levels)
+        # print(self.chromas)
