@@ -31,16 +31,19 @@ if type(session_type) != type(None):
                 app.config['SESSION_REDIS'] = redis.Redis(host=redis_host, port=int(redis_port), password=redis_pass, ssl=redis_ssl)
         else:
             app.config['SESSION_REDIS'] = redis.from_url(redisurl)
+        print('Redis has been set to session.')
     else:
         secret = str(uuid.uuid4())
         app.secret_key = secret
         app.config['SECRET_KEY'] = secret
         app.config['SESSION_TYPE'] = 'filesystem'
+        print(f'Unsupported session type: {session_type}. Now it has been set to filesystem.')
 else:
     secret = str(uuid.uuid4())
     app.secret_key = secret
     app.config['SECRET_KEY'] = secret
     app.config['SESSION_TYPE'] = 'filesystem'
+    print('No session type specified. Now it has been set to filesystem.')
 
 app.template_folder = 'templates'
 Session(app)
