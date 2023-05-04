@@ -22,7 +22,19 @@ $ pip install -r requirements.txt
 
 安装完成后，你可以在`app.py`中对服务的监听地址和端口进行修改，默认端口为8080
 
-服务器的session密钥每次启动都会自动更换，随机生成（会导致已经登录的用户被强制退出登录），如果要固定请自己去改
+服务器的session密钥每次启动都会自动更换，随机生成（会导致已经登录的用户被强制退出登录），如果不希望每次更新都让用户退出登录，可以采用Redis作为Session存储库
+
+具体配置如下
+
+```shell
+$ export REDIS_URL=<Your Redis URL>
+# If your redis url cannot be parsed
+$ export REDIS_HOST=<Your Redis Host>
+$ export REDIS_PORT=<Your Redis Port>
+$ export REDIS_PASSWORD=<Your Redis Password>
+# Optional
+$ export REDIS_SSL=True # If you have enabled it
+```
 
 使用如下命令打开服务器
 
