@@ -9,7 +9,13 @@ class weapon:
             "EEquippableSkinLevelItem::Animation": '视觉动画',
             "EEquippableSkinLevelItem::Finisher": '终结特效',
             "EEquippableSkinLevelItem::Voiceover": "本地化语音",
-            "EEquippableSkinLevelItem::SoundEffects": "音效"
+            "EEquippableSkinLevelItem::SoundEffects": "音效",
+            "EEquippableSkinLevelItem::FishAnimation": "鱼缸动画",
+            "EEquippableSkinLevelItem::KillBanner": "击杀旗帜",
+            "EEquippableSkinLevelItem::TopFrag": "击杀光环",
+            "EEquippableSkinLevelItem::KillCounter": "击杀计数器",
+            "EEquippableSkinLevelItem::InspectAndKill": "击杀特效",
+            "EEquippableSkinLevelItem::KillEffect": "击杀特效&音效"
         }
         self.uuid = uuid
         self.cost = cost
@@ -31,7 +37,7 @@ class weapon:
         for level in self.levels:
             level['uuid'] = level['uuid'].upper()
             level['displayName'] = level['displayName'].replace(self.name, '').replace(
-                '\n', '').replace(' ', '').replace('：在地化語音可能會因地區而異', '')
+                '\n', '').replace(' ', '').replace('：在地化語音可能會因地區而異', '').replace('（在對戰中取得最多擊殺時才會顯示光環）', '').replace('：每次擊殺敵人時，都會播放專屬視覺特效及音效', '')
             try:
                 if level['levelItem'] == None:
                     level['levelItem'] = levelup_info['EEquippableSkinLevelItem::VFX']
