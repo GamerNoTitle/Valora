@@ -13,10 +13,38 @@ from utils.Cache import updateCache
 from utils.Weapon import weapon
 
 app = Flask(__name__)
-secret = str(uuid.uuid4())
-app.secret_key = secret
-app.config['SECRET_KEY'] = secret
-app.config['SESSION_TYPE'] = 'filesystem'
+session_type = os.environ.get('SESSION_TYPE')
+if type(session_type) != type(None):
+    if session_type.lower() == 'redis':
+        import redis
+        app.config['SESSION_TYPE'] = 'redis'
+        redisurl = os.environ.get('REDIS_URL')
+        if redisurl == None or redisurl == '':
+            redis_host = os.environ.get('REDIS_HOST')
+            redis_port = os.environ.get('REDIS_PORT')
+            redis_pass = os.environ.get('REDIS_PASSWORD')
+            redis_ssl = os.environ.get('REDIS_SSL', False)
+            if redis_host == None or redis_port == None or redis_pass == None:
+                print('Redis url is not set.')
+                os._exit(1)
+            else:
+                app.config['SESSION_REDIS'] = redis.Redis(host=redis_host, port=int(redis_port), password=redis_pass, ssl=redis_ssl)
+        else:
+            app.config['SESSION_REDIS'] = redis.from_url(redisurl)
+        print('Redis has been set to session.')
+    else:
+        secret = str(uuid.uuid4())
+        app.secret_key = secret
+        app.config['SECRET_KEY'] = secret
+        app.config['SESSION_TYPE'] = 'filesystem'
+        print(f'Unsupported session type: {session_type}. Now it has been set to filesystem.')
+else:
+    secret = str(uuid.uuid4())
+    app.secret_key = secret
+    app.config['SECRET_KEY'] = secret
+    app.config['SESSION_TYPE'] = 'filesystem'
+    print('No session type specified. Now it has been set to filesystem.')
+
 app.template_folder = 'templates'
 Session(app)
 
