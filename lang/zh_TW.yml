@@ -5,7 +5,7 @@ metadata:
     EEquippableSkinLevelItem::Finisher: 終結特效
     EEquippableSkinLevelItem::SoundEffects: 音效
     # For Protocol 781-A Level 5 https://valorant-api.com/v1/weapons/skinlevels/a117218e-4f0e-0cca-7758-7ea30b08ac05
-    EEquippableSkinLevelItem::Voiceover: 本地化語音
+    EEquippableSkinLevelItem::Voiceover: 在地化語音
     # For Neptune Level 2 https://valorant-api.com/v1/weapons/skinlevels/24e39414-4a8e-e800-1242-08bd94b5e3c4
     EEquippableSkinLevelItem::FishAnimation: 魚缸動畫
     # For Neptune Level 3 https://valorant-api.com/v1/weapons/skinlevels/7b2826b6-4771-7529-b656-b89b9c1d86b6
