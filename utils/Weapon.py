@@ -15,7 +15,8 @@ class weapon:
             "EEquippableSkinLevelItem::TopFrag": "击杀光环",
             "EEquippableSkinLevelItem::KillCounter": "击杀计数器",
             "EEquippableSkinLevelItem::InspectAndKill": "击杀特效",
-            "EEquippableSkinLevelItem::KillEffect": "击杀特效&音效"
+            "EEquippableSkinLevelItem::KillEffect": "击杀特效&音效",
+            "EEquippableSkinLevelItem::AttackerDefenderSwap": "随阵营变色"
         }
         self.uuid = uuid
         self.cost = cost
@@ -37,7 +38,12 @@ class weapon:
         for level in self.levels:
             level['uuid'] = level['uuid'].upper()
             level['displayName'] = level['displayName'].replace(self.name, '').replace(
-                '\n', '').replace(' ', '').replace('：在地化語音可能會因地區而異', '').replace('（在對戰中取得最多擊殺時才會顯示光環）', '').replace('：每次擊殺敵人時，都會播放專屬視覺特效及音效', '')
+                '\n', '').replace(
+                ' ', '').replace(
+                '：在地化語音可能會因地區而異', '').replace(
+                '（在對戰中取得最多擊殺時才會顯示光環）', '').replace(
+                '：每次擊殺敵人時，都會播放專屬視覺特效及音效', '').replace(
+                '：此造型設計會因你是攻擊方或守備方而變化', '')
             try:
                 if level['levelItem'] == None:
                     level['levelItem'] = levelup_info['EEquippableSkinLevelItem::VFX']

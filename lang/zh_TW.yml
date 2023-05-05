@@ -1,0 +1,124 @@
+metadata:
+  level:
+    EEquippableSkinLevelItem::VFX: 視覺效果
+    EEquippableSkinLevelItem::Animation: 視覺動畫
+    EEquippableSkinLevelItem::Finisher: 終結特效
+    EEquippableSkinLevelItem::SoundEffects: 音效
+    # For Protocol 781-A Level 5 https://valorant-api.com/v1/weapons/skinlevels/a117218e-4f0e-0cca-7758-7ea30b08ac05
+    EEquippableSkinLevelItem::Voiceover: 本地化語音
+    # For Neptune Level 2 https://valorant-api.com/v1/weapons/skinlevels/24e39414-4a8e-e800-1242-08bd94b5e3c4
+    EEquippableSkinLevelItem::FishAnimation: 魚缸動畫
+    # For Neptune Level 3 https://valorant-api.com/v1/weapons/skinlevels/7b2826b6-4771-7529-b656-b89b9c1d86b6
+    EEquippableSkinLevelItem::KillBanner: 擊殺旗幟
+    # For Champions Set Level 5 https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
+    EEquippableSkinLevelItem::TopFrag: 擊殺光環
+    # For RGX 11z Pro Set Level 5 https://valorant-api.com/v1/weapons/skinlevels/796cf1d2-4893-fee7-3401-beb277c726c8
+    EEquippableSkinLevelItem::KillCounter: 擊殺計數器
+    # For Champions Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/f96ed262-4280-2363-2542-38b5620bfbb5
+    EEquippableSkinLevelItem::InspectAndKill: 擊殺特效
+    # For some skins https://valorant-api.com/v1/weapons/skinlevels/bf4489ad-4739-555c-2511-7cbcc503566c
+    EEquippableSkinLevelItem::KillEffect: 擊殺特效&音效
+    # For Black.Market Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/65c7df10-4a5e-7eaa-dc45-d0a46f147b18
+    EEquippableSkinLevelItem::AttackerDefenderSwap: 隨陣營變色
+ description:
+    # All these sources to replace can be found at the links above
+    # You need to add ?language=<your lang> to check your language
+    # Available language: ar-AE / de-DE / en-US / es-ES / es-MX / fr-FR / id-ID / it-IT / ja-JP / ko-KR / pl-PL / pt-BR / ru-RU / th-TH / tr-TR / vi-VN / zh-CN / zh-TW
+    # For China mainland players, all the names of the guns are using zh-TW, cause this program does not support Valorant from Tencent.
+    # example: https://valorant-api.com/v1/weapons/skinlevels/a117218e-4f0e-0cca-7758-7ea30b08ac05?language=zh-CN
+    Voiceover: ：在地化語音可能會因地區而異
+    KillEffect: ：每次擊殺敵人時，都會播放專屬視覺特效及音效
+    AttackerDefenderSwap: ：此造型設計會因你是攻擊方或守備方而變化
+
+global:
+  title:
+    dailyshop: 每日商店
+    nightmarket: 折扣夜市
+    shopdefault: 我的商店
+  description:
+    line1: 瓦羅蘭特（無畏契約）商店查看，讓你不用登錄遊戲也能夠查看每日商店（僅支持國際服）
+    line2: 所有的登錄名和密碼服務器均不進行存取，僅用於登錄
+  nav:
+    title: 瓦羅蘭特商店查看
+  button:
+    dailyshop: 每日商店
+    nightmarket: 折扣夜市
+    account: 賬戶管理
+    authinfo: 認證信息
+    sponsor: 恰飯鏈接
+    logout: 退出登錄
+
+
+login:
+  front:
+    title: 登錄你的Riot賬號
+    description:
+      line1: 伺服器不對賬號的登錄名和密碼進行存取
+      line2: 支持带有二步验证的账号，欢迎注重安全的各位使用！
+  form:
+    username:
+      title: 用戶名
+      placeholder: 請輸入你的用戶名
+    password:
+      title: 密碼
+      placeholder: 請輸入密碼
+    checkbox:
+      remember: 保持登錄（減少登錄次數）
+      nostorage: 我已明白網站僅會將我的登錄名和密碼用於登錄我的賬號
+      eula: 我同意<a href="/EULA" class="text-dark"><u>最終用戶許可協議</u></a>
+  button:
+    login: 登錄
+
+mfa:
+  front:
+    title: 二步驗證
+    description:
+      line1: 請前往你的綁定郵箱獲取驗證碼後，在這裡填入
+      line2: 伺服器不對賬號的登錄名和密碼進行存取
+  form:
+    code:
+      title: 二步驗證碼
+      placeholder: 請輸入驗證碼
+  button:
+    confirm: 確認
+    
+market:
+  welcome: 
+    pc: 歡迎回來！<strong>{{player.name}}#{{player.tag}}</strong>，你現在持有 <strong>{{player.vp}}</strong> VP 和 <strong>{{player.rp}}</strong> RP
+    phone: 歡迎回來！<strong>{{player.name}}#{{player.tag}}</strong><br>你現在持有 <strong>{{player.vp}}</strong> VP 和 <strong>{{player.rp}}</strong> RP
+  title: 今日商店 | Daily Shop
+  table:
+    skin-name: 皮膚名稱
+    skin-img: 皮膚圖片
+    skin-cost: 皮膚售價
+    skin-preview: 皮膚預覽
+  modal:
+    video-notavaliable: 當前瀏覽器無法預覽視頻
+  button:
+    close: 關閉
+
+nightmarket:
+  welcome: 
+    pc: 歡迎回來！<strong>{{player.name}}#{{player.tag}}</strong>，你現在持有 <strong>{{player.vp}}</strong> VP 和 <strong>{{player.rp}}</strong> RP
+    phone: 歡迎回來！<strong>{{player.name}}#{{player.tag}}</strong><br>你現在持有 <strong>{{player.vp}}</strong> VP 和 <strong>{{player.rp}}</strong> RP
+  notavaliable: 夜市還沒有開放哦，先去看看每日商店吧！
+  title: 夜市 | Night Market
+  modal:
+    video-notavaliable: 當前瀏覽器無法預覽視頻
+  button:
+    close: 關閉
+
+error:
+  error500: 
+    tip: 500伺服器錯誤
+    error: 非常抱歉，伺服器發生了一些錯誤
+    detail:
+      front: 伺服器發生了以下錯誤：
+      solve: 你可以嘗試點擊下方的「重置網站數據」按鈕來解決這個問題。<br>如果你已經點擊了下面的按鈕，但仍然出現了這個問題，請嘗試清除瀏覽器的cookie來重置會話<br>如果上面這兩種方法你都已經嘗試過了，那麼請帶著此錯誤信息聯繫開發者！
+    button:
+      reset: 重置網站數據
+  error404: 
+    tip: 404未找到
+    error: 你來到了一個無人所知的地方
+    button:
+      home: 返回首頁
