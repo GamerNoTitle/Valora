@@ -58,7 +58,15 @@
       border-color: #ffffff;
     }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZYM17KPGT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
+    gtag('config', 'G-PZYM17KPGT');
+  </script>
 
 </head>
 
@@ -159,7 +167,7 @@
       <div class="col-12 mx-auto">
         <div class="alert alert-pink text-white rounded role=" alert">
           <span class="alert-icon"><i class="ni ni-like-2"></i></span>
-          {{lang.market.welcome.opening}} {{player.name}}#{{player.tag}}<br>
+          {{lang.market.welcome.opening}} <strong>{{player.name}}</strong>#<strong>{{player.tag}}</strong><br>
           {{lang.market.welcome.credit}} <strong>{{player.vp}}</strong> VP & <strong>{{player.rp}}</strong> RP
         </div>
       </div>
