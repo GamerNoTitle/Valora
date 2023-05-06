@@ -1,0 +1,124 @@
+metadata:
+  level:
+    EEquippableSkinLevelItem::VFX: Visual Effect
+    EEquippableSkinLevelItem::Animation: Animation
+    EEquippableSkinLevelItem::Finisher: Finisher
+    EEquippableSkinLevelItem::SoundEffects: Sound Effect
+    # For Protocol 781-A Level 5 https://valorant-api.com/v1/weapons/skinlevels/a117218e-4f0e-0cca-7758-7ea30b08ac05
+    EEquippableSkinLevelItem::Voiceover: Localized Voiceover
+    # For Neptune Level 2 https://valorant-api.com/v1/weapons/skinlevels/24e39414-4a8e-e800-1242-08bd94b5e3c4
+    EEquippableSkinLevelItem::FishAnimation: Fish Animation
+    # For Neptune Level 3 https://valorant-api.com/v1/weapons/skinlevels/7b2826b6-4771-7529-b656-b89b9c1d86b6
+    EEquippableSkinLevelItem::KillBanner: Kill Banner
+    # For Champions Set Level 5 https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
+    EEquippableSkinLevelItem::TopFrag: Top Frag
+    # For RGX 11z Pro Set Level 5 https://valorant-api.com/v1/weapons/skinlevels/796cf1d2-4893-fee7-3401-beb277c726c8
+    EEquippableSkinLevelItem::KillCounter: Kill Counter
+    # For Champions Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/f96ed262-4280-2363-2542-38b5620bfbb5
+    EEquippableSkinLevelItem::InspectAndKill: Kill Effect
+    # For some skins https://valorant-api.com/v1/weapons/skinlevels/bf4489ad-4739-555c-2511-7cbcc503566c
+    EEquippableSkinLevelItem::KillEffect: Kill Visual & Sound Effect
+    # For Black.Market Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/65c7df10-4a5e-7eaa-dc45-d0a46f147b18
+    EEquippableSkinLevelItem::AttackerDefenderSwap: Change with Faction
+  description:
+    # All these sources to replace can be found at the links above
+    # You need to add ?language=<your lang> to check your language
+    # Available language: ar-AE / de-DE / en-US / es-ES / es-MX / fr-FR / id-ID / it-IT / ja-JP / ko-KR / pl-PL / pt-BR / ru-RU / th-TH / tr-TR / vi-VN / zh-CN / zh-TW
+    # For China mainland players, all the names of the guns are using zh-TW, cause this program does not support Valorant from Tencent.
+    # example: https://valorant-api.com/v1/weapons/skinlevels/a117218e-4f0e-0cca-7758-7ea30b08ac05?language=zh-CN
+    Voiceover: " - Localized voice-over may differ in your region"
+    KillEffect: " - Every time you kill an enemy, a custom visual effect and sound plays"
+    AttackerDefenderSwap: " - The skin design changes if you are Attacker or Defender"
+
+global:
+  title:
+    dailyshop: Daily Shop
+    nightmarket: Night Market
+    shopdefault: My Shop
+  description:
+    line1: Valorant shop checker, help you peek your shop & nightmarket without open your game.
+    line2: All usernames and passwords are not stored on the server and are only used for login.
+  nav:
+    title: Valorant Shop Checker
+  button:
+    dailyshop: Daily Shop
+    nightmarket: Night Market
+    account: My Account
+    authinfo: Auto Info
+    sponsor: Sponsor
+    logout: Logout
+
+
+login:
+  front:
+    title: Log in to your Riot account
+    description:
+      line1: The server does not store the login name and password of the account
+      line2: Supports accounts with two-step verification, welcome to use it for those who value security!
+  form:
+    username:
+      title: Username
+      placeholder: Please enter your username
+    password:
+      title: Password
+      placeholder: Please enter your password
+    checkbox:
+      remember: Stay logged in
+      nostorage: I understand that the website will only use my login name and password to log into my account.
+      eula: I agree to the <a href="/EULA" class="text-dark"><u>End User License Agreement</u></a>.
+  button:
+    login: Login
+
+mfa:
+  front:
+    title: Two-Step Verification
+    description:
+      line1: Please go to your bound email to get the verification code and fill it in here
+      line2: The server does not store the login name and password of the account
+  form:
+    code:
+      title: Two-Step Verification Code
+      placeholder: Please enter the verification code
+  button:
+    confirm: Confirm
+
+market:
+  welcome: 
+    pc: Welcome back! <strong>{{player.name}}#{{player.tag}}</strong>, you currently have <strong>{{player.vp}}</strong> VP and <strong>{{player.rp}}</strong> RP
+    phone: Welcome back! <strong>{{player.name}}#{{player.tag}}</strong><br>You currently have <strong>{{player.vp}}</strong> VP and <strong>{{player.rp}}</strong> RP
+  title: Daily Shop
+  table:
+    skin-name: Skin Name
+    skin-img: Skin Image
+    skin-cost: Skin Price
+    skin-preview: Skin Preview
+  modal:
+    video-notavaliable: Video preview is not available on the current browser
+  button:
+    close: Close
+
+nightmarket:
+  welcome: 
+    pc: Welcome back! <strong>{{player.name}}#{{player.tag}}</strong>, you currently have <strong>{{player.vp}}</strong> VP and <strong>{{player.rp}}</strong> RP
+    phone: Welcome back! <strong>{{player.name}}#{{player.tag}}</strong><br>You currently have <strong>{{player.vp}}</strong> VP and <strong>{{player.rp}}</strong> RP
+  notavaliable: The night market is not open yet, go check out the daily shop first!
+  title: Night Market
+  modal:
+    video-notavaliable: Video preview is not available on the current browser
+  button:
+    close: Close
+
+error:
+  error500: 
+    tip: 500 Server Error
+    error: We're very sorry, there was an error on the server
+    detail:
+      front: The server encountered the following error
+      solve: You can try clicking the "Reset Site Data" button below to solve this problem.<br>If you have already clicked the button below but still encounter this problem, try clearing your browser's cookies to reset the session<br>If you have tried both of the above methods, please contact the developer with this error information!
+    button:
+      reset: Reset Site Data
+  error404: 
+    tip: 404 Not Found
+    error: You have arrived at an unknown place
+    button:
+      home: Return to Home Page
