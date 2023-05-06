@@ -1,4 +1,4 @@
-import _thread
+import threading
 import os
 import uuid
 import sentry_sdk
@@ -67,6 +67,14 @@ sentry_sdk.init(
 
 @app.route('/', methods=['GET'])
 def home():
+    # Paas use gunicorn to start flask applications
+    # use this method to start cache updating.
+    thread = threading.Thread(target=updateCache)
+    thread.daemon = True
+    try:
+        thread.start()
+    except RuntimeError:
+        pass
     lang = str(request.accept_languages.best_match(
         app.config['BABEL_LANGUAGES']))
     session["lang"] = lang
@@ -390,5 +398,4 @@ def internal_server_error_preview():
 
 
 if __name__ == '__main__':
-    _thread.start_new_thread(updateCache, ())
     app.run(host='0.0.0.0', port=8080, debug=True)

@@ -16,6 +16,7 @@ Linkmap = [
 
 def updateCache():
     while True:
+        print('Updating Cache...')
         for lang, link in Linkmap:
             res = requests.get(link, timeout=30)
 

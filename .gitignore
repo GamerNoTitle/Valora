@@ -2,4 +2,3 @@ __pycache__
 sections
 pages
 flask_session
-*.json
