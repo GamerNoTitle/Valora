@@ -1,30 +1,32 @@
 # VSC
 
-就是一个为了查瓦每日商店而做的网站，也算练手了
+English | [简体中文](https://github.com/GamerNoTitle/VSC/blob/master/docs/README_CN.md)
 
-做出来自己用的，担心安全的可以自己搭建或者不用，市场上有很多平替品，甚至做的比我的好
+This is a website that helps you peek your shop and night market of VALORANT. It's a project that I make on my spare time.
 
-## 快速开始
+There are a lot of application on the network that can help you do that and they even better than mine. If you are worried about my project, you can use theirs.
 
-你可以访问[https://val.bili33.top](https://val.bili33.top)来进行查询，服务器不存储账号密码
+## Quick Start
 
-## 自己搭建
+You can access [https://val.bili33.top](https://val.bili33.top) to start your shop peek. The production server will not storage your username & password
 
-首先你需要一台能运行flask服务的服务器（或者railway那种PaaS），将项目fork到自己的账号下
+## Build your own
 
-在服务器上，输入命令进行依赖的安装
+First you need a server/Paas platform which can run python and flask. Fork this repo to your account.
 
-> 在一些服务器上，你可能需要使用`pip3`来代替`pip`，同样的，在运行服务器的时候也可能需要使用`python3`来代替`python`和`py`
+You need to install some requirements on your server, use the following command.
+
+> On some servers, you may need to use `pip3` instead of using `pip`. Meanwhile, you also need to use `python3` to instead of using `python` of `py`
 
 ```shell
 $ pip install -r requirements.txt
 ```
 
-安装完成后，你可以在`app.py`中对服务的监听地址和端口进行修改，默认端口为8080
+After installation, you can change the listening address & port. We use `0.0.0.0:8080` as default.
 
-服务器的session密钥每次启动都会自动更换，随机生成（会导致已经登录的用户被强制退出登录），如果不希望每次更新都让用户退出登录，可以采用Redis作为Session存储库
+Every time you start the server, the session key will be generated. That means all the logged in users will need to re-login. If this is not you wish, you can use Redis as your session storage.
 
-具体配置如下
+You need to configurate the following items:
 
 ```shell
 $ export REDIS_URL=<Your Redis URL>
@@ -36,13 +38,13 @@ $ export REDIS_PASSWORD=<Your Redis Password>
 $ export REDIS_SSL=True # If you have enabled it
 ```
 
-使用如下命令打开服务器
+After doing all things above, you can turn your server on. Using the following command to do that.
 
 ```shell
 $ python app.py
 ```
 
-现在，你可以访问[http://127.0.0.1:8080](http://127.0.0.1:8080)，当你看到网站主页面的时候，就说明你成功啦！
+Now, you can access [http://127.0.0.1:8080](http://127.0.0.1:8080) (If you haven't changed it), and you will see your website.
 
 ## Credit
 
@@ -55,9 +57,9 @@ $ python app.py
 
 ## Referrance
 
-因为网上现在没有较为完整的API文档，我找到了一篇别人的然后修改了一下，发在这里
+There's no any good doc on the network (at least i didn't find that). Here's my doc. (I find one and edit base on the doc)
 
-[Referrance Doc](https://gamernotitle.notion.site/Valorant-API-baffa2069fb848a781664432564e94d0)
+[Referrance Doc (CHINESE)](https://gamernotitle.notion.site/Valorant-API-baffa2069fb848a781664432564e94d0)
 
 ## Sponsor
 
