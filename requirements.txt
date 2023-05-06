@@ -9,3 +9,4 @@ sentry-sdk
 parse
 redis
 flask-babel
+pyyaml
