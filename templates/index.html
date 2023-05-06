@@ -55,7 +55,7 @@
           <div class="container-fluid px-0">
             <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip"
               title="Valorant Shop Checker | 瓦罗兰特商店查看" data-placement="bottom" target="_blank">
-              VSC | 瓦罗兰特商店查看
+              VSC | {{lang.global.nav.title}}
             </a>
             <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
               <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
@@ -96,7 +96,7 @@
               </path>
             </svg>
             <br>
-            <p class="lead text-white mt-3">瓦罗兰特（无畏契约）商店查看，让你不用登陆游戏也能够查看每日商店（仅支持国际服）<br />所有的登录名和密码服务器均不进行存取，仅用于登录
+            <p class="lead text-white mt-3">{{lang.global.description.line1}}<br />{{lang.global.description.line2}}
             </p>
           </div>
         </div>
@@ -125,24 +125,24 @@
     <div class="container py-4">
       <div class="row">
         <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
-          <h3 class="text-center">登陆你的Riot账号</h3>
+          <h3 class="text-center">{{lang.login.front.title}}</h3>
           <div align="center">
-            <p>服务器不对账号的登录名和密码进行存取</p>
-            <p>支持带有二步验证的账号，欢迎注重安全的各位使用！</p>
+            <p>{{lang.login.front.description.line1}}</p>
+            <p>{{lang.login.front.description.line2}}</p>
           </div>
           <form role="form" name="login" method="post" autocomplete="off" action="/api/login">
             <div class="card-body">
               <div class="row">
                 <div class="col-md-6">
-                  <label>用户名</label>
+                  <label>{{lang.login.form.username.title}}</label>
                   <div class="input-group mb-4">
-                    <input class="form-control" placeholder="请输入你的用户名" name="Username" type="text">
+                    <input class="form-control" placeholder="{{lang.login.form.username.placeholder}}" name="Username" type="text">
                   </div>
                 </div>
                 <div class="col-md-6 ps-2">
-                  <label>密码</label>
+                  <label>{{lang.login.form.password.title}}</label>
                   <div class="input-group">
-                    <input type="password" class="form-control" placeholder="请输入密码" name="Password">
+                    <input type="password" class="form-control" placeholder="{{lang.login.form.password.placeholder}}" name="Password">
                   </div>
                 </div>
               </div>
@@ -152,7 +152,7 @@
                   <div class="form-check form-switch mb-4">
                     <input class="form-check-input" type="checkbox" name="CheckedRemember">
                     <label class="form-check-label"
-                      for="flexSwitchCheckDefault">保持登录（减少登录次数）</label>
+                      for="flexSwitchCheckDefault">{{lang.login.form.checkbox.remember}}</label>
                   </div>
                 </div>
               <div class="row">
@@ -160,34 +160,33 @@
                   <div class="form-check form-switch mb-4">
                     <input class="form-check-input" type="checkbox" name="CheckedRule">
                     <label class="form-check-label"
-                      for="flexSwitchCheckDefault">我已明白网站仅会将我的登录名和密码用于登录我的账号</label>
+                      for="flexSwitchCheckDefault">{{lang.login.form.checkbox.nostorage}}</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-check form-switch mb-4">
                       <input class="form-check-input" type="checkbox" name="CheckedEULA">
-                      <label class="form-check-label" for="flexSwitchCheckDefault">我同意<a href="/EULA"
-                          class="text-dark"><u>最终用户许可协议</u></a>.</label>
+                      <label class="form-check-label" for="flexSwitchCheckDefault">{{lang.login.form.checkbox.eula|safe}}</label>
                     </div>
                   </div>
                   {% if loginerror %}
                   <div class="container">
                     <div align="center" class="alert alert-danger text-white font-weight-bold" role="alert">
-                      登录出错，请检查账号密码，然后重试！
+                      {{lang.login.alert.loginerror}}
                     </div>
                   </div>
                   {% endif %}
                   {% if infoerror %}
                   <div class="container">
                     <div align="center" class="alert alert-danger text-white font-weight-bold" role="alert">
-                      请先正确输入用户名和密码，并勾选下面两项后再点登陆！
+                      {{lang.login.alert.nocheck}}
                     </div>
                   </div>
                   {% endif %}
                   <div class="col-md-12">
                     <button type="submit" class="btn bg-gradient-dark w-100"><img
-                        src="/assets/img/img-navi-valorant-white.svg">登陆</button>
+                        src="/assets/img/img-navi-valorant-white.svg">{{lang.login.button.login}}</button>
                   </div>
                 </div>
               </div>

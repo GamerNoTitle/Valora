@@ -1,5 +1,8 @@
 metadata:
   level:
+    # This means what word "level" shoule be like in the language, you can find it in every upgradable skin
+    # example: https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
+    level: Level
     EEquippableSkinLevelItem::VFX: Visual Effect
     EEquippableSkinLevelItem::Animation: Animation
     EEquippableSkinLevelItem::Finisher: Finisher
@@ -10,7 +13,7 @@ metadata:
     EEquippableSkinLevelItem::FishAnimation: Fish Animation
     # For Neptune Level 3 https://valorant-api.com/v1/weapons/skinlevels/7b2826b6-4771-7529-b656-b89b9c1d86b6
     EEquippableSkinLevelItem::KillBanner: Kill Banner
-    # For Champions Set Level 5 https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
+    # For Champions Set Level 4 https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
     EEquippableSkinLevelItem::TopFrag: Top Frag
     # For RGX 11z Pro Set Level 5 https://valorant-api.com/v1/weapons/skinlevels/796cf1d2-4893-fee7-3401-beb277c726c8
     EEquippableSkinLevelItem::KillCounter: Kill Counter
@@ -26,9 +29,10 @@ metadata:
     # Available language: ar-AE / de-DE / en-US / es-ES / es-MX / fr-FR / id-ID / it-IT / ja-JP / ko-KR / pl-PL / pt-BR / ru-RU / th-TH / tr-TR / vi-VN / zh-CN / zh-TW
     # For China mainland players, all the names of the guns are using zh-TW, cause this program does not support Valorant from Tencent.
     # example: https://valorant-api.com/v1/weapons/skinlevels/a117218e-4f0e-0cca-7758-7ea30b08ac05?language=zh-CN
-    Voiceover: " - Localized voice-over may differ in your region"
-    KillEffect: " - Every time you kill an enemy, a custom visual effect and sound plays"
-    AttackerDefenderSwap: " - The skin design changes if you are Attacker or Defender"
+    Voiceover: Localized voice-over may differ in your region
+    KillEffect: Every time you kill an enemy, a custom visual effect and sound plays
+    AttackerDefenderSwap: The skin design changes if you are Attacker or Defender
+    TopFrag: Aura is active only when player has the most kills in the game
 
 global:
   title:
@@ -68,7 +72,10 @@ login:
       eula: I agree to the <a href="/EULA" class="text-dark"><u>End User License Agreement</u></a>.
   button:
     login: Login
-
+  alert:
+    nocheck: Please enter your username and password correctly, and check the two options below before clicking login!
+    loginerror: Login error, please check your account password and try again!
+    
 mfa:
   front:
     title: Two-Step Verification
@@ -84,27 +91,38 @@ mfa:
 
 market:
   welcome: 
-    pc: Welcome back! <strong>{{player.name}}#{{player.tag}}</strong>, you currently have <strong>{{player.vp}}</strong> VP and <strong>{{player.rp}}</strong> RP
-    phone: Welcome back! <strong>{{player.name}}#{{player.tag}}</strong><br>You currently have <strong>{{player.vp}}</strong> VP and <strong>{{player.rp}}</strong> RP
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: Welcome back!
+    credit: You currently have
   title: Daily Shop
   table:
-    skin-name: Skin Name
-    skin-img: Skin Image
-    skin-cost: Skin Price
-    skin-preview: Skin Preview
+    skinname: Skin Name
+    skinimg: Skin Image
+    skincost: Skin Price
+    skinpreview: Skin Preview
   modal:
-    video-notavaliable: Video preview is not available on the current browser
+    videonotavaliable: Video preview is not available on the current browser
   button:
     close: Close
 
 nightmarket:
   welcome: 
-    pc: Welcome back! <strong>{{player.name}}#{{player.tag}}</strong>, you currently have <strong>{{player.vp}}</strong> VP and <strong>{{player.rp}}</strong> RP
-    phone: Welcome back! <strong>{{player.name}}#{{player.tag}}</strong><br>You currently have <strong>{{player.vp}}</strong> VP and <strong>{{player.rp}}</strong> RP
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: Welcome back!
+    credit: You currently have
   notavaliable: The night market is not open yet, go check out the daily shop first!
   title: Night Market
+  table:
+    skinname: Skin Name
+    skinimg: Skin Image
+    skincost: Skin Price
+    skinpreview: Skin Preview
   modal:
-    video-notavaliable: Video preview is not available on the current browser
+    videonotavaliable: Video preview is not available on the current browser
   button:
     close: Close
 

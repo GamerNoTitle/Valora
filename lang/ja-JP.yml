@@ -1,5 +1,8 @@
 metadata:
   level:
+    # This means what word "level" shoule be like in the language, you can find it in every upgradable skin
+    # example: https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
+    level: Lv.
     EEquippableSkinLevelItem::VFX: ビジュアルエフェクト
     EEquippableSkinLevelItem::Animation: ビジュアルアニメーション
     EEquippableSkinLevelItem::Finisher: フィニッシャーエフェクト
@@ -10,7 +13,7 @@ metadata:
     EEquippableSkinLevelItem::FishAnimation: 水槽アニメーション
     # For Neptune Level 3 https://valorant-api.com/v1/weapons/skinlevels/7b2826b6-4771-7529-b656-b89b9c1d86b6
     EEquippableSkinLevelItem::KillBanner: キルバナー
-    # For Champions Set Level 5 https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
+    # For Champions Set Level 4 https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
     EEquippableSkinLevelItem::TopFrag: キルオーラ
     # For RGX 11z Pro Set Level 5 https://valorant-api.com/v1/weapons/skinlevels/796cf1d2-4893-fee7-3401-beb277c726c8
     EEquippableSkinLevelItem::KillCounter: キルカウンター
@@ -26,9 +29,10 @@ metadata:
     # Available language: ar-AE / de-DE / en-US / es-ES / es-MX / fr-FR / id-ID / it-IT / ja-JP / ko-KR / pl-PL / pt-BR / ru-RU / th-TH / tr-TR / vi-VN / zh-CN / zh-TW
     # For China mainland players, all the names of the guns are using zh-TW, cause this program does not support Valorant from Tencent.
     # example: https://valorant-api.com/v1/weapons/skinlevels/a117218e-4f0e-0cca-7758-7ea30b08ac05?language=zh-CN
-    Voiceover: " - ローカライズされた音声は、お住まいの地域によって異なる可能性があります"
-    KillEffect: " - 敵をキルするたびに、カスタムビジュアルエフェクトとオーディオが再生される"
-    AttackerDefenderSwap: " - アタック時とディフェンス時でスキンのデザインが変化"
+    Voiceover: ローカライズされた音声は、お住まいの地域によって異なる可能性があります
+    KillEffect: 敵をキルするたびに、カスタムビジュアルエフェクトとオーディオが再生される
+    AttackerDefenderSwap: アタック時とディフェンス時でスキンのデザインが変化
+    TopFrag: オーラは試合中に最多キルを獲得している間のみ発動
 
 global:
   title:
@@ -67,7 +71,10 @@ login:
       eula: <a href="/EULA" class="text-dark"><u>エンドユーザーライセンス契約</u></a>に同意します。
   button:
     login: ログイン
-
+  alert:
+    nocheck: ユーザー名とパスワードを正しく入力し、ログインする前に下の2つのオプションを確認してください！
+    loginerror: ログインエラーが発生しました。アカウントパスワードを確認してから、再度お試しください！
+    
 mfa:
   front:
     title: 二段階認証
@@ -83,27 +90,38 @@ mfa:
 
 market:
   welcome: 
-    pc: おかえりなさい！<strong>{{player.name}}#{{player.tag}}</strong>、あなたは現在 <strong>{{player.vp}}</strong> VP と <strong>{{player.rp}}</strong> RP を持っています
-    phone: おかえりなさい！<strong>{{player.name}}#{{player.tag}}</strong><br>あなたは現在 <strong>{{player.vp}}</strong> VP と <strong>{{player.rp}}</strong> RP を持っています
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: お帰りなさい
+    credit: 現在、保有しているのは
   title: 今日のショップ | Daily Shop
   table:
-    skin-name: スキン名
-    skin-img: スキン画像
-    skin-cost: スキン価格
-    skin-preview: スキンプレビュー
+    skinname: スキン名
+    skinimg: スキン画像
+    skincost: スキン価格
+    skinpreview: スキンプレビュー
   modal:
-    video-notavaliable: 現在のブラウザではビデオのプレビューができません
+    videonotavaliable: 現在のブラウザではビデオのプレビューができません
   button:
     close: 閉じる
 
 nightmarket:
   welcome: 
-    pc: おかえりなさい！<strong>{{player.name}}#{{player.tag}}</strong>、あなたは現在 <strong>{{player.vp}}</strong> VP と <strong>{{player.rp}}</strong> RP を持っています
-    phone: おかえりなさい！<strong>{{player.name}}#{{player.tag}}</strong><br>あなたは現在 <strong>{{player.vp}}</strong> VP と <strong>{{player.rp}}</strong> RP を持っています
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: お帰りなさい
+    credit: 現在、保有しているのは
   notavaliable: 夜市はまだ開いていませんよ、まずはデイリーショップを見てみましょう！
   title: 夜市 | Night Market
+  table:
+    skinname: スキン名
+    skinimg: スキン画像
+    skincost: スキン価格
+    skinpreview: スキンプレビュー
   modal:
-    video-notavaliable: 現在のブラウザではビデオのプレビューができません
+    videonotavaliable: 現在のブラウザではビデオのプレビューができません
   button:
     close: 閉じる
 

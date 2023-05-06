@@ -6,7 +6,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/img-navi-valorant-white.svg">
   <link rel="icon" type="image/png" href="/assets/img/img-navi-valorant-white.svg">
   <title>
-    {% if market %}每日商店{% elif night %}折扣夜市{% else %}我的商店{% endif %} | VSC | GamerNoTitle
+    {% if market %}{{lang.global.title.dailyshop}}{% elif night %}{{lang.global.title.nightmarket}}{% else %}{{lang.global.title.shopdefault}}{% endif %} | VSC | GamerNoTitle
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -74,7 +74,7 @@
           <div class="container-fluid px-0">
             <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip"
               title="Valorant Shop Checker | 瓦罗兰特商店查看" data-placement="bottom" target="_blank">
-              VSC | 瓦罗兰特商店查看
+              VSC | {{lang.global.nav.title}}
             </a>
             <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
               <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
@@ -115,7 +115,7 @@
               </path>
             </svg>
             <br>
-            <p class="lead text-white mt-3">瓦罗兰特（无畏契约）商店查看，让你不用登陆游戏也能够查看每日商店（仅支持国际服）<br />所有的登录名和密码服务器均不进行存取，仅用于登录
+            <p class="lead text-white mt-3">{{lang.global.description.line1}}<br />{{lang.global.description.line2}}
             </p>
           </div>
         </div>
@@ -143,13 +143,13 @@
   <div class="container-fluid px-0 overflow-hidden">
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
-        <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg"><i class="ni ni-cart"></i> 每日商店</button></a>
-        <a href="/market/night"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="ni ni-basket"></i> 折扣夜市</button></a>
+        <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg"><i class="ni ni-cart"></i> {{lang.global.button.dailyshop}}</button></a>
+        <a href="/market/night"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="ni ni-basket"></i> {{lang.global.button.nightmarket}}</button></a>
         <a href="//account.riotgames.com"><button type="button"
-            class="btn bg-gradient-secondary btn-lg"><i class="ni ni-circle-08"></i> 账户管理</button></a>
-        <a href="/auth-info"><button type="button" class="btn bg-gradient-success btn-lg"><i class="ni ni-check-bold"></i> 认证信息</button></a>
-        <a href="//bili33.top/sponsors"><button type="button" class="btn bg-gradient-primary btn-lg"><i class="ni ni-atom"></i> 恰饭链接</button></a>
-        <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg"><i class="ni ni-user-run"></i> 退出登录</button></a>
+            class="btn bg-gradient-secondary btn-lg"><i class="ni ni-circle-08"></i> {{lang.global.button.account}}</button></a>
+        <a href="/auth-info"><button type="button" class="btn bg-gradient-success btn-lg"><i class="ni ni-check-bold"></i> {{lang.global.button.authinfo}}</button></a>
+        <a href="//bili33.top/sponsors"><button type="button" class="btn bg-gradient-primary btn-lg"><i class="ni ni-atom"></i> {{lang.global.button.sponsor}}</button></a>
+        <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg"><i class="ni ni-user-run"></i> {{lang.global.button.logout}}</button></a>
       </div>
     </div>
   </div>
@@ -159,9 +159,8 @@
       <div class="col-12 mx-auto">
         <div class="alert alert-pink text-white rounded role=" alert">
           <span class="alert-icon"><i class="ni ni-like-2"></i></span>
-          欢迎回来！<strong>{{player.name}}#{{player.tag}}</strong>{% if pc %}，{% else %}<br>{% endif %}你现在持有
-          <strong>{{player.vp}}</strong> VP 和
-          <strong>{{player.rp}}</strong> RP
+          {{lang.market.welcome.opening}} {{player.name}}#{{player.tag}}<br>
+          {{lang.market.welcome.credit}} <strong>{{player.vp}}</strong> VP & <strong>{{player.rp}}</strong> RP
         </div>
       </div>
     </div>
@@ -170,16 +169,16 @@
   <!-- Desktop Devices -->
   {% if market %}
   <div class="container">
-    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">今日商店 | Daily Shop</h1>
+    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.market.title}}</h1>
     <br>
     <div class="table-responsive">
       <table class="table" id="market-table">
         <thead>
           <tr>
-            <th class="text-center">皮肤名称</th>
-            <th class="text-center">皮肤图片</th>
-            <th class="text-center"><img src="/assets/img/icons8-valorant.svg"> 皮肤售价</th>
-            <th class="text-center">皮肤预览</th>
+            <th class="text-center">{{lang.market.table.skinname}}</th>
+            <th class="text-center">{{lang.market.table.skinimg}}</th>
+            <th class="text-center"><img src="/assets/img/icons8-valorant.svg"> {{lang.market.table.skincost}}</th>
+            <th class="text-center">{{lang.market.table.skinpreview}}</th>
           </tr>
         </thead>
         <tbody>
@@ -214,14 +213,14 @@
                     <div class="modal-body">
                       <video width=100% controls>
                         <source src="{{level.streamedVideo}}" type="video/mp4">
-                        当前浏览器无法预览视频
+                        {{lang.market.modal.videonotavaliable}}
                       </video>
                       <br>
-                      <p class="text-gradient text-danger mb-0 mt-2" align="center">
-                        请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p>
+                      <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
+                        请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
+                      <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.market.button.close}}</button>
                     </div>
                   </div>
                 </div>
@@ -248,17 +247,17 @@
                       {% if chroma.streamedVideo %}
                       <video width=100% controls>
                         <source src="{{chroma.streamedVideo}}" type="video/mp4">
-                        当前浏览器无法预览视频
+                        {{lang.market.modal.videonotavaliable}}
                       </video>
                       <br>
-                      <p class="text-gradient text-danger mb-0 mt-2" align="center">
-                        请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p>
+                      <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
+                        请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
                       {% else %}
                       <img width="100%" src="{{chroma.fullRender}}">
                       {% endif %}
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
+                      <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.market.button.close}}</button>
                     </div>
                   </div>
                 </div>
@@ -281,23 +280,23 @@
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
         <div class="alert alert-danger text-white rounded role=" alert">
-          夜市还没有开放哦，先去看看每日商店吧！
+          {{lang.nightmarket.notavaliable}}
         </div>
       </div>
     </div>
   </div>
   {% else %}
   <div class="container">
-    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">夜市 | Night Market</h1>
+    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.nightmarket.title}}</h1>
     <br>
     <div class="table-responsive">
       <table class="table" id="market-table">
         <thead>
           <tr>
-            <th class="text-center">皮肤名称</th>
-            <th class="text-center">皮肤图片（点击可查看大图）</th>
-            <th class="text-center"><img src="/assets/img/icons8-valorant.svg"> 皮肤价格</th>
-            <th class="text-center">皮肤预览</th>
+            <th class="text-center">{{lang.nightmarket.table.skinname}}</th>
+            <th class="text-center">{{lang.nightmarket.table.skinimg}}</th>
+            <th class="text-center"><img src="/assets/img/icons8-valorant.svg"> {{lang.nightmarket.table.skincost}}</th>
+            <th class="text-center">{{lang.nightmarket.table.skinpreview}}</th>
           </tr>
         </thead>
         {% for weapon in [weapon0, weapon1, weapon2, weapon3, weapon4, weapon5] %}
@@ -332,14 +331,14 @@
                   <div class="modal-body">
                     <video width=100% controls>
                       <source src="{{level.streamedVideo}}" type="video/mp4">
-                      当前浏览器无法预览视频
+                      {{lang.nightmarket.modal.videonotavaliable}}
                     </video>
                     <br>
-                    <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
-                    </p>
+                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
+                    </p> -->
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
+                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
                   </div>
                 </div>
               </div>
@@ -366,17 +365,17 @@
                     {% if chroma.streamedVideo %}
                     <video width=100% controls>
                       <source src="{{chroma.streamedVideo}}" type="video/mp4">
-                      当前浏览器无法预览视频
+                      {{lang.nightmarket.modal.videonotavaliable}}
                     </video>
                     <br>
-                    <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
-                    </p>
+                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
+                    </p> -->
                     {% else %}
                     <img width="100%" src="{{chroma.fullRender}}">
                     {% endif %}
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
+                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
                   </div>
                 </div>
               </div>
@@ -395,10 +394,10 @@
   {% endif %}
 
   {% else %}
-  <!-- Mobile Devices -->
+  Mobile Devices
   {% if market %}
   <div class="container">
-    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">今日商店 | Daily Shop</h1>
+    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.market.title}}</h1>
     <br>
     <div class="row">
       {% for weapon in [weapon0, weapon1, weapon2, weapon3] %}
@@ -432,14 +431,14 @@
                   <div class="modal-body">
                     <video width=100% controls>
                       <source src="{{level.streamedVideo}}" type="video/mp4">
-                      当前浏览器无法预览视频
+                      {{lang.market.modal.videonotavaliable}}
                     </video>
                     <br>
-                    <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
-                    </p>
+                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
+                    </p> -->
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
+                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.market.button.close}}</button>
                   </div>
                 </div>
               </div>
@@ -466,16 +465,16 @@
                     {% if chroma.streamedVideo %}
                     <video width=100% controls>
                       <source src="{{chroma.streamedVideo}}" type="video/mp4">
-                      当前浏览器无法预览视频
+                      {{lang.market.modal.videonotavaliable}}
                     </video>
                     <br>
-                    <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
-                    </p>
+                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
+                    </p> -->
                     {% else %}
                     <img width="100%" src="{{chroma.fullRender}}"> {% endif %}
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
+                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.market.button.close}}</button>
                   </div>
                 </div>
               </div>
@@ -498,7 +497,7 @@
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
         <div class="alert alert-danger text-white rounded role=" alert">
-          夜市还没有开放哦，先去看看每日商店吧！
+          {{lang.nightmarket.notavaliable}}
         </div>
       </div>
     </div>
@@ -506,7 +505,7 @@
   {% else %}
 
   <div class="container">
-    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">夜市 | Night Market</h1>
+    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.nightmarket.title}}</h1>
     <br>
     <div class="row">
       {% for weapon in [weapon0, weapon1, weapon2, weapon3, weapon4, weapon5] %}
@@ -540,14 +539,14 @@
                   <div class="modal-body">
                     <video width=100% controls>
                       <source src="{{level.streamedVideo}}" type="video/mp4">
-                      当前浏览器无法预览视频
+                      {{lang.nightmarket.modal.videonotavaliable}}
                     </video>
                     <br>
-                    <p class="text-gradient text-danger mb-0 mt-2" align="center">
-                      请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p>
+                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
+                      请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
+                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
                   </div>
                 </div>
               </div>
@@ -574,18 +573,18 @@
                     {% if chroma.streamedVideo %}
                     <video width=100% controls>
                       <source src="{{chroma.streamedVideo}}" type="video/mp4">
-                      当前浏览器无法预览视频
+                      {{lang.nightmarket.modal.videonotavaliable}}
                     </video>
                     <br>
-                    <p class="text-gradient text-danger mb-0 mt-2" align="center">
-                      请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p>
+                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
+                      请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
                   </div>
                   {% else %}
                   <img width=100% src="{{chroma.fullRender}}">
                   {% endif %}
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">关闭</button>
+                  <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
                 </div>
               </div>
             </div>
