@@ -19,7 +19,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/img-navi-valorant-white.svg">
   <link rel="icon" type="image/png" href="/assets/img/img-navi-valorant-white.svg">
   <title>
-    二步验证 | VSC | GamerNoTitle
+    {{lang.mfa.front.title}} | VSC | GamerNoTitle
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -55,7 +55,7 @@
           <div class="container-fluid px-0">
             <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip"
               title="Valorant Shop Checker | 瓦罗兰特商店查看" data-placement="bottom" target="_blank">
-              VSC | 瓦罗兰特商店查看
+              VSC | {{lang.global.nav.title}}
             </a>
             <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
               <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
@@ -96,7 +96,7 @@
               </path>
             </svg>
             <br>
-            <p class="lead text-white mt-3">瓦罗兰特（无畏契约）商店查看，让你不用登陆游戏也能够查看每日商店（仅支持国际服）<br />所有的登录名和密码服务器均不进行存取，仅用于登录
+            <p class="lead text-white mt-3">{{lang.global.description.line1}}<br />{{lang.global.description.line2}}
             </p>
           </div>
         </div>
@@ -125,23 +125,23 @@
     <div class="container py-4">
       <div class="row">
         <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
-          <h3 class="text-center">二步验证</h3>
+          <h3 class="text-center">{{lang.mfa.front.title}}</h3>
           <div align="center">
-            <p>请前往你的绑定邮箱获取验证码后，在这里填入</p>
-            <p>服务器不对账号的登录名和密码进行存取</p>
+            <p>{{lang.mfa.front.description.line1}}</p>
+            <p>{{lang.mfa.front.description.line2}}</p>
           </div>
           <form role="form" name="login" method="post" autocomplete="off" action="/api/verify">
             <div class="col-md-6 ps-2">
-              <label>二步验证码</label>
+              <label>{{lang.mfa.form.code.title}}</label>
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="请输入验证码" name="MFACode">
+                <input type="text" class="form-control" placeholder="{{lang.mfa.form.code.placeholder}}" name="MFACode">
               </div>
             </div>
             <br>
             <div class="row">
               <div class="col-md-12">
                 <button type="submit" class="btn bg-gradient-dark w-100"><img
-                    src="/assets/img/img-navi-valorant-white.svg">登陆</button>
+                    src="/assets/img/img-navi-valorant-white.svg">{{lang.mfa.button.confirm}}</button>
               </div>
             </div>
         </div>

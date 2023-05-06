@@ -1,5 +1,8 @@
 metadata:
   level:
+    # This means what word "level" shoule be like in the language, you can find it in every upgradable skin
+    # example: https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
+    level: 等級
     EEquippableSkinLevelItem::VFX: 視覺效果
     EEquippableSkinLevelItem::Animation: 視覺動畫
     EEquippableSkinLevelItem::Finisher: 終結特效
@@ -10,7 +13,7 @@ metadata:
     EEquippableSkinLevelItem::FishAnimation: 魚缸動畫
     # For Neptune Level 3 https://valorant-api.com/v1/weapons/skinlevels/7b2826b6-4771-7529-b656-b89b9c1d86b6
     EEquippableSkinLevelItem::KillBanner: 擊殺旗幟
-    # For Champions Set Level 5 https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
+    # For Champions Set Level 4 https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
     EEquippableSkinLevelItem::TopFrag: 擊殺光環
     # For RGX 11z Pro Set Level 5 https://valorant-api.com/v1/weapons/skinlevels/796cf1d2-4893-fee7-3401-beb277c726c8
     EEquippableSkinLevelItem::KillCounter: 擊殺計數器
@@ -20,15 +23,16 @@ metadata:
     EEquippableSkinLevelItem::KillEffect: 擊殺特效&音效
     # For Black.Market Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/65c7df10-4a5e-7eaa-dc45-d0a46f147b18
     EEquippableSkinLevelItem::AttackerDefenderSwap: 隨陣營變色
- description:
+  description:
     # All these sources to replace can be found at the links above
     # You need to add ?language=<your lang> to check your language
     # Available language: ar-AE / de-DE / en-US / es-ES / es-MX / fr-FR / id-ID / it-IT / ja-JP / ko-KR / pl-PL / pt-BR / ru-RU / th-TH / tr-TR / vi-VN / zh-CN / zh-TW
     # For China mainland players, all the names of the guns are using zh-TW, cause this program does not support Valorant from Tencent.
     # example: https://valorant-api.com/v1/weapons/skinlevels/a117218e-4f0e-0cca-7758-7ea30b08ac05?language=zh-CN
-    Voiceover: ：在地化語音可能會因地區而異
-    KillEffect: ：每次擊殺敵人時，都會播放專屬視覺特效及音效
-    AttackerDefenderSwap: ：此造型設計會因你是攻擊方或守備方而變化
+    Voiceover: 在地化語音可能會因地區而異
+    KillEffect: 每次擊殺敵人時，都會播放專屬視覺特效及音效
+    AttackerDefenderSwap: 此造型設計會因你是攻擊方或守備方而變化
+    TopFrag: （在對戰中取得最多擊殺時才會顯示光環）
 
 global:
   title:
@@ -68,7 +72,10 @@ login:
       eula: 我同意<a href="/EULA" class="text-dark"><u>最終用戶許可協議</u></a>
   button:
     login: 登錄
-
+  alert:
+    nocheck: 請先正確輸入用戶名和密碼，並勾選下面兩項後再點登陸！
+    loginerror: 登陸出錯，請檢查帳號密碼，然後重試！
+    
 mfa:
   front:
     title: 二步驗證
@@ -84,27 +91,38 @@ mfa:
     
 market:
   welcome: 
-    pc: 歡迎回來！<strong>{{player.name}}#{{player.tag}}</strong>，你現在持有 <strong>{{player.vp}}</strong> VP 和 <strong>{{player.rp}}</strong> RP
-    phone: 歡迎回來！<strong>{{player.name}}#{{player.tag}}</strong><br>你現在持有 <strong>{{player.vp}}</strong> VP 和 <strong>{{player.rp}}</strong> RP
+    # Welcome message format:
+    # <opening> {{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: 歡迎回來
+    credit: 你現在持有
   title: 今日商店 | Daily Shop
   table:
-    skin-name: 皮膚名稱
-    skin-img: 皮膚圖片
-    skin-cost: 皮膚售價
-    skin-preview: 皮膚預覽
+    skinname: 皮膚名稱
+    skinimg: 皮膚圖片
+    skincost: 皮膚售價
+    skinpreview: 皮膚預覽
   modal:
-    video-notavaliable: 當前瀏覽器無法預覽視頻
+    videonotavaliable: 當前瀏覽器無法預覽視頻
   button:
     close: 關閉
 
 nightmarket:
   welcome: 
-    pc: 歡迎回來！<strong>{{player.name}}#{{player.tag}}</strong>，你現在持有 <strong>{{player.vp}}</strong> VP 和 <strong>{{player.rp}}</strong> RP
-    phone: 歡迎回來！<strong>{{player.name}}#{{player.tag}}</strong><br>你現在持有 <strong>{{player.vp}}</strong> VP 和 <strong>{{player.rp}}</strong> RP
+    # Welcome message format:
+    # <opening> {{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: 歡迎回來
+    credit: 你現在持有
   notavaliable: 夜市還沒有開放哦，先去看看每日商店吧！
   title: 夜市 | Night Market
+  table:
+    skinname: 皮膚名稱
+    skinimg: 皮膚圖片
+    skincost: 皮膚售價
+    skinpreview: 皮膚預覽
   modal:
-    video-notavaliable: 當前瀏覽器無法預覽視頻
+    videonotavaliable: 當前瀏覽器無法預覽視頻
   button:
     close: 關閉
 

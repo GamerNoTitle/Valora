@@ -1,5 +1,8 @@
 metadata:
   level:
+    # This means what word "level" shoule be like in the language, you can find it in every upgradable skin
+    # example: https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
+    level: 等級
     EEquippableSkinLevelItem::VFX: 视觉效果
     EEquippableSkinLevelItem::Animation: 视觉动画
     EEquippableSkinLevelItem::Finisher: 终结特效
@@ -10,7 +13,7 @@ metadata:
     EEquippableSkinLevelItem::FishAnimation: 鱼缸动画
     # For Neptune Level 3 https://valorant-api.com/v1/weapons/skinlevels/7b2826b6-4771-7529-b656-b89b9c1d86b6
     EEquippableSkinLevelItem::KillBanner: 击杀旗帜
-    # For Champions Set Level 5 https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
+    # For Champions Set Level 4 https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
     EEquippableSkinLevelItem::TopFrag: 击杀光环
     # For RGX 11z Pro Set Level 5 https://valorant-api.com/v1/weapons/skinlevels/796cf1d2-4893-fee7-3401-beb277c726c8
     EEquippableSkinLevelItem::KillCounter: 击杀计数器
@@ -26,9 +29,10 @@ metadata:
     # Available language: ar-AE / de-DE / en-US / es-ES / es-MX / fr-FR / id-ID / it-IT / ja-JP / ko-KR / pl-PL / pt-BR / ru-RU / th-TH / tr-TR / vi-VN / zh-CN / zh-TW
     # For China mainland players, all the names of the guns are using zh-TW, cause this program does not support Valorant from Tencent.
     # example: https://valorant-api.com/v1/weapons/skinlevels/a117218e-4f0e-0cca-7758-7ea30b08ac05?language=zh-CN
-    Voiceover: ：在地化語音可能會因地區而異
-    KillEffect: ：每次擊殺敵人時，都會播放專屬視覺特效及音效
-    AttackerDefenderSwap: ：此造型設計會因你是攻擊方或守備方而變化
+    Voiceover: 在地化語音可能會因地區而異
+    KillEffect: 每次擊殺敵人時，都會播放專屬視覺特效及音效
+    AttackerDefenderSwap: 此造型設計會因你是攻擊方或守備方而變化
+    TopFrag: （在對戰中取得最多擊殺時才會顯示光環）
 
 global:
   title:
@@ -47,7 +51,6 @@ global:
     authinfo: 认证信息
     sponsor: 恰饭链接
     logout: 退出登录
-
 
 login:
   front:
@@ -68,6 +71,9 @@ login:
       eula: 我同意<a href="/EULA" class="text-dark"><u>最终用户许可协议</u></a>
   button:
     login: 登录
+  alert:
+    nocheck: 请先正确输入用户名和密码，并勾选下面两项后再点登陆！
+    loginerror: 登录出错，请检查账号密码，然后重试！
 
 mfa:
   front:
@@ -83,33 +89,44 @@ mfa:
     confirm: 确认
 
 market:
-  welcome: 
-    pc: 欢迎回来！<strong>{{player.name}}#{{player.tag}}</strong>，你现在持有 <strong>{{player.vp}}</strong> VP 和 <strong>{{player.rp}}</strong> RP
-    phone: 欢迎回来！<strong>{{player.name}}#{{player.tag}}</strong><br>你现在持有 <strong>{{player.vp}}</strong> VP 和 <strong>{{player.rp}}</strong> RP
+  welcome:
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: 欢迎回来
+    credit: 你现在持有
   title: 今日商店 | Daily Shop
   table:
-    skin-name: 皮肤名称
-    skin-img: 皮肤图片
-    skin-cost: 皮肤售价
-    skin-preview: 皮肤预览
+    skinname: 皮肤名称
+    skinimg: 皮肤图片
+    skincost: 皮肤售价
+    skinpreview: 皮肤预览
   modal:
-    video-notavaliable: 当前浏览器无法预览视频
+    videonotavaliable: 当前浏览器无法预览视频
   button:
     close: 关闭
 
 nightmarket:
-  welcome: 
-    pc: 欢迎回来！<strong>{{player.name}}#{{player.tag}}</strong>，你现在持有 <strong>{{player.vp}}</strong> VP 和 <strong>{{player.rp}}</strong> RP
-    phone: 欢迎回来！<strong>{{player.name}}#{{player.tag}}</strong><br>你现在持有 <strong>{{player.vp}}</strong> VP 和 <strong>{{player.rp}}</strong> RP
+  welcome:
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: 欢迎回来
+    credit: 你现在持有
   notavaliable: 夜市还没有开放哦，先去看看每日商店吧！
   title: 夜市 | Night Market
+  table:
+    skinname: 皮肤名称
+    skinimg: 皮肤图片
+    skincost: 皮肤售价
+    skinpreview: 皮肤预览
   modal:
-    video-notavaliable: 当前浏览器无法预览视频
+    videonotavaliable: 当前浏览器无法预览视频
   button:
     close: 关闭
 
 error:
-  error500: 
+  error500:
     tip: 500服务器错误
     error: 肥肠抱歉，服务器发生了点错误
     detail:
@@ -117,7 +134,7 @@ error:
       solve: 你可以尝试点击下方的“重置网站数据”按钮来解决这个问题。<br>如果你已经点击了下面的按钮，但仍然出现了这个问题，请尝试清除浏览器的cookie来重置会话<br>如果上面这两种方法你都已经尝试过了，那么请带着此错误信息联系开发者！
     button:
       reset: 重置网站数据
-  error404: 
+  error404:
     tip: 404未找到
     error: 你来到了一个无人所知的地方
     button:

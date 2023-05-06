@@ -1,0 +1,141 @@
+metadata:
+  level:
+    # This means what word "level" shoule be like in the language, you can find it in every upgradable skin
+    # example: https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
+    level: Lv.
+    EEquippableSkinLevelItem::VFX: ビジュアルエフェクト
+    EEquippableSkinLevelItem::Animation: ビジュアルアニメーション
+    EEquippableSkinLevelItem::Finisher: フィニッシャーエフェクト
+    EEquippableSkinLevelItem::SoundEffects: サウンドエフェクト
+    # For Protocol 781-A Level 5 https://valorant-api.com/v1/weapons/skinlevels/a117218e-4f0e-0cca-7758-7ea30b08ac05
+    EEquippableSkinLevelItem::Voiceover: ローカライズされたボイスオーバー
+    # For Neptune Level 2 https://valorant-api.com/v1/weapons/skinlevels/24e39414-4a8e-e800-1242-08bd94b5e3c4
+    EEquippableSkinLevelItem::FishAnimation: 水槽アニメーション
+    # For Neptune Level 3 https://valorant-api.com/v1/weapons/skinlevels/7b2826b6-4771-7529-b656-b89b9c1d86b6
+    EEquippableSkinLevelItem::KillBanner: キルバナー
+    # For Champions Set Level 4 https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
+    EEquippableSkinLevelItem::TopFrag: キルオーラ
+    # For RGX 11z Pro Set Level 5 https://valorant-api.com/v1/weapons/skinlevels/796cf1d2-4893-fee7-3401-beb277c726c8
+    EEquippableSkinLevelItem::KillCounter: キルカウンター
+    # For Champions Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/f96ed262-4280-2363-2542-38b5620bfbb5
+    EEquippableSkinLevelItem::InspectAndKill: キルエフェクト
+    # For some skins https://valorant-api.com/v1/weapons/skinlevels/bf4489ad-4739-555c-2511-7cbcc503566c
+    EEquippableSkinLevelItem::KillEffect: キルエフェクト&サウンドエフェクト
+    # For Black.Market Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/65c7df10-4a5e-7eaa-dc45-d0a46f147b18
+    EEquippableSkinLevelItem::AttackerDefenderSwap: チームに応じて色が変わる
+  description:
+    # All these sources to replace can be found at the links above
+    # You need to add ?language=<your lang> to check your language
+    # Available language: ar-AE / de-DE / en-US / es-ES / es-MX / fr-FR / id-ID / it-IT / ja-JP / ko-KR / pl-PL / pt-BR / ru-RU / th-TH / tr-TR / vi-VN / zh-CN / zh-TW
+    # For China mainland players, all the names of the guns are using zh-TW, cause this program does not support Valorant from Tencent.
+    # example: https://valorant-api.com/v1/weapons/skinlevels/a117218e-4f0e-0cca-7758-7ea30b08ac05?language=zh-CN
+    Voiceover: ローカライズされた音声は、お住まいの地域によって異なる可能性があります
+    KillEffect: 敵をキルするたびに、カスタムビジュアルエフェクトとオーディオが再生される
+    AttackerDefenderSwap: アタック時とディフェンス時でスキンのデザインが変化
+    TopFrag: オーラは試合中に最多キルを獲得している間のみ発動
+
+global:
+  title:
+    dailyshop: デイリーショップ
+    nightmarket: ナイトマーケット
+    shopdefault: マイショップ
+  description:
+    line1: VALORANTショップビュー。ゲームにログインせずにデイリーショップを確認できます
+    line2: ログイン名とパスワードはサーバーに保存されず、ログインにのみ使用されます。
+  nav:
+    title: VALORANTショップビュー
+  button:
+    dailyshop: デイリーショップ
+    nightmarket: ナイトマーケット
+    account: アカウント管理
+    authinfo: 認証情報
+    sponsor: スポンサーリンク
+    logout: ログアウト
+
+login:
+  front:
+    title: Riotアカウントにログイン
+    description:
+      line1: サーバーはアカウントのログイン名とパスワードを保存しません
+      line2: 2段階認証を使用したアカウントに対応しています。セキュリティを重視する方もご利用いただけます！
+  form:
+    username:
+      title: ユーザー名
+      placeholder: ユーザー名を入力してください
+    password:
+      title: パスワード
+      placeholder: パスワードを入力してください
+    checkbox:
+      remember: ログイン状態を維持（ログイン回数を減らす）
+      nostorage: 私のログイン名とパスワードは、私のアカウントにログインするためにのみ使用されることを理解しています。
+      eula: <a href="/EULA" class="text-dark"><u>エンドユーザーライセンス契約</u></a>に同意します。
+  button:
+    login: ログイン
+  alert:
+    nocheck: ユーザー名とパスワードを正しく入力し、ログインする前に下の2つのオプションを確認してください！
+    loginerror: ログインエラーが発生しました。アカウントパスワードを確認してから、再度お試しください！
+    
+mfa:
+  front:
+    title: 二段階認証
+    description:
+      line1: あなたのバインドメールボックスにアクセスして確認コードを取得し、ここに入力してください
+      line2: サーバーはアカウントのログイン名とパスワードを保存しません
+  form:
+    code:
+      title: 二段階認証コード
+      placeholder: 確認コードを入力してください
+  button:
+    confirm: 確定
+
+market:
+  welcome: 
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: お帰りなさい
+    credit: 現在、保有しているのは
+  title: 今日のショップ | Daily Shop
+  table:
+    skinname: スキン名
+    skinimg: スキン画像
+    skincost: スキン価格
+    skinpreview: スキンプレビュー
+  modal:
+    videonotavaliable: 現在のブラウザではビデオのプレビューができません
+  button:
+    close: 閉じる
+
+nightmarket:
+  welcome: 
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: お帰りなさい
+    credit: 現在、保有しているのは
+  notavaliable: 夜市はまだ開いていませんよ、まずはデイリーショップを見てみましょう！
+  title: 夜市 | Night Market
+  table:
+    skinname: スキン名
+    skinimg: スキン画像
+    skincost: スキン価格
+    skinpreview: スキンプレビュー
+  modal:
+    videonotavaliable: 現在のブラウザではビデオのプレビューができません
+  button:
+    close: 閉じる
+
+error:
+  error500: 
+    tip: 500サーバーエラー
+    error: 申し訳ありませんが、サーバーにエラーが発生しました
+    detail:
+      front: サーバーで次のエラーが発生しました：
+      solve: この問題を解決するために、下の「サイトデータをリセット」ボタンをクリックしてみてください。<br>下のボタンをクリックしてもこの問題が発生する場合は、ブラウザのcookieをクリアしてセッションをリセットしてみてください<br>上記の2つの方法を試しても問題が解決しない場合は、このエラーメッセージを持って開発者に連絡してください！
+    button:
+      reset: サイトデータをリセット
+  error404: 
+    tip: 404見つかりません
+    error: 誰も知らない場所に来ました
+    button:
+      home: ホームに戻る

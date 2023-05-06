@@ -19,7 +19,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/img-navi-valorant-white.svg">
   <link rel="icon" type="image/png" href="/assets/img/img-navi-valorant-white.svg">
   <title>
-    500服务器错误 | VSC | GamerNoTitle
+    {{lang.error.error500.tip}} | VSC | GamerNoTitle
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -55,7 +55,7 @@
           <div class="container-fluid px-0">
             <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip"
               title="Valorant Shop Checker | 瓦罗兰特商店查看" data-placement="bottom" target="_blank">
-              VSC | 瓦罗兰特商店查看
+              VSC | {{lang.global.nav.title}}
             </a>
             <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
               <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
@@ -96,7 +96,7 @@
               </path>
             </svg>
             <br>
-            <p class="lead text-white mt-3">瓦罗兰特（无畏契约）商店查看，让你不用登陆游戏也能够查看每日商店（仅支持国际服）<br />所有的登录名和密码服务器均不进行存取，仅用于登录
+            <p class="lead text-white mt-3">{{lang.global.description.line1}}<br />{{lang.global.description.line2}}
             </p>
           </div>
         </div>
@@ -125,20 +125,18 @@
     <div class="container py-4">
       <div class="row">
         <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
-          <h1 class="text-gradient text-danger mb-0 mt-2" align="center">肥肠抱歉，服务器发生了点错误<br>500 Internal Server Error
+          <h1 class="text-gradient text-danger mb-0 mt-2" align="center">{{lang.error.error500.error}}<br>500 Internal Server Error
           </h1><br>
-          <div class="alert alert-danger text-white rounded role=" alert">
-            服务器发生了以下错误：<br>
+          <div class="alert alert-danger text-white rounded" role="alert">
+            {{lang.error.error500.detail.front}}<br>
             <strong>{{error|safe}}</strong><br>
-            你可以尝试点击下方的“重置网站数据”按钮来解决这个问题。<br>
-            如果你已经点击了下面的按钮，但仍然出现了这个问题，请尝试清除浏览器的cookie来重置会话<br>
-            如果上面这两种方法你都已经尝试过了，那么请带着此错误信息联系开发者！
+            {{lang.error.error500.detail.solve|safe}}
           </div>
           <div class="container-fluid px-0 overflow-hidden">
             <div class="row text-center py-2 mt-3">
               <div class="col-12 mx-auto">
                 <a href="/api/reset"><button type="button" class="btn bg-gradient-danger btn-lg"
-                    width="100%"><strong>重置网站数据</strong></button></a>
+                    width="100%"><strong>{{lang.error.error500.button.reset}}</strong></button></a>
               </div>
             </div>
           </div>
