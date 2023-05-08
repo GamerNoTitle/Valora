@@ -36,7 +36,7 @@ $ export REDIS_HOST=<Your Redis Host>
 $ export REDIS_PORT=<Your Redis Port>
 $ export REDIS_PASSWORD=<Your Redis Password>
 # Optional
-$ export REDIS_SSL=True # If you have enabled it
+$ export REDIS_SSL=True # If your redis does not support this, please DO NOT configure it, or this will make your application timeout.
 ```
 
 After doing all things above, you can turn your server on. Using the following command to do that.

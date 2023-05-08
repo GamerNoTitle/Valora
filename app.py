@@ -318,7 +318,7 @@ def verify():
         session['tag'] = user.Tag
         session['user_id'] = user.Sub
         session['cookie'] = user.session.cookies
-        del session['password']
+        session['password'] = '***'
         response.status_code = 302
     else:
         response = make_response(
