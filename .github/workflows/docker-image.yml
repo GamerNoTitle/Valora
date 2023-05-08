@@ -18,7 +18,7 @@ jobs:
           echo "tag=$(date +%Y%m%d-%H%M%S)" >> $GITHUB_ENV
 
       - name: Build the Docker image
-        run: docker build -t vsc:$tag .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/vsc:$tag .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
