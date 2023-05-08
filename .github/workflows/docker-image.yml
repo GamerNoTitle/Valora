@@ -27,6 +27,6 @@ jobs:
 
       - name: Push the Docker image
         run: |
-          docker tag gamernotitle/vsc:$tag gamernotitle/vsc:latest
-          docker push gamernotitle/vsc:$tag
-          docker push gamernotitle/vsc:latest
+          docker tag ${{ secrets.DOCKER_USERNAME }}/vsc:$tag gamernotitle/vsc:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/vsc:$tag
+          docker push ${{ secrets.DOCKER_USERNAME }}/vsc:latest
