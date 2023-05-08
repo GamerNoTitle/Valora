@@ -5,6 +5,7 @@ import sentry_sdk
 import requests
 import traceback
 import yaml
+import _thread
 from parse import parse
 from flask import Flask, render_template, redirect, send_from_directory, request, make_response, session
 from flask_babel import Babel
@@ -398,4 +399,13 @@ def internal_server_error_preview():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    # Paas use gunicorn to start flask applications
+    # use this method to start cache updating.
+    # thread = threading.Thread(target=updateCache)
+    # thread.daemon = True
+    # try:
+    #     thread.start()
+    # except RuntimeError:
+    #     pass
+    _thread.start_new_thread(updateCache, ())
+    app.run(host='0.0.0.0', port=os.environ.get('PORT', 8080), debug=False)
