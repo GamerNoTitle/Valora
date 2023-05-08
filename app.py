@@ -381,6 +381,9 @@ def reset():
 def serve_static(filename):
     return send_from_directory('assets', filename)
 
+@ app.route('/robots.txt')
+def serve_robot(filename):
+    return send_from_directory('assets', 'robots.txt')
 
 @ app.errorhandler(500)
 def internal_server_error(e):
