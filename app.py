@@ -318,7 +318,7 @@ def verify():
         session['tag'] = user.Tag
         session['user_id'] = user.Sub
         session['cookie'] = user.session.cookies
-        session['password'] = '***'
+        session['password'] = '***' # For security. Once the password has been used to login in successfully, set password as useless strings
         response.status_code = 302
     else:
         response = make_response(
