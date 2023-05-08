@@ -27,6 +27,7 @@ $ pip install -r requirements.txt
 具体配置如下
 
 ```shell
+$ export SESSION_TYPE=filesystem|redis  # If you want to use redis u need to set it as redis, and configure the following items
 $ export REDIS_URL=<Your Redis URL>
 # If your redis url cannot be parsed
 $ export REDIS_HOST=<Your Redis Host>

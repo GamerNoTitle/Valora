@@ -29,6 +29,7 @@ Every time you start the server, the session key will be generated. That means a
 You need to configurate the following items:
 
 ```shell
+$ export SESSION_TYPE=filesystem|redis  # If you want to use redis u need to set it as redis, and configure the following items
 $ export REDIS_URL=<Your Redis URL>
 # If your redis url cannot be parsed
 $ export REDIS_HOST=<Your Redis Host>
