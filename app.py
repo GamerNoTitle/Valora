@@ -382,7 +382,7 @@ def serve_static(filename):
     return send_from_directory('assets', filename)
 
 @ app.route('/robots.txt')
-def serve_robot(filename):
+def serve_robot():
     return send_from_directory('assets', 'robots.txt')
 
 @ app.errorhandler(500)
