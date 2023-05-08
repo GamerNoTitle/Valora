@@ -12,8 +12,12 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2
 
+      - name: Build tag
+        run: |
+          echo "tag=$(date +%Y%m%d-%H%M%S)" >> $GITHUB_ENV
+
       - name: Build the Docker image
-        run: docker build -t vsc:$(date +%Y%m%d-%H%M%S) .
+        run: docker build -t vsc:$tag .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
@@ -23,6 +27,6 @@ jobs:
 
       - name: Push the Docker image
         run: |
-          docker tag vsc:$(date +%Y%m%d-%H%M%S) vsc:latest
-          docker push vsc:$(date +%Y%m%d-%H%M%S)
+          docker tag vsc:$tag vsc:latest
+          docker push vsc:$tag
           docker push vsc:latest
