@@ -24,4 +24,4 @@ ENV SESSION_TYPE $SESSION_TYPE
 EXPOSE $PORT
 
 # Start the application
-CMD ["python3","app:app"]
+CMD ["python3","app.py"]
