@@ -62,6 +62,8 @@ There's no any good doc on the network (at least i didn't find that). Here's my 
 
 [Referrance Doc (CHINESE)](https://gamernotitle.notion.site/Valorant-API-baffa2069fb848a781664432564e94d0)
 
+[Developing Log (CHINESE)](https://bili33.top/posts/Valorant-Shop-with-API/)
+
 ## Sponsor
 
 [https://bili33.top/sponsors/](https://bili33.top/sponsors/)
