@@ -27,6 +27,7 @@ $ pip install -r requirements.txt
 具体配置如下
 
 ```shell
+$ export SESSION_TYPE=filesystem|redis  # If you want to use redis u need to set it as redis, and configure the following items
 $ export REDIS_URL=<Your Redis URL>
 # If your redis url cannot be parsed
 $ export REDIS_HOST=<Your Redis Host>
@@ -55,7 +56,7 @@ $ python app.py
 
 ## Referrance
 
-因为网上现在没有较为完整的API文档，我找到了一篇别人的然后修改了一下，发在这里
+因为网上现在没有较为完整的API文档，我找到了一篇别人的然后修改了一下，发在这里（源文档：[https://ultronxr2ws.notion.site/UAIOSC-valorant-GitHub-Valorant-API-0ac20cd4c5b744148a74c6cd0f3380dc](https://ultronxr2ws.notion.site/UAIOSC-valorant-GitHub-Valorant-API-0ac20cd4c5b744148a74c6cd0f3380dc)）
 
 [Referrance Doc](https://gamernotitle.notion.site/Valorant-API-baffa2069fb848a781664432564e94d0)
 

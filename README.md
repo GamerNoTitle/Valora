@@ -29,13 +29,14 @@ Every time you start the server, the session key will be generated. That means a
 You need to configurate the following items:
 
 ```shell
+$ export SESSION_TYPE=filesystem|redis  # If you want to use redis u need to set it as redis, and configure the following items
 $ export REDIS_URL=<Your Redis URL>
 # If your redis url cannot be parsed
 $ export REDIS_HOST=<Your Redis Host>
 $ export REDIS_PORT=<Your Redis Port>
 $ export REDIS_PASSWORD=<Your Redis Password>
 # Optional
-$ export REDIS_SSL=True # If you have enabled it
+$ export REDIS_SSL=True # If your redis does not support this, please DO NOT configure it, or this will make your application timeout.
 ```
 
 After doing all things above, you can turn your server on. Using the following command to do that.
@@ -57,7 +58,7 @@ Now, you can access [http://127.0.0.1:8080](http://127.0.0.1:8080) (If you haven
 
 ## Referrance
 
-There's no any good doc on the network (at least i didn't find that). Here's my doc. (I find one and edit base on the doc)
+There's no any good doc on the network (at least i didn't find that). Here's my doc. (I find one and edit baseed on the doc [https://ultronxr2ws.notion.site/UAIOSC-valorant-GitHub-Valorant-API-0ac20cd4c5b744148a74c6cd0f3380dc](https://ultronxr2ws.notion.site/UAIOSC-valorant-GitHub-Valorant-API-0ac20cd4c5b744148a74c6cd0f3380dc))
 
 [Referrance Doc (CHINESE)](https://gamernotitle.notion.site/Valorant-API-baffa2069fb848a781664432564e94d0)
 
