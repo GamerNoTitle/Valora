@@ -58,7 +58,7 @@ Now, you can access [http://127.0.0.1:8080](http://127.0.0.1:8080) (If you haven
 
 ## Referrance
 
-There's no any good doc on the network (at least i didn't find that). Here's my doc. (I find one and edit base on the doc)
+There's no any good doc on the network (at least i didn't find that). Here's my doc. (I find one and edit baseed on the doc [https://ultronxr2ws.notion.site/UAIOSC-valorant-GitHub-Valorant-API-0ac20cd4c5b744148a74c6cd0f3380dc](https://ultronxr2ws.notion.site/UAIOSC-valorant-GitHub-Valorant-API-0ac20cd4c5b744148a74c6cd0f3380dc))
 
 [Referrance Doc (CHINESE)](https://gamernotitle.notion.site/Valorant-API-baffa2069fb848a781664432564e94d0)
 
