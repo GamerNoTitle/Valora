@@ -4,7 +4,7 @@ pandas
 requests
 colorama
 typing
-flask_session
+flask_session==0.4.0
 sentry-sdk
 parse
 redis
