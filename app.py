@@ -411,4 +411,4 @@ if __name__ == '__main__':
     # except RuntimeError:
     #     pass
     _thread.start_new_thread(updateCache, ())
-    app.run(host='0.0.0.0', port=os.environ.get('PORT', 8080), debug=False)
+    app.run(host='0.0.0.0', port=os.environ.get('PORT', 8080), debug=True)
