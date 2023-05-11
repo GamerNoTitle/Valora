@@ -60,6 +60,8 @@ $ python app.py
 
 [Referrance Doc](https://gamernotitle.notion.site/Valorant-API-baffa2069fb848a781664432564e94d0)
 
+[开发日记](https://bili33.top/posts/Valorant-Shop-with-API/)
+
 ## Sponsor
 
 [https://bili33.top/sponsors/](https://bili33.top/sponsors/)
