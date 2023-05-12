@@ -1,3 +1,7 @@
+<div align="center">
+<img src='https://cdn.jsdelivr.net/gh/GamerNoTitle/VSC@dev/assets/img/head.png'>
+</div>
+
 # VSC
 
 English | [简体中文](https://github.com/GamerNoTitle/VSC/blob/master/docs/README_CN.md)
