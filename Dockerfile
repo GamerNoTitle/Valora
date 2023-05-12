@@ -20,7 +20,7 @@ ENV PORT $PORT
 # filesystem | redis
 ENV SESSION_TYPE $SESSION_TYPE
 # Debug mode
-ENV DEBUG
+ENV DEBUG $DEBUG
 
 # Expose the application port
 EXPOSE $PORT
