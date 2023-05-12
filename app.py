@@ -53,6 +53,10 @@ else:
     app.config['SESSION_TYPE'] = 'filesystem'
     print('No session type specified. Now it has been set to filesystem.')
 
+# Debug mode
+if os.environ.get('DEBUG', False):
+    debug = True
+
 app.template_folder = 'templates'
 Session(app)
 
@@ -411,4 +415,4 @@ if __name__ == '__main__':
     # except RuntimeError:
     #     pass
     _thread.start_new_thread(updateCache, ())
-    app.run(host='0.0.0.0', port=os.environ.get('PORT', 8080), debug=True)
+    app.run(host='0.0.0.0', port=os.environ.get('PORT', 8080), debug=debug)
