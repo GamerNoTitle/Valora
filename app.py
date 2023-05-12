@@ -54,7 +54,7 @@ else:
     print('No session type specified. Now it has been set to filesystem.')
 
 # Debug mode
-if os.environ.get('debug', False):
+if os.environ.get('DEBUG', False):
     debug = True
 
 app.template_folder = 'templates'
