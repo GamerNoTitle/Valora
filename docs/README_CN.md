@@ -1,3 +1,7 @@
+<div align="center">
+<img src='https://cdn.jsdelivr.net/gh/GamerNoTitle/VSC@dev/assets/img/head.png'>
+</div>
+
 # VSC
 
 就是一个为了查瓦每日商店而做的网站，也算练手了
