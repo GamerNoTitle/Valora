@@ -48,7 +48,7 @@ if type(session_type) != type(None):
             f'Unsupported session type: {session_type}. Now it has been set to filesystem.')
 else:
     secret = str(uuid.uuid4())
-    app.secrey = secret
+    app.secret_key = secret
     app.config['SECRET_KEY'] = secret
     app.config['SESSION_TYPE'] = 'filesystem'
     print('No session type specified. Now it has been set to filesystem.')
