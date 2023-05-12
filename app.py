@@ -56,6 +56,8 @@ else:
 # Debug mode
 if os.environ.get('DEBUG', False):
     debug = True
+else:
+    debug = False
 
 app.template_folder = 'templates'
 Session(app)
