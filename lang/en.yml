@@ -23,6 +23,8 @@ metadata:
     EEquippableSkinLevelItem::KillEffect: Kill Visual & Sound Effect
     # For Black.Market Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/65c7df10-4a5e-7eaa-dc45-d0a46f147b18
     EEquippableSkinLevelItem::AttackerDefenderSwap: Change with Faction
+    # For Xenohunter Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/289d7473-472b-68da-9019-da9594a8a127
+    EEquippableSkinLevelItem::HeartbeatAndMapSensor: Heart Beat & Map Censor
   description:
     # All these sources to replace can be found at the links above
     # You need to add ?language=<your lang> to check your language
@@ -116,6 +118,18 @@ nightmarket:
     credit: You currently have
   notavaliable: The night market is not open yet, go check out the daily shop first!
   title: Night Market
+  table:
+    skinname: Skin Name
+    skinimg: Skin Image
+    skincost: Skin Price
+    skinpreview: Skin Preview
+  modal:
+    videonotavaliable: Video preview is not available on the current browser
+  button:
+    close: Close
+
+library:
+  title: Skin library
   table:
     skinname: Skin Name
     skinimg: Skin Image

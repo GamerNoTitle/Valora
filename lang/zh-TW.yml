@@ -23,6 +23,8 @@ metadata:
     EEquippableSkinLevelItem::KillEffect: 擊殺特效&音效
     # For Black.Market Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/65c7df10-4a5e-7eaa-dc45-d0a46f147b18
     EEquippableSkinLevelItem::AttackerDefenderSwap: 隨陣營變色
+    # For Xenohunter Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/289d7473-472b-68da-9019-da9594a8a127
+    EEquippableSkinLevelItem::HeartbeatAndMapSensor: 心跳和地圖審查
   description:
     # All these sources to replace can be found at the links above
     # You need to add ?language=<your lang> to check your language
@@ -121,6 +123,18 @@ nightmarket:
     skinimg: 皮膚圖片
     skincost: 皮膚售價
     skinpreview: 皮膚預覽
+  modal:
+    videonotavaliable: 當前瀏覽器無法預覽視頻
+  button:
+    close: 關閉
+
+library:
+  title: 皮膚肤库 | Skin library
+  table:
+    skinname: 皮膚名称
+    skinimg: 皮膚图片
+    skincost: 皮膚售价
+    skinpreview: 皮膚预览
   modal:
     videonotavaliable: 當前瀏覽器無法預覽視頻
   button:

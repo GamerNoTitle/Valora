@@ -23,6 +23,8 @@ metadata:
     EEquippableSkinLevelItem::KillEffect: 击杀特效&音效
     # For Black.Market Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/65c7df10-4a5e-7eaa-dc45-d0a46f147b18
     EEquippableSkinLevelItem::AttackerDefenderSwap: 随阵营变色
+    # For Xenohunter Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/289d7473-472b-68da-9019-da9594a8a127
+    EEquippableSkinLevelItem::HeartbeatAndMapSensor: 地图心跳感应器
   description:
     # All these sources to replace can be found at the links above
     # You need to add ?language=<your lang> to check your language
@@ -125,6 +127,18 @@ nightmarket:
   button:
     close: 关闭
 
+library:
+  title: 皮肤库 | Skin library
+  table:
+    skinname: 皮肤名称
+    skinimg: 皮肤图片
+    skincost: 皮肤售价
+    skinpreview: 皮肤预览
+  modal:
+    videonotavaliable: 当前浏览器无法预览视频
+  button:
+    close: 关闭
+    
 error:
   error500:
     tip: 500服务器错误

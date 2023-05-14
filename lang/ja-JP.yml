@@ -23,6 +23,8 @@ metadata:
     EEquippableSkinLevelItem::KillEffect: キルエフェクト&サウンドエフェクト
     # For Black.Market Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/65c7df10-4a5e-7eaa-dc45-d0a46f147b18
     EEquippableSkinLevelItem::AttackerDefenderSwap: チームに応じて色が変わる
+    # For Xenohunter Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/289d7473-472b-68da-9019-da9594a8a127
+    EEquippableSkinLevelItem::HeartbeatAndMapSensor: マップハートビートセンサー
   description:
     # All these sources to replace can be found at the links above
     # You need to add ?language=<your lang> to check your language
@@ -115,6 +117,18 @@ nightmarket:
     credit: 現在、保有しているのは
   notavaliable: 夜市はまだ開いていませんよ、まずはデイリーショップを見てみましょう！
   title: 夜市 | Night Market
+  table:
+    skinname: スキン名
+    skinimg: スキン画像
+    skincost: スキン価格
+    skinpreview: スキンプレビュー
+  modal:
+    videonotavaliable: 現在のブラウザではビデオのプレビューができません
+  button:
+    close: 閉じる
+
+library:
+  title: スキンライブラリ
   table:
     skinname: スキン名
     skinimg: スキン画像
