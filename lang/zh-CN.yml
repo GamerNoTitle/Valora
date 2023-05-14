@@ -30,7 +30,7 @@ metadata:
     # For China mainland players, all the names of the guns are using zh-TW, cause this program does not support Valorant from Tencent.
     # example: https://valorant-api.com/v1/weapons/skinlevels/a117218e-4f0e-0cca-7758-7ea30b08ac05?language=zh-CN
     Voiceover: 在地化語音可能會因地區而異
-    KillEffect: 每次擊殺敵人時，都會播放專屬視覺特效及音效
+    KillEffect: 每次擊殺敵人時，都會播放專屬視覺特效及音效。
     AttackerDefenderSwap: 此造型設計會因你是攻擊方或守備方而變化
     TopFrag: （在對戰中取得最多擊殺時才會顯示光環）
 

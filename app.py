@@ -228,6 +228,27 @@ def MFAuth():
     return render_template('MFA.html', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
 
 
+@ app.route('/auth-info')
+def authinfo():
+    cookie = request.cookies
+    access_token = session.get('access_token')
+    entitlement = session.get('entitlement')
+    region = session.get('region')
+    userid = session.get('user_id')
+    name = session.get('username')
+    tag = session.get('tag')
+    cookie = dict(session.get('cookie', {}))
+    ua = request.headers.get('User-Agent', '')
+    return render_template('auth-info.html', access_token=access_token, entitlement=entitlement, region=region, userid=userid, name=name, tag=tag, cookie=cookie, ua=ua)
+
+
+@ app.route('/library', methods=["GET"])
+def library():
+    pass
+
+# The following are api paths
+
+
 @ app.route('/api/login', methods=['POST'])
 def RiotLogin():
     username = request.form.get('Username')
@@ -283,20 +304,6 @@ def logout():
     return response
 
 
-@ app.route('/auth-info')
-def authinfo():
-    cookie = request.cookies
-    access_token = session.get('access_token')
-    entitlement = session.get('entitlement')
-    region = session.get('region')
-    userid = session.get('user_id')
-    name = session.get('username')
-    tag = session.get('tag')
-    cookie = dict(session.get('cookie', {}))
-    ua = request.headers.get('User-Agent', '')
-    return render_template('auth-info.html', access_token=access_token, entitlement=entitlement, region=region, userid=userid, name=name, tag=tag, cookie=cookie, ua=ua)
-
-
 @ app.route('/api/verify', methods=['GET', 'POST'])
 def verify():
     MFACode = request.form.get('MFACode')
@@ -324,7 +331,8 @@ def verify():
         session['tag'] = user.Tag
         session['user_id'] = user.Sub
         session['cookie'] = user.session.cookies
-        session['password'] = '***' # For security. Once the password has been used to login in successfully, set password as useless strings
+        # For security. Once the password has been used to login in successfully, set password as useless strings
+        session['password'] = '***'
         response.status_code = 302
     else:
         response = make_response(
@@ -387,9 +395,11 @@ def reset():
 def serve_static(filename):
     return send_from_directory('assets', filename)
 
+
 @ app.route('/robots.txt')
 def serve_robot():
     return send_from_directory('assets', 'robots.txt')
+
 
 @ app.errorhandler(500)
 def internal_server_error(e):
