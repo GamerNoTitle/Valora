@@ -89,7 +89,7 @@ def home():
         return redirect('/market', 301)
     else:
         response = make_response(render_template(
-            'index.html', loginerror=False, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) else "en"}.yml').read(), Loader=yaml.FullLoader)))
+            'index.html', loginerror=False, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader)))
         response.set_cookie('logged', '0', max_age=24*60*60*365*10)
         response.set_cookie('lang', lang)
     return response
@@ -137,7 +137,7 @@ def market():
                                weapon3={
                                    "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img, "levels": weapon3.levels, "chromas": weapon3.chromas},
                                player={'name': name, 'tag': tag, 'vp': user.vp, 'rp': user.rp}, pc=pc,
-                               lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) else "en"}.yml').read(), Loader=yaml.FullLoader))
+                               lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
     else:   # Login Expired
         # response = make_response(redirect('/', 302))
         # for cookie in request.cookies:
@@ -200,14 +200,14 @@ def night():
                                        "name": weapon5.name, "cost": weapon5.cost, "img": weapon5.base_img, "discount": weapon5.discount, "per": weapon5.per},
                                    player={'name': name, 'tag': tag,
                                            'vp': user.vp, 'rp': user.rp},
-                                   pc=pc, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) else "en"}.yml').read(), Loader=yaml.FullLoader))
+                                   pc=pc, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
         else:
             return render_template('myMarket.html', night=True,
                                    player={'name': name, 'tag': tag,
                                            'vp': user.vp, 'rp': user.rp},
                                    pc=pc,
                                    nightmarket_notavaliable=True,
-                                   lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) else "en"}.yml').read(), Loader=yaml.FullLoader))
+                                   lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
     else:   # Login Expired
         # response = make_response(redirect('/', 302))
         # for cookie in request.cookies:
@@ -225,7 +225,7 @@ def EULA():
 def MFAuth():
     if not session.get('username'):
         return redirect('/', 302)
-    return render_template('MFA.html', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) else "en"}.yml').read(), Loader=yaml.FullLoader))
+    return render_template('MFA.html', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
 
 
 @ app.route('/api/login', methods=['POST'])
@@ -240,7 +240,7 @@ def RiotLogin():
     else:
         session['remember'] = False
     if username == '' or password == '' or not checked_eula or not checked_rule:
-        return render_template('index.html', infoerror=True, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) else "en"}.yml').read(), Loader=yaml.FullLoader))
+        return render_template('index.html', infoerror=True, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
     else:
         user = Auth(username, password)
         user.auth()
@@ -270,7 +270,7 @@ def RiotLogin():
             return redirect('/2FA')
         else:
             response = make_response(
-                render_template('index.html', loginerror=True, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) else "en"}.yml').read(), Loader=yaml.FullLoader)))
+                render_template('index.html', loginerror=True, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader)))
         return response
 
 
@@ -328,7 +328,7 @@ def verify():
         response.status_code = 302
     else:
         response = make_response(
-            render_template('index.html', loginerror=True, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) else "en"}.yml').read(), Loader=yaml.FullLoader)))
+            render_template('index.html', loginerror=True, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader)))
     return response
 
 
@@ -394,17 +394,17 @@ def serve_robot():
 @ app.errorhandler(500)
 def internal_server_error(e):
     error_message = traceback.format_exc()
-    return render_template('500.html', error=error_message, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) else "en"}.yml').read(), Loader=yaml.FullLoader)), 500
+    return render_template('500.html', error=error_message, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader)), 500
 
 
 @ app.errorhandler(404)
 def not_found_error(e):
-    return render_template('404.html', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) else "en"}.yml').read(), Loader=yaml.FullLoader)), 404
+    return render_template('404.html', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader)), 404
 
 
 @ app.route('/error/500', methods=['GET'])
 def internal_server_error_preview():
-    return render_template('500.html', error='This is a test-error.', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) else "en"}.yml').read(), Loader=yaml.FullLoader)), 500
+    return render_template('500.html', error='This is a test-error.', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader)), 500
 
 
 if __name__ == '__main__':
