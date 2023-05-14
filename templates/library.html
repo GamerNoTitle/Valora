@@ -132,21 +132,25 @@
       </div>
     </div>
   </header>
-  <!--
+  
   <div class="container-fluid px-0 overflow-hidden">
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
-        <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg"><i class="ni ni-cart"></i> {{lang.global.button.dailyshop}}</button></a>
-        <a href="/market/night"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="ni ni-basket"></i> {{lang.global.button.nightmarket}}</button></a>
-        <a href="//account.riotgames.com"><button type="button"
-            class="btn bg-gradient-secondary btn-lg"><i class="ni ni-circle-08"></i> {{lang.global.button.account}}</button></a>
-        <a href="/auth-info"><button type="button" class="btn bg-gradient-success btn-lg"><i class="ni ni-check-bold"></i> {{lang.global.button.authinfo}}</button></a>
-        <a href="//bili33.top/sponsors"><button type="button" class="btn bg-gradient-primary btn-lg"><i class="ni ni-atom"></i> {{lang.global.button.sponsor}}</button></a>
-        <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg"><i class="ni ni-user-run"></i> {{lang.global.button.logout}}</button></a>
+        {% if prev %}
+        <a href="{{prev}}"><button type="button" class="btn bg-gradient-primary btn-lg"><i class="ni ni-cart"></i> {{lang.library.button.prev}}</button></a>
+        {% else %}
+        <a href="#"><button type="button" class="btn bg-gradient-primary btn-lg" disabled><i class="ni ni-cart"></i> {{lang.library.button.prev}}</button></a>
+        {% endif %}
+        <h3 class="text-gradient text-primary mb-0 mt-2" align="center">    {{cur_page}} / {{pages}}    </h3>
+        {% if next %}
+        <a href="{{next}}"><button type="button" class="btn bg-gradient-primary btn-lg"><i class="ni ni-user-run"></i> {{lang.library.button.next}}</button></a>
+        {% else %}
+        <a href="#"><button type="button" class="btn bg-gradient-primary btn-lg" disabled><i class="ni ni-user-run"></i> {{lang.library.button.next}}</button></a>
+        {% endif %}
       </div>
     </div>
   </div>
-  -->
+  
   <div class="container">
     <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.library.title}}</h1>
     <br>
@@ -161,8 +165,6 @@
           </div>
           <div class="card-body">
             <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
-            <h3 class="text-gradient text-dark mb-0 mt-2"><img src="/assets/img/icons8-valorant.svg">
-              {{weapon.cost|safe}}</h3>
             <br>
             {% for level in weapon.levels %}
             {% if level.displayName != '' %}

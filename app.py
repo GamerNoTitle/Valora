@@ -7,6 +7,7 @@ import traceback
 import yaml
 import _thread
 import json
+from math import ceil
 from parse import parse
 from flask import Flask, render_template, redirect, send_from_directory, request, make_response, session
 from flask_babel import Babel
@@ -255,13 +256,21 @@ def library(page: int = 1):
     with open(f'assets/dict/{dictlang}.json', encoding='utf8') as f:
         skins: dict = json.loads(f.read())  # Read skin data
     count = len(list(skins.keys()))  # Get skin counts
-    for skin, uuid in list(skins.items())[9*(page-1):9*page]:
-        Weapon = weaponlib(uuid, skin, lang = lang)
-        weapon_list.append({"name": Weapon.name, "img": Weapon.base_img, "levels": Weapon.levels, "chromas": Weapon.chromas})
+    if 9*page > count:
+        end = count
+    else:
+        end = 9*page
+    for skin, uuid in list(skins.items())[9*(page-1):end]:
+        Weapon = weaponlib(uuid, skin, lang=lang)
+        weapon_list.append({"name": Weapon.name, "img": Weapon.base_img,
+                           "levels": Weapon.levels, "chromas": Weapon.chromas})
     return render_template('library.html', weapon_list=weapon_list, page=page, count=count,
-                           lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
+                           lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader),
+                           prev = f'/library/page/{page-1}' if page != 1 else None, next = f'/library/page/{page+1}' if page != ceil(count/9) else None, cur_page = page, pages = ceil(count/9))
 
-
+@ app.route('/library/page/<page>', methods=["GET"])
+def lib_handler(page: int = 1):
+    return library(int(page))
 
 # The following are api paths
 
