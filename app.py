@@ -6,6 +6,8 @@ import requests
 import traceback
 import yaml
 import _thread
+import json
+from math import ceil
 from parse import parse
 from flask import Flask, render_template, redirect, send_from_directory, request, make_response, session
 from flask_babel import Babel
@@ -13,7 +15,7 @@ from flask_session import Session
 from utils.RiotLogin import Auth
 from utils.GetPlayer import player
 from utils.Cache import updateCache
-from utils.Weapon import weapon
+from utils.Weapon import weapon, weaponlib
 
 app = Flask(__name__)
 babel = Babel(app)
@@ -187,17 +189,17 @@ def night():
                 request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])))
             return render_template('myMarket.html', night=True,
                                    weapon0={
-                                       "name": weapon0.name, "cost": weapon0.cost, "img": weapon0.base_img, "discount": weapon0.discount, "per": weapon0.per},
+                                       "name": weapon0.name, "cost": weapon0.cost, "img": weapon0.base_img, "discount": weapon0.discount, "per": weapon0.per, "levels": weapon0.levels, "chromas": weapon0.chromas},
                                    weapon1={
-                                       "name": weapon1.name, "cost": weapon1.cost, "img": weapon1.base_img, "discount": weapon1.discount, "per": weapon2.per},
+                                       "name": weapon1.name, "cost": weapon1.cost, "img": weapon1.base_img, "discount": weapon1.discount, "per": weapon2.per, "levels": weapon1.levels, "chromas": weapon1.chromas},
                                    weapon2={
-                                       "name": weapon2.name, "cost": weapon2.cost, "img": weapon2.base_img, "discount": weapon2.discount, "per": weapon2.per},
+                                       "name": weapon2.name, "cost": weapon2.cost, "img": weapon2.base_img, "discount": weapon2.discount, "per": weapon2.per, "levels": weapon2.levels, "chromas": weapon2.chromas},
                                    weapon3={
-                                       "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img, "discount": weapon3.discount, "per": weapon3.per},
+                                       "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img, "discount": weapon3.discount, "per": weapon3.per, "levels": weapon3.levels, "chromas": weapon3.chromas},
                                    weapon4={
-                                       "name": weapon4.name, "cost": weapon4.cost, "img": weapon4.base_img, "discount": weapon4.discount, "per": weapon4.per},
+                                       "name": weapon4.name, "cost": weapon4.cost, "img": weapon4.base_img, "discount": weapon4.discount, "per": weapon4.per, "levels": weapon4.levels, "chromas": weapon4.chromas},
                                    weapon5={
-                                       "name": weapon5.name, "cost": weapon5.cost, "img": weapon5.base_img, "discount": weapon5.discount, "per": weapon5.per},
+                                       "name": weapon5.name, "cost": weapon5.cost, "img": weapon5.base_img, "discount": weapon5.discount, "per": weapon5.per, "levels": weapon5.levels, "chromas": weapon5.chromas},
                                    player={'name': name, 'tag': tag,
                                            'vp': user.vp, 'rp': user.rp},
                                    pc=pc, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
@@ -226,6 +228,52 @@ def MFAuth():
     if not session.get('username'):
         return redirect('/', 302)
     return render_template('MFA.html', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
+
+
+@ app.route('/auth-info')
+def authinfo():
+    cookie = request.cookies
+    access_token = session.get('access_token')
+    entitlement = session.get('entitlement')
+    region = session.get('region')
+    userid = session.get('user_id')
+    name = session.get('username')
+    tag = session.get('tag')
+    cookie = dict(session.get('cookie', {}))
+    ua = request.headers.get('User-Agent', '')
+    return render_template('auth-info.html', access_token=access_token, entitlement=entitlement, region=region, userid=userid, name=name, tag=tag, cookie=cookie, ua=ua)
+
+
+@ app.route('/library', methods=["GET"])
+def library(page: int = 1):
+    perpage = 30
+    weapon_list = []
+    lang = str(request.accept_languages.best_match(
+        app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else 'en'
+    if lang == 'zh-CN':
+        dictlang = 'zh-TW'
+    else:
+        dictlang = lang
+    with open(f'assets/dict/{dictlang}.json', encoding='utf8') as f:
+        skins: dict = json.loads(f.read())  # Read skin data
+    count = len(list(skins.keys()))  # Get skin counts
+    if perpage*page > count:
+        end = count
+    else:
+        end = perpage*page
+    for skin, uuid in list(skins.items())[perpage*(page-1):end]:
+        Weapon = weaponlib(uuid, skin, lang=lang)
+        weapon_list.append({"name": Weapon.name, "img": Weapon.base_img,
+                           "levels": Weapon.levels, "chromas": Weapon.chromas})
+    return render_template('library.html', weapon_list=weapon_list, page=page, count=count,
+                           lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader),
+                           prev = f'/library/page/{page-1}' if page != 1 else None, next = f'/library/page/{page+1}' if page != ceil(count/perpage) else None, cur_page = page, pages = ceil(count/perpage))
+
+@ app.route('/library/page/<page>', methods=["GET"])
+def lib_handler(page: int = 1):
+    return library(int(page))
+
+# The following are api paths
 
 
 @ app.route('/api/login', methods=['POST'])
@@ -283,20 +331,6 @@ def logout():
     return response
 
 
-@ app.route('/auth-info')
-def authinfo():
-    cookie = request.cookies
-    access_token = session.get('access_token')
-    entitlement = session.get('entitlement')
-    region = session.get('region')
-    userid = session.get('user_id')
-    name = session.get('username')
-    tag = session.get('tag')
-    cookie = dict(session.get('cookie', {}))
-    ua = request.headers.get('User-Agent', '')
-    return render_template('auth-info.html', access_token=access_token, entitlement=entitlement, region=region, userid=userid, name=name, tag=tag, cookie=cookie, ua=ua)
-
-
 @ app.route('/api/verify', methods=['GET', 'POST'])
 def verify():
     MFACode = request.form.get('MFACode')
@@ -324,7 +358,8 @@ def verify():
         session['tag'] = user.Tag
         session['user_id'] = user.Sub
         session['cookie'] = user.session.cookies
-        session['password'] = '***' # For security. Once the password has been used to login in successfully, set password as useless strings
+        # For security. Once the password has been used to login in successfully, set password as useless strings
+        session['password'] = '***'
         response.status_code = 302
     else:
         response = make_response(
@@ -387,9 +422,11 @@ def reset():
 def serve_static(filename):
     return send_from_directory('assets', filename)
 
+
 @ app.route('/robots.txt')
 def serve_robot():
     return send_from_directory('assets', 'robots.txt')
+
 
 @ app.errorhandler(500)
 def internal_server_error(e):

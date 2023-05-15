@@ -23,6 +23,10 @@ metadata:
     EEquippableSkinLevelItem::KillEffect: 擊殺特效&音效
     # For Black.Market Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/65c7df10-4a5e-7eaa-dc45-d0a46f147b18
     EEquippableSkinLevelItem::AttackerDefenderSwap: 隨陣營變色
+    # For Xenohunter Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/289d7473-472b-68da-9019-da9594a8a127
+    EEquippableSkinLevelItem::HeartbeatAndMapSensor: 心跳和地圖審查
+    # For Recon Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/a8509c8d-4061-1c57-60a5-61a025f28408
+    EEquippableSkinLevelItem::Randomizer: 隨機模組產生器
   description:
     # All these sources to replace can be found at the links above
     # You need to add ?language=<your lang> to check your language
@@ -32,13 +36,14 @@ metadata:
     Voiceover: 在地化語音可能會因地區而異
     KillEffect: 每次擊殺敵人時，都會播放專屬視覺特效及音效
     AttackerDefenderSwap: 此造型設計會因你是攻擊方或守備方而變化
-    TopFrag: （在對戰中取得最多擊殺時才會顯示光環）
+    TopFrag: 在對戰中取得最多擊殺時才會顯示光環
 
 global:
   title:
     dailyshop: 每日商店
     nightmarket: 折扣夜市
     shopdefault: 我的商店
+    library: 皮膚库
   description:
     line1: 瓦羅蘭特（無畏契約）商店查看，讓你不用登錄遊戲也能夠查看每日商店（僅支持國際服）
     line2: 所有的登錄名和密碼服務器均不進行存取，僅用於登錄
@@ -51,6 +56,7 @@ global:
     authinfo: 認證信息
     sponsor: 恰飯鏈接
     logout: 退出登錄
+    library: 皮膚總覽
 
 
 login:
@@ -126,6 +132,20 @@ nightmarket:
   button:
     close: 關閉
 
+library:
+  title: 皮膚库 | Skin library
+  table:
+    skinname: 皮膚名称
+    skinimg: 皮膚图片
+    skincost: 皮膚售价
+    skinpreview: 皮膚预览
+  modal:
+    videonotavaliable: 當前瀏覽器無法預覽視頻
+  button:
+    close: 關閉
+    prev: 上一頁
+    next: 下一頁
+    
 error:
   error500: 
     tip: 500伺服器錯誤

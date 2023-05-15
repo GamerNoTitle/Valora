@@ -23,6 +23,10 @@ metadata:
     EEquippableSkinLevelItem::KillEffect: キルエフェクト&サウンドエフェクト
     # For Black.Market Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/65c7df10-4a5e-7eaa-dc45-d0a46f147b18
     EEquippableSkinLevelItem::AttackerDefenderSwap: チームに応じて色が変わる
+    # For Xenohunter Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/289d7473-472b-68da-9019-da9594a8a127
+    EEquippableSkinLevelItem::HeartbeatAndMapSensor: マップハートビートセンサー
+    # For Recon Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/a8509c8d-4061-1c57-60a5-61a025f28408
+    EEquippableSkinLevelItem::Randomizer: ランダマイザー
   description:
     # All these sources to replace can be found at the links above
     # You need to add ?language=<your lang> to check your language
@@ -39,6 +43,7 @@ global:
     dailyshop: デイリーショップ
     nightmarket: ナイトマーケット
     shopdefault: マイショップ
+    library: スキンライブラリ
   description:
     line1: VALORANTショップビュー。ゲームにログインせずにデイリーショップを確認できます
     line2: ログイン名とパスワードはサーバーに保存されず、ログインにのみ使用されます。
@@ -51,6 +56,7 @@ global:
     authinfo: 認証情報
     sponsor: スポンサーリンク
     logout: ログアウト
+    library: スキンライブラリ
 
 login:
   front:
@@ -124,6 +130,20 @@ nightmarket:
     videonotavaliable: 現在のブラウザではビデオのプレビューができません
   button:
     close: 閉じる
+
+library:
+  title: スキンライブラリ
+  table:
+    skinname: スキン名
+    skinimg: スキン画像
+    skincost: スキン価格
+    skinpreview: スキンプレビュー
+  modal:
+    videonotavaliable: 現在のブラウザではビデオのプレビューができません
+  button:
+    close: 閉じる
+    prev: 前のページ
+    next: 次のページ
 
 error:
   error500: 
