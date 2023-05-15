@@ -97,10 +97,10 @@ class weaponlib:
         for level in self.levels:
             level['uuid'] = level['uuid'].upper()
             level['displayName'] = level['displayName'].replace(self.name, '').replace('.', '').replace('。', '')
-            # level['displayName'] = level['displayName'].replace(self.name, '').replace('\n', '').replace(
-            #     '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '')
-            # for descr in dict(description_to_del).values():
-            #     level['displayName'] = level['displayName'].replace(descr, '')
+            level['displayName'] = level['displayName'].replace(self.name, '').replace('\n', '').replace(
+                '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '')
+            for descr in dict(description_to_del).values():
+                level['displayName'] = level['displayName'].replace(descr, '')
             try:
                 if level['levelItem'] == None:
                     level['levelItem'] = levelup_info['EEquippableSkinLevelItem::VFX']
@@ -112,14 +112,14 @@ class weaponlib:
         for chroma in self.chromas:
             chroma['uuid'] = chroma['uuid'].upper()
             chroma['displayName'] = chroma['displayName'].replace(self.name, '')
-            # chroma['displayName'] = chroma['displayName'].replace(self.name, '').replace('\n', '').replace(
-            #     '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '')
-            # chroma['displayName'] = chroma['displayName'].strip().replace(
-            #     levelup_info['level'] + '1', '').replace(levelup_info['level'] + '2', '').replace(
-            #     levelup_info['level'] + '3', '').replace(levelup_info['level'] + '4', '').replace(
-            #         levelup_info['level'] + '5', '').replace(
-            #     levelup_info['level'] + ' 1', '').replace(levelup_info['level'] + ' 2', '').replace(
-            #     levelup_info['level'] + ' 3', '').replace(levelup_info['level'] + ' 4', '').replace(
-            #         levelup_info['level'] + ' 5', '')   # Clear out extra level symbols
+            chroma['displayName'] = chroma['displayName'].replace(self.name, '').replace('\n', '').replace(
+                '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '')
+            chroma['displayName'] = chroma['displayName'].strip().replace(
+                levelup_info['level'] + '1', '').replace(levelup_info['level'] + '2', '').replace(
+                levelup_info['level'] + '3', '').replace(levelup_info['level'] + '4', '').replace(
+                    levelup_info['level'] + '5', '').replace(
+                levelup_info['level'] + ' 1', '').replace(levelup_info['level'] + ' 2', '').replace(
+                levelup_info['level'] + ' 3', '').replace(levelup_info['level'] + ' 4', '').replace(
+                    levelup_info['level'] + ' 5', '')   # Clear out extra level symbols
         # print(self.levels)
         # print(self.chromas)
