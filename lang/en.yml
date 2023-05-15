@@ -41,6 +41,7 @@ global:
     dailyshop: Daily Shop
     nightmarket: Night Market
     shopdefault: My Shop
+    library: Skin Library
   description:
     line1: Valorant shop checker, help you peek your shop & nightmarket without open your game.
     line2: All usernames and passwords are not stored on the server and are only used for login.
@@ -53,6 +54,7 @@ global:
     authinfo: Auto Info
     sponsor: Sponsor
     logout: Logout
+    library: Skin Library
 
 
 login:
@@ -139,6 +141,8 @@ library:
     videonotavaliable: Video preview is not available on the current browser
   button:
     close: Close
+    prev: Previous Page
+    next: Next Page    
 
 error:
   error500: 

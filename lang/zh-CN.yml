@@ -41,6 +41,7 @@ global:
     dailyshop: 每日商店
     nightmarket: 折扣夜市
     shopdefault: 我的商店
+    library: 皮肤库
   description:
     line1: 瓦罗兰特（无畏契约）商店查看，让你不用登陆游戏也能够查看每日商店（仅支持国际服）
     line2: 所有的登录名和密码服务器均不进行存取，仅用于登录
@@ -53,6 +54,7 @@ global:
     authinfo: 认证信息
     sponsor: 恰饭链接
     logout: 退出登录
+    library: 皮肤总览
 
 login:
   front:
@@ -138,6 +140,8 @@ library:
     videonotavaliable: 当前浏览器无法预览视频
   button:
     close: 关闭
+    prev: 上一页
+    next: 下一页
     
 error:
   error500:

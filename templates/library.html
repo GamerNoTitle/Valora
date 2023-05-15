@@ -6,7 +6,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/img-navi-valorant-red.svg">
   <link rel="icon" type="image/png" href="/assets/img/img-navi-valorant-red.svg">
   <title>
-    {% if market %}{{lang.global.title.dailyshop}}{% elif night %}{{lang.global.title.nightmarket}}{% else %}{{lang.global.title.shopdefault}}{% endif %} | VSC | GamerNoTitle
+    {{lang.global.title.library}} | VSC | GamerNoTitle
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -36,7 +36,8 @@
 
   <!-- 引入 fancybox JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-  <script async defer data-website-id="381df10a-707a-4380-8b6c-b31c3e59c5f1" src="https://analytics.dohna.top/umami.js"></script>
+  <script async defer data-website-id="381df10a-707a-4380-8b6c-b31c3e59c5f1"
+    src="https://analytics.dohna.top/umami.js"></script>
   <script>
     var _hmt = _hmt || [];
     (function () {
@@ -53,6 +54,7 @@
       border-color: #ffffff;
     }
   </style>
+
 </head>
 
 <body class="index-page">
@@ -80,8 +82,12 @@
                   </a>
                 </li>
                 <li class="nav-item my-auto ms-3 ms-lg-0">
-                  <a href="https://t.me/DohnaNyan"
-                    class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i class="ni ni-send"></i> Telegram</a>
+                  <a href="https://t.me/DohnaNyan" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i
+                      class="ni ni-send"></i> Telegram</a>
+                </li>
+                <li class="nav-item my-auto ms-3 ms-lg-0">
+                  <a href="/library" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i
+                      class="fas fa-book"></i></i> Library</a>
                 </li>
               </ul>
             </div>
@@ -132,30 +138,36 @@
       </div>
     </div>
   </header>
-  
+
   <div class="container-fluid px-0 overflow-hidden">
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
         {% if prev %}
-        <a href="{{prev}}"><button type="button" class="btn bg-gradient-primary btn-lg"><i class="ni ni-cart"></i> {{lang.library.button.prev}}</button></a>
+        <a href="{{prev}}"><button type="button" class="btn bg-gradient-primary btn-lg"><i
+              class="fas fa-arrow-left"></i>
+            {{lang.library.button.prev}}</button></a>
         {% else %}
-        <a href="#"><button type="button" class="btn bg-gradient-primary btn-lg" disabled><i class="ni ni-cart"></i> {{lang.library.button.prev}}</button></a>
+        <a href="#"><button type="button" class="btn bg-gradient-primary btn-lg" disabled><i
+              class="fas fa-arrow-left"></i> {{lang.library.button.prev}}</button></a>
         {% endif %}
-        <font class="text-gradient text-primary mb-0 mt-2">{{cur_page}} / {{pages}}</font>
+        <strong size=12px class="text-gradient text-primary mb-0 mt-2">{{cur_page}} / {{pages}}</strong>
         {% if next %}
-        <a href="{{next}}"><button type="button" class="btn bg-gradient-primary btn-lg"><i class="ni ni-user-run"></i> {{lang.library.button.next}}</button></a>
+        <a href="{{next}}"><button type="button" class="btn bg-gradient-primary btn-lg">{{lang.library.button.next}} <i
+              class="fas fa-arrow-right"></i>
+          </button></a>
         {% else %}
-        <a href="#"><button type="button" class="btn bg-gradient-primary btn-lg" disabled><i class="ni ni-user-run"></i> {{lang.library.button.next}}</button></a>
+        <a href="#"><button type="button" class="btn bg-gradient-primary btn-lg" disabled>{{lang.library.button.next}}
+            <i class="fas fa-arrow-right"></i> </button></a>
         {% endif %}
       </div>
     </div>
   </div>
-  
+
   <div class="container">
     <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.library.title}}</h1>
     <br>
     <div class="row">
-    {% for weapon in weapon_list %}
+      {% for weapon in weapon_list %}
       <div class="col-md-4">
         <div class="card mb-4 shadow-sm rounded">
           <div class="gun-image">
@@ -191,7 +203,8 @@
                     </p> -->
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.library.button.close}}</button>
+                    <button type="button" class="btn bg-gradient-primary"
+                      data-bs-dismiss="modal">{{lang.library.button.close}}</button>
                   </div>
                 </div>
               </div>
@@ -224,11 +237,12 @@
                     <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
                     </p> -->
                     {% else %}
-                    <img width="100%" src="{{chroma.fullRender}}"> 
+                    <img width="100%" src="{{chroma.fullRender}}">
                     {% endif %}
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.library.button.close}}</button>
+                    <button type="button" class="btn bg-gradient-primary"
+                      data-bs-dismiss="modal">{{lang.library.button.close}}</button>
                   </div>
                 </div>
               </div>
@@ -239,9 +253,34 @@
           </div>
         </div>
       </div>
-    {% endfor %}
+      {% endfor %}
     </div>
   </div>
+
+  <div class="container-fluid px-0 overflow-hidden">
+    <div class="row text-center py-2 mt-3">
+      <div class="col-12 mx-auto">
+        {% if prev %}
+        <a href="{{prev}}"><button type="button" class="btn bg-gradient-primary btn-lg"><i
+              class="fas fa-arrow-left"></i>
+            {{lang.library.button.prev}}</button></a>
+        {% else %}
+        <a href="#"><button type="button" class="btn bg-gradient-primary btn-lg" disabled><i
+              class="fas fa-arrow-left"></i> {{lang.library.button.prev}}</button></a>
+        {% endif %}
+        <strong size=12px class="text-gradient text-primary mb-0 mt-2">{{cur_page}} / {{pages}}</strong>
+        {% if next %}
+        <a href="{{next}}"><button type="button" class="btn bg-gradient-primary btn-lg">{{lang.library.button.next}} <i
+              class="fas fa-arrow-right"></i>
+          </button></a>
+        {% else %}
+        <a href="#"><button type="button" class="btn bg-gradient-primary btn-lg" disabled>{{lang.library.button.next}}
+            <i class="fas fa-arrow-right"></i> </button></a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
 
   <script>
     $(document).ready(function () {

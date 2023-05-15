@@ -41,6 +41,7 @@ global:
     dailyshop: デイリーショップ
     nightmarket: ナイトマーケット
     shopdefault: マイショップ
+    library: スキンライブラリ
   description:
     line1: VALORANTショップビュー。ゲームにログインせずにデイリーショップを確認できます
     line2: ログイン名とパスワードはサーバーに保存されず、ログインにのみ使用されます。
@@ -53,6 +54,7 @@ global:
     authinfo: 認証情報
     sponsor: スポンサーリンク
     logout: ログアウト
+    library: スキンライブラリ
 
 login:
   front:
@@ -138,6 +140,8 @@ library:
     videonotavaliable: 現在のブラウザではビデオのプレビューができません
   button:
     close: 閉じる
+    prev: 前のページ
+    next: 次のページ
 
 error:
   error500: 

@@ -246,6 +246,7 @@ def authinfo():
 
 @ app.route('/library', methods=["GET"])
 def library(page: int = 1):
+    perpage = 30
     weapon_list = []
     lang = str(request.accept_languages.best_match(
         app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else 'en'
@@ -256,17 +257,17 @@ def library(page: int = 1):
     with open(f'assets/dict/{dictlang}.json', encoding='utf8') as f:
         skins: dict = json.loads(f.read())  # Read skin data
     count = len(list(skins.keys()))  # Get skin counts
-    if 9*page > count:
+    if perpage*page > count:
         end = count
     else:
-        end = 9*page
-    for skin, uuid in list(skins.items())[9*(page-1):end]:
+        end = perpage*page
+    for skin, uuid in list(skins.items())[perpage*(page-1):end]:
         Weapon = weaponlib(uuid, skin, lang=lang)
         weapon_list.append({"name": Weapon.name, "img": Weapon.base_img,
                            "levels": Weapon.levels, "chromas": Weapon.chromas})
     return render_template('library.html', weapon_list=weapon_list, page=page, count=count,
                            lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader),
-                           prev = f'/library/page/{page-1}' if page != 1 else None, next = f'/library/page/{page+1}' if page != ceil(count/9) else None, cur_page = page, pages = ceil(count/9))
+                           prev = f'/library/page/{page-1}' if page != 1 else None, next = f'/library/page/{page+1}' if page != ceil(count/perpage) else None, cur_page = page, pages = ceil(count/perpage))
 
 @ app.route('/library/page/<page>', methods=["GET"])
 def lib_handler(page: int = 1):

@@ -41,6 +41,7 @@ global:
     dailyshop: 每日商店
     nightmarket: 折扣夜市
     shopdefault: 我的商店
+    library: 皮膚库
   description:
     line1: 瓦羅蘭特（無畏契約）商店查看，讓你不用登錄遊戲也能夠查看每日商店（僅支持國際服）
     line2: 所有的登錄名和密碼服務器均不進行存取，僅用於登錄
@@ -53,6 +54,7 @@ global:
     authinfo: 認證信息
     sponsor: 恰飯鏈接
     logout: 退出登錄
+    library: 皮膚總覽
 
 
 login:
@@ -129,7 +131,7 @@ nightmarket:
     close: 關閉
 
 library:
-  title: 皮膚肤库 | Skin library
+  title: 皮膚库 | Skin library
   table:
     skinname: 皮膚名称
     skinimg: 皮膚图片
@@ -139,7 +141,9 @@ library:
     videonotavaliable: 當前瀏覽器無法預覽視頻
   button:
     close: 關閉
-
+    prev: 上一頁
+    next: 下一頁
+    
 error:
   error500: 
     tip: 500伺服器錯誤
