@@ -10,3 +10,4 @@ parse
 redis
 flask-babel
 pyyaml
+pysqlite3

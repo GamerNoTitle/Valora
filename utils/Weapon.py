@@ -2,10 +2,13 @@ import requests
 import json
 import yaml
 import os
+import sqlite3
 
 
 class weapon:
     def __init__(self, uuid: str, cost: int = 0, discount: int = 0, discountPersentage: int = 0, lang: str = 'en'):
+        conn = sqlite3.connect('assets/db/data.db')
+        c = conn.cursor()
         levelup_info = dict(yaml.load(os.popen(
             f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
         if lang == 'zh-CN':
@@ -18,14 +21,25 @@ class weapon:
         with open(f'assets/dict/{lang}.json', encoding='utf8') as f:
             data = json.loads(f.read())
             f.close()
-        self.name = requests.get(
-            f'https://valorant-api.com/v1/weapons/skinlevels/{self.uuid}?language={lang if lang != "en" else "en-US"}', timeout=30).json()['data']['displayName']
-        # the real series skin uuid for the weapon, not a level uuid
-        self.uid = data[self.name]
-        with open(f'assets/data/{lang}.json', 'r', encoding='utf8') as f:
-            self.data = json.loads(f.read())[self.uid]
-        # self.data = requests.get(
-        #     f'https://valorant-api.com/v1/weapons/skins/{self.uid}?language={lang if lang != "en" else "en-US"}', timeout=30).json()['data']
+        # Get Weapon Name
+        if lang == 'en':
+            c.execute(f'SELECT name FROM skinlevels WHERE uuid = ?', (self.uuid,))
+            conn.commit()
+            self.name = c.fetchall()[0][0]
+        else:
+            c.execute(f'SELECT "name-{lang}" FROM skinlevels WHERE uuid = ?', (self.uuid,))
+            conn.commit()
+            self.name = c.fetchall()[0][0]
+        
+        # Get Weapon Data
+        if lang == 'en':
+            c.execute(f'SELECT data FROM skins WHERE name = ?', (self.name,))
+            conn.commit()
+            self.data = json.loads(c.fetchall()[0][0])
+        else:
+            c.execute(f'SELECT "data-{lang}" FROM skins WHERE "name-{lang}" = ?', (self.name,))
+            conn.commit()
+            self.data = json.loads(c.fetchall()[0][0])
         self.levels = self.data['levels']    # Skin Levels
         self.chromas = self.data['chromas']  # Skin Chromas
         self.base_img = self.data['levels'][0]['displayIcon']
@@ -61,20 +75,8 @@ class weapon:
 
 class weaponlib:
     def __init__(self, uuid: str, name: str, cost: int = 0, discount: int = 0, discountPersentage: int = 0, lang: str = 'en'):
-        # levelup_info = {
-        #     "EEquippableSkinLevelItem::VFX": '视觉效果',
-        #     "EEquippableSkinLevelItem::Animation": '视觉动画',
-        #     "EEquippableSkinLevelItem::Finisher": '终结特效',
-        #     "EEquippableSkinLevelItem::Voiceover": "本地化语音",
-        #     "EEquippableSkinLevelItem::SoundEffects": "音效",
-        #     "EEquippableSkinLevelItem::FishAnimation": "鱼缸动画",
-        #     "EEquippableSkinLevelItem::KillBanner": "击杀旗帜",
-        #     "EEquippableSkinLevelItem::TopFrag": "击杀光环",
-        #     "EEquippableSkinLevelItem::KillCounter": "击杀计数器",
-        #     "EEquippableSkinLevelItem::InspectAndKill": "击杀特效",
-        #     "EEquippableSkinLevelItem::KillEffect": "击杀特效&音效",
-        #     "EEquippableSkinLevelItem::AttackerDefenderSwap": "随阵营变色"
-        # }
+        conn = sqlite3.connect('assets/db/data.db')
+        c = conn.cursor()
         levelup_info = dict(yaml.load(os.popen(
             f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
         if lang == 'zh-CN':
@@ -85,8 +87,14 @@ class weaponlib:
         self.name = name
         self.cost = cost
         self.weapon_id = None
-        with open(f'assets/data/{lang}.json', 'r', encoding='utf8') as f:
-            self.data = json.loads(f.read())[self.uuid]
+        if lang == 'en':
+            c.execute('SELECT data FROM skins WHERE uuid = ?', (self.uuid,))
+        else:
+            c.execute(f'SELECT "data-{lang}" FROM skins WHERE uuid = ?', (self.uuid,))
+        conn.commit()
+        self.data = json.loads(c.fetchall()[0][0])
+        # with open(f'assets/data/{lang}.json', 'r', encoding='utf8') as f:
+        #     self.data = json.loads(f.read())[self.uuid]
         # self.data = requests.get(
         #     f'https://valorant-api.com/v1/weapons/skins/{self.uuid}?language={lang if lang != "en" else "en-US"}', timeout=30).json()['data']
         self.levels = self.data['levels']    # Skin Levels

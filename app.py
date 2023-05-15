@@ -7,6 +7,7 @@ import traceback
 import yaml
 import _thread
 import json
+import sqlite3
 from math import ceil
 from parse import parse
 from flask import Flask, render_template, redirect, send_from_directory, request, make_response, session
@@ -14,7 +15,7 @@ from flask_babel import Babel
 from flask_session import Session
 from utils.RiotLogin import Auth
 from utils.GetPlayer import player
-from utils.Cache import updateCache
+from utils.Cache import UpdateCacheTimer
 from utils.Weapon import weapon, weaponlib
 
 app = Flask(__name__)
@@ -254,14 +255,22 @@ def library(page: int = 1):
         dictlang = 'zh-TW'
     else:
         dictlang = lang
-    with open(f'assets/dict/{dictlang}.json', encoding='utf8') as f:
-        skins: dict = json.loads(f.read())  # Read skin data
-    count = len(list(skins.keys()))  # Get skin counts
+    # with open(f'assets/dict/{dictlang}.json', encoding='utf8') as f:
+    #     skins: dict = json.loads(f.read())  # Read skin data
+    conn = sqlite3.connect('assets/db/data.db')
+    c = conn.cursor()
+    if lang == 'en':
+        c.execute('SELECT uuid, name FROM skins')  # Get all skins' uuid & name
+    else:
+        c.execute(f'SELECT uuid, "name-{dictlang}" FROM skins')
+    conn.commit()
+    skins = c.fetchall()
+    count = len(skins)  # Get skin counts
     if perpage*page > count:
         end = count
     else:
         end = perpage*page
-    for skin, uuid in list(skins.items())[perpage*(page-1):end]:
+    for uuid, skin in list(skins)[perpage*(page-1):end]:
         Weapon = weaponlib(uuid, skin, lang=lang)
         weapon_list.append({"name": Weapon.name, "img": Weapon.base_img,
                            "levels": Weapon.levels, "chromas": Weapon.chromas})
@@ -453,5 +462,5 @@ if __name__ == '__main__':
     #     thread.start()
     # except RuntimeError:
     #     pass
-    _thread.start_new_thread(updateCache, ())
+    _thread.start_new_thread(UpdateCacheTimer, ())
     app.run(host='0.0.0.0', port=os.environ.get('PORT', 8080), debug=debug)
