@@ -25,6 +25,8 @@ metadata:
     EEquippableSkinLevelItem::AttackerDefenderSwap: チームに応じて色が変わる
     # For Xenohunter Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/289d7473-472b-68da-9019-da9594a8a127
     EEquippableSkinLevelItem::HeartbeatAndMapSensor: マップハートビートセンサー
+    # For Recon Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/a8509c8d-4061-1c57-60a5-61a025f28408
+    EEquippableSkinLevelItem::Randomizer: ランダマイザー
   description:
     # All these sources to replace can be found at the links above
     # You need to add ?language=<your lang> to check your language
