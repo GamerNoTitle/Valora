@@ -98,7 +98,7 @@ class weaponlib:
             level['uuid'] = level['uuid'].upper()
             # level['displayName'] = level['displayName'].replace(self.name, '').replace('.', '').replace('。', '')
             level['displayName'] = level['displayName'].replace(self.name, '').replace('\n', '').replace(
-                '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '')
+                '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '').replace('。', '')
             for descr in dict(description_to_del).values():
                 level['displayName'] = level['displayName'].replace(descr, '')
             try:
@@ -113,7 +113,7 @@ class weaponlib:
             chroma['uuid'] = chroma['uuid'].upper()
             chroma['displayName'] = chroma['displayName'].replace(self.name, '')
             chroma['displayName'] = chroma['displayName'].replace(self.name, '').replace('\n', '').replace(
-                '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '')
+                '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '').replace('。', '')
             chroma['displayName'] = chroma['displayName'].strip().replace(
                 levelup_info['level'] + '1', '').replace(levelup_info['level'] + '2', '').replace(
                 levelup_info['level'] + '3', '').replace(levelup_info['level'] + '4', '').replace(
