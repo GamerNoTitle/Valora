@@ -6,10 +6,10 @@ import os
 
 class weapon:
     def __init__(self, uuid: str, cost: int = 0, discount: int = 0, discountPersentage: int = 0, lang: str = 'en'):
-        if lang == 'zh-CN':
-            lang = 'zh-TW'
         levelup_info = dict(yaml.load(os.popen(
             f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
+        if lang == 'zh-CN':
+            lang = 'zh-TW'
         description_to_del = dict(yaml.load(os.popen(
             f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['description']
         self.uuid = uuid
@@ -75,10 +75,10 @@ class weaponlib:
         #     "EEquippableSkinLevelItem::KillEffect": "击杀特效&音效",
         #     "EEquippableSkinLevelItem::AttackerDefenderSwap": "随阵营变色"
         # }
-        if lang == 'zh-CN':
-            lang = 'zh-TW'
         levelup_info = dict(yaml.load(os.popen(
             f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
+        if lang == 'zh-CN':
+            lang = 'zh-TW'
         description_to_del = dict(yaml.load(os.popen(
             f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['description']
         self.uuid = uuid
