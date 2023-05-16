@@ -139,162 +139,217 @@
     </div>
   </header>
 
-  <div class="container-fluid px-0 overflow-hidden">
-    <div class="row text-center py-2 mt-3">
-      <div class="col-12 mx-auto">
-        {% if prev %}
-        <a href="{{prev}}"><button type="button" class="btn bg-gradient-primary btn-lg"><i
-              class="fas fa-arrow-left"></i>
-            {{lang.library.button.prev}}</button></a>
-        {% else %}
-        <a><button type="button" class="btn bg-gradient-primary btn-lg" disabled><i
-              class="fas fa-arrow-left"></i> {{lang.library.button.prev}}</button></a>
-        {% endif %}
-        <strong size=12px class="text-gradient text-primary mb-0 mt-2">{{cur_page}} / {{pages}}</strong>
-        {% if next %}
-        <a href="{{next}}"><button type="button" class="btn bg-gradient-primary btn-lg">{{lang.library.button.next}} <i
-              class="fas fa-arrow-right"></i>
-          </button></a>
-        {% else %}
-        <a><button type="button" class="btn bg-gradient-primary btn-lg" disabled>{{lang.library.button.next}}
-            <i class="fas fa-arrow-right"></i> </button></a>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-
   <div class="container">
     <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.library.title}}</h1>
-    <br>
-    <div class="row">
-      {% for weapon in weapon_list %}
-      <div class="col-md-4">
-        <div class="card mb-4 shadow-sm rounded">
-          <div class="gun-image">
-            <a href="{{weapon.img|safe}}" data-fancybox="gallery">
-              <img height=auto width=100% class="text-center" src={{weapon.img|safe}}>
-            </a>
-          </div>
-          <div class="card-body">
-            <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
-            <br>
-            {% for level in weapon.levels %}
-            {% if level.displayName != '' %}
-            <!-- Button trigger modal -->
-            <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
-              data-bs-target="#WEAPON-{{level.uuid|escape}}">
-              {{level.displayName}}: {{level.levelItem}}
-            </button>
+  </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="WEAPON-{{level.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">{{weapon.name|safe}} {{level.displayName}}</h5>
-                  </div>
-                  <div class="modal-body">
-                    <video width=100% controls>
-                      <source src="{{level.streamedVideo}}" type="video/mp4">
-                      {{lang.library.modal.videonotavaliable}}
-                    </video>
-                    <br>
-                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
-                    </p> -->
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary"
-                      data-bs-dismiss="modal">{{lang.library.button.close}}</button>
-                  </div>
-                </div>
+  <section>
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+          <form role="form" name="search" method="post" autocomplete="off" action="/library">
+            <div class="row">
+              <label>{{lang.library.form.search.title}}</label>
+              <div class="input-group">
+                {% if not query %}
+                <input type="text" class="form-control" placeholder="{{lang.library.form.search.placeholder}}"
+                  name="query">
+                {% else %}
+                <input type="text" class="form-control" placeholder="{{lang.library.form.search.placeholder}}" value={{query}}
+                  name="query">
+                {% endif %}
               </div>
             </div>
-            {% endif %}
-            {% endfor %}
             <br>
-            {% for chroma in weapon.chromas %}
-            {% if chroma.displayName != '' %}
-            <!-- Button trigger modal -->
-            <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
-              data-bs-target="#WEAPON-{{chroma.uuid|escape}}">
-              {{chroma.displayName}}
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="WEAPON-{{chroma.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">{{weapon.name|safe}} {{chroma.displayName}}</h5>
-                  </div>
-                  <div class="modal-body">
-                    {% if chroma.streamedVideo %}
-                    <video width=100% controls>
-                      <source src="{{chroma.streamedVideo}}" type="video/mp4">
-                      {{lang.library.modal.videonotavaliable}}
-                    </video>
-                    <br>
-                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
-                    </p> -->
-                    {% else %}
-                    <img width="100%" src="{{chroma.fullRender}}">
-                    {% endif %}
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary"
-                      data-bs-dismiss="modal">{{lang.library.button.close}}</button>
-                  </div>
-                </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button type="submit" class="btn bg-gradient-dark w-100"><img
+                    src="/assets/img/img-navi-valorant-white.svg">{{lang.library.button.search}}</button>
               </div>
             </div>
-            </script>
-            {% endif %}
-            {% endfor %}
+        </div>
+        </form>
+      </div>
+    </div>
+    </div>
+
+    {% if not search %}
+    <div class="container-fluid px-0 overflow-hidden">
+      <div class="row text-center py-2 mt-3">
+        <div class="col-12 mx-auto">
+          {% if prev %}
+          <a href="{{prev}}"><button type="button" class="btn bg-gradient-primary btn-lg"><i
+                class="fas fa-arrow-left"></i>
+              {{lang.library.button.prev}}</button></a>
+          {% else %}
+          <a><button type="button" class="btn bg-gradient-primary btn-lg" disabled><i class="fas fa-arrow-left"></i>
+              {{lang.library.button.prev}}</button></a>
+          {% endif %}
+          <strong size=12px class="text-gradient text-primary mb-0 mt-2">{{cur_page}} / {{pages}}</strong>
+          {% if next %}
+          <a href="{{next}}"><button type="button" class="btn bg-gradient-primary btn-lg">{{lang.library.button.next}}
+              <i class="fas fa-arrow-right"></i>
+            </button></a>
+          {% else %}
+          <a><button type="button" class="btn bg-gradient-primary btn-lg" disabled>{{lang.library.button.next}}
+              <i class="fas fa-arrow-right"></i> </button></a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if search_notfound %}
+    <div class="container">
+      <div class="row text-center py-2 mt-3">
+        <div class="col-12 mx-auto">
+          <div class="alert alert-danger text-white rounded role=" alert">
+            {{lang.library.notfound}}
           </div>
         </div>
       </div>
-      {% endfor %}
-    </div>
-  </div>
-
-  <div class="container-fluid px-0 overflow-hidden">
-    <div class="row text-center py-2 mt-3">
-      <div class="col-12 mx-auto">
-        {% if prev %}
-        <a href="{{prev}}"><button type="button" class="btn bg-gradient-primary btn-lg"><i
-              class="fas fa-arrow-left"></i>
-            {{lang.library.button.prev}}</button></a>
-        {% else %}
-        <a><button type="button" class="btn bg-gradient-primary btn-lg" disabled><i
-              class="fas fa-arrow-left"></i> {{lang.library.button.prev}}</button></a>
-        {% endif %}
-        <strong size=12px class="text-gradient text-primary mb-0 mt-2">{{cur_page}} / {{pages}}</strong>
-        {% if next %}
-        <a href="{{next}}"><button type="button" class="btn bg-gradient-primary btn-lg">{{lang.library.button.next}} <i
-              class="fas fa-arrow-right"></i>
-          </button></a>
-        {% else %}
-        <a><button type="button" class="btn bg-gradient-primary btn-lg" disabled>{{lang.library.button.next}}
-            <i class="fas fa-arrow-right"></i> </button></a>
-        {% endif %}
+      <div class="container-fluid px-0 overflow-hidden">
+        <div class="row text-center py-2 mt-3">
+          <div class="col-12 mx-auto">
+            <a href="/library"><button type="button" class="btn bg-gradient-danger btn-lg"
+                width="100%"><strong>{{lang.library.button.return}}</strong></button></a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+    {% endif %}
+    
+    <div class="container">
+      <div class="row">
+        {% for weapon in weapon_list %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm rounded">
+            <div class="gun-image">
+              <a href="{{weapon.img|safe}}" data-fancybox="gallery">
+                <img height=auto width=100% class="text-center" src={{weapon.img|safe}}>
+              </a>
+            </div>
+            <div class="card-body">
+              <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
+              <br>
+              {% for level in weapon.levels %}
+              {% if level.displayName != '' %}
+              <!-- Button trigger modal -->
+              <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
+                data-bs-target="#WEAPON-{{level.uuid|escape}}">
+                {{level.displayName}}: {{level.levelItem}}
+              </button>
 
+              <!-- Modal -->
+              <div class="modal fade" id="WEAPON-{{level.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">{{weapon.name|safe}} {{level.displayName}}</h5>
+                    </div>
+                    <div class="modal-body">
+                      <video width=100% controls>
+                        <source src="{{level.streamedVideo}}" type="video/mp4">
+                        {{lang.library.modal.videonotavaliable}}
+                      </video>
+                      <br>
+                      <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
+                    </p> -->
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn bg-gradient-primary"
+                        data-bs-dismiss="modal">{{lang.library.button.close}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+              {% endfor %}
+              <br>
+              {% for chroma in weapon.chromas %}
+              {% if chroma.displayName != '' %}
+              <!-- Button trigger modal -->
+              <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
+                data-bs-target="#WEAPON-{{chroma.uuid|escape}}">
+                {{chroma.displayName}}
+              </button>
 
-  <script>
-    $(document).ready(function () {
-      $("[data-fancybox]").fancybox({
-        buttons: [
-          "zoom",
-          "slideShow",
-          "fullScreen",
-          "download",
-          "thumbs",
-          "close"
-        ]
+              <!-- Modal -->
+              <div class="modal fade" id="WEAPON-{{chroma.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">{{weapon.name|safe}} {{chroma.displayName}}</h5>
+                    </div>
+                    <div class="modal-body">
+                      {% if chroma.streamedVideo %}
+                      <video width=100% controls>
+                        <source src="{{chroma.streamedVideo}}" type="video/mp4">
+                        {{lang.library.modal.videonotavaliable}}
+                      </video>
+                      <br>
+                      <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
+                    </p> -->
+                      {% else %}
+                      <img width="100%" src="{{chroma.fullRender}}">
+                      {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn bg-gradient-primary"
+                        data-bs-dismiss="modal">{{lang.library.button.close}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </script>
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if not search %}
+    <div class="container-fluid px-0 overflow-hidden">
+      <div class="row text-center py-2 mt-3">
+        <div class="col-12 mx-auto">
+          {% if prev %}
+          <a href="{{prev}}"><button type="button" class="btn bg-gradient-primary btn-lg"><i
+                class="fas fa-arrow-left"></i>
+              {{lang.library.button.prev}}</button></a>
+          {% else %}
+          <a><button type="button" class="btn bg-gradient-primary btn-lg" disabled><i class="fas fa-arrow-left"></i>
+              {{lang.library.button.prev}}</button></a>
+          {% endif %}
+          <strong size=12px class="text-gradient text-primary mb-0 mt-2">{{cur_page}} / {{pages}}</strong>
+          {% if next %}
+          <a href="{{next}}"><button type="button" class="btn bg-gradient-primary btn-lg">{{lang.library.button.next}}
+              <i class="fas fa-arrow-right"></i>
+            </button></a>
+          {% else %}
+          <a><button type="button" class="btn bg-gradient-primary btn-lg" disabled>{{lang.library.button.next}}
+              <i class="fas fa-arrow-right"></i> </button></a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <script>
+      $(document).ready(function () {
+        $("[data-fancybox]").fancybox({
+          buttons: [
+            "zoom",
+            "slideShow",
+            "fullScreen",
+            "download",
+            "thumbs",
+            "close"
+          ]
+        });
       });
-    });
-  </script>
+    </script>
 
 </body>

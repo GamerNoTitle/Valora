@@ -144,6 +144,13 @@ library:
     close: 閉じる
     prev: 前のページ
     next: 次のページ
+    search: 検索
+    return: スキンライブラリに戻る
+  form:
+    search:
+      title: 検索
+      placeholder: 検索したい内容を入力してください
+  notfound: 検索した内容が見つかりませんでした
 
 error:
   error500: 

@@ -1,4 +1,3 @@
-import threading
 import os
 import uuid
 import sentry_sdk
@@ -77,14 +76,6 @@ sentry_sdk.init(
 
 @app.route('/', methods=['GET'])
 def home():
-    # Paas use gunicorn to start flask applications
-    # use this method to start cache updating.
-    # thread = threading.Thread(target=updateCache)
-    # thread.daemon = True
-    # try:
-    #     thread.start()
-    # except RuntimeError:
-    #     pass
     lang = str(request.accept_languages.best_match(
         app.config['BABEL_LANGUAGES']))
     session["lang"] = lang
@@ -212,10 +203,6 @@ def night():
                                    nightmarket_notavaliable=True,
                                    lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
     else:   # Login Expired
-        # response = make_response(redirect('/', 302))
-        # for cookie in request.cookies:
-        #     response.delete_cookie(cookie)
-        # return response
         return redirect('/api/reauth')
 
 
@@ -245,42 +232,119 @@ def authinfo():
     return render_template('auth-info.html', access_token=access_token, entitlement=entitlement, region=region, userid=userid, name=name, tag=tag, cookie=cookie, ua=ua)
 
 
-@ app.route('/library', methods=["GET"])
+@ app.route('/library', methods=["GET", "POST"])
 def library(page: int = 1):
-    perpage = 30
-    weapon_list = []
-    lang = str(request.accept_languages.best_match(
-        app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else 'en'
-    if lang == 'zh-CN':
-        dictlang = 'zh-TW'
+    if request.form.get('query'):
+        query = '%' + request.form.get('query') + '%'
+        lang = str(request.accept_languages.best_match(
+            app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else 'en'
+        if lang == 'zh-CN':
+            dictlang = 'zh-TW'
+        else:
+            dictlang = lang
+        conn = sqlite3.connect('assets/db/data.db')
+        c = conn.cursor()
+        if lang == 'en':
+            # Get all skins' uuid & name
+            c.execute(
+                'SELECT uuid, name, data FROM skins WHERE name LIKE ?', (query,))
+        elif lang == 'zh-CN' or lang == 'zh-TW':
+            c.execute(
+                f'SELECT uuid, "name-{dictlang}", "data-zh-TW" FROM skins WHERE "name-zh-CN" LIKE ? OR "name-zh-TW" LIKE ?', (query, query))
+        else:
+            c.execute(
+                f'SELECT uuid, "name-{dictlang}", "data-{dictlang}" FROM skins WHERE "name-{lang}" like ?', (query,))
+        conn.commit()
+        skins = c.fetchall()
+        if len(skins) == 0:
+            return render_template('library.html', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader), search_notfound=True, search=True)
+        else:
+            weapon_list = []
+            levelup_info = dict(yaml.load(os.popen(
+                f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
+            if lang == 'zh-CN':
+                lang = 'zh-TW'
+            description_to_del = dict(yaml.load(os.popen(
+                f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['description']
+            with open('data.json', 'wt', encoding='utf8') as f:
+                f.write(json.dumps(skins))
+            for uuid, skin, data in list(skins):
+                data = json.loads(data)
+                levels = data['levels']    # Skin Levels
+                chromas = data['chromas']  # Skin Chromas
+                base_img = data['levels'][0]['displayIcon']
+                name = skin
+                for level in levels:
+                    level['uuid'] = level['uuid'].upper()
+                    level['displayName'] = level['displayName'].replace(name, '').replace('\n', '').replace(
+                        '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '').replace('。', '')
+                    for descr in dict(description_to_del).values():
+                        level['displayName'] = level['displayName'].replace(
+                            descr, '')
+                    try:
+                        if level['levelItem'] == None:
+                            level['levelItem'] = levelup_info['EEquippableSkinLevelItem::VFX']
+                        else:
+                            level['levelItem'] = levelup_info[level['levelItem']]
+                    except KeyError:
+                        level['levelItem'] = level['levelItem'].replace(
+                            'EEquippableSkinLevelItem::', '')
+                for chroma in chromas:
+                    chroma['uuid'] = chroma['uuid'].upper()
+                    chroma['displayName'] = chroma['displayName'].replace(
+                        name, '')
+                    chroma['displayName'] = chroma['displayName'].replace(name, '').replace('\n', '').replace(
+                        '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '').replace('。', '')
+                    chroma['displayName'] = chroma['displayName'].strip().replace(
+                        levelup_info['level'] + '1', '').replace(levelup_info['level'] + '2', '').replace(
+                        levelup_info['level'] + '3', '').replace(levelup_info['level'] + '4', '').replace(
+                            levelup_info['level'] + '5', '').replace(
+                        levelup_info['level'] + ' 1', '').replace(levelup_info['level'] + ' 2', '').replace(
+                        levelup_info['level'] + ' 3', '').replace(levelup_info['level'] + ' 4', '').replace(
+                            levelup_info['level'] + ' 5', '')   # Clear out extra level symbols
+                weapon_list.append(
+                    {"name": name, "img": base_img, "levels": levels, "chromas": chromas})
+            return render_template('library.html', weapon_list=weapon_list,
+                                   lang=yaml.load(os.popen(
+                                       f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader), 
+                                       search=True, query=request.form.get('query'))
     else:
-        dictlang = lang
-    # with open(f'assets/dict/{dictlang}.json', encoding='utf8') as f:
-    #     skins: dict = json.loads(f.read())  # Read skin data
-    conn = sqlite3.connect('assets/db/data.db')
-    c = conn.cursor()
-    if lang == 'en':
-        c.execute('SELECT uuid, name FROM skins')  # Get all skins' uuid & name
-    else:
-        c.execute(f'SELECT uuid, "name-{dictlang}" FROM skins')
-    conn.commit()
-    skins = c.fetchall()
-    count = len(skins)  # Get skin counts
-    if perpage*page > count:
-        end = count
-    else:
-        end = perpage*page
-    for uuid, skin in list(skins)[perpage*(page-1):end]:
-        Weapon = weaponlib(uuid, skin, lang=lang)
-        weapon_list.append({"name": Weapon.name, "img": Weapon.base_img,
-                           "levels": Weapon.levels, "chromas": Weapon.chromas})
-    return render_template('library.html', weapon_list=weapon_list, page=page, count=count,
-                           lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader),
-                           prev = f'/library/page/{page-1}' if page != 1 else None, next = f'/library/page/{page+1}' if page != ceil(count/perpage) else None, cur_page = page, pages = ceil(count/perpage))
-
-@ app.route('/library/page/<page>', methods=["GET"])
-def lib_handler(page: int = 1):
-    return library(int(page))
+        try:
+            page = int(request.args.get('page', 1))
+        except ValueError:
+            page = 1
+        perpage = 30
+        weapon_list = []
+        lang = str(request.accept_languages.best_match(
+            app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else 'en'
+        if lang == 'zh-CN':
+            dictlang = 'zh-TW'
+        else:
+            dictlang = lang
+        # with open(f'assets/dict/{dictlang}.json', encoding='utf8') as f:
+        #     skins: dict = json.loads(f.read())  # Read skin data
+        conn = sqlite3.connect('assets/db/data.db')
+        c = conn.cursor()
+        if lang == 'en':
+            # Get all skins' uuid & name
+            c.execute('SELECT uuid, name FROM skins')
+        else:
+            c.execute(f'SELECT uuid, "name-{dictlang}" FROM skins')
+        conn.commit()
+        skins = c.fetchall()
+        count = len(skins)  # Get skin counts
+        if perpage*page > count:
+            end = count
+        else:
+            end = perpage*page
+        for uuid, skin in list(skins)[perpage*(page-1):end]:
+            Weapon = weaponlib(uuid, skin, lang=lang)
+            weapon_list.append({"name": Weapon.name, "img": Weapon.base_img,
+                                "levels": Weapon.levels, "chromas": Weapon.chromas})
+        return render_template('library.html', weapon_list=weapon_list, page=page, count=count,
+                               lang=yaml.load(os.popen(
+                                   f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader),
+                               prev=f'/library?page={page-1}' if page != 1 else None, next=f'/library?page={page+1}' if page != ceil(count/perpage) else None, cur_page=page, pages=ceil(count/perpage))
 
 # The following are api paths
 
@@ -454,13 +518,5 @@ def internal_server_error_preview():
 
 
 if __name__ == '__main__':
-    # Paas use gunicorn to start flask applications
-    # use this method to start cache updating.
-    # thread = threading.Thread(target=updateCache)
-    # thread.daemon = True
-    # try:
-    #     thread.start()
-    # except RuntimeError:
-    #     pass
     _thread.start_new_thread(UpdateCacheTimer, ())
     app.run(host='0.0.0.0', port=os.environ.get('PORT', 8080), debug=debug)

@@ -144,6 +144,13 @@ library:
     close: 关闭
     prev: 上一页
     next: 下一页
+    search: 搜索
+    return: 返回皮肤库
+  form:
+    search:
+      title: 搜索
+      placeholder: 请输入你想搜索的内容（简中繁中均可）
+  notfound: 未找到你搜索的内容
     
 error:
   error500:
