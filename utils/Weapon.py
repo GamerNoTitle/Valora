@@ -18,9 +18,6 @@ class weapon:
         self.uuid = uuid
         self.cost = cost
         self.weapon_id = None
-        with open(f'assets/dict/{lang}.json', encoding='utf8') as f:
-            data = json.loads(f.read())
-            f.close()
         # Get Weapon Name
         if lang == 'en':
             c.execute(f'SELECT name FROM skinlevels WHERE uuid = ?', (self.uuid,))
