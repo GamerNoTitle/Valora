@@ -27,6 +27,25 @@ metadata:
     EEquippableSkinLevelItem::HeartbeatAndMapSensor: Heart Beat & Map Censor
     # For Recon Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/a8509c8d-4061-1c57-60a5-61a025f28408
     EEquippableSkinLevelItem::Randomizer: Randomizer
+  weapon:
+    classic: Classic
+    shorty: Shorty
+    frenzy: Frenzy
+    ghost: Ghost
+    sheriff: Sheriff
+    stinger: Stinger
+    spectre: Spectre
+    bucky: Bucky
+    judge: Judge
+    bulldog: Bulldog
+    guardian: Guardian
+    phantom: Phantom
+    vandal: Vandal
+    marshal: Marshal
+    operator: Operator
+    ares: Ares
+    odin: Odin
+    melee: Melee
   description:
     # All these sources to replace can be found at the links above
     # You need to add ?language=<your lang> to check your language
@@ -146,6 +165,25 @@ library:
     next: Next Page
     search: Search
     return: Return to Skin Library
+    weapon:
+      classic: Classic
+      shorty: Shorty
+      frenzy: Frenzy
+      ghost: Ghost
+      sheriff: Sheriff
+      stinger: Stinger
+      spectre: Spectre
+      bucky: Bucky
+      judge: Judge
+      bulldog: Bulldog
+      guardian: Guardian
+      phantom: Phantom
+      vandal: Vandal
+      marshal: Marshal
+      operator: Operator
+      ares: Ares
+      odin: Odin
+      melee: Melee
   form:
     search:
       title: Search

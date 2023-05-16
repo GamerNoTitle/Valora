@@ -27,6 +27,25 @@ metadata:
     EEquippableSkinLevelItem::HeartbeatAndMapSensor: 心跳和地圖審查
     # For Recon Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/a8509c8d-4061-1c57-60a5-61a025f28408
     EEquippableSkinLevelItem::Randomizer: 隨機模組產生器
+  weapon:
+    classic: 制式手槍
+    shorty: 短管
+    frenzy: 狂弒
+    ghost: 鬼魅
+    sheriff: 神射
+    stinger: 刺針
+    spectre: 惡靈
+    bucky: 重砲
+    judge: 判官
+    bulldog: 鬥牛犬
+    guardian: 捍衛者
+    phantom: 幻象
+    vandal: 暴徒
+    marshal: 警長
+    operator: 間諜
+    ares: 戰神
+    odin: 奧丁
+    melee: 近戰武器
   description:
     # All these sources to replace can be found at the links above
     # You need to add ?language=<your lang> to check your language
@@ -146,6 +165,25 @@ library:
     next: 下一頁
     search: 搜尋
     return: 返回皮膚庫
+    weapon:
+      classic: 制式手槍
+      shorty: 短管
+      frenzy: 狂弒
+      ghost: 鬼魅
+      sheriff: 神射
+      stinger: 刺針
+      spectre: 惡靈
+      bucky: 重砲
+      judge: 判官
+      bulldog: 鬥牛犬
+      guardian: 捍衛者
+      phantom: 幻象
+      vandal: 暴徒
+      marshal: 警長
+      operator: 間諜
+      ares: 戰神
+      odin: 奧丁
+      melee: 近戰武器
   form:
     search:
       title: 搜尋

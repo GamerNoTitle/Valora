@@ -37,6 +37,7 @@ def UpdateCache():
         c = conn.cursor()
         c.execute('CREATE TABLE skins (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT)')
         c.execute('CREATE TABLE skinlevels (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT)')
+        c.execute('CREATE TABLE melee (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT)')
         conn.commit()
         conn.close()
 
@@ -59,11 +60,30 @@ def UpdateCache():
                     c.execute(f'UPDATE skins SET name = ?, data = ? WHERE uuid = ?',
                               (i["displayName"], json.dumps(i), i["uuid"]))
                     conn.commit()
+                if 'ShooterGame/Content/Equippables/Melee/' in json.dumps(i):
+                    try:
+                        c.execute(f'INSERT INTO melee ([uuid], name, data) VALUES (?, ?, ?)', (
+                            i["uuid"], i["displayName"], json.dumps(i)))
+                        conn.commit()
+                    except sqlite3.IntegrityError:
+                        c.execute(f'UPDATE melee SET name = ?, data = ? WHERE uuid = ?',
+                                  (i["displayName"], json.dumps(i), i["uuid"]))
+                        conn.commit()
+                    except sqlite3.OperationalError:
+                        c.execute(
+                            'CREATE TABLE melee (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT)')
+                        c.execute(f'INSERT INTO melee ([uuid], name, data) VALUES (?, ?, ?)', (
+                            i["uuid"], i["displayName"], json.dumps(i)))
+                        conn.commit()
         else:
             for i in data['data']:
                 c.execute(f'UPDATE skins SET "name-{lang}" = ?, "data-{lang}" = ? WHERE uuid = ?',
                           (i["displayName"], json.dumps(i), i["uuid"]))
                 conn.commit()
+                if 'ShooterGame/Content/Equippables/Melee/' in json.dumps(i):
+                    c.execute(f'UPDATE melee SET "name-{lang}" = ?, "data-{lang}" = ? WHERE uuid = ?',
+                                (i["displayName"], json.dumps(i), i["uuid"]))
+                    conn.commit()
 
     # Delete Useless Data
     # For example: Random Favorite Skin
@@ -79,6 +99,7 @@ def UpdateCache():
     c = conn.cursor()
     for ignore in fliter:
         c.execute('DELETE FROM skins WHERE name = ?', (ignore,))
+        c.execute('DELETE FROM melee WHERE name = ?', (ignore,))
         conn.commit()
     c.close()
 
@@ -101,11 +122,16 @@ def UpdateCache():
                     c.execute(f'UPDATE skinlevels SET name = ?, data = ? WHERE uuid = ?',
                               (i["displayName"], json.dumps(i), i["uuid"]))
                     conn.commit()
+
         else:
             for i in data['data']:
                 c.execute(f'UPDATE skinlevels SET "name-{lang}" = ?, "data-{lang}" = ? WHERE uuid = ?',
                           (i["displayName"], json.dumps(i), i["uuid"]))
                 conn.commit()
+                if 'ShooterGame/Content/Equippables/Melee/' in json.dumps(i):
+                    c.execute(f'UPDATE melee SET "name-{lang}" = ?, "data-{lang}" = ? WHERE uuid = ?',
+                              (i["displayName"], json.dumps(i), i["uuid"]))
+                    conn.commit()
     c.close()
 
 

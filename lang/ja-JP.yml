@@ -27,6 +27,25 @@ metadata:
     EEquippableSkinLevelItem::HeartbeatAndMapSensor: マップハートビートセンサー
     # For Recon Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/a8509c8d-4061-1c57-60a5-61a025f28408
     EEquippableSkinLevelItem::Randomizer: ランダマイザー
+  weapon:
+    classic: クラシック
+    shorty: ショーティー
+    frenzy: フレンジー
+    ghost: ゴースト
+    sheriff: シェリフ
+    stinger: スティンガー
+    spectre: スペクター
+    bucky: バッキー
+    judge: ジャッジ
+    bulldog: ブルドッグ
+    guardian: ガーディアン
+    phantom: ファントム
+    vandal: ヴァンダル
+    marshal: マーシャル
+    operator: オペレーター
+    ares: オペレーター
+    odin: オーディン
+    melee: 近接武器
   description:
     # All these sources to replace can be found at the links above
     # You need to add ?language=<your lang> to check your language
@@ -146,6 +165,25 @@ library:
     next: 次のページ
     search: 検索
     return: スキンライブラリに戻る
+    weapon:
+      classic: クラシック
+      shorty: ショーティー
+      frenzy: フレンジー
+      ghost: ゴースト
+      sheriff: シェリフ
+      stinger: スティンガー
+      spectre: スペクター
+      bucky: バッキー
+      judge: ジャッジ
+      bulldog: ブルドッグ
+      guardian: ガーディアン
+      phantom: ファントム
+      vandal: ヴァンダル
+      marshal: マーシャル
+      operator: オペレーター
+      ares: オペレーター
+      odin: オーディン
+      melee: 近接武器
   form:
     search:
       title: 検索

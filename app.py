@@ -234,78 +234,97 @@ def authinfo():
 
 @ app.route('/library', methods=["GET", "POST"])
 def library(page: int = 1):
-    if request.form.get('query'):
-        query = '%' + request.form.get('query') + '%'
-        lang = str(request.accept_languages.best_match(
-            app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else 'en'
-        if lang == 'zh-CN':
-            dictlang = 'zh-TW'
+    if request.form.get('query') or request.args.get('query'):
+        if request.form.get('query'):
+            query = '%' + request.form.get('query') + '%'
         else:
-            dictlang = lang
-        conn = sqlite3.connect('assets/db/data.db')
-        c = conn.cursor()
-        if lang == 'en':
-            # Get all skins' uuid & name
-            c.execute(
-                'SELECT uuid, name, data FROM skins WHERE name LIKE ?', (query,))
-        elif lang == 'zh-CN' or lang == 'zh-TW':
-            c.execute(
-                f'SELECT uuid, "name-{dictlang}", "data-zh-TW" FROM skins WHERE "name-zh-CN" LIKE ? OR "name-zh-TW" LIKE ?', (query, query))
-        else:
-            c.execute(
-                f'SELECT uuid, "name-{dictlang}", "data-{dictlang}" FROM skins WHERE "name-{lang}" like ?', (query,))
-        conn.commit()
-        skins = c.fetchall()
-        if len(skins) == 0:
-            return render_template('library.html', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader), search_notfound=True, search=True, query=request.form.get('query'))
-        else:
-            weapon_list = []
-            levelup_info = dict(yaml.load(os.popen(
-                f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
+            query = '%' + request.args.get('query') + '%'
+            lang = str(request.accept_languages.best_match(
+                app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else 'en'
             if lang == 'zh-CN':
-                lang = 'zh-TW'
-            description_to_del = dict(yaml.load(os.popen(
-                f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['description']
-            for uuid, skin, data in list(skins):
-                data = json.loads(data)
-                levels = data['levels']    # Skin Levels
-                chromas = data['chromas']  # Skin Chromas
-                base_img = data['levels'][0]['displayIcon']
-                name = skin
-                for level in levels:
-                    level['uuid'] = level['uuid'].upper()
-                    level['displayName'] = level['displayName'].replace(name, '').replace('\n', '').replace(
-                        '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '').replace('。', '')
-                    for descr in dict(description_to_del).values():
-                        level['displayName'] = level['displayName'].replace(
-                            descr, '')
+                dictlang = 'zh-TW'
+            else:
+                dictlang = lang
+            conn = sqlite3.connect('assets/db/data.db')
+            c = conn.cursor()
+            if request.args.get('query') not in ['近战武器', '近戰武器', 'Melee', '近接武器']:
+                if lang == 'en':
+                    # Get all skins' uuid & name
+                    c.execute(
+                        'SELECT uuid, name, data FROM skins WHERE name LIKE ?', (query,))
+                elif lang == 'zh-CN' or lang == 'zh-TW':
+                    c.execute(
+                        f'SELECT uuid, "name-{dictlang}", "data-zh-TW" FROM skins WHERE "name-zh-CN" LIKE ? OR "name-zh-TW" LIKE ?', (query, query))
+                else:
+                    c.execute(
+                        f'SELECT uuid, "name-{dictlang}", "data-{dictlang}" FROM skins WHERE "name-{lang}" like ?', (query,))
+                conn.commit()
+            else:
+                if lang == 'en':
+                    # Get all skins' uuid & name
+                    c.execute(
+                        'SELECT uuid, name, data FROM melee')
+                elif lang == 'zh-CN' or lang == 'zh-TW':
+                    c.execute(
+                        f'SELECT uuid, "name-{dictlang}", "data-zh-TW" FROM melee')
+                else:
+                    c.execute(
+                        f'SELECT uuid, "name-{dictlang}", "data-{dictlang}" FROM melee')
+                conn.commit()
+            skins = c.fetchall()
+            if len(skins) == 0:
+                return render_template('library.html', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader), search_notfound=True, search=True, query=request.form.get('query'))
+            else:
+                weapon_list = []
+                levelup_info = dict(yaml.load(os.popen(
+                    f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
+                if lang == 'zh-CN':
+                    lang = 'zh-TW'
+                description_to_del = dict(yaml.load(os.popen(
+                    f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['description']
+                for uuid, skin, data in list(skins):
                     try:
-                        if level['levelItem'] == None:
-                            level['levelItem'] = levelup_info['EEquippableSkinLevelItem::VFX']
-                        else:
-                            level['levelItem'] = levelup_info[level['levelItem']]
-                    except KeyError:
-                        level['levelItem'] = level['levelItem'].replace(
-                            'EEquippableSkinLevelItem::', '')
-                for chroma in chromas:
-                    chroma['uuid'] = chroma['uuid'].upper()
-                    chroma['displayName'] = chroma['displayName'].replace(
-                        name, '')
-                    chroma['displayName'] = chroma['displayName'].replace(name, '').replace('\n', '').replace(
-                        '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '').replace('。', '')
-                    chroma['displayName'] = chroma['displayName'].strip().replace(
-                        levelup_info['level'] + '1', '').replace(levelup_info['level'] + '2', '').replace(
-                        levelup_info['level'] + '3', '').replace(levelup_info['level'] + '4', '').replace(
-                            levelup_info['level'] + '5', '').replace(
-                        levelup_info['level'] + ' 1', '').replace(levelup_info['level'] + ' 2', '').replace(
-                        levelup_info['level'] + ' 3', '').replace(levelup_info['level'] + ' 4', '').replace(
-                            levelup_info['level'] + ' 5', '')   # Clear out extra level symbols
-                weapon_list.append(
-                    {"name": name, "img": base_img, "levels": levels, "chromas": chromas})
-            return render_template('library.html', weapon_list=weapon_list,
-                                   lang=yaml.load(os.popen(
-                                       f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader),
-                                   search=True, query=request.form.get('query'))
+                        data = json.loads(data)
+                    except:
+                        print(uuid, skin, data)
+                    levels = data['levels']    # Skin Levels
+                    chromas = data['chromas']  # Skin Chromas
+                    base_img = data['levels'][0]['displayIcon']
+                    name = skin
+                    for level in levels:
+                        level['uuid'] = level['uuid'].upper()
+                        level['displayName'] = level['displayName'].replace(name, '').replace('\n', '').replace(
+                            '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '').replace('。', '')
+                        for descr in dict(description_to_del).values():
+                            level['displayName'] = level['displayName'].replace(
+                                descr, '')
+                        try:
+                            if level['levelItem'] == None:
+                                level['levelItem'] = levelup_info['EEquippableSkinLevelItem::VFX']
+                            else:
+                                level['levelItem'] = levelup_info[level['levelItem']]
+                        except KeyError:
+                            level['levelItem'] = level['levelItem'].replace(
+                                'EEquippableSkinLevelItem::', '')
+                    for chroma in chromas:
+                        chroma['uuid'] = chroma['uuid'].upper()
+                        chroma['displayName'] = chroma['displayName'].replace(
+                            name, '')
+                        chroma['displayName'] = chroma['displayName'].replace(name, '').replace('\n', '').replace(
+                            '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '').replace('。', '')
+                        chroma['displayName'] = chroma['displayName'].strip().replace(
+                            levelup_info['level'] + '1', '').replace(levelup_info['level'] + '2', '').replace(
+                            levelup_info['level'] + '3', '').replace(levelup_info['level'] + '4', '').replace(
+                                levelup_info['level'] + '5', '').replace(
+                            levelup_info['level'] + ' 1', '').replace(levelup_info['level'] + ' 2', '').replace(
+                            levelup_info['level'] + ' 3', '').replace(levelup_info['level'] + ' 4', '').replace(
+                                levelup_info['level'] + ' 5', '')   # Clear out extra level symbols
+                    weapon_list.append(
+                        {"name": name, "img": base_img, "levels": levels, "chromas": chromas})
+                return render_template('library.html', weapon_list=weapon_list,
+                                    lang=yaml.load(os.popen(
+                                        f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader),
+                                    search=True, query=request.form.get('query'))
     else:
         try:
             page = int(request.args.get('page', 1))
