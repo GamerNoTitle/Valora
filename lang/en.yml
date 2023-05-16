@@ -144,7 +144,14 @@ library:
   button:
     close: Close
     prev: Previous Page
-    next: Next Page    
+    next: Next Page   
+    search: Search
+    return: Return to Skin Library
+  form:
+    search:
+      title: Search
+      placeholder: Please enter what you are looking for
+  notfound: No result found
 
 error:
   error500: 
