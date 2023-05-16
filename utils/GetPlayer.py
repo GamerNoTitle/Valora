@@ -16,13 +16,13 @@ owned = '/store/v1/entitlements/'
 
 # owned item type
 {
-    'Agents': '01bb38e1-da47-4e6a-9b3d-945fe4655707', 
-    'Contracts': 'f85cb6f7-33e5-4dc8-b609-ec7212301948', 
-    'Sprays': 'd5f120f8-ff8c-4aac-92ea-f2b5acbe9475', 
+    'Agents': '01bb38e1-da47-4e6a-9b3d-945fe4655707',
+    'Contracts': 'f85cb6f7-33e5-4dc8-b609-ec7212301948',
+    'Sprays': 'd5f120f8-ff8c-4aac-92ea-f2b5acbe9475',
     'Gun Buddies': 'dd3bf334-87f3-40bd-b043-682a57a8dc3a',
-    'Player Cards': '3f296c07-64c3-494c-923b-fe692a4fa1bd', 
-    'Skins': 'e7c63390-eda7-46e0-bb7a-a6abdacd2433', 
-    'Skins chroma': '3ad1b2b2-acdb-4524-852f-954a76ddae0a', 
+    'Player Cards': '3f296c07-64c3-494c-923b-fe692a4fa1bd',
+    'Skins': 'e7c63390-eda7-46e0-bb7a-a6abdacd2433',
+    'Skins chroma': '3ad1b2b2-acdb-4524-852f-954a76ddae0a',
     'Player titles': 'de7caa6b-adf7-4588-bbd1-143831e786c6'
 }
 
@@ -49,19 +49,24 @@ class player:
             server = krServer
         self.server = server
         self.user_id = user_id
-        response = requests.get(f'{server}{store}{user_id}', headers=self.__header, timeout=30)
+        response = requests.get(
+            f'{server}{store}{user_id}', headers=self.__header, timeout=30)
         self.shop = response.json()
-        if response.status_code == 400 or response.status_code == 404: self.auth = False
-        else: self.auth = True
+        if response.status_code == 400 or response.status_code == 404:
+            self.auth = False
+        else:
+            self.auth = True
         self.getWallet()
-    
+
     def getWallet(self):
-        data = requests.get(f'{self.server}{wallet}{self.user_id}', headers=self.__header, timeout=30).json()
+        data = requests.get(f'{self.server}{wallet}{self.user_id}',
+                            headers=self.__header, timeout=30).json()
         try:
             self.vp = data['Balances']['85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741']
             self.rp = data['Balances']['e59aa87c-4cbf-517a-5983-6e81511be9b7']
         except KeyError:
             self.auth = False
+
 
 if __name__ == '__main__':
     p = player('',

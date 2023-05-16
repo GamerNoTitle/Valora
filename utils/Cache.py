@@ -28,6 +28,7 @@ LinkLevelsmap = [
     ('ja-JP', jp_levels_link),
 ]
 
+
 def UpdateCache():
     if not os.path.exists('assets/db/data.db'):
         with open('assets/db/data.db', 'wb') as f:
@@ -38,8 +39,6 @@ def UpdateCache():
         c.execute('CREATE TABLE skinlevels (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT)')
         conn.commit()
         conn.close()
-
-
 
     for lang, link in Linkmap:
         print('Updating Skins Data of ' + lang)
@@ -58,24 +57,24 @@ def UpdateCache():
                     conn.commit()
                 except sqlite3.IntegrityError:
                     c.execute(f'UPDATE skins SET name = ?, data = ? WHERE uuid = ?',
-                            (i["displayName"], json.dumps(i), i["uuid"]))
+                              (i["displayName"], json.dumps(i), i["uuid"]))
                     conn.commit()
         else:
             for i in data['data']:
                 c.execute(f'UPDATE skins SET "name-{lang}" = ?, "data-{lang}" = ? WHERE uuid = ?',
-                        (i["displayName"], json.dumps(i), i["uuid"]))
+                          (i["displayName"], json.dumps(i), i["uuid"]))
                 conn.commit()
 
     # Delete Useless Data
     # For example: Random Favorite Skin
-    fliter = ['Random Favorite Skin', 
-            "Standard Classic", "Standard Shorty", "Standard Frenzy", "Standard Ghost", "Standard Sheriff",
-            "Standard Stinger", "Standard Spectre",
-            "Standard Bucky", "Standard Judge",
-            "Standard Bulldog", "Standard Guardian", "Standard Phantom", "Standard Vandal",
-            "Standard Marshal", "Standard Operator",
-            "Standard Ares", "Standard Odin",
-            "Melee"]
+    fliter = ['Random Favorite Skin',
+              "Standard Classic", "Standard Shorty", "Standard Frenzy", "Standard Ghost", "Standard Sheriff",
+              "Standard Stinger", "Standard Spectre",
+              "Standard Bucky", "Standard Judge",
+              "Standard Bulldog", "Standard Guardian", "Standard Phantom", "Standard Vandal",
+              "Standard Marshal", "Standard Operator",
+              "Standard Ares", "Standard Odin",
+              "Melee"]
     conn = sqlite3.connect('assets/db/data.db')
     c = conn.cursor()
     for ignore in fliter:
@@ -100,19 +99,21 @@ def UpdateCache():
                     conn.commit()
                 except sqlite3.IntegrityError:
                     c.execute(f'UPDATE skinlevels SET name = ?, data = ? WHERE uuid = ?',
-                            (i["displayName"], json.dumps(i), i["uuid"]))
+                              (i["displayName"], json.dumps(i), i["uuid"]))
                     conn.commit()
         else:
             for i in data['data']:
                 c.execute(f'UPDATE skinlevels SET "name-{lang}" = ?, "data-{lang}" = ? WHERE uuid = ?',
-                        (i["displayName"], json.dumps(i), i["uuid"]))
+                          (i["displayName"], json.dumps(i), i["uuid"]))
                 conn.commit()
     c.close()
+
 
 def UpdateCacheTimer():
     while True:
         UpdateCache()
         time.sleep(3600)
+
 
 if __name__ == '__main__':
     UpdateCache()

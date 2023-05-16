@@ -58,7 +58,6 @@ global:
     logout: 退出登錄
     library: 皮膚總覽
 
-
 login:
   front:
     title: 登錄你的Riot賬號
@@ -81,7 +80,7 @@ login:
   alert:
     nocheck: 請先正確輸入用戶名和密碼，並勾選下面兩項後再點登陸！
     loginerror: 登陸出錯，請檢查帳號密碼，然後重試！
-    
+
 mfa:
   front:
     title: 二步驗證
@@ -94,9 +93,9 @@ mfa:
       placeholder: 請輸入驗證碼
   button:
     confirm: 確認
-    
+
 market:
-  welcome: 
+  welcome:
     # Welcome message format:
     # <opening> {{player.name}}#{{player.tag}}
     # <credit> {{player.vp}} VP & {{player.rp}} RP
@@ -114,7 +113,7 @@ market:
     close: 關閉
 
 nightmarket:
-  welcome: 
+  welcome:
     # Welcome message format:
     # <opening> {{player.name}}#{{player.tag}}
     # <credit> {{player.vp}} VP & {{player.rp}} RP
@@ -152,9 +151,9 @@ library:
       title: 搜尋
       placeholder: 請輸入您想搜尋的內容（簡中繁中均可）
   notfound: 未找到您搜尋的內容
-    
+
 error:
-  error500: 
+  error500:
     tip: 500伺服器錯誤
     error: 非常抱歉，伺服器發生了一些錯誤
     detail:
@@ -162,7 +161,7 @@ error:
       solve: 你可以嘗試點擊下方的「重置網站數據」按鈕來解決這個問題。<br>如果你已經點擊了下面的按鈕，但仍然出現了這個問題，請嘗試清除瀏覽器的cookie來重置會話<br>如果上面這兩種方法你都已經嘗試過了，那麼請帶著此錯誤信息聯繫開發者！
     button:
       reset: 重置網站數據
-  error404: 
+  error404:
     tip: 404未找到
     error: 你來到了一個無人所知的地方
     button:

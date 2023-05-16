@@ -80,7 +80,7 @@ login:
   alert:
     nocheck: ユーザー名とパスワードを正しく入力し、ログインする前に下の2つのオプションを確認してください！
     loginerror: ログインエラーが発生しました。アカウントパスワードを確認してから、再度お試しください！
-    
+
 mfa:
   front:
     title: 二段階認証
@@ -95,7 +95,7 @@ mfa:
     confirm: 確定
 
 market:
-  welcome: 
+  welcome:
     # Welcome message format:
     # <opening>{{player.name}}#{{player.tag}}
     # <credit> {{player.vp}} VP & {{player.rp}} RP
@@ -113,7 +113,7 @@ market:
     close: 閉じる
 
 nightmarket:
-  welcome: 
+  welcome:
     # Welcome message format:
     # <opening>{{player.name}}#{{player.tag}}
     # <credit> {{player.vp}} VP & {{player.rp}} RP
@@ -153,7 +153,7 @@ library:
   notfound: 検索した内容が見つかりませんでした
 
 error:
-  error500: 
+  error500:
     tip: 500サーバーエラー
     error: 申し訳ありませんが、サーバーにエラーが発生しました
     detail:
@@ -161,7 +161,7 @@ error:
       solve: この問題を解決するために、下の「サイトデータをリセット」ボタンをクリックしてみてください。<br>下のボタンをクリックしてもこの問題が発生する場合は、ブラウザのcookieをクリアしてセッションをリセットしてみてください<br>上記の2つの方法を試しても問題が解決しない場合は、このエラーメッセージを持って開発者に連絡してください！
     button:
       reset: サイトデータをリセット
-  error404: 
+  error404:
     tip: 404見つかりません
     error: 誰も知らない場所に来ました
     button:
