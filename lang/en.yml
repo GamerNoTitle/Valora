@@ -132,7 +132,7 @@ nightmarket:
     close: Close
 
 library:
-  title: Skin library
+  title: Skin Library
   table:
     skinname: Skin Name
     skinimg: Skin Image
