@@ -306,8 +306,8 @@ def library(page: int = 1):
                     {"name": name, "img": base_img, "levels": levels, "chromas": chromas})
             return render_template('library.html', weapon_list=weapon_list,
                                    lang=yaml.load(os.popen(
-                                       f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader), 
-                                       search=True, query=request.form.get('query'))
+                                       f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader),
+                                   search=True, query=request.form.get('query'))
     else:
         try:
             page = int(request.args.get('page', 1))

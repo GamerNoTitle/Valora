@@ -6,7 +6,8 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/img-navi-valorant-red.svg">
   <link rel="icon" type="image/png" href="/assets/img/img-navi-valorant-red.svg">
   <title>
-    {% if market %}{{lang.global.title.dailyshop}}{% elif night %}{{lang.global.title.nightmarket}}{% else %}{{lang.global.title.shopdefault}}{% endif %} | VSC | GamerNoTitle
+    {% if market %}{{lang.global.title.dailyshop}}{% elif night %}{{lang.global.title.nightmarket}}{% else
+    %}{{lang.global.title.shopdefault}}{% endif %} | VSC | GamerNoTitle
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -41,7 +42,8 @@
 
   <!-- 引入 fancybox JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-  <script async defer data-website-id="381df10a-707a-4380-8b6c-b31c3e59c5f1" src="https://analytics.dohna.top/umami.js"></script>
+  <script async defer data-website-id="381df10a-707a-4380-8b6c-b31c3e59c5f1"
+    src="https://analytics.dohna.top/umami.js"></script>
   <script>
     var _hmt = _hmt || [];
     (function () {
@@ -85,8 +87,8 @@
                   </a>
                 </li>
                 <li class="nav-item my-auto ms-3 ms-lg-0">
-                  <a href="https://t.me/DohnaNyan"
-                    class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i class="ni ni-send"></i> Telegram</a>
+                  <a href="https://t.me/DohnaNyan" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i
+                      class="ni ni-send"></i> Telegram</a>
                 </li>
                 <li class="nav-item my-auto ms-3 ms-lg-0">
                   <a href="/library" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i
@@ -144,13 +146,19 @@
   <div class="container-fluid px-0 overflow-hidden">
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
-        <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg"><i class="ni ni-cart"></i> {{lang.global.button.dailyshop}}</button></a>
-        <a href="/market/night"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="ni ni-basket"></i> {{lang.global.button.nightmarket}}</button></a>
+        <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg"><i class="ni ni-cart"></i>
+            {{lang.global.button.dailyshop}}</button></a>
+        <a href="/market/night"><button type="button" class="btn bg-gradient-warning btn-lg"><i
+              class="ni ni-basket"></i> {{lang.global.button.nightmarket}}</button></a>
         <a href="//account.riotgames.com" target="_blank"><button type="button"
-            class="btn bg-gradient-secondary btn-lg"><i class="ni ni-circle-08"></i> {{lang.global.button.account}}</button></a>
-        <a href="/library"><button type="button" class="btn bg-gradient-success btn-lg"><i class="fas fa-book"></i> {{lang.global.button.library}}</button></a>
-        <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i class="ni ni-atom"></i> {{lang.global.button.sponsor}}</button></a>
-        <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg"><i class="ni ni-user-run"></i> {{lang.global.button.logout}}</button></a>
+            class="btn bg-gradient-secondary btn-lg"><i class="ni ni-circle-08"></i>
+            {{lang.global.button.account}}</button></a>
+        <a href="/library"><button type="button" class="btn bg-gradient-success btn-lg"><i class="fas fa-book"></i>
+            {{lang.global.button.library}}</button></a>
+        <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i
+              class="ni ni-atom"></i> {{lang.global.button.sponsor}}</button></a>
+        <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg"><i class="ni ni-user-run"></i>
+            {{lang.global.button.logout}}</button></a>
       </div>
     </div>
   </div>
@@ -221,7 +229,8 @@
                         请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.market.button.close}}</button>
+                      <button type="button" class="btn bg-gradient-primary"
+                        data-bs-dismiss="modal">{{lang.market.button.close}}</button>
                     </div>
                   </div>
                 </div>
@@ -258,7 +267,8 @@
                       {% endif %}
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.market.button.close}}</button>
+                      <button type="button" class="btn bg-gradient-primary"
+                        data-bs-dismiss="modal">{{lang.market.button.close}}</button>
                     </div>
                   </div>
                 </div>
@@ -339,7 +349,8 @@
                     </p> -->
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
+                    <button type="button" class="btn bg-gradient-primary"
+                      data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
                   </div>
                 </div>
               </div>
@@ -376,7 +387,8 @@
                     {% endif %}
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
+                    <button type="button" class="btn bg-gradient-primary"
+                      data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
                   </div>
                 </div>
               </div>
@@ -439,7 +451,8 @@
                     </p> -->
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.market.button.close}}</button>
+                    <button type="button" class="btn bg-gradient-primary"
+                      data-bs-dismiss="modal">{{lang.market.button.close}}</button>
                   </div>
                 </div>
               </div>
@@ -475,7 +488,8 @@
                     <img width="100%" src="{{chroma.fullRender}}"> {% endif %}
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.market.button.close}}</button>
+                    <button type="button" class="btn bg-gradient-primary"
+                      data-bs-dismiss="modal">{{lang.market.button.close}}</button>
                   </div>
                 </div>
               </div>
@@ -547,7 +561,8 @@
                       请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
+                    <button type="button" class="btn bg-gradient-primary"
+                      data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
                   </div>
                 </div>
               </div>
@@ -585,7 +600,8 @@
                   {% endif %}
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn bg-gradient-primary" data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
+                  <button type="button" class="btn bg-gradient-primary"
+                    data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
                 </div>
               </div>
             </div>

@@ -24,17 +24,19 @@ class weapon:
             conn.commit()
             self.name = c.fetchall()[0][0]
         else:
-            c.execute(f'SELECT "name-{lang}" FROM skinlevels WHERE uuid = ?', (self.uuid,))
+            c.execute(
+                f'SELECT "name-{lang}" FROM skinlevels WHERE uuid = ?', (self.uuid,))
             conn.commit()
             self.name = c.fetchall()[0][0]
-        
+
         # Get Weapon Data
         if lang == 'en':
             c.execute(f'SELECT data FROM skins WHERE name = ?', (self.name,))
             conn.commit()
             self.data = json.loads(c.fetchall()[0][0])
         else:
-            c.execute(f'SELECT "data-{lang}" FROM skins WHERE "name-{lang}" = ?', (self.name,))
+            c.execute(
+                f'SELECT "data-{lang}" FROM skins WHERE "name-{lang}" = ?', (self.name,))
             conn.commit()
             self.data = json.loads(c.fetchall()[0][0])
         self.levels = self.data['levels']    # Skin Levels
@@ -70,6 +72,7 @@ class weapon:
         # print(self.levels)
         # print(self.chromas)
 
+
 class weaponlib:
     def __init__(self, uuid: str, name: str, cost: int = 0, discount: int = 0, discountPersentage: int = 0, lang: str = 'en'):
         conn = sqlite3.connect('assets/db/data.db')
@@ -87,7 +90,8 @@ class weaponlib:
         if lang == 'en':
             c.execute('SELECT data FROM skins WHERE uuid = ?', (self.uuid,))
         else:
-            c.execute(f'SELECT "data-{lang}" FROM skins WHERE uuid = ?', (self.uuid,))
+            c.execute(
+                f'SELECT "data-{lang}" FROM skins WHERE uuid = ?', (self.uuid,))
         conn.commit()
         self.data = json.loads(c.fetchall()[0][0])
         # with open(f'assets/data/{lang}.json', 'r', encoding='utf8') as f:
@@ -116,7 +120,8 @@ class weaponlib:
                     'EEquippableSkinLevelItem::', '')
         for chroma in self.chromas:
             chroma['uuid'] = chroma['uuid'].upper()
-            chroma['displayName'] = chroma['displayName'].replace(self.name, '')
+            chroma['displayName'] = chroma['displayName'].replace(
+                self.name, '')
             chroma['displayName'] = chroma['displayName'].replace(self.name, '').replace('\n', '').replace(
                 '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '').replace('。', '')
             chroma['displayName'] = chroma['displayName'].strip().replace(

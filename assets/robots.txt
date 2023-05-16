@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 Allow: /market
 Allow: /market/night
+Allow: /library
