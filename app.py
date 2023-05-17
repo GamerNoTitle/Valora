@@ -234,6 +234,11 @@ def authinfo():
 
 @ app.route('/library', methods=["GET", "POST"])
 def library(page: int = 1):
+    device = request.headers.get('User-Agent', '')
+    if 'android' in device.lower() or 'iphone' in device.lower():
+        pc = False
+    else:
+        pc = True
     if request.form.get('query') or request.args.get('query'):
         if request.form.get('query'):
             query = '%' + request.form.get('query') + '%'
@@ -273,7 +278,7 @@ def library(page: int = 1):
             conn.commit()
         skins = c.fetchall()
         if len(skins) == 0:
-            return render_template('library.html', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader), search_notfound=True, search=True, query=request.form.get('query'))
+            return render_template('library.html', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader), search_notfound=True, search=True, query=request.form.get('query'), pc=pc)
         else:
             weapon_list = []
             levelup_info = dict(yaml.load(os.popen(
@@ -324,7 +329,7 @@ def library(page: int = 1):
             return render_template('library.html', weapon_list=weapon_list,
                                 lang=yaml.load(os.popen(
                                     f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader),
-                                search=True, query=request.form.get('query'))
+                                search=True, query=request.form.get('query'), pc=pc)
     else:
         try:
             page = int(request.args.get('page', 1))
@@ -361,7 +366,7 @@ def library(page: int = 1):
         return render_template('library.html', weapon_list=weapon_list, page=page, count=count,
                                lang=yaml.load(os.popen(
                                    f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader),
-                               prev=f'/library?page={page-1}' if page != 1 else None, next=f'/library?page={page+1}' if page != ceil(count/perpage) else None, cur_page=page, pages=ceil(count/perpage))
+                               prev=f'/library?page={page-1}' if page != 1 else None, next=f'/library?page={page+1}' if page != ceil(count/perpage) else None, cur_page=page, pages=ceil(count/perpage), pc=pc)
 
 # The following are api paths
 

@@ -47,7 +47,7 @@ class weapon:
         for level in self.levels:
             level['uuid'] = level['uuid'].upper()
             level['displayName'] = level['displayName'].replace(self.name, '').replace('\n', '').replace(
-                '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '')
+                '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '').replace('。', '')
             for descr in dict(description_to_del).values():
                 level['displayName'] = level['displayName'].replace(descr, '')
             try:
