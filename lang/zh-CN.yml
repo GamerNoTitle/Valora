@@ -117,9 +117,21 @@ login:
       eula: 我同意<a href="/EULA" class="text-dark"><u>最终用户许可协议</u></a>
   button:
     login: 登录
+    tokenlogin: 使用 Access Token 登录
   alert:
     nocheck: 请先正确输入用户名和密码，并勾选下面两项后再点登陆！
     loginerror: 登录出错，请检查账号密码，然后重试！
+  modal:
+    title: 使用 Access Token 登录
+    button: 
+      close: 关闭
+    form:
+      token:
+        title: Access Token
+        placeholder: 请输入访问指定网址后的链接或者直接输入你的Access Token
+      login: 使用 Access Token 登录
+      close: 关闭
+      remember: 保持登录（减少登录次数）
 
 mfa:
   front:

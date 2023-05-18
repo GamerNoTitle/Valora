@@ -42,6 +42,16 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
+  <!-- Bootstrap 5 modals -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+    integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js"
+    integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.esm.min.js"
+    integrity="sha512-ruQ4xI8Jfep9W+qJQ8FLbxsjPVR0WvEt31XNw0mZxri2Nya9eQr7VTFsi+S7OvW0bIUI7vxF8zoaPNSq/PsvxA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="index-page">
@@ -195,14 +205,57 @@
                       <button type="submit" class="btn bg-gradient-dark w-100"><img
                           src="/assets/img/img-navi-valorant-white.svg">{{lang.login.button.login}}</button>
                     </div>
-                  </div>
-                </div>
+                    <!-- <div class="col-md-12">
+                      <button type="button" class="btn bg-gradient-dark w-100" data-bs-toggle="modal"
+                        data-bs-target="#cookieloginform"><img
+                          src="/assets/img/img-navi-valorant-white.svg">{{lang.login.button.tokenlogin}}</button>
+                    </div>
+                  </div> -->
           </form>
         </div>
       </div>
     </div>
 
   </section>
-
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="cookieloginform" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{lang.login.modal.title}}</h5>
+        </div>
+        <div class="modal-body">
+          <form role="form" name="search" method="post" autocomplete="off" action="/api/tokenlogin">
+            <div class="row">
+              <label>{{lang.login.modal.form.token.title}}</label>
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="{{lang.login.modal.form.token.placeholder}}"
+                  name="token">
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-check form-switch mb-4">
+                    <input class="form-check-input" type="checkbox" name="CheckedRemember">
+                    <label class="form-check-label"
+                      for="flexSwitchCheckDefault">{{lang.login.form.checkbox.remember}}</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="submit" class="btn bg-gradient-dark w-100"><img
+                      src="/assets/img/img-navi-valorant-white.svg">{{lang.login.modal.form.login}}</button>
+                </div>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn bg-gradient-primary"
+            data-bs-dismiss="modal">{{lang.login.modal.form.close}}</button>
+        </div>
+      </div>
+    </div>
+ -->
 
 </body>
