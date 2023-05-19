@@ -27,25 +27,46 @@ metadata:
     EEquippableSkinLevelItem::HeartbeatAndMapSensor: 地图心跳感应器
     # For Recon Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/a8509c8d-4061-1c57-60a5-61a025f28408
     EEquippableSkinLevelItem::Randomizer: 随机模组产生器
-  weapon:
-    classic: 标配
-    shorty: 短炮
-    frenzy: 狂怒
+  weapon: 
+  # 这里使用繁中是为了避免搜索冲突
+  # 举个栗子：守護者 神射 的简体中文翻译是 戍卫者 正义
+  # 所以用 戍卫 这个关键词搜索就会错误地搜索到非Guardian枪械
+    # classic: 标配
+    # shorty: 短炮
+    # frenzy: 狂怒
+    # ghost: 鬼魅
+    # sheriff: 正义
+    # stinger: 蜂刺
+    # spectre: 骇灵
+    # bucky: 雄鹿
+    # judge: 判官
+    # bulldog: 獠犬
+    # guardian: 戍卫
+    # phantom: 幻影
+    # vandal: 狂徒
+    # marshal: 飞将
+    # operator: 冥驹
+    # ares: 战神
+    # odin: 奥丁
+    # melee: 近战武器
+    classic: 制式手槍
+    shorty: 短管
+    frenzy: 狂弒
     ghost: 鬼魅
-    sheriff: 正义
-    stinger: 蜂刺
-    spectre: 骇灵
-    bucky: 雄鹿
+    sheriff: 神射
+    stinger: 刺針
+    spectre: 惡靈
+    bucky: 重砲
     judge: 判官
-    bulldog: 獠犬
-    guardian: 捍衛者 # 戍卫（搜索冲突）
-    phantom: 幻影
-    vandal: 狂徒
-    marshal: 飞将
-    operator: 冥驹
-    ares: 战神
-    odin: 奥丁
-    melee: 近战武器
+    bulldog: 鬥牛犬
+    guardian: 捍衛者
+    phantom: 幻象
+    vandal: 暴徒
+    marshal: 警長
+    operator: 間諜
+    ares: 戰神
+    odin: 奧丁
+    melee: 近戰武器
   description:
     # All these sources to replace can be found at the links above
     # You need to add ?language=<your lang> to check your language
@@ -96,9 +117,21 @@ login:
       eula: 我同意<a href="/EULA" class="text-dark"><u>最终用户许可协议</u></a>
   button:
     login: 登录
+    tokenlogin: 使用 Access Token 登录
   alert:
     nocheck: 请先正确输入用户名和密码，并勾选下面两项后再点登陆！
     loginerror: 登录出错，请检查账号密码，然后重试！
+  modal:
+    title: 使用 Access Token 登录
+    button: 
+      close: 关闭
+    form:
+      token:
+        title: Access Token
+        placeholder: 请输入访问指定网址后的链接或者直接输入你的Access Token
+      login: 使用 Access Token 登录
+      close: 关闭
+      remember: 保持登录（减少登录次数）
 
 mfa:
   front:
@@ -165,6 +198,7 @@ library:
     next: 下一页
     search: 搜索
     return: 返回皮肤库
+    sort: 按武器查询
     weapon:
       classic: 标配（制式手槍）
       shorty: 短炮（短管）

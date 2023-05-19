@@ -165,6 +165,7 @@ library:
     next: 下一頁
     search: 搜尋
     return: 返回皮膚庫
+    sort: 按武器搜尋
     weapon:
       classic: 制式手槍
       shorty: 短管
