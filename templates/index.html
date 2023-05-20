@@ -1,3 +1,16 @@
+<!--
+=========================================================
+* Soft UI Design System - v1.0.9
+=========================================================
+
+* Product Page:  https://www.creative-tim.com/product/soft-ui-design-system 
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Coded by www.creative-tim.com
+
+ =========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
 
 <head>
@@ -6,7 +19,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/img-navi-valorant-red.svg">
   <link rel="icon" type="image/png" href="/assets/img/img-navi-valorant-red.svg">
   <title>
-    {{lang.global.title.library}} | VSC | GamerNoTitle
+    VSC | GamerNoTitle
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -18,24 +31,6 @@
   <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="/assets/css/soft-design-system.css?v=1.0.9" rel="stylesheet" />
-  <!-- Bootstrap 5 modals -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
-    integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js"
-    integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.esm.min.js"
-    integrity="sha512-ruQ4xI8Jfep9W+qJQ8FLbxsjPVR0WvEt31XNw0mZxri2Nya9eQr7VTFsi+S7OvW0bIUI7vxF8zoaPNSq/PsvxA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <!-- 引入 fancybox CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <!-- 引入 jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-  <!-- 引入 fancybox JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
   <script async defer data-website-id="381df10a-707a-4380-8b6c-b31c3e59c5f1"
     src="https://analytics.dohna.top/umami.js"></script>
   <script>
@@ -47,14 +42,6 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
-  <style>
-    .alert-pink {
-      color: #fb7299;
-      background-color: #fb7299;
-      border-color: #ffffff;
-    }
-  </style>
-
 </head>
 
 <body class="index-page">
@@ -86,9 +73,8 @@
                       class="ni ni-send"></i> Telegram</a>
                 </li>
                 <li class="nav-item my-auto ms-3 ms-lg-0">
-                  <a href="/market" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i
-                      class="ni ni-cart"></i> Market</a>
-                </li>
+                  <a href="/library" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i
+                      class="fas fa-book"></i></i> Library</a>
               </ul>
             </div>
           </div>
@@ -127,381 +113,96 @@
             <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
           </defs>
           <g class="moving-waves">
-            <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40)" />
+            <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40" />
             <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.35)" />
             <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.25)" />
             <use xlink:href="#gentle-wave" x="48" y="8" fill="rgba(255,255,255,0.20)" />
             <use xlink:href="#gentle-wave" x="48" y="13" fill="rgba(255,255,255,0.15)" />
-            <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(255,255,255,0.95)" />
+            <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(255,255,255,0.95" />
           </g>
         </svg>
       </div>
     </div>
   </header>
 
-  <div class="container">
-    <a href="/library">
-      <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.library.title}}</h1>
-    </a>
-  </div>
-  {% if pc %}
-  <div class="container-fluid px-0 overflow-hidden">
-    <div class="row text-center py-2 mt-3">
-      <div class="col-12 mx-auto">
-        <a href="/library?query={{lang.metadata.weapon.classic}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.classic}}</button></a>
-        <a href="/library?query={{lang.metadata.weapon.shorty}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.shorty}}</button></a>
-        <a href="/library?query={{lang.metadata.weapon.frenzy}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.frenzy}}</button></a>
-        <a href="/library?query={{lang.metadata.weapon.ghost}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.ghost}}</button></a>
-        <a href="/library?query={{lang.metadata.weapon.sheriff}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.sheriff}}</button></a>
-        <a href="/library?query={{lang.metadata.weapon.stinger}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.stinger}}</button></a>
-        <div class="row"></div>
-        <a href="/library?query={{lang.metadata.weapon.spectre}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.spectre}}</button></a>
-        <a href="/library?query={{lang.metadata.weapon.bucky}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.bucky}}</button></a>
-        <a href="/library?query={{lang.metadata.weapon.judge}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.judge}}</button></a>
-        <a href="/library?query={{lang.metadata.weapon.bulldog}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.bulldog}}</button></a>
-        <a href="/library?query={{lang.metadata.weapon.guardian}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.guardian}}</button></a>
-        <a href="/library?query={{lang.metadata.weapon.phantom}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.phantom}}</button></a>
-        <div class="row"></div>
-        <a href="/library?query={{lang.metadata.weapon.vandal}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.vandal}}</button></a>
-        <a href="/library?query={{lang.metadata.weapon.marshal}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.marshal}}</button></a>
-        <a href="/library?query={{lang.metadata.weapon.operator}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.operator}}</button></a>
-        <a href="/library?query={{lang.metadata.weapon.ares}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.ares}}</button></a>
-        <a href="/library?query={{lang.metadata.weapon.odin}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.odin}}</button></a>
-        <a href="/library?query={{lang.metadata.weapon.melee}}"><button type="button"
-            class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.melee}}</button></a>
-      </div>
-    </div>
-  </div>
-  {% else %}
-  <!-- Mobile Devices -->
-  <div class="container py-4">
-    <div class="row">
-      <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
-        <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal" data-bs-target="#sortlist">
-          {{lang.library.button.sort}}
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal fade" id="sortlist" tabindex="-1" role="dialog" aria-labelledby="sortlist" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title"></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label={{lang.library.button.close}}>
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" align="center">
-          <a href="/library?query={{lang.metadata.weapon.classic}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.classic}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.shorty}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.shorty}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.frenzy}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.frenzy}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.ghost}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.ghost}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.sheriff}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.sheriff}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.stinger}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.stinger}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.spectre}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.spectre}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.bucky}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.bucky}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.judge}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.judge}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.bulldog}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.bulldog}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.guardian}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.guardian}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.phantom}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.phantom}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.vandal}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.vandal}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.marshal}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.marshal}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.operator}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.operator}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.ares}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.ares}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.odin}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.odin}}</button>
-          </a>
-          <a href="/library?query={{lang.metadata.weapon.melee}}">
-            <button type="button" class="btn bg-gradient-primary btn-lg"
-              width=100%>{{lang.library.button.weapon.melee}}</button>
-          </a>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn bg-gradient-primary"
-            data-bs-dismiss="modal">{{lang.library.button.close}}</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  {% endif %}
-
   <section>
     <div class="container py-4">
       <div class="row">
         <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
-          <form role="form" name="search" method="post" autocomplete="off" action="/library">
-            <div class="row">
-              <label>{{lang.library.form.search.title}}</label>
-              <div class="input-group">
-                {% if not query %}
-                <input type="text" class="form-control" placeholder="{{lang.library.form.search.placeholder}}"
-                  name="query">
-                {% else %}
-                <input type="text" class="form-control" placeholder="{{lang.library.form.search.placeholder}}"
-                  value="{{query}}" name="query">
-                {% endif %}
-              </div>
-            </div>
-            <br>
-            <div class="row">
-              <div class="col-md-12">
-                <button type="submit" class="btn bg-gradient-dark w-100"><img
-                    src="/assets/img/img-navi-valorant-white.svg">{{lang.library.button.search}}</button>
-              </div>
-            </div>
-        </div>
-        </form>
-      </div>
-    </div>
-    </div>
-
-    {% if not search %}
-    <div class="container-fluid px-0 overflow-hidden">
-      <div class="row text-center py-2 mt-3">
-        <div class="col-12 mx-auto">
-          {% if prev %}
-          <a href="{{prev}}"><button type="button" class="btn bg-gradient-primary btn-lg"><i
-                class="fas fa-arrow-left"></i>
-              {{lang.library.button.prev}}</button></a>
-          {% else %}
-          <a><button type="button" class="btn bg-gradient-primary btn-lg" disabled><i class="fas fa-arrow-left"></i>
-              {{lang.library.button.prev}}</button></a>
-          {% endif %}
-          <strong size=12px class="text-gradient text-primary mb-0 mt-2">{{cur_page}} / {{pages}}</strong>
-          {% if next %}
-          <a href="{{next}}"><button type="button" class="btn bg-gradient-primary btn-lg">{{lang.library.button.next}}
-              <i class="fas fa-arrow-right"></i>
-            </button></a>
-          {% else %}
-          <a><button type="button" class="btn bg-gradient-primary btn-lg" disabled>{{lang.library.button.next}}
-              <i class="fas fa-arrow-right"></i> </button></a>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-    {% endif %}
-
-    {% if search_notfound %}
-    <div class="container">
-      <div class="row text-center py-2 mt-3">
-        <div class="col-12 mx-auto">
-          <div class="alert alert-danger text-white rounded role=" alert">
-            {{lang.library.notfound}}
+          <h3 class="text-center">{{lang.login.front.title}}</h3>
+          <div align="center">
+            <p>{{lang.login.front.description.line1}}</p>
+            <p>{{lang.login.front.description.line2}}</p>
           </div>
-        </div>
-      </div>
-      <div class="container-fluid px-0 overflow-hidden">
-        <div class="row text-center py-2 mt-3">
-          <div class="col-12 mx-auto">
-            <a href="/library"><button type="button" class="btn bg-gradient-danger btn-lg"
-                width="100%"><strong>{{lang.library.button.return}}</strong></button></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endif %}
-
-    <div class="container">
-      <div class="row">
-        {% for weapon in weapon_list %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm rounded">
-            <div class="gun-image">
-              <a href="{{weapon.img|safe}}" data-fancybox="gallery">
-                <img height=auto width=100% class="text-center" src={{weapon.img|safe}}>
-              </a>
-            </div>
+          <form role="form" name="login" method="post" autocomplete="off" action="/api/login">
             <div class="card-body">
-              <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
-              <br>
-              {% for level in weapon.levels %}
-              {% if level.displayName != '' %}
-              <!-- Button trigger modal -->
-              <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
-                data-bs-target="#WEAPON-{{level.uuid|escape}}">
-                {{level.displayName}}: {{level.levelItem}}
-              </button>
-
-              <!-- Modal -->
-              <div class="modal fade" id="WEAPON-{{level.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">{{weapon.name|safe}} {{level.displayName}}</h5>
-                    </div>
-                    <div class="modal-body">
-                      <video width=100% controls>
-                        <source src="{{level.streamedVideo}}" type="video/mp4">
-                        {{lang.library.modal.videonotavaliable}}
-                      </video>
-                      <br>
-                      <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
-                    </p> -->
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn bg-gradient-primary"
-                        data-bs-dismiss="modal">{{lang.library.button.close}}</button>
-                    </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>{{lang.login.form.username.title}}</label>
+                  <div class="input-group mb-4">
+                    <input class="form-control" placeholder="{{lang.login.form.username.placeholder}}" name="Username"
+                      type="text">
+                  </div>
+                </div>
+                <div class="col-md-6 ps-2">
+                  <label>{{lang.login.form.password.title}}</label>
+                  <div class="input-group">
+                    <input type="password" class="form-control" placeholder="{{lang.login.form.password.placeholder}}"
+                      name="Password">
                   </div>
                 </div>
               </div>
-              {% endif %}
-              {% endfor %}
               <br>
-              {% for chroma in weapon.chromas %}
-              {% if chroma.displayName != '' %}
-              <!-- Button trigger modal -->
-              <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
-                data-bs-target="#WEAPON-{{chroma.uuid|escape}}">
-                {{chroma.displayName}}
-              </button>
-
-              <!-- Modal -->
-              <div class="modal fade" id="WEAPON-{{chroma.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">{{weapon.name|safe}} {{chroma.displayName}}</h5>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-check form-switch mb-4">
+                    <input class="form-check-input" type="checkbox" name="CheckedRemember">
+                    <label class="form-check-label"
+                      for="flexSwitchCheckDefault">{{lang.login.form.checkbox.remember}}</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-check form-switch mb-4">
+                      <input class="form-check-input" type="checkbox" name="CheckedRule">
+                      <label class="form-check-label"
+                        for="flexSwitchCheckDefault">{{lang.login.form.checkbox.nostorage}}</label>
                     </div>
-                    <div class="modal-body">
-                      {% if chroma.streamedVideo %}
-                      <video width=100% controls>
-                        <source src="{{chroma.streamedVideo}}" type="video/mp4">
-                        {{lang.library.modal.videonotavaliable}}
-                      </video>
-                      <br>
-                      <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
-                    </p> -->
-                      {% else %}
-                      <img width="100%" src="{{chroma.fullRender}}">
-                      {% endif %}
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-check form-switch mb-4">
+                        <input class="form-check-input" type="checkbox" name="CheckedEULA">
+                        <label class="form-check-label"
+                          for="flexSwitchCheckDefault">{{lang.login.form.checkbox.eula|safe}}</label>
+                      </div>
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn bg-gradient-primary"
-                        data-bs-dismiss="modal">{{lang.library.button.close}}</button>
+                    {% if loginerror %}
+                    <div class="container">
+                      <div align="center" class="alert alert-danger text-white font-weight-bold" role="alert">
+                        {{lang.login.alert.loginerror}}
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% if infoerror %}
+                    <div class="container">
+                      <div align="center" class="alert alert-danger text-white font-weight-bold" role="alert">
+                        {{lang.login.alert.nocheck}}
+                      </div>
+                    </div>
+                    {% endif %}
+                    <div class="col-md-12">
+                      <button type="submit" class="btn bg-gradient-dark w-100"><img
+                          src="/assets/img/img-navi-valorant-white.svg">{{lang.login.button.login}}</button>
                     </div>
                   </div>
                 </div>
-              </div>
-              </script>
-              {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-
-    {% if not search %}
-    <div class="container-fluid px-0 overflow-hidden">
-      <div class="row text-center py-2 mt-3">
-        <div class="col-12 mx-auto">
-          {% if prev %}
-          <a href="{{prev}}"><button type="button" class="btn bg-gradient-primary btn-lg"><i
-                class="fas fa-arrow-left"></i>
-              {{lang.library.button.prev}}</button></a>
-          {% else %}
-          <a><button type="button" class="btn bg-gradient-primary btn-lg" disabled><i class="fas fa-arrow-left"></i>
-              {{lang.library.button.prev}}</button></a>
-          {% endif %}
-          <strong size=12px class="text-gradient text-primary mb-0 mt-2">{{cur_page}} / {{pages}}</strong>
-          {% if next %}
-          <a href="{{next}}"><button type="button" class="btn bg-gradient-primary btn-lg">{{lang.library.button.next}}
-              <i class="fas fa-arrow-right"></i>
-            </button></a>
-          {% else %}
-          <a><button type="button" class="btn bg-gradient-primary btn-lg" disabled>{{lang.library.button.next}}
-              <i class="fas fa-arrow-right"></i> </button></a>
-          {% endif %}
+          </form>
         </div>
       </div>
     </div>
-    {% endif %}
 
-    <script>
-      $(document).ready(function () {
-        $("[data-fancybox]").fancybox({
-          buttons: [
-            "zoom",
-            "slideShow",
-            "fullScreen",
-            "download",
-            "thumbs",
-            "close"
-          ]
-        });
-      });
-    </script>
+  </section>
+
 
 </body>
