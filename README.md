@@ -53,10 +53,13 @@ Now, you can access [http://127.0.0.1:8080](http://127.0.0.1:8080) (If you haven
 
 ## Dashboard
 
+> For docker users, this feature will only monitor this alive container. Once u restart the container, this will reset. Since the data is saved in sqlite instead of Redis.
+
 VSC uses `flask-profiler` to help developers to monitor its work. In order to enable it, u need to set the following variables
 
 ```shell
 $ export PROFILER=1 # Just dont leave it empty
+$ export PROFILER_AUTH=True # Basic auth of the dashboard | U can turn it off by leaving it empty
 $ export PROFILER_USER=admin    # Set it as your creds
 $ export PROFILER_PASS=password
 ```
