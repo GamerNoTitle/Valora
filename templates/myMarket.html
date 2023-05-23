@@ -90,9 +90,6 @@
                   <a href="https://t.me/DohnaNyan" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i
                       class="ni ni-send"></i> Telegram</a>
                 </li>
-                <li class="nav-item my-auto ms-3 ms-lg-0">
-                  <a href="/library" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i
-                      class="fas fa-book"></i></i> Library</a>
               </ul>
             </div>
           </div>
@@ -146,10 +143,15 @@
   <div class="container-fluid px-0 overflow-hidden">
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
+        {% if night %}
         <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg"><i class="ni ni-cart"></i>
             {{lang.global.button.dailyshop}}</button></a>
-        <a href="/market/night"><button type="button" class="btn bg-gradient-warning btn-lg"><i
-              class="ni ni-basket"></i> {{lang.global.button.nightmarket}}</button></a>
+        {% else %}
+        <a href="/market/night"><button type="button" class="btn bg-gradient-info btn-lg"><i class="ni ni-basket"></i>
+            {{lang.global.button.nightmarket}}</button></a>
+        {% endif %}
+        <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
+            {{lang.global.button.trans}}</button></a>
         <a href="//account.riotgames.com" target="_blank"><button type="button"
             class="btn bg-gradient-secondary btn-lg"><i class="ni ni-circle-08"></i>
             {{lang.global.button.account}}</button></a>
@@ -166,7 +168,7 @@
   <div class="container">
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
-        <div class="alert alert-pink text-white rounded role=" alert">
+        <div class="alert alert-pink text-white rounded" role="alert">
           <span class="alert-icon"><i class="ni ni-like-2"></i></span>
           {{lang.market.welcome.opening}} <strong>{{player.name}}</strong>#<strong>{{player.tag}}</strong><br>
           {{lang.market.welcome.credit}} <strong>{{player.vp}}</strong> VP & <strong>{{player.rp}}</strong> RP

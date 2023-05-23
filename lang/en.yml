@@ -63,6 +63,7 @@ global:
     nightmarket: Night Market
     shopdefault: My Shop
     library: Skin Library
+    trans: Translation Table
   description:
     line1: Valorant shop checker, help you peek your shop & nightmarket without open your game.
     line2: All usernames and passwords are not stored on the server and are only used for login.
@@ -76,6 +77,8 @@ global:
     sponsor: Sponsor
     logout: Logout
     library: Skin Library
+    home: Home Page
+    trans: Translation Table
 
 login:
   front:
@@ -190,6 +193,14 @@ library:
       title: Search
       placeholder: Please enter what you are looking for
   notfound: No result found
+
+trans:
+  title: Translation Table
+  button:
+    agents: Agents
+    maps: Maps
+    skins: Skins
+    weapons: Weapons
 
 error:
   error500:

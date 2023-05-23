@@ -63,6 +63,7 @@ global:
     nightmarket: ナイトマーケット
     shopdefault: マイショップ
     library: スキンライブラリ
+    trans: 翻譯對照表
   description:
     line1: VALORANTショップビュー。ゲームにログインせずにデイリーショップを確認できます
     line2: ログイン名とパスワードはサーバーに保存されず、ログインにのみ使用されます。
@@ -76,6 +77,8 @@ global:
     sponsor: スポンサーリンク
     logout: ログアウト
     library: スキンライブラリ
+    home: ホームページに戻る
+    trans: 翻訳対照
 
 login:
   front:
@@ -190,6 +193,14 @@ library:
       title: 検索
       placeholder: 検索したい内容を入力してください
   notfound: 検索した内容が見つかりませんでした
+
+trans:
+  title: 翻訳対照表
+  button:
+    agents: エージェント
+    maps: マップ
+    skins: スキン
+    weapons: 武器
 
 error:
   error500:

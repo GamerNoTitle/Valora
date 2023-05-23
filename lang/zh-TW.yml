@@ -63,6 +63,7 @@ global:
     nightmarket: 折扣夜市
     shopdefault: 我的商店
     library: 皮膚库
+    trans: 翻譯對照表
   description:
     line1: 瓦羅蘭特（無畏契約）商店查看，讓你不用登錄遊戲也能夠查看每日商店（僅支持國際服）
     line2: 所有的登錄名和密碼服務器均不進行存取，僅用於登錄
@@ -76,6 +77,8 @@ global:
     sponsor: 恰飯鏈接
     logout: 退出登錄
     library: 皮膚總覽
+    home: 返回首頁
+    trans: 翻譯對照
 
 login:
   front:
@@ -190,6 +193,14 @@ library:
       title: 搜尋
       placeholder: 請輸入您想搜尋的內容（簡中繁中均可）
   notfound: 未找到您搜尋的內容
+
+trans:
+  title: 翻譯對照表 | Translation Table
+  button:
+    agents: 特务
+    maps: 地圖
+    skins: 皮膚
+    weapons: 武器
 
 error:
   error500:

@@ -9,9 +9,10 @@ import json
 import sqlite3
 from math import ceil
 from parse import parse
-from flask import Flask, render_template, redirect, send_from_directory, request, make_response, session
+from flask import Flask, render_template, redirect, send_from_directory, request, make_response, session, abort
 from flask_babel import Babel
 from flask_session import Session
+from flask_profiler import Profiler
 from utils.RiotLogin import Auth
 from utils.GetPlayer import player
 from utils.Cache import UpdateCacheTimer
@@ -54,6 +55,26 @@ else:
     app.config['SECRET_KEY'] = secret
     app.config['SESSION_TYPE'] = 'filesystem'
     print('No session type specified. Now it has been set to filesystem.')
+
+# You need to declare necessary configuration to initialize
+# flask-profiler as follows:
+app.config["flask_profiler"] = {
+    "enabled": os.environ.get('PROFILER'),
+    "storage": {
+        "engine": "sqlite"
+    },
+    "basicAuth": {
+        "enabled": os.environ.get('PROFILER_AUTH', False),
+        "username": os.environ.get('PROFILER_USER'),
+        "password": os.environ.get('PROFILER_PASS')
+    },
+    "ignore": [
+        "^/assets/.*"
+    ]
+}
+
+profiler = Profiler()  # You can have this in another module
+profiler.init_app(app)
 
 # Debug mode
 if os.environ.get('DEBUG', False):
@@ -327,9 +348,9 @@ def library(page: int = 1):
                 weapon_list.append(
                     {"name": name, "img": base_img, "levels": levels, "chromas": chromas})
             return render_template('library.html', weapon_list=weapon_list,
-                                lang=yaml.load(os.popen(
-                                    f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader),
-                                search=True, query=request.form.get('query'), pc=pc)
+                                   lang=yaml.load(os.popen(
+                                       f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader),
+                                   search=True, query=request.form.get('query'), pc=pc)
     else:
         try:
             page = int(request.args.get('page', 1))
@@ -367,6 +388,63 @@ def library(page: int = 1):
                                lang=yaml.load(os.popen(
                                    f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader),
                                prev=f'/library?page={page-1}' if page != 1 else None, next=f'/library?page={page+1}' if page != ceil(count/perpage) else None, cur_page=page, pages=ceil(count/perpage), pc=pc)
+
+
+@app.route('/trans')
+def transDefault():
+    return redirect('/trans/agents')
+
+
+@app.route('/trans/<t>')
+def trans(t):
+    if t in ['agents', 'maps', 'weapons', 'skins']:
+        conn = sqlite3.connect('assets/db/data.db')
+        datalist = []
+        if t == 'skins':
+            c = conn.cursor()
+            c.execute(
+                'SELECT name, "name-zh-CN", "name-zh-TW", "name-ja-JP", isMelee FROM {}'.format(t))
+            conn.commit()
+            data = c.fetchall()
+            c.execute(
+                'SELECT name, "name-zh-CN", "name-zh-TW", "name-ja-JP" FROM weapons')
+            conn.commit()
+            weapons = c.fetchall()
+        else:
+            c = conn.cursor()
+            c.execute(
+                'SELECT name, "name-zh-CN", "name-zh-TW", "name-ja-JP" FROM {}'.format(t))
+            conn.commit()
+            data = c.fetchall()
+        for i in data:
+            if t == 'skins':
+                en_name, zhCN_name, zhTW_name, jaJP_name, isMelee = i
+                if isMelee:
+                    continue
+                for en, zhCN, zhTW, jaJP in weapons:
+                    en_name = en_name.replace(en, '').strip()
+                    zhCN_name = zhCN_name.replace(zhCN, '').strip()
+                    zhTW_name = zhTW_name.replace(zhTW, '').strip()
+                    jaJP_name = jaJP_name.replace(jaJP, '').strip()
+                if {"en": en_name, "zhCN": zhCN_name, "zhTW": zhTW_name, "jaJP": jaJP_name} not in datalist:
+                    datalist.append(
+                        {"en": en_name, "zhCN": zhCN_name, "zhTW": zhTW_name, "jaJP": jaJP_name})
+            else:
+                if {"en": i[0], "zhCN": i[1], "zhTW": i[2], "jaJP": i[3]} not in datalist:
+                    datalist.append({"en": i[0], "zhCN": i[1],
+                                    "zhTW": i[2], "jaJP": i[3]})
+        return render_template('trans.html', data=list(datalist), lang=yaml.load(os.popen(
+            f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
+    else:
+        abort(404)
+
+
+@app.route('/profiler')
+def redirectprofiler():
+    if os.environ.get('PROFILER'):
+        return redirect('/flask-profiler')
+    else:
+        abort(404)
 
 # The following are api paths
 

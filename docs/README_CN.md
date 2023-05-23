@@ -31,14 +31,14 @@ $ pip install -r requirements.txt
 具体配置如下
 
 ```shell
-$ export SESSION_TYPE=filesystem|redis  # If you want to use redis u need to set it as redis, and configure the following items
+$ export SESSION_TYPE=filesystem|redis  # 如果你想用Redis，那你就需要配置下面的这些东西
 $ export REDIS_URL=<Your Redis URL>
 # If your redis url cannot be parsed
 $ export REDIS_HOST=<Your Redis Host>
 $ export REDIS_PORT=<Your Redis Port>
 $ export REDIS_PASSWORD=<Your Redis Password>
 # Optional
-$ export REDIS_SSL=True # If you have enabled it
+$ export REDIS_SSL=True # 如果你的Redis开了这个，那就得开，否则别开
 ```
 
 使用如下命令打开服务器
@@ -48,6 +48,21 @@ $ python app.py
 ```
 
 现在，你可以访问[http://127.0.0.1:8080](http://127.0.0.1:8080)，当你看到网站主页面的时候，就说明你成功啦！
+
+## 监控面板
+
+> 此功能在容器部署的背景下只对当次容器开启状态有效，因为数据存在sqlite数据库内，而不是Redis
+
+VSC使用了`flask-profiler`这个轮子来帮助管理员来检测网站的运行情况，如果你需要将这个功能打开，你需要做如下的配置
+
+```shell
+$ export PROFILER=1 # 非空都能打开这个功能
+$ export PROFILER_AUTH=True # 监控面板认证，不需要认证的话就留空，否则随便写点东西
+$ export PROFILER_USER=admin    # 设置面板账号密码
+$ export PROFILER_PASS=password
+```
+
+当你完成配置后，重新启动服务器，通过`/profiler`就可以访问到你的监控面板了
 
 ## Credit
 
