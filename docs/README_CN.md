@@ -8,6 +8,8 @@
 
 做出来自己用的，担心安全的可以自己搭建或者不用，市场上有很多平替品，甚至做的比我的好
 
+[本项目的各个功能计划以及实现情况](https://github.com/users/GamerNoTitle/projects/1)
+
 ## 快速开始
 
 你可以访问[https://val.bili33.top](https://val.bili33.top)来进行查询，服务器不存储账号密码

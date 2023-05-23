@@ -10,6 +10,8 @@ This is a website that helps you peek your shop and night market of VALORANT. It
 
 There are a lot of application on the network that can help you do that and they even better than mine. If you are worried about my project, you can use theirs.
 
+[Project Milestones (CHINESE)](https://github.com/users/GamerNoTitle/projects/1)
+
 ## Quick Start
 
 You can access [https://val.bili33.top](https://val.bili33.top) to start your shop peek. The production server will not storage your username & password
