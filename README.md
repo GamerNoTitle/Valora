@@ -51,6 +51,10 @@ $ python app.py
 
 Now, you can access [http://127.0.0.1:8080](http://127.0.0.1:8080) (If you haven't changed it), and you will see your website.
 
+## Dashboard
+
+
+
 ## Credit
 
 [Prodzify/Riot-auth (github.com)](https://github.com/Prodzify/Riot-auth)
