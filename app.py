@@ -392,7 +392,7 @@ def library(page: int = 1):
 
 @app.route('/trans')
 def transDefault():
-    return redirect('/trans/weapons')
+    return redirect('/trans/agents')
 
 
 @app.route('/trans/<t>')

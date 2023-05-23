@@ -49,6 +49,18 @@ $ python app.py
 
 现在，你可以访问[http://127.0.0.1:8080](http://127.0.0.1:8080)，当你看到网站主页面的时候，就说明你成功啦！
 
+## 监控面板
+
+VSC使用了`flask-profiler`这个轮子来帮助管理员来检测网站的运行情况，如果你需要将这个功能打开，你需要做如下的配置
+
+```shell
+$ export PROFILER=1 # Just dont leave it empty
+$ export PROFILER_USER=admin    # Set it as your creds
+$ export PROFILER_PASS=password
+```
+
+当你完成配置后，重新启动服务器，通过`/profiler`就可以访问到你的监控面板了
+
 ## Credit
 
 [Prodzify/Riot-auth (github.com)](https://github.com/Prodzify/Riot-auth)

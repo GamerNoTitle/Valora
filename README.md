@@ -53,7 +53,15 @@ Now, you can access [http://127.0.0.1:8080](http://127.0.0.1:8080) (If you haven
 
 ## Dashboard
 
+VSC uses `flask-profiler` to help developers to monitor its work. In order to enable it, u need to set the following variables
 
+```shell
+$ export PROFILER=1 # Just dont leave it empty
+$ export PROFILER_USER=admin    # Set it as your creds
+$ export PROFILER_PASS=password
+```
+
+After u set them, u can access your dashboard from `/profiler`
 
 ## Credit
 
