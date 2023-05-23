@@ -84,6 +84,7 @@ global:
     nightmarket: 折扣夜市
     shopdefault: 我的商店
     library: 皮肤库
+    trans: 翻译对照表
   description:
     line1: 瓦罗兰特（无畏契约）商店查看，让你不用登陆游戏也能够查看每日商店（仅支持国际服）
     line2: 所有的登录名和密码服务器均不进行存取，仅用于登录
@@ -97,6 +98,8 @@ global:
     sponsor: 恰饭链接
     logout: 退出登录
     library: 皮肤总览
+    home: 返回首页
+    trans: 翻译对照
 
 login:
   front:
@@ -223,6 +226,14 @@ library:
       title: 搜索
       placeholder: 请输入你想搜索的内容（简中繁中均可）
   notfound: 未找到你搜索的内容
+
+trans:
+  title: 翻译对照表 | Translation Table
+  button:
+    agents: 特务
+    maps: 地图
+    skins: 皮肤
+    weapons: 武器
 
 error:
   error500:
