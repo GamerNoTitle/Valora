@@ -73,6 +73,9 @@ app.config["flask_profiler"] = {
     ]
 }
 
+if os.environ.get('PROFILER') and os.environ.get('SERVER_NAME'):
+    app.config["SERVER_NAME"] = os.environ.get('SERVER_NAME')
+
 profiler = Profiler()  # You can have this in another module
 profiler.init_app(app)
 
