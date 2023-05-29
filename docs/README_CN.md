@@ -14,6 +14,9 @@
 
 你可以访问[https://val.bili33.top](https://val.bili33.top)来进行查询，服务器不存储账号密码
 
+- 稳定版服务 (Master分支): [https://val.bili33.top](https://val.bili33.top)
+- 开发版服务 (Dev分支): [https://dev.val.bili33.top](https://dev.val.bili33.top)
+
 ## 自己搭建
 
 首先你需要一台能运行flask服务的服务器（或者railway那种PaaS），将项目fork到自己的账号下

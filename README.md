@@ -16,6 +16,9 @@ There are a lot of application on the network that can help you do that and they
 
 You can access [https://val.bili33.top](https://val.bili33.top) to start your shop peek. The production server will not storage your username & password
 
+- Stable Service (Master branch): [https://val.bili33.top](https://val.bili33.top)
+- Developing Service (Dev branch): [https://dev.val.bili33.top](https://dev.val.bili33.top)
+
 ## Build your own
 
 First you need a server/Paas platform which can run python and flask. Fork this repo to your account.
