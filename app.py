@@ -271,7 +271,7 @@ def library(page: int = 1):
             dictlang = 'zh-TW'
         else:
             dictlang = lang
-        conn = sqlite3.connect('assets/db/data.db')
+        conn = sqlite3.connect('db/data.db')
         c = conn.cursor()
         if request.args.get('query') not in ['近战武器', '近戰武器', 'Melee', '近接武器']:
             if lang == 'en':
@@ -366,7 +366,7 @@ def library(page: int = 1):
             dictlang = lang
         # with open(f'assets/dict/{dictlang}.json', encoding='utf8') as f:
         #     skins: dict = json.loads(f.read())  # Read skin data
-        conn = sqlite3.connect('assets/db/data.db')
+        conn = sqlite3.connect('db/data.db')
         c = conn.cursor()
         if lang == 'en':
             # Get all skins' uuid & name
@@ -398,7 +398,7 @@ def transDefault():
 @app.route('/trans/<t>')
 def trans(t):
     if t in ['agents', 'maps', 'weapons', 'skins']:
-        conn = sqlite3.connect('assets/db/data.db')
+        conn = sqlite3.connect('db/data.db')
         datalist = []
         if t == 'skins':
             c = conn.cursor()
