@@ -25,7 +25,7 @@ First you need a server/Paas platform which can run python and flask. Fork this 
 
 You need to install some requirements on your server, use the following command.
 
-> On some servers, you may need to use `pip3` instead of using `pip`. Meanwhile, you also need to use `python3` to instead of using `python` of `py`
+> On some servers, you may need to use `pip3` instead of using `pip`. Meanwhile, you also need to use `python3` to instead of using `python` or `py`
 
 ```shell
 $ pip install -r requirements.txt
