@@ -71,6 +71,13 @@ $ export PROFILER_PASS=password
 
 After u set them, u can access your dashboard from `/profiler`
 
+## Args
+
+|   Path   | Args  |       Options        |                Mark                |                           Example                            |
+| :------: | :---: | :------------------: | :--------------------------------: | :----------------------------------------------------------: |
+| (global) | lang  | en/zh-CN/zh-TW/ja-JP | Change the language of the website |               https://val.bili33.top/?lang=en                |
+| /library | query |        (Any)         |        Search for the skins        | https://val.bili33.top/library/?query=/library?query=Magepunk%20Sparkswitch |
+
 ## Credit
 
 [Prodzify/Riot-auth (github.com)](https://github.com/Prodzify/Riot-auth)

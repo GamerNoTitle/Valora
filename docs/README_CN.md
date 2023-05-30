@@ -69,6 +69,13 @@ $ export PROFILER_PASS=password
 
 当你完成配置后，重新启动服务器，通过`/profiler`就可以访问到你的监控面板了
 
+## 参数项
+
+|   路径   | 参数名 |        可选项        |        作用        |                             示例                             |
+| :------: | :----: | :------------------: | :----------------: | :----------------------------------------------------------: |
+| （全局） |  lang  | en/zh-CN/zh-TW/ja-JP | 更改网站显示的语言 |               https://val.bili33.top/?lang=en                |
+| /library | query  |       （任意）       |   搜索皮肤的索引   | https://val.bili33.top/library/?query=/library?query=魔术火花 |
+
 ## Credit
 
 [Prodzify/Riot-auth (github.com)](https://github.com/Prodzify/Riot-auth)
