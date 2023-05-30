@@ -100,9 +100,11 @@ def home():
     if request.args.get('lang'):
         if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
             lang = request.args.get('lang')
-        else:
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
             lang = str(request.accept_languages.best_match(
                 app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
     elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
         lang = str(request.accept_languages.best_match(
             app.config['BABEL_LANGUAGES']))
@@ -132,9 +134,11 @@ def market():
     if request.args.get('lang'):
         if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
             lang = request.args.get('lang')
-        else:
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
             lang = str(request.accept_languages.best_match(
                 app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
     elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
         lang = str(request.accept_languages.best_match(
             app.config['BABEL_LANGUAGES']))
@@ -194,9 +198,11 @@ def night():
     if request.args.get('lang'):
         if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
             lang = request.args.get('lang')
-        else:
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
             lang = str(request.accept_languages.best_match(
                 app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
     elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
         lang = str(request.accept_languages.best_match(
             app.config['BABEL_LANGUAGES']))
@@ -291,9 +297,11 @@ def library(page: int = 1):
     if request.args.get('lang'):
         if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
             lang = request.args.get('lang')
-        else:
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
             lang = str(request.accept_languages.best_match(
                 app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
     elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
         lang = str(request.accept_languages.best_match(
             app.config['BABEL_LANGUAGES']))
@@ -439,9 +447,11 @@ def trans(t):
     if request.args.get('lang'):
         if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
             lang = request.args.get('lang')
-        else:
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
             lang = str(request.accept_languages.best_match(
                 app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
     elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
         lang = str(request.accept_languages.best_match(
             app.config['BABEL_LANGUAGES']))
