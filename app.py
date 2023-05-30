@@ -353,8 +353,6 @@ def library(page: int = 1):
             weapon_list = []
             levelup_info = dict(yaml.load(os.popen(
                 f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
-            if lang == 'zh-CN':
-                lang = 'zh-TW'
             description_to_del = dict(yaml.load(os.popen(
                 f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['description']
             for uuid, skin, data in list(skins):
