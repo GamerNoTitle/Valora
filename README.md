@@ -16,13 +16,16 @@ There are a lot of application on the network that can help you do that and they
 
 You can access [https://val.bili33.top](https://val.bili33.top) to start your shop peek. The production server will not storage your username & password
 
+- Stable Service (Master branch): [https://val.bili33.top](https://val.bili33.top)
+- Developing Service (Dev branch): [https://dev.val.bili33.top](https://dev.val.bili33.top)
+
 ## Build your own
 
 First you need a server/Paas platform which can run python and flask. Fork this repo to your account.
 
 You need to install some requirements on your server, use the following command.
 
-> On some servers, you may need to use `pip3` instead of using `pip`. Meanwhile, you also need to use `python3` to instead of using `python` of `py`
+> On some servers, you may need to use `pip3` instead of using `pip`. Meanwhile, you also need to use `python3` to instead of using `python` or `py`
 
 ```shell
 $ pip install -r requirements.txt
@@ -67,6 +70,13 @@ $ export PROFILER_PASS=password
 ```
 
 After u set them, u can access your dashboard from `/profiler`
+
+## Args
+
+|   Path   | Args  |       Options        |                Mark                |                           Example                            |
+| :------: | :---: | :------------------: | :--------------------------------: | :----------------------------------------------------------: |
+| (global) | lang  | en/zh-CN/zh-TW/ja-JP | Change the language of the website |               https://val.bili33.top/?lang=en                |
+| /library | query |        (Any)         |        Search for the skins        | https://val.bili33.top/library/?query=/library?query=Magepunk%20Sparkswitch |
 
 ## Credit
 

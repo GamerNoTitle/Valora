@@ -97,14 +97,24 @@ sentry_sdk.init(
 
 @app.route('/', methods=['GET'])
 def home():
-    lang = str(request.accept_languages.best_match(
+    if request.args.get('lang'):
+        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
+            lang = request.args.get('lang')
+        else:
+            lang = str(request.accept_languages.best_match(
+                app.config['BABEL_LANGUAGES']))
+    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+        lang = str(request.accept_languages.best_match(
+            app.config['BABEL_LANGUAGES']))
+    else:
+        lang = 'en'
+    session["lang"] = str(request.accept_languages.best_match(
         app.config['BABEL_LANGUAGES']))
-    session["lang"] = lang
     if session.get('username', None):
         return redirect('/market', 301)
     else:
         response = make_response(render_template(
-            'index.html', loginerror=False, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader)))
+            'index.html', loginerror=False, lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)))
         response.set_cookie('logged', '0', max_age=24*60*60*365*10)
         response.set_cookie('lang', lang)
     return response
@@ -119,6 +129,17 @@ def market():
     userid = session.get('user_id')
     name = session.get('username')
     tag = session.get('tag')
+    if request.args.get('lang'):
+        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
+            lang = request.args.get('lang')
+        else:
+            lang = str(request.accept_languages.best_match(
+                app.config['BABEL_LANGUAGES']))
+    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+        lang = str(request.accept_languages.best_match(
+            app.config['BABEL_LANGUAGES']))
+    else:
+        lang = 'en'
     if not name:
         redirect('/')
     user = player(access_token, entitlement, region, userid)
@@ -132,16 +153,16 @@ def market():
         shop = user.shop['SkinsPanelLayout']    # Flite the daily skin
         weapon0 = weapon(shop['SingleItemStoreOffers'][0]['OfferID'],
                          shop['SingleItemStoreOffers'][0]["Cost"]["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], lang=str(
-                             request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])))
+                             lang))
         weapon1 = weapon(shop['SingleItemStoreOffers'][1]['OfferID'],
                          shop['SingleItemStoreOffers'][1]["Cost"]["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], lang=str(
-            request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])))
+            lang))
         weapon2 = weapon(shop['SingleItemStoreOffers'][2]['OfferID'],
                          shop['SingleItemStoreOffers'][2]["Cost"]["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], lang=str(
-            request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])))
+            lang))
         weapon3 = weapon(shop['SingleItemStoreOffers'][3]['OfferID'],
                          shop['SingleItemStoreOffers'][3]["Cost"]["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], lang=str(
-            request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])))
+            lang))
         return render_template('myMarket.html', market=True,
                                weapon0={
                                    "name": weapon0.name, "cost": weapon0.cost, "img": weapon0.base_img, "levels": weapon0.levels, "chromas": weapon0.chromas},
@@ -152,7 +173,7 @@ def market():
                                weapon3={
                                    "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img, "levels": weapon3.levels, "chromas": weapon3.chromas},
                                player={'name': name, 'tag': tag, 'vp': user.vp, 'rp': user.rp}, pc=pc,
-                               lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
+                               lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
     else:   # Login Expired
         # response = make_response(redirect('/', 302))
         # for cookie in request.cookies:
@@ -170,6 +191,17 @@ def night():
     userid = session.get('user_id')
     name = session.get('username')
     tag = session.get('tag')
+    if request.args.get('lang'):
+        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
+            lang = request.args.get('lang')
+        else:
+            lang = str(request.accept_languages.best_match(
+                app.config['BABEL_LANGUAGES']))
+    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+        lang = str(request.accept_languages.best_match(
+            app.config['BABEL_LANGUAGES']))
+    else:
+        lang = 'en'
     if not name:
         redirect('/')
     user = player(access_token, entitlement, region, userid)
@@ -184,22 +216,22 @@ def night():
         if nightmarket:
             weapon0 = weapon(nightmarket['BonusStoreOffers'][0]['Offer']['OfferID'], nightmarket['BonusStoreOffers'][0]['Offer']['Cost']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"],
                              nightmarket['BonusStoreOffers'][0]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][0]['DiscountPercent'], lang=str(
-                request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])))
+                lang))
             weapon1 = weapon(nightmarket['BonusStoreOffers'][1]['Offer']['OfferID'], nightmarket['BonusStoreOffers'][1]['Offer']['Cost']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"],
                              nightmarket['BonusStoreOffers'][1]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][1]['DiscountPercent'], lang=str(
-                request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])))
+                lang))
             weapon2 = weapon(nightmarket['BonusStoreOffers'][2]['Offer']['OfferID'], nightmarket['BonusStoreOffers'][2]['Offer']['Cost']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"],
                              nightmarket['BonusStoreOffers'][2]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][2]['DiscountPercent'], lang=str(
-                request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])))
+                lang))
             weapon3 = weapon(nightmarket['BonusStoreOffers'][3]['Offer']['OfferID'], nightmarket['BonusStoreOffers'][3]['Offer']['Cost']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"],
                              nightmarket['BonusStoreOffers'][3]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][3]['DiscountPercent'], lang=str(
-                request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])))
+                lang))
             weapon4 = weapon(nightmarket['BonusStoreOffers'][4]['Offer']['OfferID'], nightmarket['BonusStoreOffers'][4]['Offer']['Cost']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"],
                              nightmarket['BonusStoreOffers'][4]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][4]['DiscountPercent'], lang=str(
-                request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])))
+                lang))
             weapon5 = weapon(nightmarket['BonusStoreOffers'][5]['Offer']['OfferID'], nightmarket['BonusStoreOffers'][5]['Offer']['Cost']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"],
                              nightmarket['BonusStoreOffers'][5]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][5]['DiscountPercent'], lang=str(
-                request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])))
+                lang))
             return render_template('myMarket.html', night=True,
                                    weapon0={
                                        "name": weapon0.name, "cost": weapon0.cost, "img": weapon0.base_img, "discount": weapon0.discount, "per": weapon0.per, "levels": weapon0.levels, "chromas": weapon0.chromas},
@@ -215,14 +247,14 @@ def night():
                                        "name": weapon5.name, "cost": weapon5.cost, "img": weapon5.base_img, "discount": weapon5.discount, "per": weapon5.per, "levels": weapon5.levels, "chromas": weapon5.chromas},
                                    player={'name': name, 'tag': tag,
                                            'vp': user.vp, 'rp': user.rp},
-                                   pc=pc, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
+                                   pc=pc, lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
         else:
             return render_template('myMarket.html', night=True,
                                    player={'name': name, 'tag': tag,
                                            'vp': user.vp, 'rp': user.rp},
                                    pc=pc,
                                    nightmarket_notavaliable=True,
-                                   lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
+                                   lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
     else:   # Login Expired
         return redirect('/api/reauth')
 
@@ -236,7 +268,7 @@ def EULA():
 def MFAuth():
     if not session.get('username'):
         return redirect('/', 302)
-    return render_template('MFA.html', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
+    return render_template('MFA.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
 
 
 @ app.route('/auth-info')
@@ -256,6 +288,17 @@ def authinfo():
 @ app.route('/library', methods=["GET", "POST"])
 def library(page: int = 1):
     device = request.headers.get('User-Agent', '')
+    if request.args.get('lang'):
+        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
+            lang = request.args.get('lang')
+        else:
+            lang = str(request.accept_languages.best_match(
+                app.config['BABEL_LANGUAGES']))
+    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+        lang = str(request.accept_languages.best_match(
+            app.config['BABEL_LANGUAGES']))
+    else:
+        lang = 'en'
     if 'android' in device.lower() or 'iphone' in device.lower():
         pc = False
     else:
@@ -265,13 +308,11 @@ def library(page: int = 1):
             query = '%' + request.form.get('query') + '%'
         else:
             query = '%' + request.args.get('query') + '%'
-        lang = str(request.accept_languages.best_match(
-            app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else 'en'
         if lang == 'zh-CN':
             dictlang = 'zh-TW'
         else:
             dictlang = lang
-        conn = sqlite3.connect('assets/db/data.db')
+        conn = sqlite3.connect('db/data.db')
         c = conn.cursor()
         if request.args.get('query') not in ['近战武器', '近戰武器', 'Melee', '近接武器']:
             if lang == 'en':
@@ -299,7 +340,7 @@ def library(page: int = 1):
             conn.commit()
         skins = c.fetchall()
         if len(skins) == 0:
-            return render_template('library.html', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader), search_notfound=True, search=True, query=request.form.get('query'), pc=pc)
+            return render_template('library.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader), search_notfound=True, search=True, query=request.form.get('query'), pc=pc)
         else:
             weapon_list = []
             levelup_info = dict(yaml.load(os.popen(
@@ -349,7 +390,7 @@ def library(page: int = 1):
                     {"name": name, "img": base_img, "levels": levels, "chromas": chromas})
             return render_template('library.html', weapon_list=weapon_list,
                                    lang=yaml.load(os.popen(
-                                       f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader),
+                                       f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader),
                                    search=True, query=request.form.get('query'), pc=pc)
     else:
         try:
@@ -358,15 +399,13 @@ def library(page: int = 1):
             page = 1
         perpage = 30
         weapon_list = []
-        lang = str(request.accept_languages.best_match(
-            app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else 'en'
         if lang == 'zh-CN':
             dictlang = 'zh-TW'
         else:
             dictlang = lang
         # with open(f'assets/dict/{dictlang}.json', encoding='utf8') as f:
         #     skins: dict = json.loads(f.read())  # Read skin data
-        conn = sqlite3.connect('assets/db/data.db')
+        conn = sqlite3.connect('db/data.db')
         c = conn.cursor()
         if lang == 'en':
             # Get all skins' uuid & name
@@ -386,19 +425,30 @@ def library(page: int = 1):
                                 "levels": Weapon.levels, "chromas": Weapon.chromas})
         return render_template('library.html', weapon_list=weapon_list, page=page, count=count,
                                lang=yaml.load(os.popen(
-                                   f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader),
+                                   f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader),
                                prev=f'/library?page={page-1}' if page != 1 else None, next=f'/library?page={page+1}' if page != ceil(count/perpage) else None, cur_page=page, pages=ceil(count/perpage), pc=pc)
 
 
 @app.route('/trans')
 def transDefault():
-    return redirect('/trans/agents')
+    return redirect('/trans/maps')
 
 
 @app.route('/trans/<t>')
 def trans(t):
+    if request.args.get('lang'):
+        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
+            lang = request.args.get('lang')
+        else:
+            lang = str(request.accept_languages.best_match(
+                app.config['BABEL_LANGUAGES']))
+    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+        lang = str(request.accept_languages.best_match(
+            app.config['BABEL_LANGUAGES']))
+    else:
+        lang = 'en'
     if t in ['agents', 'maps', 'weapons', 'skins']:
-        conn = sqlite3.connect('assets/db/data.db')
+        conn = sqlite3.connect('db/data.db')
         datalist = []
         if t == 'skins':
             c = conn.cursor()
@@ -434,7 +484,7 @@ def trans(t):
                     datalist.append({"en": i[0], "zhCN": i[1],
                                     "zhTW": i[2], "jaJP": i[3]})
         return render_template('trans.html', data=list(datalist), lang=yaml.load(os.popen(
-            f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
+            f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
     else:
         abort(404)
 
@@ -461,7 +511,7 @@ def RiotLogin():
     else:
         session['remember'] = False
     if username == '' or password == '' or not checked_eula or not checked_rule:
-        return render_template('index.html', infoerror=True, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader))
+        return render_template('index.html', infoerror=True, lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
     else:
         user = Auth(username, password)
         user.auth()
@@ -491,7 +541,7 @@ def RiotLogin():
             return redirect('/2FA')
         else:
             response = make_response(
-                render_template('index.html', loginerror=True, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader)))
+                render_template('index.html', loginerror=True, lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)))
         return response
 
 
@@ -536,7 +586,7 @@ def verify():
         response.status_code = 302
     else:
         response = make_response(
-            render_template('index.html', loginerror=True, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader)))
+            render_template('index.html', loginerror=True, lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)))
     return response
 
 
@@ -604,17 +654,17 @@ def serve_robot():
 @ app.errorhandler(500)
 def internal_server_error(e):
     error_message = traceback.format_exc()
-    return render_template('500.html', error=error_message, lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader)), 500
+    return render_template('500.html', error=error_message, lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)), 500
 
 
 @ app.errorhandler(404)
 def not_found_error(e):
-    return render_template('404.html', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader)), 404
+    return render_template('404.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)), 404
 
 
 @ app.route('/error/500', methods=['GET'])
 def internal_server_error_preview():
-    return render_template('500.html', error='This is a test-error.', lang=yaml.load(os.popen(f'cat lang/{str(request.accept_languages.best_match(app.config["BABEL_LANGUAGES"])) if request.accept_languages.best_match(app.config["BABEL_LANGUAGES"]) else "en"}.yml').read(), Loader=yaml.FullLoader)), 500
+    return render_template('500.html', error='This is a test-error.', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)), 500
 
 
 if __name__ == '__main__':

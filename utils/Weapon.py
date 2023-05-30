@@ -7,7 +7,7 @@ import sqlite3
 
 class weapon:
     def __init__(self, uuid: str, cost: int = 0, discount: int = 0, discountPersentage: int = 0, lang: str = 'en'):
-        conn = sqlite3.connect('assets/db/data.db')
+        conn = sqlite3.connect('db/data.db')
         c = conn.cursor()
         levelup_info = dict(yaml.load(os.popen(
             f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
@@ -75,7 +75,7 @@ class weapon:
 
 class weaponlib:
     def __init__(self, uuid: str, name: str, cost: int = 0, discount: int = 0, discountPersentage: int = 0, lang: str = 'en'):
-        conn = sqlite3.connect('assets/db/data.db')
+        conn = sqlite3.connect('db/data.db')
         c = conn.cursor()
         levelup_info = dict(yaml.load(os.popen(
             f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']

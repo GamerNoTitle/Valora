@@ -51,10 +51,10 @@ LinkWeaponsmap = [
 
 
 def UpdateCache():
-    if not os.path.exists('assets/db/data.db'):
-        with open('assets/db/data.db', 'wb') as f:
+    if not os.path.exists('db/data.db'):
+        with open('db/data.db', 'wb') as f:
             f.close()
-        conn = sqlite3.connect('assets/db/data.db')
+        conn = sqlite3.connect('db/data.db')
         c = conn.cursor()
         c.execute('CREATE TABLE skins (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT, isMelee TEXT)')
         c.execute('CREATE TABLE skinlevels (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT)')
@@ -70,7 +70,7 @@ def UpdateCache():
 
     for lang, link in Linkmap:
         print('Updating Skins Data of ' + lang)
-        conn = sqlite3.connect('assets/db/data.db')
+        conn = sqlite3.connect('db/data.db')
         data = requests.get(link).json()
 
         c = conn.cursor()
@@ -122,7 +122,7 @@ def UpdateCache():
               "Standard Marshal", "Standard Operator",
               "Standard Ares", "Standard Odin",
               "Melee"]
-    conn = sqlite3.connect('assets/db/data.db')
+    conn = sqlite3.connect('db/data.db')
     c = conn.cursor()
     for ignore in fliter:
         c.execute('DELETE FROM skins WHERE name = ?', (ignore,))
@@ -132,7 +132,7 @@ def UpdateCache():
 
     for lang, link in LinkLevelsmap:
         print('Updating Skin Levels Data of ' + lang)
-        conn = sqlite3.connect('assets/db/data.db')
+        conn = sqlite3.connect('db/data.db')
         data = requests.get(link).json()
 
         c = conn.cursor()
@@ -160,7 +160,7 @@ def UpdateCache():
 
     for lang, link in LinkAgentsmap:
         print('Updating Agents Data of ' + lang)
-        conn = sqlite3.connect('assets/db/data.db')
+        conn = sqlite3.connect('db/data.db')
         data = requests.get(link).json()
 
         c = conn.cursor()
@@ -185,7 +185,7 @@ def UpdateCache():
 
     for lang, link in LinkMapsmap:
         print('Updating Maps Data of ' + lang)
-        conn = sqlite3.connect('assets/db/data.db')
+        conn = sqlite3.connect('db/data.db')
         data = requests.get(link).json()
 
         c = conn.cursor()
@@ -208,7 +208,7 @@ def UpdateCache():
 
     for lang, link in LinkWeaponsmap:
         print('Updating Weapons Data of ' + lang)
-        conn = sqlite3.connect('assets/db/data.db')
+        conn = sqlite3.connect('db/data.db')
         data = requests.get(link).json()
 
         c = conn.cursor()
