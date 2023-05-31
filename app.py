@@ -100,9 +100,11 @@ def home():
     if request.args.get('lang'):
         if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
             lang = request.args.get('lang')
-        else:
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
             lang = str(request.accept_languages.best_match(
                 app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
     elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
         lang = str(request.accept_languages.best_match(
             app.config['BABEL_LANGUAGES']))
@@ -132,9 +134,11 @@ def market():
     if request.args.get('lang'):
         if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
             lang = request.args.get('lang')
-        else:
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
             lang = str(request.accept_languages.best_match(
                 app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
     elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
         lang = str(request.accept_languages.best_match(
             app.config['BABEL_LANGUAGES']))
@@ -194,9 +198,11 @@ def night():
     if request.args.get('lang'):
         if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
             lang = request.args.get('lang')
-        else:
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
             lang = str(request.accept_languages.best_match(
                 app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
     elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
         lang = str(request.accept_languages.best_match(
             app.config['BABEL_LANGUAGES']))
@@ -291,9 +297,11 @@ def library(page: int = 1):
     if request.args.get('lang'):
         if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
             lang = request.args.get('lang')
-        else:
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
             lang = str(request.accept_languages.best_match(
                 app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
     elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
         lang = str(request.accept_languages.best_match(
             app.config['BABEL_LANGUAGES']))
@@ -345,8 +353,6 @@ def library(page: int = 1):
             weapon_list = []
             levelup_info = dict(yaml.load(os.popen(
                 f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
-            if lang == 'zh-CN':
-                lang = 'zh-TW'
             description_to_del = dict(yaml.load(os.popen(
                 f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['description']
             for uuid, skin, data in list(skins):
@@ -439,9 +445,11 @@ def trans(t):
     if request.args.get('lang'):
         if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
             lang = request.args.get('lang')
-        else:
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
             lang = str(request.accept_languages.best_match(
                 app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
     elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
         lang = str(request.accept_languages.best_match(
             app.config['BABEL_LANGUAGES']))
