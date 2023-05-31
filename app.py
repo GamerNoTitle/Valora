@@ -662,16 +662,55 @@ def serve_robot():
 @ app.errorhandler(500)
 def internal_server_error(e):
     error_message = traceback.format_exc()
+    if request.args.get('lang'):
+        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
+            lang = request.args.get('lang')
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+            lang = str(request.accept_languages.best_match(
+                app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
+    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+        lang = str(request.accept_languages.best_match(
+            app.config['BABEL_LANGUAGES']))
+    else:
+        lang = 'en'
     return render_template('500.html', error=error_message, lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)), 500
 
 
 @ app.errorhandler(404)
 def not_found_error(e):
+    if request.args.get('lang'):
+        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
+            lang = request.args.get('lang')
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+            lang = str(request.accept_languages.best_match(
+                app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
+    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+        lang = str(request.accept_languages.best_match(
+            app.config['BABEL_LANGUAGES']))
+    else:
+        lang = 'en'
     return render_template('404.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)), 404
 
 
 @ app.route('/error/500', methods=['GET'])
 def internal_server_error_preview():
+    if request.args.get('lang'):
+        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
+            lang = request.args.get('lang')
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+            lang = str(request.accept_languages.best_match(
+                app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
+    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+        lang = str(request.accept_languages.best_match(
+            app.config['BABEL_LANGUAGES']))
+    else:
+        lang = 'en'
     return render_template('500.html', error='This is a test-error.', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)), 500
 
 
