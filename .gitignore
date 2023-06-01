@@ -6,4 +6,3 @@ flask_session
 env.sh
 flask_profiler.sql
 *.json
-temp*
