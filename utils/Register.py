@@ -449,7 +449,6 @@ def inventory(app: Flask, request: Request):
                 c.execute(
                     'SELECT uuid, name, data, isLevelup FROM skinlevels WHERE uuid = ?', (skin['ItemID'], ))
                 conn.commit()
-                data = c.fetchall()
                 uuid, name, data, isLevelup = c.fetchall()[0]
             else:
                 c.execute(
