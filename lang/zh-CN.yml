@@ -101,6 +101,7 @@ global:
     library: 皮肤总览
     home: 返回首页
     trans: 翻译对照
+    inventory: 我的库存
 
 login:
   front:

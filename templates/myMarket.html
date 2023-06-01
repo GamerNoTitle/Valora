@@ -57,13 +57,9 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
-  <style>
-    .alert-pink {
-      color: #fb7299;
-      background-color: #fb7299;
-      border-color: #ffffff;
-    }
-  </style>
+
+  <!-- Custom CSS -->
+  <link href="/assets/css/custom-color.css" rel="stylesheet" />
 </head>
 
 <body class="index-page">
@@ -148,22 +144,24 @@
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
         {% if night %}
-        <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg"><i class="ni ni-cart"></i>
+        <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg"><i class="fas fa-shopping-cart"></i>
             {{lang.global.button.dailyshop}}</button></a>
         {% else %}
-        <a href="/market/night"><button type="button" class="btn bg-gradient-info btn-lg"><i class="ni ni-basket"></i>
+        <a href="/market/night"><button type="button" class="btn bg-gradient-info btn-lg"><i class="fas fa-shopping-bag"></i></i>
             {{lang.global.button.nightmarket}}</button></a>
         {% endif %}
-        <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
+        <a href="/inventory"><button type="button" class="btn bg-gradient-pink btn-lg"><i class="fas fa-warehouse"></i>
+          {{lang.global.button.inventory}}</button></a>
+      <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
             {{lang.global.button.trans}}</button></a>
         <a href="//account.riotgames.com" target="_blank"><button type="button"
-            class="btn bg-gradient-secondary btn-lg"><i class="ni ni-circle-08"></i>
+            class="btn bg-gradient-secondary btn-lg"><i class="fas fa-user-circle"></i>
             {{lang.global.button.account}}</button></a>
         <a href="/library"><button type="button" class="btn bg-gradient-success btn-lg"><i class="fas fa-book"></i>
             {{lang.global.button.library}}</button></a>
-        <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i
-              class="ni ni-atom"></i> {{lang.global.button.sponsor}}</button></a>
-        <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg"><i class="ni ni-user-run"></i>
+        <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i 
+            class="fas fa-coins"></i> {{lang.global.button.sponsor}}</button></a>
+        <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg"><i class="fas fa-door-open"></i>
             {{lang.global.button.logout}}</button></a>
       </div>
     </div>
