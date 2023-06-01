@@ -64,6 +64,7 @@ global:
     shopdefault: マイショップ
     library: スキンライブラリ
     trans: 翻譯對照表
+    inventory: インベントリー
   description:
     line1: VALORANTショップビュー。ゲームにログインせずにデイリーショップを確認できます
     line2: ログイン名とパスワードはサーバーに保存されず、ログインにのみ使用されます。
@@ -79,6 +80,7 @@ global:
     library: スキンライブラリ
     home: ホームページに戻る
     trans: 翻訳対照
+    inventory: インベントリー
 
 login:
   front:
@@ -201,6 +203,19 @@ trans:
     maps: マップ
     skins: スキン
     weapons: 武器
+
+inventory:
+  title: インベントリー
+  button:
+    close: 閉じる
+  modal:
+    videonotavaliable: 現在のブラウザではビデオのプレビューができません
+  welcome:
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: お帰りなさい
+    credit: 現在、保有しているのは
 
 error:
   error500:

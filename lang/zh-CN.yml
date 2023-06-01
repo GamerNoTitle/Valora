@@ -26,7 +26,7 @@ metadata:
     # For Xenohunter Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/289d7473-472b-68da-9019-da9594a8a127
     EEquippableSkinLevelItem::HeartbeatAndMapSensor: 地图心跳感应器
     # For Recon Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/a8509c8d-4061-1c57-60a5-61a025f28408
-    EEquippableSkinLevelItem::Randomizer: 随机模组产生器
+    EEquippableSkinLevelItem::Randomizer: 随机模块
   weapon: 
   # 这里使用繁中是为了避免搜索冲突
   # 举个栗子：守護者 神射 的简体中文翻译是 戍卫者 正义
@@ -101,6 +101,7 @@ global:
     library: 皮肤总览
     home: 返回首页
     trans: 翻译对照
+    inventory: 我的库存
 
 login:
   front:
@@ -221,7 +222,7 @@ library:
       operator: 冥驹（間諜）
       ares: 战神（戰神）
       odin: 奥丁（奧丁）
-      melee: 近战武器
+      melee: 近战武器（近戰）
   form:
     search:
       title: 搜索

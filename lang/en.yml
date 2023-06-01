@@ -64,6 +64,7 @@ global:
     shopdefault: My Shop
     library: Skin Library
     trans: Translation Table
+    inventory: My Inventory
   description:
     line1: Valorant shop checker, help you peek your shop & nightmarket without open your game.
     line2: All usernames and passwords are not stored on the server and are only used for login.
@@ -79,6 +80,7 @@ global:
     library: Skin Library
     home: Home Page
     trans: Translation Table
+    inventory: My Inventory
 
 login:
   front:
@@ -201,6 +203,19 @@ trans:
     maps: Maps
     skins: Skins
     weapons: Weapons
+
+inventory:
+  title: Inventory
+  button:
+    close: Close
+  modal:
+    videonotavaliable: Video preview is not available on the current browser
+  welcome:
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: Welcome back!
+    credit: You currently have
 
 error:
   error500:
