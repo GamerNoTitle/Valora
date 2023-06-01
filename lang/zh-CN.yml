@@ -85,6 +85,7 @@ global:
     shopdefault: 我的商店
     library: 皮肤库
     trans: 翻译对照表
+    inventory: 我的库存
   description:
     line1: 瓦罗兰特（无畏契约）商店查看，让你不用登陆游戏也能够查看每日商店（仅支持国际服）
     line2: 所有的登录名和密码服务器均不进行存取，仅用于登录
@@ -234,6 +235,19 @@ trans:
     maps: 地图
     skins: 皮肤
     weapons: 武器
+
+inventory:
+  title: 我的库存 | Inventory
+  button:
+    close: 关闭
+  modal:
+    videonotavaliable: 当前浏览器无法预览视频
+  welcome:
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: 欢迎回来
+    credit: 你现在持有
 
 error:
   error500:

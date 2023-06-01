@@ -57,7 +57,7 @@ def UpdateCache():
         conn = sqlite3.connect('db/data.db')
         c = conn.cursor()
         c.execute('CREATE TABLE skins (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT, isMelee TEXT)')
-        c.execute('CREATE TABLE skinlevels (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT)')
+        c.execute('CREATE TABLE skinlevels (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT, isLevelup TEXT)')
         c.execute('CREATE TABLE melee (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT)')
         c.execute(
             'CREATE TABLE agents (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT)')
@@ -146,7 +146,10 @@ def UpdateCache():
                     c.execute(f'UPDATE skinlevels SET name = ?, data = ? WHERE uuid = ?',
                               (i["displayName"], json.dumps(i), i["uuid"]))
                     conn.commit()
-
+                if 'Lv1_PrimaryAsset' not in json.dumps(i):
+                    c.execute(f'UPDATE skinlevels SET isLevelup = ? WHERE uuid = ?',
+                              (True, i["uuid"]))
+                    conn.commit()
         else:
             for i in data['data']:
                 c.execute(f'UPDATE skinlevels SET "name-{lang}" = ?, "data-{lang}" = ? WHERE uuid = ?',
@@ -234,6 +237,28 @@ def UpdateCacheTimer():
     while True:
         UpdateCache()
         time.sleep(3600)
+
+
+def UpdateOfferCache(access_token: str, entitlement: str):
+    url = 'https://pd.ap.a.pvp.net/store/v1/offers'
+    headers = {
+        'Authorization': f'Bearer {access_token}',
+        'X-Riot-Entitlements-JWT': entitlement,
+        'X-Riot-ClientPlatform': 'ew0KCSJwbGF0Zm9ybVR5cGUiOiAiUEMiLA0KCSJwbGF0Zm9ybU9TIjogIldpbmRvd3MiLA0KCSJwbGF0Zm9ybU9TVmVyc2lvbiI6ICIxMC4wLjE5MDQyLjEuMjU2LjY0Yml0IiwNCgkicGxhdGZvcm1DaGlwc2V0IjogIlVua25vd24iDQp9',
+        'X-Riot-ClientVersion': requests.get('https://valorant-api.com/v1/version').json()['data']['riotClientVersion'],
+        'Content-Type': 'application/json'
+    }
+    offers = requests.get(url, headers=headers).json()['offers']
+    conn = sqlite3.connect('db/data.db')
+    c = conn.cursor()
+    try:
+        c.execute('CREATE TABLE offers (uuid TEXT PRIMARY KEY, vp TEXT, isBundle)')
+        conn.commit()
+    except:
+        pass
+    for offer in offers:
+        c.execute('INSERT INTO offers ([uuid], vp, isBundle) VALUES (?, ?, ?)', (offer['OfferID'], offer.get("Cost", {}).get("85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741", 0), True is offer.get('DiscountedPercent') else False))
+        conn.commit()
 
 
 if __name__ == '__main__':

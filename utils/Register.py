@@ -404,3 +404,46 @@ def auth_info(app: Flask, request: Request):
     cookie = dict(session.get('cookie', {}))
     ua = request.headers.get('User-Agent', '')
     return render_template('auth-info.html', access_token=access_token, entitlement=entitlement, region=region, userid=userid, name=name, tag=tag, cookie=cookie, ua=ua)
+
+def inventory(app: Flask, request: Request):
+    if request.args.get('lang'):
+        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
+            lang = request.args.get('lang')
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+            lang = str(request.accept_languages.best_match(
+                app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
+    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+        lang = str(request.accept_languages.best_match(
+            app.config['BABEL_LANGUAGES']))
+    else:
+        lang = 'en'
+    access_token = session.get('access_token')
+    entitlement = session.get('entitlement')
+    region = session.get('region')
+    userid = session.get('user_id')
+    name = session.get('username')
+    tag = session.get('tag')
+    cookie = dict(session.get('cookie', {}))
+    Player = player(access_token, entitlement, region, userid)
+    skins = Player.getSkins()
+    chromas = Player.getChromas()
+    conn = sqlite3.connect('db/data.db')
+    c = conn.cursor()
+    weapon_list = []
+    chroma_list = []
+    for skin in skins:
+        if lang == 'en':
+            c.execute('SELECT uuid, name, data, isLevelup FROM skinlevels WHERE uuid = ?', (skin['ItemID'], ))
+            conn.commit()
+            data = c.fetchall()
+            uuid, name, data, isLevelup = c.fetchall()[0]
+        else:
+            if lang == 'zh-CN':
+                dictlang = 'zh-TW'
+            else:
+                dictlang = lang
+            c.execute(f'SELECT uuid, "name-{dictlang}", "data-{dictlang}", isLevelup FROM skinlevels WHERE uuid = ?', (skin['ItemID'],))
+            conn.commit()
+            uuid, name, data, isLevelup = c.fetchall()[0]

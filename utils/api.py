@@ -1,9 +1,11 @@
 import os
 import requests
 import yaml
+import _thread
 from parse import parse
 from flask import Flask, render_template, redirect, make_response, session, Request
 from utils.RiotLogin import Auth
+from utils.Cache import UpdateOfferCache
 
 
 def RiotLogin(app: Flask, request: Request):
@@ -52,6 +54,7 @@ def RiotLogin(app: Flask, request: Request):
             session['cookie'] = user.session.cookies
             session['user-session'] = user.session
             response.status_code = 302
+            _thread.start_new_thread(UpdateOfferCache, (user.access_token, user.entitlement))
         elif user.MFA:
             session['user'] = user
             session['user-session'] = user.session
@@ -114,6 +117,7 @@ def verify(app: Flask, request: Request):
         # For security. Once the password has been used to login in successfully, set password as useless strings
         session['password'] = '***'
         response.status_code = 302
+        _thread.start_new_thread(UpdateOfferCache, (user.access_token, user.entitlement))
     else:
         response = make_response(
             render_template('index.html', loginerror=True, lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)))
@@ -146,6 +150,7 @@ def reauth(app: Flask, request: Request):
             session['entitlement'] = entitlement
             session['user-session'] = s
             session['cookie'] = s.cookies
+            _thread.start_new_thread(UpdateOfferCache, (access_token, entitlement))
             return redirect('/market')
         else:
             response = make_response(redirect('/', 302))
