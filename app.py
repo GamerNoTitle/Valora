@@ -135,6 +135,7 @@ def trans_handler(t):
 
 @app.route('/inventory')
 def inventory_handler():
+    return 'This is a developing function and it\'s not open yet.'
     return inventory(app, request)
 
 @app.route('/profiler')

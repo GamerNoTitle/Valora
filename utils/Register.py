@@ -447,3 +447,15 @@ def inventory(app: Flask, request: Request):
             c.execute(f'SELECT uuid, "name-{dictlang}", "data-{dictlang}", isLevelup FROM skinlevels WHERE uuid = ?', (skin['ItemID'],))
             conn.commit()
             uuid, name, data, isLevelup = c.fetchall()[0]
+        if lang == 'en':
+            c.execute(f'SELECT data FROM skins WHERE name = ?', (name,))
+            conn.commit()
+            data = json.loads(c.fetchall()[0][0])
+        else:
+            c.execute(
+                f'SELECT "data-{lang}" FROM skins WHERE "name-{lang}" = ?', (self.name,))
+            conn.commit()
+            data = json.loads(c.fetchall()[0][0])
+        levels = data['levels']    # Skin Levels
+        chromas = data['chromas']  # Skin Chromas
+        base_img = data['levels'][0]['displayIcon']
