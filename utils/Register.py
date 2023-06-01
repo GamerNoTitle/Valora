@@ -405,6 +405,7 @@ def auth_info(app: Flask, request: Request):
     ua = request.headers.get('User-Agent', '')
     return render_template('auth-info.html', access_token=access_token, entitlement=entitlement, region=region, userid=userid, name=name, tag=tag, cookie=cookie, ua=ua)
 
+
 def inventory(app: Flask, request: Request):
     if request.args.get('lang'):
         if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
@@ -419,43 +420,96 @@ def inventory(app: Flask, request: Request):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
+    if lang == 'zh-CN':
+        dictlang = 'zh-TW'
+    else:
+        dictlang = lang
     access_token = session.get('access_token')
     entitlement = session.get('entitlement')
     region = session.get('region')
     userid = session.get('user_id')
-    name = session.get('username')
+    uname = session.get('username')
     tag = session.get('tag')
     cookie = dict(session.get('cookie', {}))
     Player = player(access_token, entitlement, region, userid)
-    skins = Player.getSkins()
-    chromas = Player.getChromas()
-    conn = sqlite3.connect('db/data.db')
-    c = conn.cursor()
-    weapon_list = []
-    chroma_list = []
-    for skin in skins:
-        if lang == 'en':
-            c.execute('SELECT uuid, name, data, isLevelup FROM skinlevels WHERE uuid = ?', (skin['ItemID'], ))
-            conn.commit()
-            data = c.fetchall()
-            uuid, name, data, isLevelup = c.fetchall()[0]
-        else:
-            if lang == 'zh-CN':
-                dictlang = 'zh-TW'
+    if Player.auth:
+        skins = Player.getSkins()
+        chromas = Player.getChromas()
+        conn = sqlite3.connect('db/data.db')
+        c = conn.cursor()
+        weapon_list = []
+        weapon_cost_count = 0
+        chroma_cost_count = 0
+        levelup_info = dict(yaml.load(os.popen(
+            f'cat lang/{dictlang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
+        description_to_del = dict(yaml.load(os.popen(
+            f'cat lang/{dictlang}.yml').read(), Loader=yaml.FullLoader))['metadata']['description']
+        for skin in skins:
+            if lang == 'en':
+                c.execute(
+                    'SELECT uuid, name, data, isLevelup FROM skinlevels WHERE uuid = ?', (skin['ItemID'], ))
+                conn.commit()
+                data = c.fetchall()
+                uuid, name, data, isLevelup = c.fetchall()[0]
             else:
-                dictlang = lang
-            c.execute(f'SELECT uuid, "name-{dictlang}", "data-{dictlang}", isLevelup FROM skinlevels WHERE uuid = ?', (skin['ItemID'],))
-            conn.commit()
-            uuid, name, data, isLevelup = c.fetchall()[0]
-        if lang == 'en':
-            c.execute(f'SELECT data FROM skins WHERE name = ?', (name,))
-            conn.commit()
-            data = json.loads(c.fetchall()[0][0])
-        else:
-            c.execute(
-                f'SELECT "data-{lang}" FROM skins WHERE "name-{lang}" = ?', (self.name,))
-            conn.commit()
-            data = json.loads(c.fetchall()[0][0])
-        levels = data['levels']    # Skin Levels
-        chromas = data['chromas']  # Skin Chromas
-        base_img = data['levels'][0]['displayIcon']
+                c.execute(
+                    f'SELECT uuid, "name-{dictlang}", "data-{dictlang}", isLevelup FROM skinlevels WHERE uuid = ?', (skin['ItemID'],))
+                conn.commit()
+                uuid, name, data, isLevelup = c.fetchall()[0]
+            if isLevelup:   # Not lv.1 Skin
+                continue
+            if lang == 'en':
+                c.execute(f'SELECT data FROM skins WHERE name = ?', (name.strip(),))
+                conn.commit()
+                data = json.loads(c.fetchall()[0][0])
+            else:
+                c.execute(
+                    f'SELECT "data-{dictlang}" FROM skins WHERE "name-{dictlang}" = ?', (name.strip(),))
+                conn.commit()
+                try:
+                    data = json.loads(c.fetchall()[0][0])
+                except:
+                    continue
+            levels = data['levels']    # Skin Levels
+            chromas = data['chromas']  # Skin Chromas
+            base_img = data['levels'][0]['displayIcon']
+            for level in levels:
+                level['uuid'] = level['uuid'].upper()
+                level['displayName'] = level['displayName'].replace(name, '').replace('\n', '').replace(
+                    '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '').replace('。', '')
+                for descr in dict(description_to_del).values():
+                    level['displayName'] = level['displayName'].replace(
+                        descr, '')
+                try:
+                    if level['levelItem'] == None:
+                        level['levelItem'] = levelup_info['EEquippableSkinLevelItem::VFX']
+                    else:
+                        level['levelItem'] = levelup_info[level['levelItem']]
+                except KeyError:
+                    level['levelItem'] = level['levelItem'].replace(
+                        'EEquippableSkinLevelItem::', '')
+            for chroma in chromas:
+                chroma['uuid'] = chroma['uuid'].upper()
+                chroma['displayName'] = chroma['displayName'].replace(
+                    name, '')
+                chroma['displayName'] = chroma['displayName'].replace(name, '').replace('\n', '').replace(
+                    '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '').replace('。', '')
+                chroma['displayName'] = chroma['displayName'].strip().replace(
+                    levelup_info['level'] + '1', '').replace(levelup_info['level'] + '2', '').replace(
+                    levelup_info['level'] + '3', '').replace(levelup_info['level'] + '4', '').replace(
+                        levelup_info['level'] + '5', '').replace(
+                    levelup_info['level'] + ' 1', '').replace(levelup_info['level'] + ' 2', '').replace(
+                    levelup_info['level'] + ' 3', '').replace(levelup_info['level'] + ' 4', '').replace(
+                        levelup_info['level'] + ' 5', '')   # Clear out extra level symbols
+            weapon_list.append(
+                {"name": name, "img": base_img, "levels": levels, "chromas": chromas})
+        p = {
+            'name': uname,
+            'tag': tag,
+            'vp': Player.vp,
+            'rp': Player.rp
+        }
+        return render_template('inventory.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader),
+                            player = p, weapon_list = weapon_list)
+    else:   # Login Expired
+        return redirect('/api/reauth')
