@@ -98,7 +98,7 @@ login:
     checkbox:
       remember: 保持登錄（減少登錄次數）
       nostorage: 我已明白網站僅會將我的登錄名和密碼用於登錄我的賬號
-      eula: 我同意<a href="/EULA" class="text-dark"><u>最終用戶許可協議</u></a>
+      eula: 我已閱讀<a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#eac12e01944f4e279ff7da7b19900bb9" class="text-dark" target="_blank"><u>常見問題</u></a>並同意<a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#66d04cf9922d4826bd285dc0d894531f" class="text-dark" target="_blank"><u>免責聲明</u></a>
   button:
     login: 登錄
   alert:

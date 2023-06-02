@@ -8,6 +8,8 @@
 
 做出来自己用的，担心安全的可以自己搭建或者不用，市场上有很多平替品，甚至做的比我的好
 
+使用之前，请阅读常见问题解答: [FAQ](https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#eac12e01944f4e279ff7da7b19900bb9)
+
 [本项目的各个功能计划以及实现情况](https://github.com/users/GamerNoTitle/projects/1)
 
 ## 快速开始

@@ -98,7 +98,7 @@ login:
     checkbox:
       remember: Stay logged in
       nostorage: I understand that the website will only use my login name and password to log into my account.
-      eula: I agree to the <a href="/EULA" class="text-dark"><u>End User License Agreement</u></a>.
+      eula: I have already read <a href="https://gamernotitle.notion.site/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="text-dark" target="_blank"><u>FAQ</u></a> and agreed <a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#0b52f296c76646a9a634550b1a260bab" class="text-dark" target="_blank"><u>DISCLAMER</u></a>.
   button:
     login: Login
   alert:

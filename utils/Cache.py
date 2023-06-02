@@ -245,38 +245,39 @@ def UpdateCacheTimer():
         time.sleep(3600)
 
 
-def UpdateOfferCache(access_token: str, entitlement: str):
-    print('Updating Store Offers')
-    url = 'https://pd.ap.a.pvp.net/store/v1/offers'
-    headers = {
-        'Authorization': f'Bearer {access_token}',
-        'X-Riot-Entitlements-JWT': entitlement,
-        'X-Riot-ClientPlatform': 'ew0KCSJwbGF0Zm9ybVR5cGUiOiAiUEMiLA0KCSJwbGF0Zm9ybU9TIjogIldpbmRvd3MiLA0KCSJwbGF0Zm9ybU9TVmVyc2lvbiI6ICIxMC4wLjE5MDQyLjEuMjU2LjY0Yml0IiwNCgkicGxhdGZvcm1DaGlwc2V0IjogIlVua25vd24iDQp9',
-        'X-Riot-ClientVersion': requests.get('https://valorant-api.com/v1/version').json()['data']['riotClientVersion'],
-        'Content-Type': 'application/json'
-    }
-    try:
-        data = requests.get(url, headers=headers).json()
-        offers = data['Offers']
-        conn = sqlite3.connect('db/data.db')
-        c = conn.cursor()
-        try:
-            c.execute('CREATE TABLE offers (uuid TEXT PRIMARY KEY, vp TEXT, isBundle)')
-            conn.commit()
-        except:
-            pass
-        for offer in offers:
-            isBundle = True if offer.get('DiscountedPercent') else False
-            try:
-                c.execute('INSERT INTO offers ([uuid], vp, isBundle) VALUES (?, ?, ?)', (offer['OfferID'], offer.get("Cost", {}).get("85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741", 0), isBundle))
-                conn.commit()
-            except sqlite3.IntegrityError:  # If the data is existed, we will not do any update
-                pass
-                # c.execute('UPDATE offers SET vp = ?, isBundle = ? WHERE uuid = ?', (offer.get("Cost", {}).get("85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741", 0), isBundle, offer['OfferID']))
-        print('Store Offers Updated')
-        conn.close()
-    except KeyError:
-        print('Unable to update Offers')
+def UpdateOfferCache(access_token: str, entitlement: str):  # Offer is currently USELESS
+    pass
+    # print('Updating Store Offers')
+    # url = 'https://pd.ap.a.pvp.net/store/v1/offers'
+    # headers = {
+    #     'Authorization': f'Bearer {access_token}',
+    #     'X-Riot-Entitlements-JWT': entitlement,
+    #     'X-Riot-ClientPlatform': 'ew0KCSJwbGF0Zm9ybVR5cGUiOiAiUEMiLA0KCSJwbGF0Zm9ybU9TIjogIldpbmRvd3MiLA0KCSJwbGF0Zm9ybU9TVmVyc2lvbiI6ICIxMC4wLjE5MDQyLjEuMjU2LjY0Yml0IiwNCgkicGxhdGZvcm1DaGlwc2V0IjogIlVua25vd24iDQp9',
+    #     'X-Riot-ClientVersion': requests.get('https://valorant-api.com/v1/version').json()['data']['riotClientVersion'],
+    #     'Content-Type': 'application/json'
+    # }
+    # try:
+    #     data = requests.get(url, headers=headers).json()
+    #     offers = data['Offers']
+    #     conn = sqlite3.connect('db/data.db')
+    #     c = conn.cursor()
+    #     try:
+    #         c.execute('CREATE TABLE offers (uuid TEXT PRIMARY KEY, vp TEXT, isBundle)')
+    #         conn.commit()
+    #     except:
+    #         pass
+    #     for offer in offers:
+    #         isBundle = True if offer.get('DiscountedPercent') else False
+    #         try:
+    #             c.execute('INSERT INTO offers ([uuid], vp, isBundle) VALUES (?, ?, ?)', (offer['OfferID'], offer.get("Cost", {}).get("85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741", 0), isBundle))
+    #             conn.commit()
+    #         except sqlite3.IntegrityError:  # If the data is existed, we will not do any update
+    #             pass
+    #             # c.execute('UPDATE offers SET vp = ?, isBundle = ? WHERE uuid = ?', (offer.get("Cost", {}).get("85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741", 0), isBundle, offer['OfferID']))
+    #     print('Store Offers Updated')
+    #     conn.close()
+    # except KeyError:
+    #     print('Unable to update Offers')
 
 def UpdatePriceCache():
     print('Start Updating Price Cache')
