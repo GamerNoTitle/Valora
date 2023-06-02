@@ -74,12 +74,18 @@ class player:
     def getSkins(self):
         data = requests.get(f'{self.server}{Api.owned}{self.user_id}/{Options.skins}', headers=self.__header, timeout=30).json()
         skins = data['Entitlements']
-        return skins
+        owned_skins = []
+        for skin in skins:
+            owned_skins.append(skin['ItemID'].upper())
+        return skins, owned_skins
 
     def getChromas(self):
         data = requests.get(f'{self.server}{Api.owned}{self.user_id}/{Options.chromas}', headers=self.__header, timeout=30).json()
         chromas = data['Entitlements']
-        return chromas
+        owned_chromas = []
+        for chroma in chromas:
+            owned_chromas.append(chroma['ItemID'].upper())
+        return chromas, owned_chromas
 
 
 if __name__ == '__main__':

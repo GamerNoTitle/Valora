@@ -433,15 +433,15 @@ def inventory(app: Flask, request: Request):
     cookie = dict(session.get('cookie', {}))
     Player = player(access_token, entitlement, region, userid)
     if Player.auth:
-        skins = Player.getSkins()
-        chromas = Player.getChromas()
+        skins, owned_weapons = Player.getSkins()
+        chromas, owned_chromas = Player.getChromas()
         conn = sqlite3.connect('db/data.db')
         c = conn.cursor()
         weapon_list = []
         weapon_cost_count = 0
         chroma_cost_count = 0
         levelup_info = dict(yaml.load(os.popen(
-            f'cat lang/{dictlang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
+            f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
         description_to_del = dict(yaml.load(os.popen(
             f'cat lang/{dictlang}.yml').read(), Loader=yaml.FullLoader))['metadata']['description']
         for skin in skins:
@@ -487,6 +487,8 @@ def inventory(app: Flask, request: Request):
                 except KeyError:
                     level['levelItem'] = level['levelItem'].replace(
                         'EEquippableSkinLevelItem::', '')
+                if level['uuid'] in owned_weapons:
+                    level['updated'] = True
             for chroma in chromas:
                 chroma['uuid'] = chroma['uuid'].upper()
                 chroma['displayName'] = chroma['displayName'].replace(
@@ -500,6 +502,8 @@ def inventory(app: Flask, request: Request):
                     levelup_info['level'] + ' 1', '').replace(levelup_info['level'] + ' 2', '').replace(
                     levelup_info['level'] + ' 3', '').replace(levelup_info['level'] + ' 4', '').replace(
                         levelup_info['level'] + ' 5', '')   # Clear out extra level symbols
+                if chroma['uuid'] in owned_chromas:
+                    chroma['updated'] = True
             weapon_list.append(
                 {"name": name, "img": base_img, "levels": levels, "chromas": chromas})
         p = {

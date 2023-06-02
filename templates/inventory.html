@@ -173,7 +173,11 @@
   <div class="container">
     <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.inventory.title}}</h1>
   </div>
-  <hr><hr><hr><hr><hr>
+  <hr>
+  <hr>
+  <hr>
+  <hr>
+  <hr>
 
   <div class="container">
     <div class="row">
@@ -191,11 +195,17 @@
             {% for level in weapon.levels %}
             {% if level.displayName != '' %}
             <!-- Button trigger modal -->
+            {% if level.updated %}  <!-- If this level has been updated, set the color of the button to green -->
+            <button type="button" class="btn bg-gradient-success" data-bs-toggle="modal"
+              data-bs-target="#WEAPON-{{level.uuid|escape}}">
+              {{level.displayName}}: {{level.levelItem}}
+            </button>
+            {% else %}
             <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
               data-bs-target="#WEAPON-{{level.uuid|escape}}">
               {{level.displayName}}: {{level.levelItem}}
             </button>
-
+            {% endif %}
             <!-- Modal -->
             <div class="modal fade" id="WEAPON-{{level.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
@@ -225,11 +235,17 @@
             {% for chroma in weapon.chromas %}
             {% if chroma.displayName != '' %}
             <!-- Button trigger modal -->
+            {% if chroma.updated %} <!-- if this chroma has been unlocked, set button color to green -->
+            <button type="button" class="btn bg-gradient-success" data-bs-toggle="modal"
+              data-bs-target="#WEAPON-{{chroma.uuid|escape}}">
+              {{chroma.displayName}}
+            </button>
+            {% else %}
             <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
               data-bs-target="#WEAPON-{{chroma.uuid|escape}}">
               {{chroma.displayName}}
             </button>
-
+            {% endif %}
             <!-- Modal -->
             <div class="modal fade" id="WEAPON-{{chroma.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
