@@ -214,8 +214,10 @@ inventory:
     # Welcome message format:
     # <opening>{{player.name}}#{{player.tag}}
     # <credit> {{player.vp}} VP & {{player.rp}} RP
+    # <cost> {{player.costVP}} VP & {{player.costRP}} RP
     opening: お帰りなさい
     credit: 現在、保有しているのは
+    cost: あなたは既に使った
 
 error:
   error500:

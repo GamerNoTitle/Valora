@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="keywords" content="Valorant, Skin, 瓦罗兰特, 无畏契约">
-  <meta name="description" content="VSC (also named Valorant Shop Checker) is a site that helps you check your valorant daily shop and night market without opening the game or installing an app."/>
+  <meta name="description"
+    content="VSC (also named Valorant Shop Checker) is a site that helps you check your valorant daily shop and night market without opening the game or installing an app." />
   <meta name="author" content="GamerNoTitle, GamerNoTitle@outlook.com">
   <meta name="copyright" content="Copyright &copy; 2023 GamerNoTitle. All rights reserved.">
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/img-navi-valorant-red.svg">
@@ -141,17 +142,17 @@
 
   <div class="container-fluid px-0 overflow-hidden">
     <div class="row text-center py-2 mt-3">
-        <div class="col-12 mx-auto">
-            <a href="/"><button type="button" class="btn bg-gradient-info btn-lg"><i class="fas fa-home"></i>
-                    {{lang.global.button.home}}</button></a>
-            <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
-                    {{lang.global.button.trans}}</button></a>
-            <a href="//bili33.top/sponsors" target="_blank"><button type="button"
-                    class="btn bg-gradient-primary btn-lg"><i class="fas fa-coins"></i>
-                    {{lang.global.button.sponsor}}</button></a>
-        </div>
+      <div class="col-12 mx-auto">
+        <a href="/"><button type="button" class="btn bg-gradient-info btn-lg"><i class="fas fa-home"></i>
+            {{lang.global.button.home}}</button></a>
+        <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
+            {{lang.global.button.trans}}</button></a>
+        <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i
+              class="fas fa-coins"></i>
+            {{lang.global.button.sponsor}}</button></a>
+      </div>
     </div>
-</div>
+  </div>
 
 
   <div class="container">
@@ -398,6 +399,7 @@
             </div>
             <div class="card-body">
               <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
+              <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.unlock|safe}}</h3>
               <br>
               {% for level in weapon.levels %}
               {% if level.displayName != '' %}

@@ -268,6 +268,11 @@ def library(app: Flask, request: Request):
                 name = skin
                 for level in levels:
                     level['uuid'] = level['uuid'].upper()
+                    c.execute('SELECT isLevelup, unlock FROM skinlevels WHERE uuid = ?', (level['uuid'].lower(), ))
+                    conn.commit()
+                    isLevelup, temp = c.fetchall()[0]
+                    if not isLevelup:
+                        unlock = temp
                     level['displayName'] = level['displayName'].replace(name, '').replace('\n', '').replace(
                         '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '').replace('。', '')
                     for descr in dict(description_to_del).values():
@@ -295,7 +300,7 @@ def library(app: Flask, request: Request):
                         levelup_info['level'] + ' 3', '').replace(levelup_info['level'] + ' 4', '').replace(
                             levelup_info['level'] + ' 5', '')   # Clear out extra level symbols
                 weapon_list.append(
-                    {"name": name, "img": base_img, "levels": levels, "chromas": chromas})
+                    {"name": name, "img": base_img, "levels": levels, "chromas": chromas, "unlock": unlock})
             return render_template('library.html', weapon_list=weapon_list,
                                    lang=yaml.load(os.popen(
                                        f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader),
@@ -329,8 +334,13 @@ def library(app: Flask, request: Request):
             end = perpage*page
         for uuid, skin in list(skins)[perpage*(page-1):end]:
             Weapon = weaponlib(uuid, skin, lang=lang)
+            lv1_data = Weapon.levels[0]
+            lv1_uuid = lv1_data['uuid']
+            c.execute('SELECT isLevelup, unlock FROM skinlevels WHERE uuid = ?', (lv1_uuid.lower(), ))
+            conn.commit()
+            isLevelup, unlock = c.fetchall()[0]
             weapon_list.append({"name": Weapon.name, "img": Weapon.base_img,
-                                "levels": Weapon.levels, "chromas": Weapon.chromas})
+                                "levels": Weapon.levels, "chromas": Weapon.chromas, "unlock": unlock})
         return render_template('library.html', weapon_list=weapon_list, page=page, count=count,
                                lang=yaml.load(os.popen(
                                    f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader),
@@ -438,8 +448,8 @@ def inventory(app: Flask, request: Request):
         conn = sqlite3.connect('db/data.db')
         c = conn.cursor()
         weapon_list = []
-        weapon_cost_count = 0
-        chroma_cost_count = 0
+        VP_count = 0
+        RP_count = len(owned_chromas)*15    # A chroma cost 15 RP
         levelup_info = dict(yaml.load(os.popen(
             f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
         description_to_del = dict(yaml.load(os.popen(
@@ -447,20 +457,23 @@ def inventory(app: Flask, request: Request):
         for skin in skins:
             if lang == 'en':
                 c.execute(
-                    'SELECT uuid, name, data, isLevelup FROM skinlevels WHERE uuid = ?', (skin['ItemID'], ))
+                    'SELECT uuid, name, data, isLevelup, unlock FROM skinlevels WHERE uuid = ?', (skin['ItemID'], ))
                 conn.commit()
-                uuid, name, data, isLevelup = c.fetchall()[0]
+                uuid, name, data, isLevelup, unlock = c.fetchall()[0]
             else:
                 c.execute(
-                    f'SELECT uuid, "name-{dictlang}", "data-{dictlang}", isLevelup FROM skinlevels WHERE uuid = ?', (skin['ItemID'],))
+                    f'SELECT uuid, "name-{dictlang}", "data-{dictlang}", isLevelup, unlock FROM skinlevels WHERE uuid = ?', (skin['ItemID'],))
                 conn.commit()
-                uuid, name, data, isLevelup = c.fetchall()[0]
+                uuid, name, data, isLevelup, unlock = c.fetchall()[0]
             if isLevelup:   # Not lv.1 Skin
-                continue
+                RP_count += 10  # This level has been unlocked, RP+10
             if lang == 'en':
                 c.execute(f'SELECT data FROM skins WHERE name = ?', (name.strip(),))
                 conn.commit()
-                data = json.loads(c.fetchall()[0][0])
+                try:
+                    data = json.loads(c.fetchall()[0][0])
+                except:
+                    continue
             else:
                 c.execute(
                     f'SELECT "data-{dictlang}" FROM skins WHERE "name-{dictlang}" = ?', (name.strip(),))
@@ -505,7 +518,11 @@ def inventory(app: Flask, request: Request):
                 if chroma['uuid'] in owned_chromas:
                     chroma['updated'] = True
             weapon_list.append(
-                {"name": name, "img": base_img, "levels": levels, "chromas": chromas})
+                {"name": name, "img": base_img, "levels": levels, "chromas": chromas, "unlock": unlock})
+            try:
+                VP_count += int(unlock.replace('<img src="/assets/img/VP-black.png" width="32px" height="32px"> ',''))
+            except ValueError:
+                pass
         p = {
             'name': uname,
             'tag': tag,
@@ -513,6 +530,6 @@ def inventory(app: Flask, request: Request):
             'rp': Player.rp
         }
         return render_template('inventory.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader),
-                            player = p, weapon_list = weapon_list)
+                            player = p, weapon_list = weapon_list, costVP = VP_count, costRP = RP_count)
     else:   # Login Expired
         return redirect('/api/reauth')

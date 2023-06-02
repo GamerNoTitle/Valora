@@ -247,8 +247,10 @@ inventory:
     # Welcome message format:
     # <opening>{{player.name}}#{{player.tag}}
     # <credit> {{player.vp}} VP & {{player.rp}} RP
+    # <cost> {{player.costVP}} VP & {{player.costRP}} RP
     opening: 欢迎回来
     credit: 你现在持有
+    cost: 你已经花费了
 
 error:
   error500:

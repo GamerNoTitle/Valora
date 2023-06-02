@@ -164,7 +164,9 @@
           {{lang.inventory.welcome.opening}} <strong>{{player.name}}</strong>#<strong>{{player.tag}}</strong><br>
           {{lang.inventory.welcome.credit}} <img src="/assets/img/VP.png" height=16px width=16px>
           <strong>{{player.vp}}</strong> <img src="/assets/img/RP.png" height=16px width=16px>
-          <strong>{{player.rp}}</strong>
+          <strong>{{player.rp}}</strong><br>
+          {{lang.inventory.welcome.cost}} <img src="/assets/img/VP.png" height=16px width=16px>
+          <strong>{{costVP}}</strong> <img src="/assets/img/RP.png" height=16px width=16px> <strong>{{costRP}}</strong>
         </div>
       </div>
     </div>
@@ -191,11 +193,12 @@
           </div>
           <div class="card-body">
             <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
+            <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.unlock|safe}}</h3>
             <br>
             {% for level in weapon.levels %}
             {% if level.displayName != '' %}
             <!-- Button trigger modal -->
-            {% if level.updated %}  <!-- If this level has been updated, set the color of the button to green -->
+            {% if level.updated %} <!-- If this level has been updated, set the color of the button to green -->
             <button type="button" class="btn bg-gradient-success" data-bs-toggle="modal"
               data-bs-target="#WEAPON-{{level.uuid|escape}}">
               {{level.displayName}}: {{level.levelItem}}

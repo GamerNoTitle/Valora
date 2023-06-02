@@ -12,3 +12,4 @@ flask-babel
 pyyaml
 pysqlite3
 flask-profiler
+bs4
