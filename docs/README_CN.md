@@ -84,6 +84,7 @@ $ export PROFILER_PASS=password
 
 [Soft-ui-design-system](https://github.com/creativetimofficial/soft-ui-design-system)
 
+[VALORANT Fandom Wiki (枪械价格数据源))](https://valorant.fandom.com/wiki/VALORANT_Wiki)
 
 ## Referrance
 

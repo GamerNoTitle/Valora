@@ -86,6 +86,7 @@ After u set them, u can access your dashboard from `/profiler`
 
 [Soft-ui-design-system](https://github.com/creativetimofficial/soft-ui-design-system)
 
+[VALORANT Fandom Wiki (Price Data Source)](https://valorant.fandom.com/wiki/VALORANT_Wiki)
 
 ## Referrance
 
