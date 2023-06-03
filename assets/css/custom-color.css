@@ -53,3 +53,7 @@
 .btn.bg-gradient-pink .btn.bg-outline-pink {
     border: 1px solid #fb7299;
   }
+
+td {
+  word-wrap: break-word;
+}
