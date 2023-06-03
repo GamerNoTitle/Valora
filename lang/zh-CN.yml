@@ -90,7 +90,7 @@ global:
     line1: 瓦罗兰特（无畏契约）商店查看，让你不用登陆游戏也能够查看每日商店（仅支持国际服）
     line2: 所有的登录名和密码服务器均不进行存取，仅用于登录
   nav:
-    title: 瓦罗兰特商店查看
+    title: 今天的商店又刷了什么？
   button:
     dailyshop: 每日商店
     nightmarket: 折扣夜市

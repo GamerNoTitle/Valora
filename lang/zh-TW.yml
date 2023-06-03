@@ -69,7 +69,7 @@ global:
     line1: 瓦羅蘭特（無畏契約）商店查看，讓你不用登錄遊戲也能夠查看每日商店（僅支持國際服）
     line2: 所有的登錄名和密碼服務器均不進行存取，僅用於登錄
   nav:
-    title: 瓦羅蘭特商店查看
+    title: 今天的商店又刷了什麼？
   button:
     dailyshop: 每日商店
     nightmarket: 折扣夜市
