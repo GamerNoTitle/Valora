@@ -1,8 +1,8 @@
 <div align="center">
-<img src='https://cdn.jsdelivr.net/gh/GamerNoTitle/VSC@dev/assets/img/head.png'>
+<img src='https://cdn.jsdelivr.net/gh/GamerNoTitle/VALORA@dev/assets/img/head.png'>
 </div>
 
-# VSC
+# VLR | Valora: What it is in my VALORANT Store TODAY??
 
 English | [简体中文](https://github.com/GamerNoTitle/VSC/blob/master/docs/README_CN.md)
 
@@ -10,7 +10,7 @@ This is a website that helps you peek your shop and night market of VALORANT. It
 
 There are a lot of application on the network that can help you do that and they even better than mine. If you are worried about my project, you can use theirs.
 
-You need to read FAQ before you use: [FAQ](https://gamernotitle.notion.site/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507)
+You need to read FAQ before you use: [FAQ](https://gamernotitle.notion.site/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507)
 
 [Project Milestones (CHINESE)](https://github.com/users/GamerNoTitle/projects/1)
 
