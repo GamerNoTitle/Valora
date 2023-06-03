@@ -119,7 +119,7 @@ login:
     checkbox:
       remember: 保持登录（减少登录次数）
       nostorage: 我已明白网站仅会将我的登录名和密码用于登录我的账号
-      eula: 我已阅读<a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#eac12e01944f4e279ff7da7b19900bb9" class="text-dark" target="_blank"><u>常见问题</u></a>并同意<a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#66d04cf9922d4826bd285dc0d894531f" class="text-dark" target="_blank"><u>免责声明</u></a>
+      eula: 我已阅读<a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#eac12e01944f4e279ff7da7b19900bb9" class="text-dark" target="_blank"><u>常见问题</u></a>并同意<a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#b3e56d8a48ab40a5953bd217e18c36a2" class="text-dark" target="_blank"><u>免责声明</u></a>
   button:
     login: 登录
     tokenlogin: 使用 Access Token 登录
@@ -258,7 +258,7 @@ error:
     error: 肥肠抱歉，服务器发生了点错误
     detail:
       front: 服务器发生了以下错误：
-      solve: 你可以尝试点击下方的“重置网站数据”按钮来解决这个问题。<br>如果你已经点击了下面的按钮，但仍然出现了这个问题，请尝试清除浏览器的cookie来重置会话<br>如果上面这两种方法你都已经尝试过了，那么请带着此错误信息联系开发者！
+      solve: 你可以尝试【刷新网页】或者点击下方的“重置网站数据”按钮来解决这个问题。<br>如果你已经点击了下面的按钮，但仍然出现了这个问题，请尝试清除浏览器的cookie来重置会话<br>如果上面这两种方法你都已经尝试过了，那么请带着此错误信息联系开发者！
     button:
       reset: 重置网站数据
   error404:

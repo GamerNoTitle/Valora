@@ -98,7 +98,7 @@ login:
     checkbox:
       remember: 保持登錄（減少登錄次數）
       nostorage: 我已明白網站僅會將我的登錄名和密碼用於登錄我的賬號
-      eula: 我已閱讀<a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#eac12e01944f4e279ff7da7b19900bb9" class="text-dark" target="_blank"><u>常見問題</u></a>並同意<a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#66d04cf9922d4826bd285dc0d894531f" class="text-dark" target="_blank"><u>免責聲明</u></a>
+      eula: 我已閱讀<a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#eac12e01944f4e279ff7da7b19900bb9" class="text-dark" target="_blank"><u>常見問題</u></a>並同意<a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#b3e56d8a48ab40a5953bd217e18c36a2" class="text-dark" target="_blank"><u>免責聲明</u></a>
   button:
     login: 登錄
   alert:
@@ -226,7 +226,7 @@ error:
     error: 非常抱歉，伺服器發生了一些錯誤
     detail:
       front: 伺服器發生了以下錯誤：
-      solve: 你可以嘗試點擊下方的「重置網站數據」按鈕來解決這個問題。<br>如果你已經點擊了下面的按鈕，但仍然出現了這個問題，請嘗試清除瀏覽器的cookie來重置會話<br>如果上面這兩種方法你都已經嘗試過了，那麼請帶著此錯誤信息聯繫開發者！
+      solve: 你可以嘗試【刷新網頁】或者點擊下方的「重置網站數據」按鈕來解決這個問題。<br>如果你已經點擊了下面的按鈕，但仍然出現了這個問題，請嘗試清除瀏覽器的cookie來重置會話<br>如果上面這兩種方法你都已經嘗試過了，那麼請帶著此錯誤信息聯繫開發者！
     button:
       reset: 重置網站數據
   error404:

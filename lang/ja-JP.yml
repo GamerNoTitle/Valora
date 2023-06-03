@@ -98,7 +98,7 @@ login:
     checkbox:
       remember: ログイン状態を維持（ログイン回数を減らす）
       nostorage: 私のログイン名とパスワードは、私のアカウントにログインするためにのみ使用されることを理解しています。
-      eula: 私はすでに<a href="https://gamernotitle.notion.site/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="text-dark" target="_blank"><u>FAQ</u></a>を読み、<a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#0b52f296c76646a9a634550b1a260bab" class="text-dark" target="_blank"><u>免責事項</u></a>に同意します。
+      eula: 私はすでに<a href="https://gamernotitle.notion.site/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="text-dark" target="_blank"><u>FAQ</u></a>を読み、<a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#12ddcd236fdb4c6abf205eb55587ccbc" class="text-dark" target="_blank"><u>免責事項</u></a>に同意します。
   button:
     login: ログイン
   alert:

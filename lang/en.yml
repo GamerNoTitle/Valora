@@ -98,7 +98,7 @@ login:
     checkbox:
       remember: Stay logged in
       nostorage: I understand that the website will only use my login name and password to log into my account.
-      eula: I have already read <a href="https://gamernotitle.notion.site/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="text-dark" target="_blank"><u>FAQ</u></a> and agreed <a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#0b52f296c76646a9a634550b1a260bab" class="text-dark" target="_blank"><u>DISCLAMER</u></a>.
+      eula: I have already read <a href="https://gamernotitle.notion.site/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="text-dark" target="_blank"><u>FAQ</u></a> and agreed <a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#12ddcd236fdb4c6abf205eb55587ccbc" class="text-dark" target="_blank"><u>DISCLAMER</u></a>.
   button:
     login: Login
   alert:
@@ -225,7 +225,7 @@ error:
     error: We're very sorry, there was an error on the server
     detail:
       front: The server encountered the following error
-      solve: You can try clicking the "Reset Site Data" button below to solve this problem.<br>If you have already clicked the button below but still encounter this problem, try clearing your browser's cookies to reset the session<br>If you have tried both of the above methods, please contact the developer with this error information!
+      solve: You can try refreshing this page or clicking the "Reset Site Data" button below to solve this problem.<br>If you have already clicked the button below but still encounter this problem, try clearing your browser's cookies to reset the session<br>If you have tried both of the above methods, please contact the developer with this error information!
     button:
       reset: Reset Site Data
   error404:
