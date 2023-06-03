@@ -1,14 +1,14 @@
 <div align="center">
-<img src='https://cdn.jsdelivr.net/gh/GamerNoTitle/VSC@dev/assets/img/head.png'>
+<img src='https://cdn.jsdelivr.net/gh/GamerNoTitle/VALORA@dev/assets/img/head.png'>
 </div>
 
-# VSC
+# VLR | Valora: 我的商店里今天有什么？
 
 就是一个为了查瓦每日商店而做的网站，也算练手了
 
 做出来自己用的，担心安全的可以自己搭建或者不用，市场上有很多平替品，甚至做的比我的好
 
-使用之前，请阅读常见问题解答: [FAQ](https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#eac12e01944f4e279ff7da7b19900bb9)
+使用之前，请阅读常见问题解答: [FAQ](https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#eac12e01944f4e279ff7da7b19900bb9)
 
 [本项目的各个功能计划以及实现情况](https://github.com/users/GamerNoTitle/projects/1)
 
