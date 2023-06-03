@@ -69,7 +69,7 @@ global:
     line1: VALORANTショップビュー。ゲームにログインせずにデイリーショップを確認できます
     line2: ログイン名とパスワードはサーバーに保存されず、ログインにのみ使用されます。
   nav:
-    title: VALORANTショップビュー
+    title: 今日のストアには何が追加されましたか？
   button:
     dailyshop: デイリーショップ
     nightmarket: ナイトマーケット
