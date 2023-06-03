@@ -64,6 +64,7 @@ global:
     shopdefault: マイショップ
     library: スキンライブラリ
     trans: 翻譯對照表
+    inventory: インベントリー
   description:
     line1: VALORANTショップビュー。ゲームにログインせずにデイリーショップを確認できます
     line2: ログイン名とパスワードはサーバーに保存されず、ログインにのみ使用されます。
@@ -79,6 +80,7 @@ global:
     library: スキンライブラリ
     home: ホームページに戻る
     trans: 翻訳対照
+    inventory: インベントリー
 
 login:
   front:
@@ -96,7 +98,7 @@ login:
     checkbox:
       remember: ログイン状態を維持（ログイン回数を減らす）
       nostorage: 私のログイン名とパスワードは、私のアカウントにログインするためにのみ使用されることを理解しています。
-      eula: <a href="/EULA" class="text-dark"><u>エンドユーザーライセンス契約</u></a>に同意します。
+      eula: 私はすでに<a href="https://gamernotitle.notion.site/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="text-dark" target="_blank"><u>FAQ</u></a>を読み、<a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#12ddcd236fdb4c6abf205eb55587ccbc" class="text-dark" target="_blank"><u>免責事項</u></a>に同意します。
   button:
     login: ログイン
   alert:
@@ -201,6 +203,21 @@ trans:
     maps: マップ
     skins: スキン
     weapons: 武器
+
+inventory:
+  title: インベントリー
+  button:
+    close: 閉じる
+  modal:
+    videonotavaliable: 現在のブラウザではビデオのプレビューができません
+  welcome:
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    # <cost> {{player.costVP}} VP & {{player.costRP}} RP
+    opening: お帰りなさい
+    credit: 現在、保有しているのは
+    cost: あなたは既に使った
 
 error:
   error500:

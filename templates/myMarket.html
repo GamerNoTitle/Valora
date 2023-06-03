@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="keywords" content="Valorant, Skin, 瓦罗兰特, 无畏契约">
-  <meta name="description" content="VSC (also named Valorant Shop Checker) is a site that helps you check your valorant daily shop and night market without opening the game or installing an app."/>
+  <meta name="description" content="Valora (also named Valorant Shop Checker) is a site that helps you check your valorant daily shop and night market without opening the game or installing an app."/>
   <meta name="author" content="GamerNoTitle, GamerNoTitle@outlook.com">
   <meta name="copyright" content="Copyright &copy; 2023 GamerNoTitle. All rights reserved.">
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/img-navi-valorant-red.svg">
   <link rel="icon" type="image/png" href="/assets/img/img-navi-valorant-red.svg">
   <title>
     {% if market %}{{lang.global.title.dailyshop}}{% elif night %}{{lang.global.title.nightmarket}}{% else
-    %}{{lang.global.title.shopdefault}}{% endif %} | VSC | GamerNoTitle
+    %}{{lang.global.title.shopdefault}}{% endif %} | Valora | GamerNoTitle
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -57,13 +57,9 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
-  <style>
-    .alert-pink {
-      color: #fb7299;
-      background-color: #fb7299;
-      border-color: #ffffff;
-    }
-  </style>
+
+  <!-- Custom CSS -->
+  <link href="/assets/css/custom-color.css" rel="stylesheet" />
 </head>
 
 <body class="index-page">
@@ -78,22 +74,24 @@
           <div class="container-fluid px-0">
             <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip"
               title="Valorant Shop Checker | 瓦罗兰特商店查看" data-placement="bottom">
-              VSC | {{lang.global.nav.title}}
+              Valora | {{lang.global.nav.title}}
             </a>
             <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
               <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
                 <li class="nav-item dropdown dropdown-hover mx-2">
                 <li class="nav-item ms-lg-auto">
-                  <a class="nav-link nav-link-icon me-2" href="https://github.com/GamerNoTitle/VSC" target="_blank">
+                  <a class="nav-link nav-link-icon me-2" href="https://github.com/GamerNoTitle/Valora" target="_blank">
                     <i class="fa fa-github me-1"></i>
                     <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
                       data-bs-placement="bottom" title="在Github查看本项目">Github</p>
                   </a>
                 </li>
                 <li class="nav-item my-auto ms-3 ms-lg-0">
-                  <a href="https://t.me/DohnaNyan" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i
+                  <a href="https://t.me/LumineStelle" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i
                       class="ni ni-send"></i> Telegram</a>
-                </li>
+                  <a href="https://gamernotitle.notion.site/gamernotitle/Valora-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i 
+                    class="fas fa-question"></i> FAQ</a>
+                  </li>
               </ul>
             </div>
           </div>
@@ -148,22 +146,24 @@
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
         {% if night %}
-        <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg"><i class="ni ni-cart"></i>
+        <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg"><i class="fas fa-shopping-cart"></i>
             {{lang.global.button.dailyshop}}</button></a>
         {% else %}
-        <a href="/market/night"><button type="button" class="btn bg-gradient-info btn-lg"><i class="ni ni-basket"></i>
+        <a href="/market/night"><button type="button" class="btn bg-gradient-info btn-lg"><i class="fas fa-shopping-bag"></i></i>
             {{lang.global.button.nightmarket}}</button></a>
         {% endif %}
-        <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
+        <a href="/inventory"><button type="button" class="btn bg-gradient-pink btn-lg"><i class="fas fa-warehouse"></i>
+          {{lang.global.button.inventory}}</button></a>
+      <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
             {{lang.global.button.trans}}</button></a>
         <a href="//account.riotgames.com" target="_blank"><button type="button"
-            class="btn bg-gradient-secondary btn-lg"><i class="ni ni-circle-08"></i>
+            class="btn bg-gradient-secondary btn-lg"><i class="fas fa-user-circle"></i>
             {{lang.global.button.account}}</button></a>
         <a href="/library"><button type="button" class="btn bg-gradient-success btn-lg"><i class="fas fa-book"></i>
             {{lang.global.button.library}}</button></a>
-        <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i
-              class="ni ni-atom"></i> {{lang.global.button.sponsor}}</button></a>
-        <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg"><i class="ni ni-user-run"></i>
+        <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i 
+            class="fas fa-coins"></i> {{lang.global.button.sponsor}}</button></a>
+        <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg"><i class="fas fa-door-open"></i>
             {{lang.global.button.logout}}</button></a>
       </div>
     </div>
@@ -175,7 +175,7 @@
         <div class="alert alert-pink text-white rounded" role="alert">
           <span class="alert-icon"><i class="ni ni-like-2"></i></span>
           {{lang.market.welcome.opening}} <strong>{{player.name}}</strong>#<strong>{{player.tag}}</strong><br>
-          {{lang.market.welcome.credit}} <strong>{{player.vp}}</strong> VP & <strong>{{player.rp}}</strong> RP
+          {{lang.market.welcome.credit}} <img src="/assets/img/VP.png" height=16px width=16px> <strong>{{player.vp}}</strong> <img src="/assets/img/RP.png" height=16px width=16px> <strong>{{player.rp}}</strong> 
         </div>
       </div>
     </div>

@@ -64,11 +64,12 @@ global:
     shopdefault: My Shop
     library: Skin Library
     trans: Translation Table
+    inventory: My Inventory
   description:
     line1: Valorant shop checker, help you peek your shop & nightmarket without open your game.
     line2: All usernames and passwords are not stored on the server and are only used for login.
   nav:
-    title: Valorant Shop Checker
+    title: What it is in my VALORANT Store TODAY??
   button:
     dailyshop: Daily Shop
     nightmarket: Night Market
@@ -79,6 +80,7 @@ global:
     library: Skin Library
     home: Home Page
     trans: Translation Table
+    inventory: My Inventory
 
 login:
   front:
@@ -96,7 +98,7 @@ login:
     checkbox:
       remember: Stay logged in
       nostorage: I understand that the website will only use my login name and password to log into my account.
-      eula: I agree to the <a href="/EULA" class="text-dark"><u>End User License Agreement</u></a>.
+      eula: I have already read <a href="https://gamernotitle.notion.site/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="text-dark" target="_blank"><u>FAQ</u></a> and agreed <a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#12ddcd236fdb4c6abf205eb55587ccbc" class="text-dark" target="_blank"><u>DISCLAMER</u></a>.
   button:
     login: Login
   alert:
@@ -202,13 +204,28 @@ trans:
     skins: Skins
     weapons: Weapons
 
+inventory:
+  title: Inventory
+  button:
+    close: Close
+  modal:
+    videonotavaliable: Video preview is not available on the current browser
+  welcome:
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    # <cost> {{player.costVP}} VP & {{player.costRP}} RP
+    opening: Welcome back!
+    credit: You currently have
+    cost: You have spent
+
 error:
   error500:
     tip: 500 Server Error
     error: We're very sorry, there was an error on the server
     detail:
       front: The server encountered the following error
-      solve: You can try clicking the "Reset Site Data" button below to solve this problem.<br>If you have already clicked the button below but still encounter this problem, try clearing your browser's cookies to reset the session<br>If you have tried both of the above methods, please contact the developer with this error information!
+      solve: You can try refreshing this page or clicking the "Reset Site Data" button below to solve this problem.<br>If you have already clicked the button below but still encounter this problem, try clearing your browser's cookies to reset the session<br>If you have tried both of the above methods, please contact the developer with this error information!
     button:
       reset: Reset Site Data
   error404:

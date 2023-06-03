@@ -1,0 +1,55 @@
+.alert-pink {
+    color: #fb7299;
+    background-color: #fb7299;
+    border-color: #ffffff;
+}
+
+.btn.bg-gradient-purple:hover {
+    background-image: linear-gradient(310deg, #7028e4 0%, #9290cc 100%)
+}
+
+.btn.bg-gradient-purple {
+    background-image: linear-gradient(310deg, #7028e4 0%, #9290cc 100%);
+    color: #ffffff;
+}
+
+.btn.bg-gradient-purple.focus,
+.btn.bg-gradient-purple:focus {
+  color: #fff;
+}
+
+.btn.bg-gradient-purple:not(:disabled):not(.disabled).active,
+.btn.bg-gradient-purple:not(:disabled):not(.disabled):active,
+.show>.btn.bg-gradient-purple.dropdown-toggle {
+  color: color-yiq(#7028e4);
+  background-color: #7028e4;
+}
+
+.btn.bg-gradient-purple .btn.bg-outline-purple {
+    border: 1px solid #7028e4;
+  }
+  
+  .btn.bg-gradient-pink:hover {
+    background-image: linear-gradient(310deg, #fb7299 0%, #fecfef 100%)
+}
+
+.btn.bg-gradient-pink {
+    background-image: linear-gradient(310deg, #fb7299 0%, #fecfef 100%);
+    color: #ffffff;
+}
+
+.btn.bg-gradient-pink.focus,
+.btn.bg-gradient-pink:focus {
+  color: #fff;
+}
+
+.btn.bg-gradient-pinke:not(:disabled):not(.disabled).active,
+.btn.bg-gradient-pink:not(:disabled):not(.disabled):active,
+.show>.btn.bg-gradient-pink.dropdown-toggle {
+  color: color-yiq(#fb7299);
+  background-color: #fb7299;
+}
+
+.btn.bg-gradient-pink .btn.bg-outline-pink {
+    border: 1px solid #fb7299;
+  }

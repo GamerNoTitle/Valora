@@ -26,7 +26,7 @@ metadata:
     # For Xenohunter Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/289d7473-472b-68da-9019-da9594a8a127
     EEquippableSkinLevelItem::HeartbeatAndMapSensor: 地图心跳感应器
     # For Recon Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/a8509c8d-4061-1c57-60a5-61a025f28408
-    EEquippableSkinLevelItem::Randomizer: 随机模组产生器
+    EEquippableSkinLevelItem::Randomizer: 随机模块
   weapon: 
   # 这里使用繁中是为了避免搜索冲突
   # 举个栗子：守護者 神射 的简体中文翻译是 戍卫者 正义
@@ -85,6 +85,7 @@ global:
     shopdefault: 我的商店
     library: 皮肤库
     trans: 翻译对照表
+    inventory: 我的库存
   description:
     line1: 瓦罗兰特（无畏契约）商店查看，让你不用登陆游戏也能够查看每日商店（仅支持国际服）
     line2: 所有的登录名和密码服务器均不进行存取，仅用于登录
@@ -100,6 +101,7 @@ global:
     library: 皮肤总览
     home: 返回首页
     trans: 翻译对照
+    inventory: 我的库存
 
 login:
   front:
@@ -117,7 +119,7 @@ login:
     checkbox:
       remember: 保持登录（减少登录次数）
       nostorage: 我已明白网站仅会将我的登录名和密码用于登录我的账号
-      eula: 我同意<a href="/EULA" class="text-dark"><u>最终用户许可协议</u></a>
+      eula: 我已阅读<a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#eac12e01944f4e279ff7da7b19900bb9" class="text-dark" target="_blank"><u>常见问题</u></a>并同意<a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#b3e56d8a48ab40a5953bd217e18c36a2" class="text-dark" target="_blank"><u>免责声明</u></a>
   button:
     login: 登录
     tokenlogin: 使用 Access Token 登录
@@ -220,7 +222,7 @@ library:
       operator: 冥驹（間諜）
       ares: 战神（戰神）
       odin: 奥丁（奧丁）
-      melee: 近战武器
+      melee: 近战武器（近戰）
   form:
     search:
       title: 搜索
@@ -235,13 +237,28 @@ trans:
     skins: 皮肤
     weapons: 武器
 
+inventory:
+  title: 我的库存 | Inventory
+  button:
+    close: 关闭
+  modal:
+    videonotavaliable: 当前浏览器无法预览视频
+  welcome:
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    # <cost> {{player.costVP}} VP & {{player.costRP}} RP
+    opening: 欢迎回来
+    credit: 你现在持有
+    cost: 你已经花费了
+
 error:
   error500:
     tip: 500服务器错误
     error: 肥肠抱歉，服务器发生了点错误
     detail:
       front: 服务器发生了以下错误：
-      solve: 你可以尝试点击下方的“重置网站数据”按钮来解决这个问题。<br>如果你已经点击了下面的按钮，但仍然出现了这个问题，请尝试清除浏览器的cookie来重置会话<br>如果上面这两种方法你都已经尝试过了，那么请带着此错误信息联系开发者！
+      solve: 你可以尝试【刷新网页】或者点击下方的“重置网站数据”按钮来解决这个问题。<br>如果你已经点击了下面的按钮，但仍然出现了这个问题，请尝试清除浏览器的cookie来重置会话<br>如果上面这两种方法你都已经尝试过了，那么请带着此错误信息联系开发者！
     button:
       reset: 重置网站数据
   error404:

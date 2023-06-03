@@ -10,6 +10,8 @@ This is a website that helps you peek your shop and night market of VALORANT. It
 
 There are a lot of application on the network that can help you do that and they even better than mine. If you are worried about my project, you can use theirs.
 
+You need to read FAQ before you use: [FAQ](https://gamernotitle.notion.site/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507)
+
 [Project Milestones (CHINESE)](https://github.com/users/GamerNoTitle/projects/1)
 
 ## Quick Start
@@ -86,6 +88,7 @@ After u set them, u can access your dashboard from `/profiler`
 
 [Soft-ui-design-system](https://github.com/creativetimofficial/soft-ui-design-system)
 
+[VALORANT Fandom Wiki (Price Data Source)](https://valorant.fandom.com/wiki/VALORANT_Wiki)
 
 ## Referrance
 
