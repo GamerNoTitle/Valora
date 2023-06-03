@@ -69,7 +69,7 @@ global:
     line1: Valorant shop checker, help you peek your shop & nightmarket without open your game.
     line2: All usernames and passwords are not stored on the server and are only used for login.
   nav:
-    title: Valorant Shop Checker
+    title: What it is in my VALORANT Store TODAY??
   button:
     dailyshop: Daily Shop
     nightmarket: Night Market
@@ -98,7 +98,7 @@ login:
     checkbox:
       remember: Stay logged in
       nostorage: I understand that the website will only use my login name and password to log into my account.
-      eula: I have already read <a href="https://gamernotitle.notion.site/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="text-dark" target="_blank"><u>FAQ</u></a> and agreed <a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507#12ddcd236fdb4c6abf205eb55587ccbc" class="text-dark" target="_blank"><u>DISCLAMER</u></a>.
+      eula: I have already read <a href="https://gamernotitle.notion.site/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="text-dark" target="_blank"><u>FAQ</u></a> and agreed <a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#12ddcd236fdb4c6abf205eb55587ccbc" class="text-dark" target="_blank"><u>DISCLAMER</u></a>.
   button:
     login: Login
   alert:
