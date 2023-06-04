@@ -17,13 +17,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="keywords" content="Valorant, Skin, 瓦罗兰特, 无畏契约">
-  <meta name="description" content="Valora is a site that helps you check your valorant daily shop and night market without opening the game or installing an app."/>
+  <meta name="description"
+    content="Valora is a site that helps you check your valorant daily shop and night market without opening the game or installing an app." />
   <meta name="author" content="GamerNoTitle, GamerNoTitle@outlook.com">
   <meta name="copyright" content="Copyright &copy; 2023 GamerNoTitle. All rights reserved.">
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/img-navi-valorant-red.svg">
   <link rel="icon" type="image/png" href="/assets/img/img-navi-valorant-red.svg">
   <title>
-    VSC | GamerNoTitle
+    Valora | GamerNoTitle
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -37,6 +38,16 @@
   <link id="pagestyle" href="/assets/css/soft-design-system.css?v=1.0.9" rel="stylesheet" />
   <script async defer data-website-id="381df10a-707a-4380-8b6c-b31c3e59c5f1"
     src="https://analytics.dohna.top/umami.js"></script>
+  <!-- Bootstrap 5 modals -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+    integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js"
+    integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.esm.min.js"
+    integrity="sha512-ruQ4xI8Jfep9W+qJQ8FLbxsjPVR0WvEt31XNw0mZxri2Nya9eQr7VTFsi+S7OvW0bIUI7vxF8zoaPNSq/PsvxA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     var _hmt = _hmt || [];
     (function () {
@@ -66,7 +77,7 @@
               <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
                 <li class="nav-item dropdown dropdown-hover mx-2">
                 <li class="nav-item ms-lg-auto">
-                  <a class="nav-link nav-link-icon me-2" href="https://github.com/GamerNoTitle/VSC" target="_blank">
+                  <a class="nav-link nav-link-icon me-2" href="https://github.com/GamerNoTitle/Valora" target="_blank">
                     <i class="fa fa-github me-1"></i>
                     <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
                       data-bs-placement="bottom" title="在Github查看本项目">Github</p>
@@ -75,9 +86,10 @@
                 <li class="nav-item my-auto ms-3 ms-lg-0">
                   <a href="https://t.me/LumineStelle" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i
                       class="ni ni-send"></i> Telegram</a>
-                  <a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i 
-                    class="fas fa-question"></i> FAQ</a>
-                  </li>
+                  <a href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507"
+                    class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i class="fas fa-question"></i>
+                    FAQ</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -130,15 +142,15 @@
 
   <div class="container-fluid px-0 overflow-hidden">
     <div class="row text-center py-2 mt-3">
-        <div class="col-12 mx-auto">
-          <a href="/library"><button type="button" class="btn bg-gradient-success btn-lg"><i
-            class="fas fa-book"></i> {{lang.global.button.library}}</button></a>
-          <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
-            {{lang.global.button.trans}}</button></a>            
-          <a href="//bili33.top/sponsors" target="_blank"><button type="button"
-            class="btn bg-gradient-primary btn-lg"><i class="ni ni-atom"></i> {{lang.global.button.sponsor}}</button></a>
-          </div>
+      <div class="col-12 mx-auto">
+        <a href="/library"><button type="button" class="btn bg-gradient-success btn-lg"><i class="fas fa-book"></i>
+            {{lang.global.button.library}}</button></a>
+        <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
+            {{lang.global.button.trans}}</button></a>
+        <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i
+              class="ni ni-atom"></i> {{lang.global.button.sponsor}}</button></a>
       </div>
+    </div>
   </div>
 
   <section>
@@ -157,14 +169,14 @@
                   <label>{{lang.login.form.username.title}}</label>
                   <div class="input-group mb-4">
                     <input class="form-control" placeholder="{{lang.login.form.username.placeholder}}" name="Username"
-                      type="text">
+                      type="text" onchange="checkLoginInputs()">
                   </div>
                 </div>
                 <div class="col-md-6 ps-2">
                   <label>{{lang.login.form.password.title}}</label>
                   <div class="input-group">
                     <input type="password" class="form-control" placeholder="{{lang.login.form.password.placeholder}}"
-                      name="Password">
+                      name="Password" onchange="checkLoginInputs()">
                   </div>
                 </div>
               </div>
@@ -172,7 +184,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-check form-switch mb-4">
-                    <input class="form-check-input" type="checkbox" name="CheckedRemember">
+                    <input class="form-check-input" type="checkbox" name="CheckedRemember"
+                      onchange="checkLoginInputs()">
                     <label class="form-check-label"
                       for="flexSwitchCheckDefault">{{lang.login.form.checkbox.remember}}</label>
                   </div>
@@ -180,7 +193,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-check form-switch mb-4">
-                      <input class="form-check-input" type="checkbox" name="CheckedRule">
+                      <input class="form-check-input" type="checkbox" name="CheckedRule" onchange="checkLoginInputs()">
                       <label class="form-check-label"
                         for="flexSwitchCheckDefault">{{lang.login.form.checkbox.nostorage}}</label>
                     </div>
@@ -188,7 +201,8 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-check form-switch mb-4">
-                        <input class="form-check-input" type="checkbox" name="CheckedEULA">
+                        <input class="form-check-input" type="checkbox" name="CheckedEULA"
+                          onchange="checkLoginInputs()">
                         <label class="form-check-label"
                           for="flexSwitchCheckDefault">{{lang.login.form.checkbox.eula|safe}}</label>
                       </div>
@@ -208,17 +222,147 @@
                     </div>
                     {% endif %}
                     <div class="col-md-12">
-                      <button type="submit" class="btn bg-gradient-dark w-100"><img
+                      <button type="submit" class="btn bg-gradient-dark w-100" id="login" disabled><img
                           src="/assets/img/img-navi-valorant-white.svg">{{lang.login.button.login}}</button>
+                    </div>
+                    <div class="col-md-12">
+                      <button type="button" class="btn bg-gradient-dark w-100" data-bs-toggle="modal"
+                        data-bs-target="#cklogin"><img
+                          src="/assets/img/img-navi-valorant-white.svg">{{lang.login.button.tokenlogin}}</button>
                     </div>
                   </div>
                 </div>
+              </div>
           </form>
+
         </div>
       </div>
     </div>
 
   </section>
 
+  <!-- Modal -->
+  <div class="modal fade" id="cklogin" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{lang.login.modal.title}}</h5>
+        </div>
+        <div class="modal-body">
+          <div align="center">
+          <p>{{lang.login.modal.reminder|safe}}</p>
+        </div>
+          <form role="form" name="search" method="post" autocomplete="off" action="/api/cklogin">
+            <div class="row">
+              <label>{{lang.login.modal.form.token.title}}</label>
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="{{lang.login.modal.form.token.placeholder}}"
+                  name="accesstoken" id="accesstoken-input" oninput="checkInputs()">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <label>{{lang.login.modal.form.userid.title}}</label>
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="{{lang.login.modal.form.userid.placeholder}}" name="userid" id="userid-input"
+                  oninput="checkInputs()">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <label>{{lang.login.modal.form.region.title}}</label>
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="{{lang.login.modal.form.region.placeholder}}" name="region" id="region-input"
+                  oninput="checkInputs()">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-check form-switch mb-4">
+                  <input class="form-check-input" type="checkbox" name="CheckedEULA" id="checked-eula-input"
+                    onchange="checkInputs()">
+                  <label class="form-check-label"
+                    for="flexSwitchCheckDefault">{{lang.login.form.checkbox.eula|safe}}</label>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="submit" class="btn bg-gradient-dark w-100" id="tokenlogin-submit" disabled><img
+                      src="/assets/img/img-navi-valorant-white.svg">{{lang.login.modal.form.login}}</button>
+                </div>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn bg-gradient-primary"
+            data-bs-dismiss="modal">{{lang.login.modal.form.close}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function checkLoginInputs() {
+      const usernameInput = document.getElementsByName('Username')[0];
+      const passwordInput = document.getElementsByName('Password')[0];
+      const checkedRuleInput = document.getElementsByName('CheckedRule')[0];
+      const checkedEULAInput = document.getElementsByName('CheckedEULA')[0];
+      const submitButton = document.getElementById('login');
+
+      // 检查username和password是否非空
+      if (usernameInput.value.trim() === '' || passwordInput.value.trim() === '') {
+        submitButton.disabled = true;
+        return;
+      }
+
+      // 检查checkbox是否都勾选
+      if (!checkedRuleInput.checked || !checkedEULAInput.checked) {
+        submitButton.disabled = true;
+        return;
+      }
+
+      // 如果所有条件都满足，则去掉按钮的disabled属性
+      submitButton.disabled = false;
+    }
+  </script>
+  <script>
+    function checkInputs() {
+      const accessTokenInput = document.getElementById('accesstoken-input');
+      const userIdInput = document.getElementById('userid-input');
+      const regionInput = document.getElementById('region-input');
+      const checkedEULAInput = document.getElementById('checked-eula-input');
+      const submitButton = document.getElementById('tokenlogin-submit');
+
+      // 检查accessToken是否非空
+      if (accessTokenInput.value.trim() === '') {
+        submitButton.disabled = true;
+        return;
+      }
+
+      // 检查userId是否为UUID格式
+      const uuidRegex = /^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/;
+      if (!uuidRegex.test(userIdInput.value)) {
+        submitButton.disabled = true;
+        return;
+      }
+
+      // 检查region是否为有效的地区代码
+      const validRegions = ['ap', 'kr', 'eu', 'na'];
+      if (!validRegions.includes(regionInput.value.toLowerCase())) {
+        submitButton.disabled = true;
+        return;
+      }
+
+      // 检查checkbox是否都勾选
+      if (!checkedEULAInput.checked) {
+        submitButton.disabled = true;
+        return;
+      }
+
+      // 如果所有条件都满足，则去掉按钮的disabled属性
+      submitButton.disabled = false;
+    }
+  </script>
 
 </body>

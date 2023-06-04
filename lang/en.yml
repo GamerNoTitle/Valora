@@ -101,10 +101,27 @@ login:
       eula: I have already read <a href="https://gamernotitle.notion.site/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="text-dark" target="_blank"><u>FAQ</u></a> and agreed <a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#12ddcd236fdb4c6abf205eb55587ccbc" class="text-dark" target="_blank"><u>DISCLAMER</u></a>.
   button:
     login: Login
+    tokenlogin: Log in with Access Token
   alert:
     nocheck: Please enter your username and password correctly, and check the two options below before clicking login!
     loginerror: Login error, please check your account password and try again!
-
+  modal:
+    title: Log in with Access Token
+    button: 
+      close: Close
+    reminder: Please read this document before logging in -> <u><a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#50ccf74f581e493f8fab64544519adc1">How to log in with Access Token</a></u>
+    form:
+      token:
+        title: Access Token
+        placeholder: Please enter your Access Token
+      userid:
+        title: User ID
+        placeholder: Please enter your User ID
+      region:
+        title: Account region (ap/na/eu/kr)
+        placeholder: Please enter the region of your account
+      login: Log in with Access Token
+      close: Close
 mfa:
   front:
     title: Two-Step Verification

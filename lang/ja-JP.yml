@@ -101,10 +101,27 @@ login:
       eula: 私はすでに<a href="https://gamernotitle.notion.site/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="text-dark" target="_blank"><u>FAQ</u></a>を読み、<a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#12ddcd236fdb4c6abf205eb55587ccbc" class="text-dark" target="_blank"><u>免責事項</u></a>に同意します。
   button:
     login: ログイン
+    tokenlogin: Access Token を使用してログイン
   alert:
     nocheck: ユーザー名とパスワードを正しく入力し、ログインする前に下の2つのオプションを確認してください！
     loginerror: ログインエラーが発生しました。アカウントパスワードを確認してから、再度お試しください！
-
+  modal:
+    title: Access Token を使用してログイン
+    button:
+      close: 閉じる
+    reminder: ログインする前にこのドキュメントを読んでください -> <u><a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#50ccf74f581e493f8fab64544519adc1">Access Token を使用してログインする方法</a></u>
+    form:
+      token:
+        title: Access Token
+        placeholder: あなたの Access Token を入力してください
+      userid:
+        title: ユーザー ID
+        placeholder: あなたのユーザー ID を入力してください
+      region:
+        title: アカウントの地域（ap/na/eu/kr）
+        placeholder: あなたのアカウントの地域を入力してください
+      login: Access Token を使用してログイン
+      close: 閉じる
 mfa:
   front:
     title: 二段階認証

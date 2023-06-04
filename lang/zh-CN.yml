@@ -31,24 +31,6 @@ metadata:
   # 这里使用繁中是为了避免搜索冲突
   # 举个栗子：守護者 神射 的简体中文翻译是 戍卫者 正义
   # 所以用 戍卫 这个关键词搜索就会错误地搜索到非Guardian枪械
-    # classic: 标配
-    # shorty: 短炮
-    # frenzy: 狂怒
-    # ghost: 鬼魅
-    # sheriff: 正义
-    # stinger: 蜂刺
-    # spectre: 骇灵
-    # bucky: 雄鹿
-    # judge: 判官
-    # bulldog: 獠犬
-    # guardian: 戍卫
-    # phantom: 幻影
-    # vandal: 狂徒
-    # marshal: 飞将
-    # operator: 冥驹
-    # ares: 战神
-    # odin: 奥丁
-    # melee: 近战武器
     classic: 制式手槍
     shorty: 短管
     frenzy: 狂弒
@@ -90,7 +72,7 @@ global:
     line1: 瓦罗兰特（无畏契约）商店查看，让你不用登陆游戏也能够查看每日商店（仅支持国际服）
     line2: 所有的登录名和密码服务器均不进行存取，仅用于登录
   nav:
-    title: 今天的商店又刷了什么？
+    title: RNM！拳头！退钱！！
   button:
     dailyshop: 每日商店
     nightmarket: 折扣夜市
@@ -130,13 +112,19 @@ login:
     title: 使用 Access Token 登录
     button: 
       close: 关闭
+    reminder: 登录前请先阅读此文档 -> <u><a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#9f5e39f5691942a3921470cf991279e1">如何使用Access Token登录</a></u>
     form:
       token:
         title: Access Token
-        placeholder: 请输入访问指定网址后的链接或者直接输入你的Access Token
+        placeholder: 请输入你的Access Token
+      userid:
+        title: 用户ID
+        placeholder: 请输入你的userid
+      region:
+        title: 账号地区（ap/na/eu/kr）
+        placeholder: 请输入你的账号所在的地区
       login: 使用 Access Token 登录
       close: 关闭
-      remember: 保持登录（减少登录次数）
 
 mfa:
   front:

@@ -24,7 +24,7 @@ def home(app: Flask, request: Request):
         lang = 'en'
     session["lang"] = str(request.accept_languages.best_match(
         app.config['BABEL_LANGUAGES']))
-    if session.get('username', None):
+    if session.get('access_token', None):
         return redirect('/market', 301)
     else:
         response = make_response(render_template(
@@ -74,7 +74,7 @@ def market(app: Flask, request: Request):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
-    if not name:
+    if not access_token:
         redirect('/')
     user = player(access_token, entitlement, region, userid)
     device = request.headers.get('User-Agent', '')
@@ -107,7 +107,7 @@ def market(app: Flask, request: Request):
                                weapon3={
                                    "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img, "levels": weapon3.levels, "chromas": weapon3.chromas},
                                player={'name': name, 'tag': tag, 'vp': user.vp, 'rp': user.rp}, pc=pc,
-                               lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
+                               lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader), accesstokenlogin=session.get('accesstokenlogin'))
     else:   # Login Expired
         # response = make_response(redirect('/', 302))
         # for cookie in request.cookies:
@@ -182,14 +182,14 @@ def night(app: Flask, request: Request):
                                        "name": weapon5.name, "cost": weapon5.cost, "img": weapon5.base_img, "discount": weapon5.discount, "per": weapon5.per, "levels": weapon5.levels, "chromas": weapon5.chromas},
                                    player={'name': name, 'tag': tag,
                                            'vp': user.vp, 'rp': user.rp},
-                                   pc=pc, lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
+                                   pc=pc, lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader), accesstokenlogin=session.get('accesstokenlogin'))
         else:
             return render_template('myMarket.html', night=True,
                                    player={'name': name, 'tag': tag,
                                            'vp': user.vp, 'rp': user.rp},
                                    pc=pc,
                                    nightmarket_notavaliable=True,
-                                   lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
+                                   lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader), accesstokenlogin=session.get('accesstokenlogin'))
     else:   # Login Expired
         return redirect('/api/reauth')
 
@@ -530,6 +530,6 @@ def inventory(app: Flask, request: Request):
             'rp': Player.rp
         }
         return render_template('inventory.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader),
-                            player = p, weapon_list = weapon_list, costVP = VP_count, costRP = RP_count)
+                            player = p, weapon_list = weapon_list, costVP = VP_count, costRP = RP_count, accesstokenlogin=session.get('accesstokenlogin'))
     else:   # Login Expired
         return redirect('/api/reauth')

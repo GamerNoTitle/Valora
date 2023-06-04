@@ -174,6 +174,11 @@ def reauth_handler():
 def reset_handler():
     return reset(app, request)
 
+@ app.route('/api/cklogin', methods=['POST'])
+def cklogin_handler():
+    return cklogin(app, request)
+
+# Other Functions
 
 @ app.route('/assets/<path:filename>')
 def serve_static(filename):
