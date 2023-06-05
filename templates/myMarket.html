@@ -174,7 +174,7 @@
       <div class="col-12 mx-auto">
         <div class="alert alert-pink text-white rounded" role="alert">
           <span class="alert-icon"><i class="ni ni-like-2"></i></span>
-          {{lang.market.welcome.opening}} <strong>{{player.name}}</strong>#<strong>{{player.tag}}</strong><br>
+          {{lang.market.welcome.opening}} {% if not accesstokenlogin %}<strong>{{player.name}}</strong>#<strong>{{player.tag}}</strong><br> {% else %} <strong>N/A</strong><br> {% endif %}
           {{lang.market.welcome.credit}} <img src="/assets/img/VP.png" height=16px width=16px> <strong>{{player.vp}}</strong> <img src="/assets/img/RP.png" height=16px width=16px> <strong>{{player.rp}}</strong> 
         </div>
       </div>

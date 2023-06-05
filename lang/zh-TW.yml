@@ -69,7 +69,7 @@ global:
     line1: 瓦羅蘭特（無畏契約）商店查看，讓你不用登錄遊戲也能夠查看每日商店（僅支持國際服）
     line2: 所有的登錄名和密碼服務器均不進行存取，僅用於登錄
   nav:
-    title: 今天的商店又刷了什麼？
+    title: 靠北啦，拳頭退款喇！
   button:
     dailyshop: 每日商店
     nightmarket: 折扣夜市
@@ -101,10 +101,27 @@ login:
       eula: 我已閱讀<a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#eac12e01944f4e279ff7da7b19900bb9" class="text-dark" target="_blank"><u>常見問題</u></a>並同意<a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#b3e56d8a48ab40a5953bd217e18c36a2" class="text-dark" target="_blank"><u>免責聲明</u></a>
   button:
     login: 登錄
+    tokenlogin: 使用 Access Token 登入
   alert:
     nocheck: 請先正確輸入用戶名和密碼，並勾選下面兩項後再點登陸！
     loginerror: 登陸出錯，請檢查帳號密碼，然後重試！
-
+modal:
+    title: 使用 Access Token 登入
+    button: 
+      close: 關閉
+    reminder: 登入前請先閱讀此文件 -> <u><a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#9f5e39f5691942a3921470cf991279e1">如何使用 Access Token 登入</a></u>
+    form:
+      token:
+        title: Access Token
+        placeholder: 請輸入您的 Access Token
+      userid:
+        title: 使用者 ID
+        placeholder: 請輸入您的使用者 ID
+      region:
+        title: 帳號地區（ap/na/eu/kr）
+        placeholder: 請輸入您的帳號所在地區
+      login: 使用 Access Token 登入
+      close: 關閉
 mfa:
   front:
     title: 二步驗證
@@ -218,7 +235,6 @@ inventory:
     opening: 歡迎回來
     credit: 你現在持有
     cost: 你當前消費了
-
 
 error:
   error500:

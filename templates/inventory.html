@@ -80,7 +80,7 @@
               <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
                 <li class="nav-item dropdown dropdown-hover mx-2">
                 <li class="nav-item ms-lg-auto">
-                  <a class="nav-link nav-link-icon me-2" href="https://github.com/GamerNoTitle/VSC" target="_blank">
+                  <a class="nav-link nav-link-icon me-2" href="https://github.com/GamerNoTitle/Valora" target="_blank">
                     <i class="fa fa-github me-1"></i>
                     <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
                       data-bs-placement="bottom" title="在Github查看本项目">Github</p>
@@ -145,7 +145,7 @@
   <div class="container-fluid px-0 overflow-hidden">
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
-        <a href="/"><button type="button" class="btn bg-gradient-info btn-lg"><i class="fas fa-home"></i>
+        <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg"><i class="fas fa-home"></i>
             {{lang.global.button.dailyshop}}</button></a>
         <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
             {{lang.global.button.trans}}</button></a>
@@ -163,7 +163,7 @@
       <div class="col-12 mx-auto">
         <div class="alert alert-pink text-white rounded" role="alert">
           <span class="alert-icon"><i class="ni ni-like-2"></i></span>
-          {{lang.inventory.welcome.opening}} <strong>{{player.name}}</strong>#<strong>{{player.tag}}</strong><br>
+          {{lang.inventory.welcome.opening}} {% if not accesstokenlogin %}<strong>{{player.name}}</strong>#<strong>{{player.tag}}</strong><br> {% else %} <strong>N/A</strong><br> {% endif %}
           {{lang.inventory.welcome.credit}} <img src="/assets/img/VP.png" height=16px width=16px>
           <strong>{{player.vp}}</strong> <img src="/assets/img/RP.png" height=16px width=16px>
           <strong>{{player.rp}}</strong><br>

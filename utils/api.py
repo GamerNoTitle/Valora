@@ -4,7 +4,7 @@ import yaml
 import _thread
 from parse import parse
 from flask import Flask, render_template, redirect, make_response, session, Request
-from utils.RiotLogin import Auth
+from utils.RiotLogin import Auth, SSLAdapter
 from utils.Cache import UpdateOfferCache
 
 
@@ -172,3 +172,28 @@ def reset(app: Flask, request: Request):
         response.delete_cookie(cookie)
     session.clear()
     return response
+
+def cklogin(app: Flask, request: Request):
+    access = request.form.get('accesstoken')
+    userid = request.form.get('userid')
+    # Get Riotgames Session
+    s = requests.session()
+    s.mount('https://', SSLAdapter())
+    access_token = access
+    entitle_url = 'https://entitlements.auth.riotgames.com/api/token/v1'
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': f'Bearer {access_token}'
+    }
+    res = s.post(entitle_url, headers=headers)
+    entitlement = res.json().get('entitlements_token')
+    session['access_token'] = access_token
+    session['entitlement'] = entitlement
+    session['region'] = request.form.get('region', 'ap')
+    session['user-session'] = s
+    session['user_id'] = userid
+    session['cookie'] = s.cookies
+    session['accesstokenlogin'] = True
+    response = make_response(redirect('/market'))
+    return response
+
