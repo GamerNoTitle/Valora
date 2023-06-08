@@ -140,6 +140,7 @@ def trans_handler(t):
 def inventory_handler():
     return inventory(app, request)
 
+
 @app.route('/profiler')
 def redirectprofiler():
     if os.environ.get('PROFILER'):
@@ -174,11 +175,13 @@ def reauth_handler():
 def reset_handler():
     return reset(app, request)
 
+
 @ app.route('/api/cklogin', methods=['POST'])
 def cklogin_handler():
     return cklogin(app, request)
 
 # Other Functions
+
 
 @ app.route('/assets/<path:filename>')
 def serve_static(filename):
@@ -198,6 +201,18 @@ def internal_server_error_handler(e):
 @ app.errorhandler(404)
 def not_found_error_handler(e):
     return not_found_error(app, request, e)
+
+
+@ app.errorhandler(requests.exceptions.ConnectTimeout)
+def timeout_handler(e):
+    return requests_timeout_error(app, request, e)
+
+
+@ app.errorhandler(sqlite3.DatabaseError)
+@ app.errorhandler(sqlite3.IntegrityError)
+@ app.errorhandler(sqlite3.OperationalError)
+def database_error_handler(e):
+    return sqlite3_error(app, request, e)
 
 # @ app.route('/error/500', methods=['GET'])
 # def internal_server_error_preview():
