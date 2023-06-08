@@ -581,7 +581,7 @@
             <!-- Button trigger modal -->
             <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
               data-bs-target="#WEAPON-{{chroma.uuid|escape}}">
-              {{chroma.displayName}}
+              {{chroma.displayName|safe}}
             </button>
 
             <!-- Modal -->
@@ -611,8 +611,6 @@
                 </div>
               </div>
             </div>
-          </div>
-          </script>
           {% endif %}
           {% endfor %}
         </div>
