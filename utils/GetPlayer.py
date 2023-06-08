@@ -55,6 +55,8 @@ class player:
         self.user_id = user_id
         response = requests.get(
             f'{server}{Api.store}{user_id}', headers=self.__header, timeout=30)
+        if response.status_code >= 500:
+            raise requests.exceptions.ConnectionError(f'It seems that Riot Games server run into an error ({response.status_code}): ' + response.text)
         self.shop = response.json()
         if response.status_code == 400 or response.status_code == 404:
             self.auth = False
@@ -70,6 +72,7 @@ class player:
             self.rp = data['Balances']['e59aa87c-4cbf-517a-5983-6e81511be9b7']
         except KeyError:
             self.auth = False
+        self.wallet = data
 
     def getSkins(self):
         data = requests.get(f'{self.server}{Api.owned}{self.user_id}/{Options.skins}', headers=self.__header, timeout=30).json()
@@ -77,6 +80,7 @@ class player:
         owned_skins = []
         for skin in skins:
             owned_skins.append(skin['ItemID'].upper())
+        self.skins = skins
         return skins, owned_skins
 
     def getChromas(self):
@@ -85,7 +89,9 @@ class player:
         owned_chromas = []
         for chroma in chromas:
             owned_chromas.append(chroma['ItemID'].upper())
+        self.chromas = chromas
         return chromas, owned_chromas
+
 
 
 if __name__ == '__main__':

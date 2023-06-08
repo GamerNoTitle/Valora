@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="keywords" content="Valorant, Skin, 瓦罗兰特, 无畏契约">
-  <meta name="description" content="Valora (also named Valorant Shop Checker) is a site that helps you check your valorant daily shop and night market without opening the game or installing an app."/>
+  <meta name="description"
+    content="Valora (also named Valorant Shop Checker) is a site that helps you check your valorant daily shop and night market without opening the game or installing an app." />
   <meta name="author" content="GamerNoTitle, GamerNoTitle@outlook.com">
   <meta name="copyright" content="Copyright &copy; 2023 GamerNoTitle. All rights reserved.">
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/img-navi-valorant-red.svg">
@@ -89,9 +90,10 @@
                 <li class="nav-item my-auto ms-3 ms-lg-0">
                   <a href="https://t.me/LumineStelle" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i
                       class="ni ni-send"></i> Telegram</a>
-                  <a href="https://gamernotitle.notion.site/gamernotitle/Valora-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i 
-                    class="fas fa-question"></i> FAQ</a>
-                  </li>
+                  <a href="https://gamernotitle.notion.site/gamernotitle/Valora-FAQ-86f072f8cebf4a8d9453a795b24cd507"
+                    class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i class="fas fa-question"></i>
+                    FAQ</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -149,21 +151,23 @@
         <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg"><i class="fas fa-shopping-cart"></i>
             {{lang.global.button.dailyshop}}</button></a>
         {% else %}
-        <a href="/market/night"><button type="button" class="btn bg-gradient-info btn-lg"><i class="fas fa-shopping-bag"></i></i>
+        <a href="/market/night"><button type="button" class="btn bg-gradient-info btn-lg"><i
+              class="fas fa-shopping-bag"></i></i>
             {{lang.global.button.nightmarket}}</button></a>
         {% endif %}
         <a href="/inventory"><button type="button" class="btn bg-gradient-pink btn-lg"><i class="fas fa-warehouse"></i>
-          {{lang.global.button.inventory}}</button></a>
-      <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
+            {{lang.global.button.inventory}}</button></a>
+        <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
             {{lang.global.button.trans}}</button></a>
         <a href="//account.riotgames.com" target="_blank"><button type="button"
             class="btn bg-gradient-secondary btn-lg"><i class="fas fa-user-circle"></i>
             {{lang.global.button.account}}</button></a>
         <a href="/library"><button type="button" class="btn bg-gradient-success btn-lg"><i class="fas fa-book"></i>
             {{lang.global.button.library}}</button></a>
-        <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i 
-            class="fas fa-coins"></i> {{lang.global.button.sponsor}}</button></a>
-        <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg"><i class="fas fa-door-open"></i>
+        <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i
+              class="fas fa-coins"></i> {{lang.global.button.sponsor}}</button></a>
+        <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg"><i
+              class="fas fa-door-open"></i>
             {{lang.global.button.logout}}</button></a>
       </div>
     </div>
@@ -174,8 +178,12 @@
       <div class="col-12 mx-auto">
         <div class="alert alert-pink text-white rounded" role="alert">
           <span class="alert-icon"><i class="ni ni-like-2"></i></span>
-          {{lang.market.welcome.opening}} {% if not accesstokenlogin %}<strong>{{player.name}}</strong>#<strong>{{player.tag}}</strong><br> {% else %} <strong>N/A</strong><br> {% endif %}
-          {{lang.market.welcome.credit}} <img src="/assets/img/VP.png" height=16px width=16px> <strong>{{player.vp}}</strong> <img src="/assets/img/RP.png" height=16px width=16px> <strong>{{player.rp}}</strong> 
+          {{lang.market.welcome.opening}} {% if not accesstokenlogin
+          %}<strong>{{player.name}}</strong>#<strong>{{player.tag}}</strong><br> {% else %} <strong>N/A</strong><br> {%
+          endif %}
+          {{lang.market.welcome.credit}} <img src="/assets/img/VP.png" height=16px width=16px>
+          <strong>{{player.vp}}</strong> <img src="/assets/img/RP.png" height=16px width=16px>
+          <strong>{{player.rp}}</strong>
         </div>
       </div>
     </div>
@@ -184,139 +192,21 @@
   <!-- Desktop Devices -->
   {% if market %}
   <!-- <div class="container"> -->
-    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.market.title}}</h1>
-    <br>
-    <div class="table-responsive">
-      <table class="table" id="market-table" width=100%>
-        <thead>
-          <tr>
-            <th class="text-center">{{lang.market.table.skinname}}</th>
-            <th class="text-center">{{lang.market.table.skinimg}}</th>
-            <th class="text-center"><img src="/assets/img/VP-black.png" width=24px height=24px> {{lang.market.table.skincost}}</th>
-            <th class="text-center">{{lang.market.table.skinpreview}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for weapon in [weapon0, weapon1, weapon2, weapon3] %}
-          <tr>
-            <td class="text-center">
-              <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
-            </td>
-            <td class="text-center">
-              <div class="gun-image"><a href="{{weapon.img|safe}}" data-fancybox="gallery"><img height=50px
-                    src={{weapon.img|safe}}></a></div>
-            </td>
-            <td class="text-center">
-              <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.cost|safe}}</h3>
-            </td>
-            <td>
-              {% for level in weapon.levels %}
-              {% if level.displayName != '' %}
-              <!-- Button trigger modal -->
-              <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
-                data-bs-target="#WEAPON-{{level.uuid|escape}}">
-                {{level.displayName}}: {{level.levelItem}}
-              </button>
-
-              <!-- Modal -->
-              <div class="modal fade" id="WEAPON-{{level.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">{{weapon.name|safe}} {{level.displayName}}</h5>
-                    </div>
-                    <div class="modal-body">
-                      <video width=100% controls>
-                        <source src="{{level.streamedVideo}}" type="video/mp4">
-                        {{lang.market.modal.videonotavaliable}}
-                      </video>
-                      <br>
-                      <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
-                        请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn bg-gradient-primary"
-                        data-bs-dismiss="modal">{{lang.market.button.close}}</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-              {% endfor %}
-              <br>
-              {% for chroma in weapon.chromas %}
-              {% if chroma.displayName != '' %}
-              <!-- Button trigger modal -->
-              <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
-                data-bs-target="#WEAPON-{{chroma.uuid|escape}}">
-                {{chroma.displayName}}
-              </button>
-
-              <!-- Modal -->
-              <div class="modal fade" id="WEAPON-{{chroma.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">{{weapon.name|safe}} {{chroma.displayName}}</h5>
-                    </div>
-                    <div class="modal-body">
-                      {% if chroma.streamedVideo %}
-                      <video width=100% controls>
-                        <source src="{{chroma.streamedVideo}}" type="video/mp4">
-                        {{lang.market.modal.videonotavaliable}}
-                      </video>
-                      <br>
-                      <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
-                        请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
-                      {% else %}
-                      <img width="100%" src="{{chroma.fullRender}}">
-                      {% endif %}
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn bg-gradient-primary"
-                        data-bs-dismiss="modal">{{lang.market.button.close}}</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              </script>
-              {% endif %}
-              {% endfor %}
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  <!-- </div> -->
-  {% endif %}
-
-  {% if night %}
-  {% if nightmarket_notavaliable %}
-  <div class="container">
-    <div class="row text-center py-2 mt-3">
-      <div class="col-12 mx-auto">
-        <div class="alert alert-danger text-white rounded role=" alert">
-          {{lang.nightmarket.notavaliable}}
-        </div>
-      </div>
-    </div>
-  </div>
-  {% else %}
-  <!-- <div class="container"> -->
-    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.nightmarket.title}}</h1>
-    <br>
-    <div class="table-responsive">
-      <table class="table" id="market-table">
-        <thead>
-          <tr>
-            <th class="text-center">{{lang.nightmarket.table.skinname}}</th>
-            <th class="text-center">{{lang.nightmarket.table.skinimg}}</th>
-            <th class="text-center"><img src="/assets/img/VP-black.png" width=24px height=24px> {{lang.nightmarket.table.skincost}}</th>
-            <th class="text-center">{{lang.nightmarket.table.skinpreview}}</th>
-          </tr>
-        </thead>
-        {% for weapon in [weapon0, weapon1, weapon2, weapon3, weapon4, weapon5] %}
+  <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.market.title}}</h1>
+  <br>
+  <div class="table-responsive">
+    <table class="table" id="market-table" width=100%>
+      <thead>
+        <tr>
+          <th class="text-center">{{lang.market.table.skinname}}</th>
+          <th class="text-center">{{lang.market.table.skinimg}}</th>
+          <th class="text-center"><img src="/assets/img/VP-black.png" width=24px height=24px>
+            {{lang.market.table.skincost}}</th>
+          <th class="text-center">{{lang.market.table.skinpreview}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for weapon in [weapon0, weapon1, weapon2, weapon3] %}
         <tr>
           <td class="text-center">
             <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
@@ -326,8 +216,7 @@
                   src={{weapon.img|safe}}></a></div>
           </td>
           <td class="text-center">
-            <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.cost|safe}} → {{weapon.discount|safe}}
-              ({{weapon.per|safe}}% off)</h3>
+            <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.cost|safe}}</h3>
           </td>
           <td>
             {% for level in weapon.levels %}
@@ -348,15 +237,15 @@
                   <div class="modal-body">
                     <video width=100% controls>
                       <source src="{{level.streamedVideo}}" type="video/mp4">
-                      {{lang.nightmarket.modal.videonotavaliable}}
+                      {{lang.market.modal.videonotavaliable}}
                     </video>
                     <br>
-                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
-                    </p> -->
+                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
+                        请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-primary"
-                      data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
+                      data-bs-dismiss="modal">{{lang.market.button.close}}</button>
                   </div>
                 </div>
               </div>
@@ -383,18 +272,18 @@
                     {% if chroma.streamedVideo %}
                     <video width=100% controls>
                       <source src="{{chroma.streamedVideo}}" type="video/mp4">
-                      {{lang.nightmarket.modal.videonotavaliable}}
+                      {{lang.market.modal.videonotavaliable}}
                     </video>
                     <br>
-                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
-                    </p> -->
+                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
+                        请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
                     {% else %}
                     <img width="100%" src="{{chroma.fullRender}}">
                     {% endif %}
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-primary"
-                      data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
+                      data-bs-dismiss="modal">{{lang.market.button.close}}</button>
                   </div>
                 </div>
               </div>
@@ -405,9 +294,133 @@
           </td>
         </tr>
         {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <!-- </div> -->
+  {% endif %}
 
-      </table>
+  {% if night %}
+  {% if nightmarket_notavaliable %}
+  <div class="container">
+    <div class="row text-center py-2 mt-3">
+      <div class="col-12 mx-auto">
+        <div class="alert alert-danger text-white rounded" role="alert">
+          {{lang.nightmarket.notavaliable}}
+          <a href="https://status.riotgames.com/valorant?region=ap&locale=en_US"> <button type="button"
+              class="btn bg-gradient-danger" data-bs-dismiss="modal">VALORANT Services Status</button>
+          </a>
+        </div>
+      </div>
     </div>
+  </div>
+  {% else %}
+  <!-- <div class="container"> -->
+  <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.nightmarket.title}}</h1>
+  <br>
+  <div class="table-responsive">
+    <table class="table" id="market-table">
+      <thead>
+        <tr>
+          <th class="text-center">{{lang.nightmarket.table.skinname}}</th>
+          <th class="text-center">{{lang.nightmarket.table.skinimg}}</th>
+          <th class="text-center"><img src="/assets/img/VP-black.png" width=24px height=24px>
+            {{lang.nightmarket.table.skincost}}</th>
+          <th class="text-center">{{lang.nightmarket.table.skinpreview}}</th>
+        </tr>
+      </thead>
+      {% for weapon in [weapon0, weapon1, weapon2, weapon3, weapon4, weapon5] %}
+      <tr>
+        <td class="text-center">
+          <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
+        </td>
+        <td class="text-center">
+          <div class="gun-image"><a href="{{weapon.img|safe}}" data-fancybox="gallery"><img height=50px
+                src={{weapon.img|safe}}></a></div>
+        </td>
+        <td class="text-center">
+          <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.cost|safe}} → {{weapon.discount|safe}}
+            ({{weapon.per|safe}}% off)</h3>
+        </td>
+        <td>
+          {% for level in weapon.levels %}
+          {% if level.displayName != '' %}
+          <!-- Button trigger modal -->
+          <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
+            data-bs-target="#WEAPON-{{level.uuid|escape}}">
+            {{level.displayName}}: {{level.levelItem}}
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="WEAPON-{{level.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">{{weapon.name|safe}} {{level.displayName}}</h5>
+                </div>
+                <div class="modal-body">
+                  <video width=100% controls>
+                    <source src="{{level.streamedVideo}}" type="video/mp4">
+                    {{lang.nightmarket.modal.videonotavaliable}}
+                  </video>
+                  <br>
+                  <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
+                    </p> -->
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn bg-gradient-primary"
+                    data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+          <br>
+          {% for chroma in weapon.chromas %}
+          {% if chroma.displayName != '' %}
+          <!-- Button trigger modal -->
+          <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
+            data-bs-target="#WEAPON-{{chroma.uuid|escape}}">
+            {{chroma.displayName}}
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="WEAPON-{{chroma.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">{{weapon.name|safe}} {{chroma.displayName}}</h5>
+                </div>
+                <div class="modal-body">
+                  {% if chroma.streamedVideo %}
+                  <video width=100% controls>
+                    <source src="{{chroma.streamedVideo}}" type="video/mp4">
+                    {{lang.nightmarket.modal.videonotavaliable}}
+                  </video>
+                  <br>
+                  <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
+                    </p> -->
+                  {% else %}
+                  <img width="100%" src="{{chroma.fullRender}}">
+                  {% endif %}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn bg-gradient-primary"
+                    data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          </script>
+          {% endif %}
+          {% endfor %}
+        </td>
+      </tr>
+      {% endfor %}
+
+    </table>
+  </div>
   <!-- </div> -->
   {% endif %}
   {% endif %}
@@ -611,13 +624,13 @@
                 </div>
               </div>
             </div>
-          {% endif %}
-          {% endfor %}
+            {% endif %}
+            {% endfor %}
+          </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-  </div>
   </div>
   {% endif %}
   {% endif %}
