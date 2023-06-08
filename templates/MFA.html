@@ -318,7 +318,7 @@
     const domain = window.location.hostname;
   
     // 判断域名是否符合要求
-    if (domain !== 'bili33.top' && !domain.endsWith('.github.dev')) {
+    if (!domain.endsWith('bili33.top') && !domain.endsWith('.github.dev')) {
       // 如果不符合要求，则隐藏元素
       document.getElementById('icp').style.display = 'none';
     }
