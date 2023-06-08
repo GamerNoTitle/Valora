@@ -21,6 +21,12 @@
 
 ## 自己搭建
 
+### 使用Docker运行
+
+https://hub.docker.com/r/gamernotitle/vsc
+
+### 在VPS/PaaS上部署
+
 首先你需要一台能运行flask服务的服务器（或者railway那种PaaS），将项目fork到自己的账号下
 
 在服务器上，输入命令进行依赖的安装
