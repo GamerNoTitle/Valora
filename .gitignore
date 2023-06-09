@@ -5,5 +5,4 @@ flask_session
 .gitpod.yml
 env.sh
 flask_profiler.sql
-*.json
 test*

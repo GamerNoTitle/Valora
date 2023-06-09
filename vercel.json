@@ -1,0 +1,28 @@
+{
+    "name": "Valora",
+    "version": 2,
+    "framework": null,
+    "builds": [
+      {
+        "src": "app.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/(.*)",
+        "destination": "app.py"
+      }
+    ],
+    "env": {
+        "SESSION_TYPE": "filesystem",
+        "PORT": "8080",
+        "REDIS_HOST": "",
+        "REDIS_PORT": "",
+        "REDIS_PASSWORD": "",
+        "PROFILER": "",
+        "PROFILER_AUTH": "",
+        "PROFILER_USER": "",
+        "PROFILER_PASS": ""
+      }
+  }
