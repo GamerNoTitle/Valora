@@ -11,7 +11,7 @@
     "rewrites": [
       {
         "source": "/(.*)",
-        "destination": "app.py"
+        "destination": "app"
       }
     ],
     "env": {
