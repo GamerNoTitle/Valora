@@ -25,6 +25,10 @@
 
 https://hub.docker.com/r/gamernotitle/vsc
 
+### 在Railway上运行
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/JuUPyU?referralCode=U8coe_)
+
 ### 在VPS/PaaS上部署
 
 首先你需要一台能运行flask服务的服务器（或者railway那种PaaS），将项目fork到自己的账号下
