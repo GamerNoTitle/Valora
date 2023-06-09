@@ -23,6 +23,16 @@ You can access [https://val.bili33.top](https://val.bili33.top) to start your sh
 
 ## Build your own
 
+### Run on Docker
+
+https://hub.docker.com/r/gamernotitle/vsc
+
+### Run on Railway
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/JuUPyU?referralCode=U8coe_)
+
+### Run on VPS/PaaS
+
 First you need a server/Paas platform which can run python and flask. Fork this repo to your account.
 
 You need to install some requirements on your server, use the following command.
