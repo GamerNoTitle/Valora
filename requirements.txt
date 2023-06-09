@@ -10,6 +10,6 @@ parse
 redis
 flask-babel
 pyyaml
-pysqlite3
+# pysqlite3
 flask-profiler
 bs4
