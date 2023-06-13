@@ -292,7 +292,7 @@ def UpdatePriceCache():
     base_url = 'https://valorant.fandom.com/wiki'  # Get price data from wiki
     for weapon in weapons:
         print(f'Updating {weapon.replace("_", " ")}')
-        res = requests.get(f'{base_url}/{weapon}')
+        res = requests.get(f'{base_url}/{weapon}', timeout=30)
         html = res.text
         soup = BeautifulSoup(html, 'html.parser')
         tables = soup.find_all('table', class_='wikitable sortable')
@@ -323,6 +323,11 @@ def UpdatePriceCache():
                         c.execute('UPDATE skinlevels SET unlock = ? WHERE name LIKE ?', (f'{vp_img} {unlock}', weapon_name))
                     else:
                         c.execute('UPDATE skinlevels SET unlock = ? WHERE name LIKE ?', (f'{source} {unlock}', weapon_name))
+                    if c.rowcount == 0 and weapon == 'Tactical_Knife':  # ONLY KNIFE will trigger this condition
+                        if source == 'Store':   # This skin can be unlocked through store
+                            c.execute('UPDATE skinlevels SET unlock = ? WHERE name LIKE ?', (f'{vp_img} {unlock}', name))
+                        else:
+                            c.execute('UPDATE skinlevels SET unlock = ? WHERE name LIKE ?', (f'{source} {unlock}', name))    
                 except Exception as e:
                     print(e)
                 conn.commit()
