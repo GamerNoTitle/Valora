@@ -113,7 +113,7 @@ def market(app: Flask, request: Request):
         # for cookie in request.cookies:
         #     response.delete_cookie(cookie)
         # return response
-        return redirect('/api/reauth')
+        return redirect('/api/reauth?redirect=/market')
 
 
 def night(app: Flask, request: Request):
@@ -191,7 +191,7 @@ def night(app: Flask, request: Request):
                                    nightmarket_notavaliable=True,
                                    lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader), accesstokenlogin=session.get('accesstokenlogin'))
     else:   # Login Expired
-        return redirect('/api/reauth')
+        return redirect('/api/reauth?redirect=/market/night')
 
 
 def library(app: Flask, request: Request):
@@ -532,4 +532,4 @@ def inventory(app: Flask, request: Request):
         return render_template('inventory.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader),
                             player = p, weapon_list = weapon_list, costVP = VP_count, costRP = RP_count, accesstokenlogin=session.get('accesstokenlogin'))
     else:   # Login Expired
-        return redirect('/api/reauth')
+        return redirect('/api/reauth?redirect=/inventory')

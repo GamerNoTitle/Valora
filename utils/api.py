@@ -127,6 +127,7 @@ def verify(app: Flask, request: Request):
 def reauth(app: Flask, request: Request):
     try:
         remember = session['remember']
+        redirect_loc = request.args.get('redirect') if request.args.get('redirect') else '/market'
         if remember:
             s: requests.Session = session.get('user-session')
             if type(s) == type(None):
@@ -151,7 +152,7 @@ def reauth(app: Flask, request: Request):
             session['user-session'] = s
             session['cookie'] = s.cookies
             _thread.start_new_thread(UpdateOfferCache, (access_token, entitlement))
-            return redirect('/market')
+            return redirect(redirect_loc)
         else:
             response = make_response(redirect('/', 302))
             for cookie in request.cookies:
