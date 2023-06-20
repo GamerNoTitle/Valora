@@ -83,10 +83,11 @@ $ export PROFILER_PASS=password
 
 ## 参数项
 
-|   路径   | 参数名 |        可选项        |        作用        |                             示例                             |
-| :------: | :----: | :------------------: | :----------------: | :----------------------------------------------------------: |
-| （全局） |  lang  | en/zh-CN/zh-TW/ja-JP | 更改网站显示的语言 |               https://val.bili33.top/?lang=en                |
-| /library | query  |       （任意）       |   搜索皮肤的索引   | https://val.bili33.top/library/?query=/library?query=魔术火花 |
+|    路径     |  参数名  |        可选项        |        作用        |                             示例                             |
+| :---------: | :------: | :------------------: | :----------------: | :----------------------------------------------------------: |
+|  （全局）   |   lang   | en/zh-CN/zh-TW/ja-JP | 更改网站显示的语言 |               https://val.bili33.top/?lang=en                |
+|  /library   |  query   |       （任意）       |   搜索皮肤的索引   | https://val.bili33.top/library/?query=/library?query=魔术火花 |
+| /api/reauth | redirect | `/market` `/market/night` `/inventory` | 重新认证后重定向到正确的页面 | https://val.bili33.top/api/reauth?redirect=/market |
 
 ## Credit
 
