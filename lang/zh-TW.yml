@@ -234,7 +234,7 @@ inventory:
     # <cost> {{player.costVP}} VP & {{player.costRP}} RP
     opening: 歡迎回來
     credit: 你現在持有
-    cost: 你當前消費了
+    cost: 當前庫存價值
 
 error:
   error500:

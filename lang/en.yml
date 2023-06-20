@@ -234,7 +234,7 @@ inventory:
     # <cost> {{player.costVP}} VP & {{player.costRP}} RP
     opening: Welcome back!
     credit: You currently have
-    cost: You have spent
+    cost: Your inventory value
 
 error:
   error500:
