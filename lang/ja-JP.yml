@@ -234,7 +234,7 @@ inventory:
     # <cost> {{player.costVP}} VP & {{player.costRP}} RP
     opening: お帰りなさい
     credit: 現在、保有しているのは
-    cost: あなたは既に使った
+    cost: 現在の在庫価値
 
 error:
   error500:
