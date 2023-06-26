@@ -245,6 +245,10 @@ error:
       solve: You can try refreshing this page or clicking the "Reset Site Data" button below to solve this problem.<br>If you have already clicked the button below but still encounter this problem, try clearing your browser's cookies to reset the session<br>If you have tried both of the above methods, please contact the developer with this error information!
     button:
       reset: Reset Site Data
+      report: Submit an issue on Github
+    hover:
+      reset: This will reset your data on this website, including but not limited to logging out
+      report: Submit a new issue on Github so that I can quickly resolve the problem
   error404:
     tip: 404 Not Found
     error: You have arrived at an unknown place
