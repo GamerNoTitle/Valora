@@ -17,7 +17,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="keywords" content="Valorant, Skin, 瓦罗兰特, 无畏契约">
-  <meta name="description" content="Valora (also named Valorant Shop Checker) is a site that helps you check your valorant daily shop and night market without opening the game or installing an app."/>
+  <meta name="description"
+    content="Valora (also named Valorant Shop Checker) is a site that helps you check your valorant daily shop and night market without opening the game or installing an app." />
   <meta name="author" content="GamerNoTitle, GamerNoTitle@outlook.com">
   <meta name="copyright" content="Copyright &copy; 2023 GamerNoTitle. All rights reserved.">
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/img-navi-valorant-red.svg">
@@ -35,8 +36,7 @@
   <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="/assets/css/soft-design-system.css?v=1.0.9" rel="stylesheet" />
-  <script async defer data-website-id="381df10a-707a-4380-8b6c-b31c3e59c5f1"
-    src="https://analytics.dohna.top/umami.js"></script>
+
   <script>
     var _hmt = _hmt || [];
     (function () {
@@ -75,9 +75,10 @@
                 <li class="nav-item my-auto ms-3 ms-lg-0">
                   <a href="https://t.me/LumineStelle" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i
                       class="ni ni-send"></i> Telegram</a>
-                  <a href="https://gamernotitle.notion.site/gamernotitle/Valora-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i 
-                    class="fas fa-question"></i> FAQ</a>
-                  </li>
+                  <a href="https://gamernotitle.notion.site/gamernotitle/Valora-FAQ-86f072f8cebf4a8d9453a795b24cd507"
+                    class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i class="fas fa-question"></i>
+                    FAQ</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -143,8 +144,14 @@
           <div class="container-fluid px-0 overflow-hidden">
             <div class="row text-center py-2 mt-3">
               <div class="col-12 mx-auto">
-                <a href="/api/reset"><button type="button" class="btn bg-gradient-danger btn-lg"
-                    width="100%"><strong>{{lang.error.error500.button.reset}}</strong></button></a>
+                <a href="/api/reset"><button type="button" class="btn bg-gradient-danger btn-lg btn-tooltip"
+                    width="100%" data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="{{lang.error.error500.hover.reset}}" data-container="body"
+                    data-animation="true"><i class="fas fa-cogs"></i> <strong>{{lang.error.error500.button.reset}}</strong></button></a>
+                <a href="https://github.com/GamerNoTitle/Valora/issues/new" target="_blank"><button type="button"
+                    class="btn bg-gradient-danger btn-lg btn-tooltip" width="100%" data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="{{lang.error.error500.hover.report}}" data-container="body"
+                    data-animation="true"><i class="fab fa-github"></i> <strong>{{lang.error.error500.button.report}}</strong></button></a>
               </div>
             </div>
           </div>
@@ -297,8 +304,9 @@
                 All rights reserved. Copyright ©
                 <script>document.write(new Date().getFullYear())</script> <a href="https://bili33.top"
                   target="_blank"><u>GamerNoTitle</u></a>. | Open-Source project <a
-                  href="https://github.com/GamerNoTitle/Valora" target="_blank"><u>Valora</u></a> is avaliable on Github.
-                  <br> 
+                  href="https://github.com/GamerNoTitle/Valora" target="_blank"><u>Valora</u></a> is avaliable on
+                Github.
+                <br>
                 <a href="http://beian.miit.gov.cn/" class="nav-link" id="icp" target=_blank><img
                     src='https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png' width=20px height=20px> 沪ICP备
                   2021023713号</a>
@@ -312,7 +320,7 @@
   <script>
     // 获取当前页面的域名
     const domain = window.location.hostname;
-  
+
     // 判断域名是否符合要求
     if (!domain.endsWith('bili33.top') && !domain.endsWith('.github.dev')) {
       // 如果不符合要求，则隐藏元素
