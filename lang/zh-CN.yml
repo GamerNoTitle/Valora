@@ -27,6 +27,8 @@ metadata:
     EEquippableSkinLevelItem::HeartbeatAndMapSensor: 地图心跳感应器
     # For Recon Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/a8509c8d-4061-1c57-60a5-61a025f28408
     EEquippableSkinLevelItem::Randomizer: 随机模块
+    # For Neo Frontier Set Level 3 https://valorant-api.com/v1/weapons/skinlevels/C5175815-41DA-879B-C547-429CE4D7A191
+    EEquippableSkinLevelItem::Transformation: 转换形态
   weapon: 
   # 这里使用繁中是为了避免搜索冲突
   # 举个栗子：守護者 神射 的简体中文翻译是 戍卫者 正义

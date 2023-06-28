@@ -27,6 +27,8 @@ metadata:
     EEquippableSkinLevelItem::HeartbeatAndMapSensor: Heart Beat & Map Censor
     # For Recon Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/a8509c8d-4061-1c57-60a5-61a025f28408
     EEquippableSkinLevelItem::Randomizer: Randomizer
+    # For Neo Frontier Set Level 3 https://valorant-api.com/v1/weapons/skinlevels/C5175815-41DA-879B-C547-429CE4D7A191
+    EEquippableSkinLevelItem::Transformation: Transformation
   weapon:
     classic: Classic
     shorty: Shorty
