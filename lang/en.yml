@@ -236,6 +236,10 @@ inventory:
     credit: You currently have
     cost: Your inventory value
 
+down:
+  title: Scheduled Maintenance
+  detail: Valorant is currently undergoing maintenance. Please use Valora for queries after maintenance is completed!
+
 error:
   error500:
     tip: 500 Server Error

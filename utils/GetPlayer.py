@@ -53,16 +53,24 @@ class player:
             server = krServer
         self.server = server
         self.user_id = user_id
+        self.down = False
         response = requests.get(
             f'{server}{Api.store}{user_id}', headers=self.__header, timeout=30)
         if response.status_code >= 500:
+            self.down = True
             raise requests.exceptions.ConnectionError(f'It seems that Riot Games server run into an error ({response.status_code}): ' + response.text)
-        self.shop = response.json()
-        if response.status_code == 400 or response.status_code == 404:
-            self.auth = False
-        else:
-            self.auth = True
-        self.getWallet()
+        elif response.status_code == 403:
+            if response.json()['errorCode'] == "SCHEDULED_DOWNTIME":
+                self.down = True
+            else:
+                raise requests.exceptions.ConnectionError(f'It seems that Riot Games server run into an error ({response.status_code}): ' + response.text)
+        if not self.down:
+            self.shop = response.json()
+            if response.status_code == 400 or response.status_code == 404:
+                self.auth = False
+            else:
+                self.auth = True
+            self.getWallet()
 
     def getWallet(self):
         data = requests.get(f'{self.server}{Api.wallet}{self.user_id}',

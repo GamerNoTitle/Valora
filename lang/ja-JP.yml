@@ -236,6 +236,10 @@ inventory:
     credit: 現在、保有しているのは
     cost: 現在の在庫価値
 
+down:
+  title: 予定されているメンテナンス中
+  detail: Valorantは現在メンテナンス中です。メンテナンスが完了した後、Valoraを使用してクエリを行ってください！
+
 error:
   error500:
     tip: 500サーバーエラー

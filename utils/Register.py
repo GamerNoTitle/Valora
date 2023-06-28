@@ -83,6 +83,8 @@ def market(app: Flask, request: Request):
     else:
         pc = True
     weapon0, weapon1, weapon2, weapon3 = {}, {}, {}, {}
+    if user.down:
+        return render_template('maintenance.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
     if user.auth:
         shop = user.shop['SkinsPanelLayout']    # Flite the daily skin
         weapon0 = weapon(shop['SingleItemStoreOffers'][0]['OfferID'],
@@ -146,6 +148,8 @@ def night(app: Flask, request: Request):
     else:
         pc = True
     weapon0, weapon1, weapon2, weapon3, weapon4, weapon5 = {}, {}, {}, {}, {}, {}
+    if user.down:
+        return render_template('maintenance.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
     if user.auth:
         nightmarket = user.shop.get('BonusStore')
         if nightmarket:
@@ -442,6 +446,8 @@ def inventory(app: Flask, request: Request):
     tag = session.get('tag')
     cookie = dict(session.get('cookie', {}))
     Player = player(access_token, entitlement, region, userid)
+    if Player.down:
+        return render_template('maintenance.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
     if Player.auth:
         skins, owned_weapons = Player.getSkins()
         chromas, owned_chromas = Player.getChromas()
