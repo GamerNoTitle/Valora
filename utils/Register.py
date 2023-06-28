@@ -534,6 +534,8 @@ def inventory(app: Flask, request: Request):
                     '<img src="/assets/img/VP-black.png" width="32px" height="32px"> ', ''))
             except ValueError:
                 pass
+            except AttributeError:
+                pass
         p = {
             'name': uname,
             'tag': tag,
