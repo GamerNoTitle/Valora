@@ -240,6 +240,10 @@ inventory:
     credit: 你现在持有
     cost: 当前库存价值
 
+down:
+  title: 正在计划中的维护
+  detail: Valorant正在维护中，请在维护完成后再使用Valora进行查询！
+
 error:
   error500:
     tip: 500服务器错误

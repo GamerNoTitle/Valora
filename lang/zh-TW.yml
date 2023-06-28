@@ -236,6 +236,10 @@ inventory:
     credit: 你現在持有
     cost: 當前庫存價值
 
+down:
+  title: 正在計劃中的維護
+  detail: Valorant正在維護中，請在維護完成後再使用Valora進行查詢！
+
 error:
   error500:
     tip: 500伺服器錯誤
