@@ -314,16 +314,17 @@ def UpdateCache():
                 preview = i.get('displayIcon', None)
                 try:
                     c.execute(f'INSERT INTO buddies ([uuid], name, preview) VALUES (?, ?, ?)', (
-                        i["uuid"], i["displayName"], preview))
+                        i["levels"][0]["uuid"], i["displayName"], preview))
                     conn.commit()
                 except sqlite3.IntegrityError:
                     c.execute(f'UPDATE buddies SET name = ?, preview = ? WHERE uuid = ?',
-                              (i["displayName"], preview, i["uuid"]))
+                              (i["displayName"], preview, i["levels"][0]["uuid"]))
                     conn.commit()
         else:
             for i in data['data']:
+                preview = i.get('displayIcon', None)
                 c.execute(f'UPDATE buddies SET "name-{lang}" = ?, preview = ? WHERE uuid = ?',
-                          (i["displayName"], preview, i["uuid"]))
+                          (i["displayName"], preview, i["levels"][0]["uuid"]))
                 conn.commit()
         conn.close()
 
