@@ -1,4 +1,5 @@
 import requests
+import json
 
 # server list
 apServer = 'https://pd.ap.a.pvp.net'
