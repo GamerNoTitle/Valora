@@ -6,6 +6,7 @@ from math import ceil
 from flask import Flask, render_template, redirect, make_response, session, abort, Request
 from utils.GetPlayer import player
 from utils.Weapon import weapon, weaponlib
+from pprint import pprint, pformat
 
 
 def home(app: Flask, request: Request):
@@ -272,7 +273,8 @@ def library(app: Flask, request: Request):
                 name = skin
                 for level in levels:
                     level['uuid'] = level['uuid'].upper()
-                    c.execute('SELECT isLevelup, unlock FROM skinlevels WHERE uuid = ?', (level['uuid'].lower(), ))
+                    c.execute(
+                        'SELECT isLevelup, unlock FROM skinlevels WHERE uuid = ?', (level['uuid'].lower(), ))
                     conn.commit()
                     isLevelup, temp = c.fetchall()[0]
                     if not isLevelup:
@@ -340,7 +342,8 @@ def library(app: Flask, request: Request):
             Weapon = weaponlib(uuid, skin, lang=lang)
             lv1_data = Weapon.levels[0]
             lv1_uuid = lv1_data['uuid']
-            c.execute('SELECT isLevelup, unlock FROM skinlevels WHERE uuid = ?', (lv1_uuid.lower(), ))
+            c.execute(
+                'SELECT isLevelup, unlock FROM skinlevels WHERE uuid = ?', (lv1_uuid.lower(), ))
             conn.commit()
             isLevelup, unlock = c.fetchall()[0]
             weapon_list.append({"name": Weapon.name, "img": Weapon.base_img,
@@ -474,7 +477,8 @@ def inventory(app: Flask, request: Request):
             if isLevelup:   # Not lv.1 Skin
                 RP_count += 10  # This level has been unlocked, RP+10
             if lang == 'en':
-                c.execute(f'SELECT data FROM skins WHERE name = ?', (name.strip(),))
+                c.execute(f'SELECT data FROM skins WHERE name = ?',
+                          (name.strip(),))
                 conn.commit()
                 try:
                     data = json.loads(c.fetchall()[0][0])
@@ -526,7 +530,8 @@ def inventory(app: Flask, request: Request):
             weapon_list.append(
                 {"name": name, "img": base_img, "levels": levels, "chromas": chromas, "unlock": unlock})
             try:
-                VP_count += int(unlock.replace('<img src="/assets/img/VP-black.png" width="32px" height="32px"> ',''))
+                VP_count += int(unlock.replace(
+                    '<img src="/assets/img/VP-black.png" width="32px" height="32px"> ', ''))
             except ValueError:
                 pass
         p = {
@@ -537,6 +542,105 @@ def inventory(app: Flask, request: Request):
             'kc': Player.kc
         }
         return render_template('inventory.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader),
-                            player = p, weapon_list = weapon_list, costVP = VP_count, costRP = RP_count, accesstokenlogin=session.get('accesstokenlogin'))
+                               player=p, weapon_list=weapon_list, costVP=VP_count, costRP=RP_count, accesstokenlogin=session.get('accesstokenlogin'))
     else:   # Login Expired
         return redirect('/api/reauth?redirect=/inventory')
+
+
+def accessory(app: Flask, request: Request):
+    sortmap = {
+        "d5f120f8-ff8c-4aac-92ea-f2b5acbe9475": "sprays",
+        "dd3bf334-87f3-40bd-b043-682a57a8dc3a": "buddies",
+        "3f296c07-64c3-494c-923b-fe692a4fa1bd": "cards",
+        "de7caa6b-adf7-4588-bbd1-143831e786c6": "titles"
+    }
+    access_token = session.get('access_token')
+    entitlement = session.get('entitlement')
+    region = session.get('region')
+    userid = session.get('user_id')
+    pname = session.get('username')
+    tag = session.get('tag')
+    if request.args.get('lang'):
+        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
+            lang = request.args.get('lang')
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+            lang = str(request.accept_languages.best_match(
+                app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
+    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+        lang = str(request.accept_languages.best_match(
+            app.config['BABEL_LANGUAGES']))
+    else:
+        lang = 'en'
+    if not pname:
+        redirect('/')
+    user = player(access_token, entitlement, region, userid)
+    device = request.headers.get('User-Agent', '')
+    if 'android' in device.lower() or 'iphone' in device.lower():
+        pc = False
+    else:
+        pc = True
+    accessory_list = []
+    if user.down:
+        return render_template('maintenance.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
+    if user.auth:
+        accessoryStore = user.shop.get('AccessoryStore')
+        accessoryOfferList = accessoryStore.get('AccessoryStoreOffers', [])
+        for offer in accessoryOfferList:
+            cost = offer.get('Offer').get('Cost').get(
+                '85ca954a-41f2-ce94-9b45-8ca3dd39a00d')
+            accessorySort = sortmap.get(
+                offer.get('Offer').get('Rewards')[0].get('ItemTypeID'))
+            uuid = offer.get('Offer').get('Rewards')[0].get('ItemID')
+            conn = sqlite3.connect('db/data.db')
+            c = conn.cursor()
+            if lang == 'en':
+                if accessorySort == 'titles':
+                    c.execute('SELECT name FROM titles WHERE uuid = ?', (uuid,))
+                    data = c.fetchall()
+                    # data = [('Hard Carry Title',)]
+                    name = data[0][0]
+                    preview = None
+                elif accessorySort in ['sprays', 'buddies']:
+                    c.execute(
+                        f'SELECT name, preview FROM {accessorySort} WHERE uuid = ?', (uuid,))
+                    data = c.fetchall()
+                    name = data[0][0]
+                    preview = data[0][1]
+                elif accessorySort == 'cards':
+                    c.execute(
+                        'SELECT name, wide FROM cards WHERE uuid = ?', (uuid,))
+                    data = c.fetchall()
+                    name = data[0][0]
+                    preview = data[0][1]
+            else:
+                if accessorySort == 'titles':
+                    c.execute(
+                        f'SELECT "name-{lang}" FROM titles WHERE uuid = ?', (uuid,))
+                    data = c.fetchall()
+                    # data = [('Hard Carry Title',)]
+                    name = data[0][0]
+                    preview = None
+                elif accessorySort in ['sprays', 'buddies']:
+                    c.execute(
+                        f'SELECT "name-{lang}", preview FROM {accessorySort} WHERE uuid = ?', (uuid,))
+                    data = c.fetchall()
+                    name = data[0][0]
+                    preview = data[0][1]
+                elif accessorySort == 'cards':
+                    c.execute(
+                        f'SELECT "name-{lang}", wide FROM cards WHERE uuid = ?', (uuid,))
+                    data = c.fetchall()
+                    name = data[0][0]
+                    preview = data[0][1]
+            accessory_list.append(
+                {"name": name, "preview": preview, "cost": cost})
+        return render_template('accessory.html',
+                               player={'name': pname, 'tag': tag,
+                                       'vp': user.vp, 'rp': user.rp, 'kc': user.kc},
+                               pc=pc,
+                               lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader), accesstokenlogin=session.get('accesstokenlogin'),
+                               accessory_list=accessory_list)
+    else:
+        return redirect('/api/reauth?redirect=/market/accessory')

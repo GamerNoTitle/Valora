@@ -70,6 +70,7 @@ global:
     library: 皮肤库
     trans: 翻译对照表
     inventory: 我的库存
+    accessory: 配饰商店
   description:
     line1: 瓦罗兰特（无畏契约）商店查看，让你不用登陆游戏也能够查看每日商店（仅支持国际服）
     line2: 所有的登录名和密码服务器均不进行存取，仅用于登录
@@ -86,6 +87,7 @@ global:
     home: 返回首页
     trans: 翻译对照
     inventory: 我的库存
+    accessory: 配饰商店
 
 login:
   front:
@@ -241,6 +243,19 @@ inventory:
     opening: 欢迎回来
     credit: 你现在持有
     cost: 当前库存价值
+
+accessory:
+  welcome:
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: 欢迎回来
+    credit: 你现在持有
+  title: 配饰商店 | Accessory Store
+  table:
+    name: 配饰名称
+    preview: 配饰预览
+    cost: 配饰价格
 
 down:
   title: 正在计划中的维护

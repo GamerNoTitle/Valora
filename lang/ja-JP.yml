@@ -67,6 +67,7 @@ global:
     library: スキンライブラリ
     trans: 翻譯對照表
     inventory: インベントリー
+    accessory: アクセサリーショップ
   description:
     line1: VALORANTショップビュー。ゲームにログインせずにデイリーショップを確認できます
     line2: ログイン名とパスワードはサーバーに保存されず、ログインにのみ使用されます。
@@ -83,6 +84,8 @@ global:
     home: ホームページに戻る
     trans: 翻訳対照
     inventory: インベントリー
+    accessory: アクセサリーショップ
+
 
 login:
   front:
@@ -237,6 +240,21 @@ inventory:
     opening: お帰りなさい
     credit: 現在、保有しているのは
     cost: 現在の在庫価値
+
+accessory:
+  welcome:
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    # <cost> {{player.costVP}} VP & {{player.costRP}} RP
+    opening: お帰りなさい
+    credit: 現在、保有しているのは
+    cost: 現在の在庫価値
+  title: アクセサリーショップ
+  table:
+    name: アクセサリー名
+    preview: アクセサリーのプレビュー
+    cost: アクセサリーの価格
 
 down:
   title: 予定されているメンテナンス中

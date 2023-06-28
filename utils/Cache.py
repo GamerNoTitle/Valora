@@ -51,6 +51,33 @@ LinkWeaponsmap = [
     ('ja-JP', 'https://valorant-api.com/v1/weapons?language=ja-JP'),
 ]
 
+LinkSpraysmap = [
+    ('en', 'https://valorant-api.com/v1/sprays'),
+    ('zh-CN', 'https://valorant-api.com/v1/sprays?language=zh-CN'),
+    ('zh-TW', 'https://valorant-api.com/v1/sprays?language=zh-TW'),
+    ('ja-JP', 'https://valorant-api.com/v1/sprays?language=ja-JP'),
+]
+
+LinkBuddiesmap = [
+    ('en', 'https://valorant-api.com/v1/buddies'),
+    ('zh-CN', 'https://valorant-api.com/v1/buddies?language=zh-CN'),
+    ('zh-TW', 'https://valorant-api.com/v1/buddies?language=zh-TW'),
+    ('ja-JP', 'https://valorant-api.com/v1/buddies?language=ja-JP'),
+]
+
+LinkTitlesmap = [
+    ('en', 'https://valorant-api.com/v1/playertitles'),
+    ('zh-CN', 'https://valorant-api.com/v1/playertitles?language=zh-CN'),
+    ('zh-TW', 'https://valorant-api.com/v1/playertitles?language=zh-TW'),
+    ('ja-JP', 'https://valorant-api.com/v1/playertitles?language=ja-JP'),
+]
+
+LinkCardsmap = [
+    ('en', 'https://valorant-api.com/v1/playercards'),
+    ('zh-CN', 'https://valorant-api.com/v1/playercards?language=zh-CN'),
+    ('zh-TW', 'https://valorant-api.com/v1/playercards?language=zh-TW'),
+    ('ja-JP', 'https://valorant-api.com/v1/playercards?language=ja-JP'),
+]
 
 def UpdateCache():
     if not os.path.exists('db/data.db'):
@@ -58,15 +85,26 @@ def UpdateCache():
             f.close()
         conn = sqlite3.connect('db/data.db')
         c = conn.cursor()
-        c.execute('CREATE TABLE skins (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT, isMelee TEXT)')
-        c.execute('CREATE TABLE skinlevels (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT, isLevelup TEXT, unlock TEXT)')
-        c.execute('CREATE TABLE melee (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT)')
+        c.execute(
+            'CREATE TABLE skins (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT, isMelee TEXT)')
+        c.execute(
+            'CREATE TABLE skinlevels (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT, isLevelup TEXT, unlock TEXT)')
+        c.execute(
+            'CREATE TABLE melee (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, data TEXT, "data-zh-CN" TEXT, "data-zh-TW" TEXT, "data-ja-JP" TEXT)')
         c.execute(
             'CREATE TABLE agents (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT)')
         c.execute(
             'CREATE TABLE weapons (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT)')
         c.execute(
             'CREATE TABLE maps (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT)')
+        c.execute(
+            'CREATE TABLE sprays (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, preview TEXT)')
+        c.execute(
+            'CREATE TABLE buddies (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, preview TEXT)')
+        c.execute(
+            'CREATE TABLE titles (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT)')
+        c.execute(
+            'CREATE TABLE cards (uuid TEXT PRIMARY KEY, name TEXT, "name-zh-CN" TEXT, "name-zh-TW" TEXT, "name-ja-JP" TEXT, small TEXT, wide TEXT, large TEXT)')
         conn.commit()
         conn.close()
 
@@ -130,7 +168,7 @@ def UpdateCache():
         c.execute('DELETE FROM skins WHERE name = ?', (ignore,))
         c.execute('DELETE FROM melee WHERE name = ?', (ignore,))
         conn.commit()
-    c.close()
+    conn.close()
 
     for lang, link in LinkLevelsmap:
         print('Updating Skin Levels Data of ' + lang)
@@ -161,7 +199,7 @@ def UpdateCache():
                     c.execute(f'UPDATE melee SET "name-{lang}" = ?, "data-{lang}" = ? WHERE uuid = ?',
                               (i["displayName"], json.dumps(i), i["uuid"]))
                     conn.commit()
-    c.close()
+    conn.close()
 
     for lang, link in LinkAgentsmap:
         print('Updating Agents Data of ' + lang)
@@ -186,7 +224,7 @@ def UpdateCache():
                     c.execute(f'UPDATE agents SET "name-{lang}" = ? WHERE uuid = ?',
                               (i["displayName"], i["uuid"]))
                     conn.commit()
-    c.close()
+    conn.close()
 
     for lang, link in LinkMapsmap:
         print('Updating Maps Data of ' + lang)
@@ -209,7 +247,7 @@ def UpdateCache():
                 c.execute(f'UPDATE maps SET "name-{lang}" = ? WHERE uuid = ?',
                           (i["displayName"], i["uuid"]))
                 conn.commit()
-    c.close()
+    conn.close()
 
     for lang, link in LinkWeaponsmap:
         print('Updating Weapons Data of ' + lang)
@@ -233,6 +271,108 @@ def UpdateCache():
                           (i["displayName"], i["uuid"]))
                 conn.commit()
     conn.close()
+
+    for lang, link in LinkSpraysmap:
+        print('Updating Sprays Data of ' + lang)
+        conn = sqlite3.connect('db/data.db')
+        data = requests.get(link).json()
+        c = conn.cursor()
+        if lang == 'en':
+            for i in data['data']:
+                preview = i.get('animationGif', None)
+                if preview == None:
+                    preview = i.get('fullTransparentIcon', None)
+                    if preview == None:
+                        preview = i.get('displayIcon')
+                try:
+                    c.execute(f'INSERT INTO sprays ([uuid], name, preview) VALUES (?, ?, ?)', (
+                        i["uuid"], i["displayName"], preview))
+                    conn.commit()
+                except sqlite3.IntegrityError:
+                    c.execute(f'UPDATE sprays SET name = ?, preview = ? WHERE uuid = ?',
+                              (i["displayName"], preview, i["uuid"]))
+                    conn.commit()
+        else:
+            for i in data['data']:
+                preview = i.get('animationGif', None)
+                if preview == None:
+                    preview = i.get('fullTransparentIcon', None)
+                    if preview == None:
+                        preview = i.get('displayIcon')
+                c.execute(f'UPDATE sprays SET "name-{lang}" = ?, preview = ? WHERE uuid = ?',
+                          (i["displayName"], preview, i["uuid"]))
+                conn.commit()
+        conn.close()
+
+    for lang, link in LinkBuddiesmap:
+        print('Updating Buddies Data of ' + lang)
+        conn = sqlite3.connect('db/data.db')
+        data = requests.get(link).json()
+        c = conn.cursor()
+        if lang == 'en':
+            for i in data['data']:
+                preview = i.get('displayIcon', None)
+                try:
+                    c.execute(f'INSERT INTO buddies ([uuid], name, preview) VALUES (?, ?, ?)', (
+                        i["uuid"], i["displayName"], preview))
+                    conn.commit()
+                except sqlite3.IntegrityError:
+                    c.execute(f'UPDATE buddies SET name = ?, preview = ? WHERE uuid = ?',
+                              (i["displayName"], preview, i["uuid"]))
+                    conn.commit()
+        else:
+            for i in data['data']:
+                c.execute(f'UPDATE buddies SET "name-{lang}" = ?, preview = ? WHERE uuid = ?',
+                          (i["displayName"], preview, i["uuid"]))
+                conn.commit()
+        conn.close()
+
+    for lang, link in LinkTitlesmap:
+        print('Updating Player Titles of ' + lang)
+        conn = sqlite3.connect('db/data.db')
+        data = requests.get(link).json()
+
+        c = conn.cursor()
+        if lang == 'en':
+            for i in data['data']:
+                try:
+                    c.execute(f'INSERT INTO titles ([uuid], name) VALUES (?, ?)', (
+                        i["uuid"], i["displayName"]))
+                    conn.commit()
+                except sqlite3.IntegrityError:
+                    c.execute(f'UPDATE titles SET name = ? WHERE uuid = ?',
+                              (i["displayName"], i["uuid"]))
+                    conn.commit()
+        else:
+            for i in data['data']:
+                c.execute(f'UPDATE titles SET "name-{lang}" = ? WHERE uuid = ?',
+                          (i["displayName"], i["uuid"]))
+                conn.commit()
+        conn.close()
+
+    for lang, link in LinkCardsmap:
+        print('Updating Player Cards of ' + lang)
+        conn = sqlite3.connect('db/data.db')
+        data = requests.get(link).json()
+
+        c = conn.cursor()
+        if lang == 'en':
+            for i in data['data']:
+                try:
+                    c.execute(f'INSERT INTO cards ([uuid], name, small, wide, large) VALUES (?, ?, ?, ?, ?)', (
+                        i["uuid"], i["displayName"], i["smallArt"], i["wideArt"], i["largeArt"]))
+                    conn.commit()
+                except sqlite3.IntegrityError:
+                    c.execute(f'UPDATE cards SET name = ?, small = ?, wide = ?, large = ? WHERE uuid = ?',
+                              (i["displayName"], i["smallArt"], i["wideArt"], i["largeArt"], i["uuid"]))
+                    conn.commit()
+        else:
+            for i in data['data']:
+                c.execute(f'UPDATE cards SET "name-{lang}" = ?, small = ?, wide = ?, large = ? WHERE uuid = ?',
+                          (i["displayName"], i["smallArt"], i["wideArt"], i["largeArt"], i["uuid"]))
+                conn.commit()
+        conn.close()
+    
     print('All Data Updated')
 
 
@@ -240,8 +380,8 @@ def UpdateCacheTimer():
     while True:
         start_time = datetime.datetime.now()
         UpdateCache()
-        end_time = datetime.datetime.now()  
-        print(f'Cache Updated. Used {end_time - start_time}')      
+        end_time = datetime.datetime.now()
+        print(f'Cache Updated. Used {end_time - start_time}')
         time.sleep(3600)
 
 
@@ -279,16 +419,17 @@ def UpdateOfferCache(access_token: str, entitlement: str):  # Offer is currently
     # except KeyError:
     #     print('Unable to update Offers')
 
+
 def UpdatePriceCache():
     print('Start Updating Price Cache')
     weapons = [
-              "Classic", "Shorty", "Frenzy", "Ghost", "Sheriff",
-              "Stinger", "Spectre",
-              "Bucky", "Judge",
-              "Bulldog", "Guardian", "Phantom", "Vandal",
-              "Marshal", "Operator",
-              "Ares", "Odin",
-              "Tactical_Knife"]
+        "Classic", "Shorty", "Frenzy", "Ghost", "Sheriff",
+        "Stinger", "Spectre",
+        "Bucky", "Judge",
+        "Bulldog", "Guardian", "Phantom", "Vandal",
+        "Marshal", "Operator",
+        "Ares", "Odin",
+        "Tactical_Knife"]
     base_url = 'https://valorant.fandom.com/wiki'  # Get price data from wiki
     for weapon in weapons:
         print(f'Updating {weapon.replace("_", " ")}')
@@ -320,18 +461,23 @@ def UpdatePriceCache():
                 try:
                     vp_img = '<img src="/assets/img/VP-black.png" width="32px" height="32px">'
                     if source == 'Store':   # This skin can be unlocked through store
-                        c.execute('UPDATE skinlevels SET unlock = ? WHERE name LIKE ?', (f'{vp_img} {unlock}', weapon_name))
+                        c.execute('UPDATE skinlevels SET unlock = ? WHERE name LIKE ?',
+                                  (f'{vp_img} {unlock}', weapon_name))
                     else:
-                        c.execute('UPDATE skinlevels SET unlock = ? WHERE name LIKE ?', (f'{source} {unlock}', weapon_name))
+                        c.execute('UPDATE skinlevels SET unlock = ? WHERE name LIKE ?',
+                                  (f'{source} {unlock}', weapon_name))
                     if c.rowcount == 0 and weapon == 'Tactical_Knife':  # ONLY KNIFE will trigger this condition
                         if source == 'Store':   # This skin can be unlocked through store
-                            c.execute('UPDATE skinlevels SET unlock = ? WHERE name LIKE ?', (f'{vp_img} {unlock}', name))
+                            c.execute(
+                                'UPDATE skinlevels SET unlock = ? WHERE name LIKE ?', (f'{vp_img} {unlock}', name))
                         else:
-                            c.execute('UPDATE skinlevels SET unlock = ? WHERE name LIKE ?', (f'{source} {unlock}', name))    
+                            c.execute(
+                                'UPDATE skinlevels SET unlock = ? WHERE name LIKE ?', (f'{source} {unlock}', name))
                 except Exception as e:
                     print(e)
                 conn.commit()
         print(f'{weapon.replace("_", " ")} has been Updated.')
+
 
 def UpdatePriceTimer():
     while True:
@@ -339,10 +485,11 @@ def UpdatePriceTimer():
         time.sleep(120)
         start_time = datetime.datetime.now()
         UpdatePriceCache()
-        end_time = datetime.datetime.now()  
+        end_time = datetime.datetime.now()
         print(f'Price Cache has been Updated. Used {end_time - start_time}')
         # Update this twice a day
         time.sleep(3600*12)
+
 
 if __name__ == '__main__':
     UpdateCache()

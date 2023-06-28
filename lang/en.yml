@@ -67,6 +67,7 @@ global:
     library: Skin Library
     trans: Translation Table
     inventory: My Inventory
+    accessory: Accessory Store
   description:
     line1: Valorant shop checker, help you peek your shop & nightmarket without open your game.
     line2: All usernames and passwords are not stored on the server and are only used for login.
@@ -83,6 +84,7 @@ global:
     home: Home Page
     trans: Translation Table
     inventory: My Inventory
+    accessory: Accessory Store
 
 login:
   front:
@@ -237,6 +239,22 @@ inventory:
     opening: Welcome back!
     credit: You currently have
     cost: Your inventory value
+
+accessory:  
+  welcome:
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    # <cost> {{player.costVP}} VP & {{player.costRP}} RP
+    opening: Welcome back!
+    credit: You currently have
+    cost: Your inventory value
+  title: Accessory Store
+  table:
+    name: Accessory Name
+    preview: Accessory Preview
+    cost: Accessory Price
+
 
 down:
   title: Scheduled Maintenance
