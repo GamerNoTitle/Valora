@@ -156,7 +156,10 @@ market:
     videonotavaliable: 當前瀏覽器無法預覽視頻
   button:
     close: 關閉
-
+    levelpreview: 等級預覽
+    chromapreview: 炫彩預覽
+    return: 返回
+    
 nightmarket:
   welcome:
     # Welcome message format:
@@ -175,6 +178,9 @@ nightmarket:
     videonotavaliable: 當前瀏覽器無法預覽視頻
   button:
     close: 關閉
+    levelpreview: 等級預覽
+    chromapreview: 炫彩預覽
+    return: 返回
 
 library:
   title: 皮膚库 | Skin library

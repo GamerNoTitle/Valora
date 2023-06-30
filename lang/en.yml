@@ -156,6 +156,9 @@ market:
     videonotavaliable: Video preview is not available on the current browser
   button:
     close: Close
+    levelpreview: Level Preview
+    chromapreview: Chroma Preview
+    return: Return
 
 nightmarket:
   welcome:
@@ -175,6 +178,9 @@ nightmarket:
     videonotavaliable: Video preview is not available on the current browser
   button:
     close: Close
+    levelpreview: Level Preview
+    chromapreview: Chroma Preview
+    return: Return
 
 library:
   title: Skin Library

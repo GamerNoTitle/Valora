@@ -157,6 +157,9 @@ market:
     videonotavaliable: 現在のブラウザではビデオのプレビューができません
   button:
     close: 閉じる
+    levelpreview: レベルプレビュー
+    chromapreview: クロマプレビュー
+    return: 戻る
 
 nightmarket:
   welcome:
@@ -176,6 +179,9 @@ nightmarket:
     videonotavaliable: 現在のブラウザではビデオのプレビューができません
   button:
     close: 閉じる
+    levelpreview: レベルプレビュー
+    chromapreview: クロマプレビュー
+    return: 戻る
 
 library:
   title: スキンライブラリ

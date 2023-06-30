@@ -109,3 +109,16 @@
 td {
   word-wrap: break-word;
 }
+
+.container-table {
+  max-width: 1440px;
+  z-index: 1;
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 1);
+  padding-left: calc(var(--bs-gutter-x) * 1);
+  margin-right: auto;
+  margin-left: auto;
+
+}

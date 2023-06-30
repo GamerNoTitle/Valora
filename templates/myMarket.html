@@ -57,7 +57,15 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
-
+  <style>
+    .hidden {
+      display: none;
+    }
+    .container#market,
+    .container#night {
+      max-width: 1600px !important;
+    }
+  </style>
   <!-- Custom CSS -->
   <link href="/assets/css/custom-color.css" rel="stylesheet" />
   <!-- Easter Egg -->
@@ -157,7 +165,8 @@
               class="fas fa-shopping-bag"></i></i>
             {{lang.global.button.nightmarket}}</button></a>
         {% endif %}
-        <a href="/market/accessory"><button type="button" class="btn bg-gradient-mint btn-lg"><i class="fas fa-spray-can"></i>
+        <a href="/market/accessory"><button type="button" class="btn bg-gradient-mint btn-lg"><i
+              class="fas fa-spray-can"></i>
             {{lang.global.button.accessory}}</button></a>
         <a href="/inventory"><button type="button" class="btn bg-gradient-pink btn-lg"><i class="fas fa-warehouse"></i>
             {{lang.global.button.inventory}}</button></a>
@@ -196,113 +205,205 @@
   {% if pc %}
   <!-- Desktop Devices -->
   {% if market %}
-  <!-- <div class="container"> -->
-  <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.market.title}}</h1>
-  <br>
-  <div class="table-responsive">
-    <table class="table" id="market-table" width=100%>
-      <thead>
-        <tr>
-          <th class="text-center">{{lang.market.table.skinname}}</th>
-          <th class="text-center">{{lang.market.table.skinimg}}</th>
-          <th class="text-center"><img src="/assets/img/VP-black.png" width=24px height=24px>
-            {{lang.market.table.skincost}}</th>
-          <th class="text-center">{{lang.market.table.skinpreview}}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for weapon in [weapon0, weapon1, weapon2, weapon3] %}
-        <tr>
-          <td class="text-center">
-            <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
-          </td>
-          <td class="text-center">
-            <div class="gun-image"><a href="{{weapon.img|safe}}" data-fancybox="gallery"><img height=50px
-                  src={{weapon.img|safe}}></a></div>
-          </td>
-          <td class="text-center">
-            <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.cost|safe}}</h3>
-          </td>
-          <td>
-            {% for level in weapon.levels %}
-            {% if level.displayName != '' %}
-            <!-- Button trigger modal -->
-            <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
-              data-bs-target="#WEAPON-{{level.uuid|escape}}">
-              {{level.displayName}}: {{level.levelItem}}
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="WEAPON-{{level.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">{{weapon.name|safe}} {{level.displayName}}</h5>
-                  </div>
-                  <div class="modal-body">
-                    <video width=100% controls>
-                      <source src="{{level.streamedVideo}}" type="video/mp4">
-                      {{lang.market.modal.videonotavaliable}}
-                    </video>
-                    <br>
-                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
-                        请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary"
-                      data-bs-dismiss="modal">{{lang.market.button.close}}</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <div class="container-table">
+    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.market.title}}</h1>
+    <br>
+    <div class="table-responsive">
+      <table class="table" id="market-table" width=100%>
+        <thead>
+          <tr>
+            <th class="text-center">{{lang.market.table.skinname}}</th>
+            <th class="text-center">{{lang.market.table.skinimg}}</th>
+            <th class="text-center"><img src="/assets/img/VP-black.png" width=24px height=24px>
+              {{lang.market.table.skincost}}</th>
+            <th class="text-center">{{lang.market.table.skinpreview}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for weapon in [weapon0, weapon1, weapon2, weapon3] %}
+          {% if weapon.levels|length > 1 %}
+          <script>
+            function toggleButtons_levels_{{ weapon.id }} () {
+              var self = document.getElementById('WEAPON-{{ weapon.id }}-LEVELS')
+              var chromas = document.getElementById("WEAPON-{{ weapon.id }}-CHROMAS")
+              var close = document.getElementById('WEAPON-{{ weapon.id }}-CLOSE')
+              self.classList.add("hidden")
+              chromas.classList.add("hidden")
+              close.classList.remove("hidden")
+              {% for level in weapon.levels %}
+              {% if level.displayName != '' %}
+              var button{{ level.uuid | replace('-', '')
+            }} = document.getElementById("WEAPON-BTN-{{level.uuid}}");
+            if (button{{ level.uuid | replace('-', '') }}.classList.contains("hidden")) {
+                  button{{ level.uuid | replace('-', '') }}.classList.remove("hidden");
+            } else {
+                  button{{ level.uuid | replace('-', '') }}.classList.add("hidden");
+            }
             {% endif %}
             {% endfor %}
-            <br>
+              }
+          </script>
+          {% endif %}
+          {% if weapon.chromas|length > 1 %}
+          <script>
+            function toggleButtons_chromas_{{ weapon.id }} () {
+              var self = document.getElementById('WEAPON-{{ weapon.id }}-CHROMAS')
+              var levels = document.getElementById("WEAPON-{{ weapon.id }}-LEVELS")
+              var close = document.getElementById('WEAPON-{{ weapon.id }}-CLOSE')
+              self.classList.add("hidden")
+              levels.classList.add("hidden")
+              close.classList.remove("hidden")
+              {% for chroma in weapon.chromas %}
+              {% if chroma.displayName != '' %}
+              var button{{ chroma.uuid | replace('-', '')
+            }} = document.getElementById("WEAPON-BTN-{{chroma.uuid}}");
+            if (button{{ chroma.uuid | replace('-', '') }}.classList.contains("hidden")) {
+                  button{{ chroma.uuid | replace('-', '') }}.classList.remove("hidden");
+            } else {
+                  button{{ chroma.uuid | replace('-', '') }}.classList.add("hidden");
+            }
+            {% endif %}
+            {% endfor %}
+              }
+          </script>
+          {% endif %}
+          {% if weapon.levels|length > 1 or weapon.chromas|length > 1 %}
+          <script>
+            function close_{{ weapon.id }} () {
+              var self = document.getElementById("WEAPON-{{ weapon.id }}-CLOSE")
+              var levels = document.getElementById("WEAPON-{{ weapon.id }}-LEVELS")
+              var chromas = document.getElementById("WEAPON-{{ weapon.id }}-CHROMAS")
+              self.classList.add('hidden')
+              levels.classList.remove('hidden')
+              chromas.classList.remove('hidden')
+              {% for level in weapon.levels %}
+              {% if level.displayName != '' %}
+              var button{{ level.uuid | replace('-', '')
+            }} = document.getElementById("WEAPON-BTN-{{level.uuid}}");
+              button{{ level.uuid | replace('-', '') }}.classList.add("hidden");
+            {% endif %}
+            {% endfor %}
+
             {% for chroma in weapon.chromas %}
             {% if chroma.displayName != '' %}
-            <!-- Button trigger modal -->
-            <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
-              data-bs-target="#WEAPON-{{chroma.uuid|escape}}">
-              {{chroma.displayName}}
-            </button>
+            var button{{ chroma.uuid | replace('-', '')
+            }} = document.getElementById("WEAPON-BTN-{{chroma.uuid}}");
+              button{{ chroma.uuid | replace('-', '') }}.classList.add("hidden");
+            {% endif %}
+            {% endfor %}
+            }
+          </script>
+          {% endif %}
 
-            <!-- Modal -->
-            <div class="modal fade" id="WEAPON-{{chroma.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">{{weapon.name|safe}} {{chroma.displayName}}</h5>
-                  </div>
-                  <div class="modal-body">
-                    {% if chroma.streamedVideo %}
-                    <video width=100% controls>
-                      <source src="{{chroma.streamedVideo}}" type="video/mp4">
-                      {{lang.market.modal.videonotavaliable}}
-                    </video>
-                    <br>
-                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
+          <tr>
+            <td class="text-center">
+              <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
+            </td>
+            <td class="text-center">
+              <div class="gun-image"><a href="{{weapon.img|safe}}" data-fancybox="gallery"><img height=50px
+                    src={{weapon.img|safe}}></a></div>
+            </td>
+            <td class="text-center">
+              <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.cost|safe}}</h3>
+            </td>
+            <td>
+              {% if weapon.levels|length > 1 or weapon.chromas|length > 1 %}
+              <button type="button" class="btn bg-gradient-danger hidden" id="WEAPON-{{ weapon.id }}-CLOSE"
+                onclick="close_{{ weapon.id }}()">
+                {{ lang.market.button.return }}
+              </button>
+              {% endif %}
+              {% if weapon.levels|length > 1 %}
+              <button type="button" class="btn bg-gradient-primary" id="WEAPON-{{ weapon.id }}-LEVELS"
+                onclick="toggleButtons_levels_{{ weapon.id }}()">
+                {{ lang.market.button.levelpreview }}
+              </button>
+              {% endif %}
+              {% if weapon.chromas|length > 1%}
+              <button type="button" class="btn bg-gradient-primary" id="WEAPON-{{ weapon.id }}-CHROMAS"
+                onclick="toggleButtons_chromas_{{ weapon.id }}()">
+                {{ lang.market.button.chromapreview }}
+              </button>
+              {% endif %}
+              {% for level in weapon.levels %}
+              {% if level.displayName != '' %}
+              <!-- Button trigger modal -->
+              <button type="button" class="btn bg-gradient-primary hidden" data-bs-toggle="modal"
+                data-bs-target="#WEAPON-{{level.uuid|escape}}" id="WEAPON-BTN-{{level.uuid|escape}}">
+                {{level.displayName}}: {{level.levelItem}}
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="WEAPON-{{level.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">{{weapon.name|safe}} {{level.displayName}}</h5>
+                    </div>
+                    <div class="modal-body">
+                      <video width=100% controls>
+                        <source src="{{level.streamedVideo}}" type="video/mp4">
+                        {{lang.market.modal.videonotavaliable}}
+                      </video>
+                      <br>
+                      <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
                         请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
-                    {% else %}
-                    <img width="100%" src="{{chroma.fullRender}}">
-                    {% endif %}
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary"
-                      data-bs-dismiss="modal">{{lang.market.button.close}}</button>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn bg-gradient-primary"
+                        data-bs-dismiss="modal">{{lang.market.button.close}}</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            </script>
-            {% endif %}
-            {% endfor %}
-          </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+              {% endif %}
+              {% endfor %}
+              <!-- <br> -->
+              {% for chroma in weapon.chromas %}
+              {% if chroma.displayName != '' %}
+              <!-- Button trigger modal -->
+              <button type="button" class="btn bg-gradient-primary hidden" data-bs-toggle="modal"
+                data-bs-target="#WEAPON-{{chroma.uuid|escape}}" id="WEAPON-BTN-{{chroma.uuid|escape}}">
+                {{chroma.displayName}}
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="WEAPON-{{chroma.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">{{weapon.name|safe}} {{chroma.displayName}}</h5>
+                    </div>
+                    <div class="modal-body">
+                      {% if chroma.streamedVideo %}
+                      <video width=100% controls>
+                        <source src="{{chroma.streamedVideo}}" type="video/mp4">
+                        {{lang.market.modal.videonotavaliable}}
+                      </video>
+                      <br>
+                      <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
+                        请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
+                      {% else %}
+                      <img width="100%" src="{{chroma.fullRender}}">
+                      {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn bg-gradient-primary"
+                        data-bs-dismiss="modal">{{lang.market.button.close}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </script>
+              {% endif %}
+              {% endfor %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
-  <!-- </div> -->
   {% endif %}
 
   {% if night %}
@@ -321,113 +422,204 @@
     </div>
   </div>
   {% else %}
-  <!-- <div class="container"> -->
-  <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.nightmarket.title}}</h1>
-  <br>
-  <div class="table-responsive">
-    <table class="table" id="market-table">
-      <thead>
-        <tr>
-          <th class="text-center">{{lang.nightmarket.table.skinname}}</th>
-          <th class="text-center">{{lang.nightmarket.table.skinimg}}</th>
-          <th class="text-center"><img src="/assets/img/VP-black.png" width=24px height=24px>
-            {{lang.nightmarket.table.skincost}}</th>
-          <th class="text-center">{{lang.nightmarket.table.skinpreview}}</th>
-        </tr>
-      </thead>
-      {% for weapon in [weapon0, weapon1, weapon2, weapon3, weapon4, weapon5] %}
-      <tr>
-        <td class="text-center">
-          <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
-        </td>
-        <td class="text-center">
-          <div class="gun-image"><a href="{{weapon.img|safe}}" data-fancybox="gallery"><img height=50px
-                src={{weapon.img|safe}}></a></div>
-        </td>
-        <td class="text-center">
-          <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.cost|safe}} → {{weapon.discount|safe}}
-            ({{weapon.per|safe}}% off)</h3>
-        </td>
-        <td>
-          {% for level in weapon.levels %}
-          {% if level.displayName != '' %}
-          <!-- Button trigger modal -->
-          <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
-            data-bs-target="#WEAPON-{{level.uuid|escape}}">
-            {{level.displayName}}: {{level.levelItem}}
-          </button>
-
-          <!-- Modal -->
-          <div class="modal fade" id="WEAPON-{{level.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">{{weapon.name|safe}} {{level.displayName}}</h5>
-                </div>
-                <div class="modal-body">
-                  <video width=100% controls>
-                    <source src="{{level.streamedVideo}}" type="video/mp4">
-                    {{lang.nightmarket.modal.videonotavaliable}}
-                  </video>
-                  <br>
-                  <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
-                    </p> -->
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn bg-gradient-primary"
-                    data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
-                </div>
-              </div>
-            </div>
-          </div>
+  <div class="container-table">
+    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.nightmarket.title}}</h1>
+    <br>
+    <div class="table-responsive">
+      <table class="table" id="market-table">
+        <thead>
+          <tr>
+            <th class="text-center">{{lang.nightmarket.table.skinname}}</th>
+            <th class="text-center">{{lang.nightmarket.table.skinimg}}</th>
+            <th class="text-center"><img src="/assets/img/VP-black.png" width=24px height=24px>
+              {{lang.nightmarket.table.skincost}}</th>
+            <th class="text-center">{{lang.nightmarket.table.skinpreview}}</th>
+          </tr>
+        </thead>
+        {% for weapon in [weapon0, weapon1, weapon2, weapon3, weapon4, weapon5] %}
+        {% if weapon.levels|length > 1 %}
+        <script>
+          function toggleButtons_levels_{{ weapon.id }} () {
+            var self = document.getElementById('WEAPON-{{ weapon.id }}-LEVELS')
+            var chromas = document.getElementById("WEAPON-{{ weapon.id }}-CHROMAS")
+            var close = document.getElementById('WEAPON-{{ weapon.id }}-CLOSE')
+            self.classList.add("hidden")
+            chromas.classList.add("hidden")
+            close.classList.remove("hidden")
+            {% for level in weapon.levels %}
+            {% if level.displayName != '' %}
+            var button{{ level.uuid | replace('-', '')
+          }} = document.getElementById("WEAPON-BTN-{{level.uuid}}");
+          if (button{{ level.uuid | replace('-', '') }}.classList.contains("hidden")) {
+              button{{ level.uuid | replace('-', '') }}.classList.remove("hidden");
+          } else {
+              button{{ level.uuid | replace('-', '') }}.classList.add("hidden");
+          }
           {% endif %}
           {% endfor %}
-          <br>
+          }
+        </script>
+        {% endif %}
+        {% if weapon.chromas|length > 1 %}
+        <script>
+          function toggleButtons_chromas_{{ weapon.id }} () {
+            var self = document.getElementById('WEAPON-{{ weapon.id }}-CHROMAS')
+            var levels = document.getElementById("WEAPON-{{ weapon.id }}-LEVELS")
+            var close = document.getElementById('WEAPON-{{ weapon.id }}-CLOSE')
+            self.classList.add("hidden")
+            levels.classList.add("hidden")
+            close.classList.remove("hidden")
+            {% for chroma in weapon.chromas %}
+            {% if chroma.displayName != '' %}
+            var button{{ chroma.uuid | replace('-', '')
+          }} = document.getElementById("WEAPON-BTN-{{chroma.uuid}}");
+          if (button{{ chroma.uuid | replace('-', '') }}.classList.contains("hidden")) {
+              button{{ chroma.uuid | replace('-', '') }}.classList.remove("hidden");
+          } else {
+              button{{ chroma.uuid | replace('-', '') }}.classList.add("hidden");
+          }
+          {% endif %}
+          {% endfor %}
+          }
+        </script>
+        {% endif %}
+        {% if weapon.levels|length > 1 or weapon.chromas|length > 1 %}
+        <script>
+          function close_{{ weapon.id }} () {
+            var self = document.getElementById("WEAPON-{{ weapon.id }}-CLOSE")
+            var levels = document.getElementById("WEAPON-{{ weapon.id }}-LEVELS")
+            var chromas = document.getElementById("WEAPON-{{ weapon.id }}-CHROMAS")
+            self.classList.add('hidden')
+            levels.classList.remove('hidden')
+            chromas.classList.remove('hidden')
+            {% for level in weapon.levels %}
+            {% if level.displayName != '' %}
+            var button{{ level.uuid | replace('-', '')
+          }} = document.getElementById("WEAPON-BTN-{{level.uuid}}");
+          button{{ level.uuid | replace('-', '') }}.classList.add("hidden");
+          {% endif %}
+          {% endfor %}
+
           {% for chroma in weapon.chromas %}
           {% if chroma.displayName != '' %}
-          <!-- Button trigger modal -->
-          <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
-            data-bs-target="#WEAPON-{{chroma.uuid|escape}}">
-            {{chroma.displayName}}
-          </button>
+          var button{{ chroma.uuid | replace('-', '')
+        }} = document.getElementById("WEAPON-BTN-{{chroma.uuid}}");
+          button{{ chroma.uuid | replace('-', '') }}.classList.add("hidden");
+          {% endif %}
+          {% endfor %}
+        }
+        </script>
+        {% endif %}
+        <tr>
+          <td class="text-center">
+            <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
+          </td>
+          <td class="text-center">
+            <div class="gun-image"><a href="{{weapon.img|safe}}" data-fancybox="gallery"><img height=50px
+                  src={{weapon.img|safe}}></a></div>
+          </td>
+          <td class="text-center">
+            <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.cost|safe}} → {{weapon.discount|safe}}
+              ({{weapon.per|safe}}% off)</h3>
+          </td>
+          <td>
+            {% if weapon.levels|length > 1 or weapon.chromas|length > 1 %}
+            <button type="button" class="btn bg-gradient-danger hidden" id="WEAPON-{{ weapon.id }}-CLOSE"
+              onclick="close_{{ weapon.id }}()">
+              {{ lang.market.button.return }}
+            </button>
+            {% endif %}
+            {% if weapon.levels|length > 1 %}
+            <button type="button" class="btn bg-gradient-primary" id="WEAPON-{{ weapon.id }}-LEVELS"
+              onclick="toggleButtons_levels_{{ weapon.id }}()">
+              {{ lang.market.button.levelpreview }}
+            </button>
+            {% endif %}
+            {% if weapon.chromas|length > 1%}
+            <button type="button" class="btn bg-gradient-primary" id="WEAPON-{{ weapon.id }}-CHROMAS"
+              onclick="toggleButtons_chromas_{{ weapon.id }}()">
+              {{ lang.market.button.chromapreview }}
+            </button>
+            {% endif %}
+            {% for level in weapon.levels %}
+            {% if level.displayName != '' %}
+            <!-- Button trigger modal -->
+            <button type="button" class="btn bg-gradient-primary hidden" data-bs-toggle="modal"
+              data-bs-target="#WEAPON-{{level.uuid|escape}}" id="WEAPON-BTN-{{level.uuid|escape}}">
+              {{level.displayName}}: {{level.levelItem}}
+            </button>
 
-          <!-- Modal -->
-          <div class="modal fade" id="WEAPON-{{chroma.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">{{weapon.name|safe}} {{chroma.displayName}}</h5>
-                </div>
-                <div class="modal-body">
-                  {% if chroma.streamedVideo %}
-                  <video width=100% controls>
-                    <source src="{{chroma.streamedVideo}}" type="video/mp4">
-                    {{lang.nightmarket.modal.videonotavaliable}}
-                  </video>
-                  <br>
-                  <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
-                    </p> -->
-                  {% else %}
-                  <img width="100%" src="{{chroma.fullRender}}">
-                  {% endif %}
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn bg-gradient-primary"
-                    data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
+            <!-- Modal -->
+            <div class="modal fade" id="WEAPON-{{level.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">{{weapon.name|safe}} {{level.displayName}}</h5>
+                  </div>
+                  <div class="modal-body">
+                    <video width=100% controls>
+                      <source src="{{level.streamedVideo}}" type="video/mp4">
+                      {{lang.market.modal.videonotavaliable}}
+                    </video>
+                    <br>
+                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
+                    请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-primary"
+                      data-bs-dismiss="modal">{{lang.market.button.close}}</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          </script>
-          {% endif %}
-          {% endfor %}
-        </td>
-      </tr>
-      {% endfor %}
+            {% endif %}
+            {% endfor %}
+            <!-- <br> -->
+            {% for chroma in weapon.chromas %}
+            {% if chroma.displayName != '' %}
+            <!-- Button trigger modal -->
+            <button type="button" class="btn bg-gradient-primary hidden" data-bs-toggle="modal"
+              data-bs-target="#WEAPON-{{chroma.uuid|escape}}" id="WEAPON-BTN-{{chroma.uuid|escape}}">
+              {{chroma.displayName}}
+            </button>
 
-    </table>
+            <!-- Modal -->
+            <div class="modal fade" id="WEAPON-{{chroma.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">{{weapon.name|safe}} {{chroma.displayName}}</h5>
+                  </div>
+                  <div class="modal-body">
+                    {% if chroma.streamedVideo %}
+                    <video width=100% controls>
+                      <source src="{{chroma.streamedVideo}}" type="video/mp4">
+                      {{lang.market.modal.videonotavaliable}}
+                    </video>
+                    <br>
+                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
+                    请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
+                    {% else %}
+                    <img width="100%" src="{{chroma.fullRender}}">
+                    {% endif %}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-primary"
+                      data-bs-dismiss="modal">{{lang.market.button.close}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </script>
+            {% endif %}
+            {% endfor %}
+          </td>
+        </tr>
+        {% endfor %}
+
+      </table>
+    </div>
   </div>
-  <!-- </div> -->
   {% endif %}
   {% endif %}
 
