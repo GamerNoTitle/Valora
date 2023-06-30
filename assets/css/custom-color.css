@@ -29,7 +29,7 @@
     border: 1px solid #7028e4;
   }
   
-  .btn.bg-gradient-pink:hover {
+.btn.bg-gradient-pink:hover {
     background-image: linear-gradient(310deg, #fb7299 0%, #fecfef 100%)
 }
 
@@ -43,7 +43,7 @@
   color: #fff;
 }
 
-.btn.bg-gradient-pinke:not(:disabled):not(.disabled).active,
+.btn.bg-gradient-pink:not(:disabled):not(.disabled).active,
 .btn.bg-gradient-pink:not(:disabled):not(.disabled):active,
 .show>.btn.bg-gradient-pink.dropdown-toggle {
   color: color-yiq(#fb7299);
@@ -53,6 +53,58 @@
 .btn.bg-gradient-pink .btn.bg-outline-pink {
     border: 1px solid #fb7299;
   }
+
+.btn.bg-gradient-deepred:hover {
+    background-image: linear-gradient(310deg, #5A0D43 0%, #AF1259 100%)
+}
+
+.btn.bg-gradient-deepred {
+    background-image: linear-gradient(310deg, #5A0D43 0%, #AF1259 100%);
+    color: #ffffff;
+}
+
+.btn.bg-gradient-deepred.focus,
+.btn.bg-gradient-deepred:focus {
+  color: #fff;
+}
+
+.btn.bg-gradient-deepred:not(:disabled):not(.disabled).active,
+.btn.bg-gradient-deepred:not(:disabled):not(.disabled):active,
+.show>.btn.bg-gradient-deepred.dropdown-toggle {
+  color: color-yiq(#5A0D43);
+  background-color: #5A0D43;
+}
+
+.btn.bg-gradient-deepred .btn.bg-outline-deepred {
+    border: 1px solid #5A0D43;
+  }
+
+.btn.bg-gradient-mint:hover {
+    background-image: linear-gradient(310deg, #2F9381 0%, #68C198 100%)
+}
+
+.btn.bg-gradient-mint {
+    background-image: linear-gradient(310deg, #2F9381 0%, #68C198 100%);
+    color: #ffffff;
+}
+
+.btn.bg-gradient-mint.focus,
+.btn.bg-gradient-mint:focus {
+  color: #fff;
+}
+
+.btn.bg-gradient-mint:not(:disabled):not(.disabled).active,
+.btn.bg-gradient-mint:not(:disabled):not(.disabled):active,
+.show>.btn.bg-gradient-mint.dropdown-toggle {
+  color: color-yiq(#2F9381);
+  background-color: #2F9381;
+}
+
+.btn.bg-gradient-mint .btn.bg-outline-mint {
+    border: 1px solid #2F9381;
+  }
+
+
 
 td {
   word-wrap: break-word;

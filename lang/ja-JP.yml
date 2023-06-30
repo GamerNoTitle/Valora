@@ -27,6 +27,8 @@ metadata:
     EEquippableSkinLevelItem::HeartbeatAndMapSensor: マップハートビートセンサー
     # For Recon Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/a8509c8d-4061-1c57-60a5-61a025f28408
     EEquippableSkinLevelItem::Randomizer: ランダマイザー
+    # For Neo Frontier Set Level 3 https://valorant-api.com/v1/weapons/skinlevels/C5175815-41DA-879B-C547-429CE4D7A191
+    EEquippableSkinLevelItem::Transformation: へんけい
   weapon:
     classic: クラシック
     shorty: ショーティー
@@ -65,6 +67,7 @@ global:
     library: スキンライブラリ
     trans: 翻譯對照表
     inventory: インベントリー
+    accessory: アクセサリーショップ
   description:
     line1: VALORANTショップビュー。ゲームにログインせずにデイリーショップを確認できます
     line2: ログイン名とパスワードはサーバーに保存されず、ログインにのみ使用されます。
@@ -81,6 +84,8 @@ global:
     home: ホームページに戻る
     trans: 翻訳対照
     inventory: インベントリー
+    accessory: アクセサリーショップ
+
 
 login:
   front:
@@ -235,6 +240,21 @@ inventory:
     opening: お帰りなさい
     credit: 現在、保有しているのは
     cost: 現在の在庫価値
+
+accessory:
+  welcome:
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    # <cost> {{player.costVP}} VP & {{player.costRP}} RP
+    opening: お帰りなさい
+    credit: 現在、保有しているのは
+    cost: 現在の在庫価値
+  title: アクセサリーショップ
+  table:
+    name: アクセサリー名
+    preview: アクセサリーのプレビュー
+    cost: アクセサリーの価格
 
 down:
   title: 予定されているメンテナンス中

@@ -71,4 +71,4 @@ def sqlite3_error(app: Flask, request: Request, e):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
-    return render_template('500.html', error='Server is currently under high load, we are unable to finish your requests at this time. Please try again later.<br>' + str(e), lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)), 500
+    return render_template('500.html', error='Server is currently under high load, we are unable to finish your requests at this time. Please try again later.<br>' + str(traceback.format_exc()).replace('\n', '<br>'), lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)), 500

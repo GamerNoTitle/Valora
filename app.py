@@ -140,6 +140,9 @@ def trans_handler(t):
 def inventory_handler():
     return inventory(app, request)
 
+@app.route('/market/accessory')
+def accessory_handler():
+    return accessory(app, request)
 
 @app.route('/profiler')
 def redirectprofiler():

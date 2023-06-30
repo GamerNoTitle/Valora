@@ -1,29 +1,17 @@
-<!--
-=========================================================
-* Soft UI Design System - v1.0.9
-=========================================================
-
-* Product Page:  https://www.creative-tim.com/product/soft-ui-design-system 
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
-<!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="keywords" content="Valorant, Skin, 瓦罗兰特, 无畏契约">
-  <meta name="description" content="Valora (also named Valorant Shop Checker) is a site that helps you check your valorant daily shop and night market without opening the game or installing an app."/>
+  <meta name="description"
+    content="Valora (also named Valorant Shop Checker) is a site that helps you check your valorant daily shop and night market without opening the game or installing an app." />
   <meta name="author" content="GamerNoTitle, GamerNoTitle@outlook.com">
   <meta name="copyright" content="Copyright &copy; 2023 GamerNoTitle. All rights reserved.">
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/img-navi-valorant-red.svg">
   <link rel="icon" type="image/png" href="/assets/img/img-navi-valorant-red.svg">
   <title>
-    {{lang.error.error404.tip}} | Valora | GamerNoTitle
+    {{lang.global.title.accessory}} | Valora | GamerNoTitle
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -35,7 +23,30 @@
   <link href="/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="/assets/css/soft-design-system.css?v=1.0.9" rel="stylesheet" />
+  <!-- Bootstrap 5 modals -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+    integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js"
+    integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.esm.min.js"
+    integrity="sha512-ruQ4xI8Jfep9W+qJQ8FLbxsjPVR0WvEt31XNw0mZxri2Nya9eQr7VTFsi+S7OvW0bIUI7vxF8zoaPNSq/PsvxA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    if (document.location.pathname != "/market/accessory") {
+      window.location = document.location.origin + "/market/accessory"
+    }
+  </script>
+  <!-- 引入 fancybox CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
   <script defer data-site="val.bili33.top" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+  <!-- 引入 jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- 引入 fancybox JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
   <script>
     var _hmt = _hmt || [];
     (function () {
@@ -45,6 +56,9 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
+
+  <!-- Custom CSS -->
+  <link href="/assets/css/custom-color.css" rel="stylesheet" />
   <!-- Easter Egg -->
   <script>(new Date().getDate() === 1 && new Date().getMonth() === 3) && document.write('<script src="https://cdn.bili33.top/gh/Vikutorika/newassets@master/js/smooth-April-Fools.js"><\/script>')</script>
 </head>
@@ -76,9 +90,10 @@
                 <li class="nav-item my-auto ms-3 ms-lg-0">
                   <a href="https://t.me/LumineStelle" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i
                       class="ni ni-send"></i> Telegram</a>
-                  <a href="https://gamernotitle.notion.site/gamernotitle/Valora-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i 
-                    class="fas fa-question"></i> FAQ</a>
-                  </li>
+                  <a href="https://gamernotitle.notion.site/gamernotitle/Valora-FAQ-86f072f8cebf4a8d9453a795b24cd507"
+                    class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i class="fas fa-question"></i>
+                    FAQ</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -117,37 +132,129 @@
             <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
           </defs>
           <g class="moving-waves">
-            <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40" />
+            <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40)" />
             <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.35)" />
             <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.25)" />
             <use xlink:href="#gentle-wave" x="48" y="8" fill="rgba(255,255,255,0.20)" />
             <use xlink:href="#gentle-wave" x="48" y="13" fill="rgba(255,255,255,0.15)" />
-            <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(255,255,255,0.95" />
+            <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(255,255,255,0.95)" />
           </g>
         </svg>
       </div>
     </div>
   </header>
 
-  <section>
-    <div class="container py-4">
-      <div class="row">
-        <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
-          <h1 class="text-gradient text-danger mb-0 mt-2" align="center">{{lang.error.error404.error}}<br>404 Not Found
-          </h1><br>
-          <div class="container-fluid px-0 overflow-hidden">
-            <div class="row text-center py-2 mt-3">
-              <div class="col-12 mx-auto">
-                <a href="/"><button type="button" class="btn bg-gradient-danger btn-lg"
-                    width="100%"><strong>{{lang.error.error404.button.home}}</strong></button></a>
-              </div>
-            </div>
-          </div>
+  <div class="container-fluid px-0 overflow-hidden">
+    <div class="row text-center py-2 mt-3">
+      <div class="col-12 mx-auto">
+        <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg"><i class="fas fa-shopping-cart"></i>
+            {{lang.global.button.dailyshop}}</button></a>
+        <a href="/market/night"><button type="button" class="btn bg-gradient-mint btn-lg"><i
+              class="fas fa-shopping-bag"></i></i>
+            {{lang.global.button.nightmarket}}</button></a>
+        <a href="/inventory"><button type="button" class="btn bg-gradient-pink btn-lg"><i class="fas fa-warehouse"></i>
+            {{lang.global.button.inventory}}</button></a>
+        <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
+            {{lang.global.button.trans}}</button></a>
+        <a href="//account.riotgames.com" target="_blank"><button type="button"
+            class="btn bg-gradient-secondary btn-lg"><i class="fas fa-user-circle"></i>
+            {{lang.global.button.account}}</button></a>
+        <a href="/library"><button type="button" class="btn bg-gradient-success btn-lg"><i class="fas fa-book"></i>
+            {{lang.global.button.library}}</button></a>
+        <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i
+              class="fas fa-coins"></i> {{lang.global.button.sponsor}}</button></a>
+        <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg"><i
+              class="fas fa-door-open"></i>
+            {{lang.global.button.logout}}</button></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row text-center py-2 mt-3">
+      <div class="col-12 mx-auto">
+        <div class="alert alert-pink text-white rounded" role="alert">
+          <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+          {{lang.accessory.welcome.opening}} {% if not accesstokenlogin
+          %}<strong>{{player.name}}</strong>#<strong>{{player.tag}}</strong><br> {% else %} <strong>N/A</strong><br> {%
+          endif %}
+          {{lang.accessory.welcome.credit}} <img src="/assets/img/VP.png" height=16px width=16px>
+          <strong>{{player.vp}}</strong> <img src="/assets/img/RP.png" height=16px width=16px>
+          <strong>{{player.rp}}</strong> <img src="/assets/img/KC.png" height=16px width=16px>
+          <strong>{{player.kc}}</strong>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+  {% if pc %}
+  <!-- Desktop Devices -->
+  <div class="container">
+    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.accessory.title}}</h1>
+    <br>
+    <div class="table-responsive">
+      <table class="table" id="market-table" width=100%>
+        <thead>
+          <tr>
+            <th class="text-center">{{lang.accessory.table.name}}</th>
+            <th class="text-center">{{lang.accessory.table.preview}}</th>
+            <th class="text-center"><img src="/assets/img/KC-black.png" width=24px height=24px>
+              {{lang.accessory.table.cost}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for accessory in accessory_list %}
+          <tr>
+            <td class="text-center">
+              <h3 class="text-gradient text-primary mb-0 mt-2">{{accessory.name|safe}}</h3>
+            </td>
+            <td class="text-center">
+              {% if accessory.preview %}
+              <div class="gun-image"><a href="{{accessory.img|safe}}" data-fancybox="gallery"><img height="80px"
+                    src={{accessory.preview|safe}}></a></div>
+              {% else %}
 
+              {% endif %}
+            </td>
+            <td class="text-center">
+              <h3 class="text-gradient text-dark mb-0 mt-2">{{accessory.cost|safe}}</h3>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {% else %}
+  <!-- Mobile Devices -->
+  <div class="container">
+    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.accessory.title}}</h1>
+    <br>
+    <div class="row">
+      {% for accessory in accessory_list %}
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm rounded">
+          {% if accessory.preview %}
+          <div class="gun-image">
+            <a href="{{accessory.img|safe}}" data-fancybox="gallery">
+              <img height=auto width=100% class="text-center" src={{accessory.preview|safe}}>
+            </a>
+          </div>
+          {% endif %}
+          <div class="card-body">
+            <h3 class="text-gradient text-primary mb-0 mt-2">{{accessory.name|safe}}</h3>
+            <h3 class="text-gradient text-dark mb-0 mt-2"><img src="/assets/img/KC-black.png" width=24px height=24px>
+              {{accessory.cost|safe}}</h3>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  </div>
+  </div>
+
+  {% endif %}
   <section>
     <footer class="footer pt-5 mt-5">
       <hr class="horizontal dark mb-5">
@@ -291,10 +398,12 @@
                 All rights reserved. Copyright ©
                 <script>document.write(new Date().getFullYear())</script> <a href="https://bili33.top"
                   target="_blank"><u>GamerNoTitle</u></a>. | Open-Source project <a
-                  href="https://github.com/GamerNoTitle/Valora" target="_blank"><u>Valora</u></a> is avaliable on Github.
-                  <br> 
+                  href="https://github.com/GamerNoTitle/Valora" target="_blank"><u>Valora</u></a> is avaliable on
+                Github.
+                <br>
                 <a href="http://beian.miit.gov.cn/" class="nav-link" id="icp" target=_blank><img
-                    src='https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png' width=20px height=20px> 沪ICP备
+                    src='https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png' width=20px height=20px>
+                  沪ICP备
                   2021023713号</a>
               </p>
             </div>
@@ -306,12 +415,26 @@
   <script>
     // 获取当前页面的域名
     const domain = window.location.hostname;
-  
+
     // 判断域名是否符合要求
     if (!domain.endsWith('bili33.top') && !domain.endsWith('.github.dev')) {
       // 如果不符合要求，则隐藏元素
       document.getElementById('icp').style.display = 'none';
     }
+  </script>
+  <script>
+    $(document).ready(function () {
+      $("[data-fancybox]").fancybox({
+        buttons: [
+          "zoom",
+          "slideShow",
+          "fullScreen",
+          "download",
+          "thumbs",
+          "close"
+        ]
+      });
+    });
   </script>
 
 </body>
