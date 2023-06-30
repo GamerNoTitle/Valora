@@ -604,18 +604,21 @@ def accessory(app: Flask, request: Request):
                     # data = [('Hard Carry Title',)]
                     name = data[0][0]
                     preview = None
+                    img = None
                 elif accessorySort in ['sprays', 'buddies']:
                     c.execute(
                         f'SELECT name, preview FROM {accessorySort} WHERE uuid = ?', (uuid,))
                     data = c.fetchall()
                     name = data[0][0]
                     preview = data[0][1]
+                    img = preview
                 elif accessorySort == 'cards':
                     c.execute(
-                        'SELECT name, wide FROM cards WHERE uuid = ?', (uuid,))
+                        'SELECT name, wide, large FROM cards WHERE uuid = ?', (uuid,))
                     data = c.fetchall()
                     name = data[0][0]
                     preview = data[0][1]
+                    img = data[0][2]
             else:
                 if accessorySort == 'titles':
                     c.execute(
