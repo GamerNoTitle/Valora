@@ -19,6 +19,30 @@
 - 稳定版服务 (Master分支): [https://val.bili33.top](https://val.bili33.top)
 - 开发版服务 (Dev分支): [https://dev.val.bili33.top](https://dev.val.bili33.top)
 
+## 项目展示
+
+<details>
+<summary>点击展开</summary>
+<div align="center">
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/CN/login.png" alt="登录页面" title="登录页面">
+登录页面<br>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/CN/market.png" alt="每日商店" title="每日商店">
+每日商店<br>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/CN/skin-level-preview.png" alt="皮肤等级/炫彩预览" title="皮肤等级/炫彩预览">
+皮肤等级/炫彩预览<br>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/CN/accessory.png" alt="配件商店" title="配件商店">
+配件商店<br>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/CN/accessory-card-preview.png" alt="配件商店：玩家卡面展示" title="配件商店：玩家卡面展示">
+配件商店：玩家卡面展示<br>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/CN/inventory.png" alt="个人库存" title="个人库存">
+个人库存<br>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/CN/library.png" alt="皮肤库" title="皮肤库">
+皮肤库（无需登录）<br>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/CN/translation.png" alt="翻译表" title="翻译表">
+翻译表（无需登录）
+</div>
+</details>
+
 ## 自己搭建
 
 ### 使用Docker运行
