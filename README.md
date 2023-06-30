@@ -29,18 +29,25 @@ You can access [https://val.bili33.top](https://val.bili33.top) to start your sh
 <div align="center">
 <img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/EN/login.png" alt="Login Page" title="Login Page">
 Login Page<br>
+<hr>
 <img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/EN/market.png" alt="Daily Shop" title="Daily Shop">
 Daily Shop<br>
+<hr>
 <img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/EN/skin-level-preview.png" alt="Skin Level/Chroma Preview" title="Skin Level/Chroma Preview">
 Skin Level/Chroma Preview<br>
+<hr>
 <img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/EN/acccessory.png" alt="Accessory Store" title="Accessory Store">
 Accessory Store<br>
+<hr>
 <img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/EN/accessory-card-preview.png" alt="Accessory Store Player Card Preview" title="Accessory Store Player Card Preview">
 Accessory Store Player Card Preview<br>
+<hr>
 <img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/EN/inventory.png" alt="Inventory" title="Inventory">
 Inventory<br>
+<hr>
 <img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/EN/library.png" alt="Skin Library" title="Skin Library">
 Skin Library (No login status needed)<br>
+<hr>
 <img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/EN/translation.png" alt="Translation Table" title="Translation Table">
 Translation Table (No login status needed)
 </div>
