@@ -4,7 +4,7 @@
 
 # VLR | Valora: What it is in my VALORANT Store TODAY??
 
-English | [简体中文](https://github.com/GamerNoTitle/VSC/blob/master/docs/README_CN.md)
+English | [简体中文](https://github.com/GamerNoTitle/Valora/blob/master/docs/README_CN.md)
 
 This is a website that helps you peek your shop and night market of VALORANT. It's a project that I make on my spare time.
 
