@@ -228,9 +228,15 @@
               var self = document.getElementById('WEAPON-{{ weapon.id }}-LEVELS')
               var chromas = document.getElementById("WEAPON-{{ weapon.id }}-CHROMAS")
               var close = document.getElementById('WEAPON-{{ weapon.id }}-CLOSE')
-              self.classList.add("hidden")
-              chromas.classList.add("hidden")
-              close.classList.remove("hidden")
+              try {
+                self.classList.add("hidden")
+              } catch (error) { undefined }
+              try {
+                chromas.classList.add("hidden")
+              } catch (error) { undefined }
+              try {
+                close.classList.remove("hidden")
+              } catch (error) { undefined }
               {% for level in weapon.levels %}
               {% if level.displayName != '' %}
               var button{{ level.uuid | replace('-', '')
@@ -251,9 +257,15 @@
               var self = document.getElementById('WEAPON-{{ weapon.id }}-CHROMAS')
               var levels = document.getElementById("WEAPON-{{ weapon.id }}-LEVELS")
               var close = document.getElementById('WEAPON-{{ weapon.id }}-CLOSE')
-              self.classList.add("hidden")
-              levels.classList.add("hidden")
-              close.classList.remove("hidden")
+              try {
+                self.classList.add("hidden")
+              } catch (error) { undefined }
+              try {
+                levels.classList.add("hidden")
+              } catch (error) { undefined }
+              try {
+                close.classList.remove("hidden")
+              } catch (error) { undefined }
               {% for chroma in weapon.chromas %}
               {% if chroma.displayName != '' %}
               var button{{ chroma.uuid | replace('-', '')
@@ -274,9 +286,18 @@
               var self = document.getElementById("WEAPON-{{ weapon.id }}-CLOSE")
               var levels = document.getElementById("WEAPON-{{ weapon.id }}-LEVELS")
               var chromas = document.getElementById("WEAPON-{{ weapon.id }}-CHROMAS")
-              self.classList.add('hidden')
-              levels.classList.remove('hidden')
-              chromas.classList.remove('hidden')
+              try {
+                self.classList.add('hidden')
+              }
+              catch (error) {
+                undefined
+              }
+              try {
+                levels.classList.remove('hidden')
+              } catch (error) { undefined }
+              try {
+                chromas.classList.remove('hidden')
+              } catch (error) { undefined }
               {% for level in weapon.levels %}
               {% if level.displayName != '' %}
               var button{{ level.uuid | replace('-', '')
@@ -444,21 +465,27 @@
             var self = document.getElementById('WEAPON-{{ weapon.id }}-LEVELS')
             var chromas = document.getElementById("WEAPON-{{ weapon.id }}-CHROMAS")
             var close = document.getElementById('WEAPON-{{ weapon.id }}-CLOSE')
-            self.classList.add("hidden")
-            chromas.classList.add("hidden")
-            close.classList.remove("hidden")
+            try {
+              self.classList.add("hidden")
+            } catch (error) { undefined }
+            try {
+              chromas.classList.add("hidden")
+            } catch (error) { undefined }
+            try {
+              close.classList.remove("hidden")
+            } catch (error) { undefined }
             {% for level in weapon.levels %}
             {% if level.displayName != '' %}
             var button{{ level.uuid | replace('-', '')
           }} = document.getElementById("WEAPON-BTN-{{level.uuid}}");
           if (button{{ level.uuid | replace('-', '') }}.classList.contains("hidden")) {
-              button{{ level.uuid | replace('-', '') }}.classList.remove("hidden");
+                button{{ level.uuid | replace('-', '') }}.classList.remove("hidden");
           } else {
-              button{{ level.uuid | replace('-', '') }}.classList.add("hidden");
+                button{{ level.uuid | replace('-', '') }}.classList.add("hidden");
           }
           {% endif %}
           {% endfor %}
-          }
+            }
         </script>
         {% endif %}
         {% if weapon.chromas|length > 1 %}
@@ -467,21 +494,27 @@
             var self = document.getElementById('WEAPON-{{ weapon.id }}-CHROMAS')
             var levels = document.getElementById("WEAPON-{{ weapon.id }}-LEVELS")
             var close = document.getElementById('WEAPON-{{ weapon.id }}-CLOSE')
-            self.classList.add("hidden")
-            levels.classList.add("hidden")
-            close.classList.remove("hidden")
+            try {
+              self.classList.add("hidden")
+            } catch (error) { undefined }
+            try {
+              levels.classList.add("hidden")
+            } catch (error) { undefined }
+            try {
+              close.classList.remove("hidden")
+            } catch (error) { undefined }
             {% for chroma in weapon.chromas %}
             {% if chroma.displayName != '' %}
             var button{{ chroma.uuid | replace('-', '')
           }} = document.getElementById("WEAPON-BTN-{{chroma.uuid}}");
           if (button{{ chroma.uuid | replace('-', '') }}.classList.contains("hidden")) {
-              button{{ chroma.uuid | replace('-', '') }}.classList.remove("hidden");
+                button{{ chroma.uuid | replace('-', '') }}.classList.remove("hidden");
           } else {
-              button{{ chroma.uuid | replace('-', '') }}.classList.add("hidden");
+                button{{ chroma.uuid | replace('-', '') }}.classList.add("hidden");
           }
           {% endif %}
           {% endfor %}
-          }
+            }
         </script>
         {% endif %}
         {% if weapon.levels|length > 1 or weapon.chromas|length > 1 %}
@@ -490,28 +523,37 @@
             var self = document.getElementById("WEAPON-{{ weapon.id }}-CLOSE")
             var levels = document.getElementById("WEAPON-{{ weapon.id }}-LEVELS")
             var chromas = document.getElementById("WEAPON-{{ weapon.id }}-CHROMAS")
-            self.classList.add('hidden')
-            levels.classList.remove('hidden')
-            chromas.classList.remove('hidden')
+            try {
+              self.classList.add('hidden')
+            }
+            catch (error) {
+              undefined
+            }
+            try {
+              levels.classList.remove('hidden')
+            } catch (error) { undefined }
+            try {
+              chromas.classList.remove('hidden')
+            } catch (error) { undefined }
             {% for level in weapon.levels %}
             {% if level.displayName != '' %}
             var button{{ level.uuid | replace('-', '')
           }} = document.getElementById("WEAPON-BTN-{{level.uuid}}");
-          button{{ level.uuid | replace('-', '') }}.classList.add("hidden");
+            button{{ level.uuid | replace('-', '') }}.classList.add("hidden");
           {% endif %}
           {% endfor %}
 
           {% for chroma in weapon.chromas %}
           {% if chroma.displayName != '' %}
           var button{{ chroma.uuid | replace('-', '')
-        }} = document.getElementById("WEAPON-BTN-{{chroma.uuid}}");
-          button{{ chroma.uuid | replace('-', '') }}.classList.add("hidden");
+          }} = document.getElementById("WEAPON-BTN-{{chroma.uuid}}");
+            button{{ chroma.uuid | replace('-', '') }}.classList.add("hidden");
           {% endif %}
           {% endfor %}
-        }
+          }
         </script>
         {% endif %}
-        <tr>
+      <tr>
           <td class="text-center">
             <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
           </td>

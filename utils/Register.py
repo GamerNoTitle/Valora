@@ -172,6 +172,7 @@ def night(app: Flask, request: Request):
             weapon5 = weapon(nightmarket['BonusStoreOffers'][5]['Offer']['OfferID'], nightmarket['BonusStoreOffers'][5]['Offer']['Cost']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"],
                                 nightmarket['BonusStoreOffers'][5]['DiscountCosts']["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], nightmarket['BonusStoreOffers'][5]['DiscountPercent'], lang=str(
                 lang))
+            # weapon0 = weapon1 = weapon2 = weapon3 = weapon4 = weapon5 = weapon('24c73c29-443c-2440-d6db-838086f2451a')
             return render_template('myMarket.html', night=True,
                                     weapon0={
                                         "name": weapon0.name, "cost": weapon0.cost, "img": weapon0.base_img, "discount": weapon0.discount, "per": weapon0.per, "levels": weapon0.levels, "chromas": weapon0.chromas, "id": 0},
