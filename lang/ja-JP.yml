@@ -284,3 +284,9 @@ error:
     error: 誰も知らない場所に来ました
     button:
       home: ホームに戻る
+
+expired:
+  title: ログイン期限切れ
+  detail: ログイン期限切れです。下のボタンをクリックしてログインページに戻り、再度ログインしてください。
+  button:
+    return: ログインページに戻る

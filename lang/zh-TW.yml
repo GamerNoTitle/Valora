@@ -281,3 +281,9 @@ error:
     error: 你來到了一個無人所知的地方
     button:
       home: 返回首頁
+
+expired:
+  title: 登入失效 | Login Expired
+  detail: 登入失效，請點擊下方按鈕返回登入界面重新登入
+  button:
+    return: 返回登入頁面

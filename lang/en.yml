@@ -284,3 +284,9 @@ error:
     error: You have arrived at an unknown place
     button:
       home: Return to Home Page
+
+expired:
+  title: Login Expired
+  detail: Your login session has expired. Please click the button below and login again.
+  button:
+    return: Return to Login Page

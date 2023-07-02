@@ -6,7 +6,6 @@ from math import ceil
 from flask import Flask, render_template, redirect, make_response, session, abort, Request
 from utils.GetPlayer import player
 from utils.Weapon import weapon, weaponlib
-from pprint import pprint, pformat
 
 
 def home(app: Flask, request: Request):
