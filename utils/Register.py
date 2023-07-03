@@ -22,13 +22,15 @@ def home(app: Flask, request: Request):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
     session["lang"] = str(request.accept_languages.best_match(
         app.config['BABEL_LANGUAGES']))
     if session.get('access_token', None):
         return redirect('/market', 301)
     else:
         response = make_response(render_template(
-            'index.html', loginerror=False, lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)))
+            'index.html', loginerror=False, lang=yaml.load(transtable, Loader=yaml.FullLoader)))
         response.set_cookie('logged', '0', max_age=24*60*60*365*10)
         response.set_cookie('lang', lang)
     return response
@@ -48,9 +50,11 @@ def mfa_auth(app: Flask, request: Request):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
     if not session.get('username'):
         return redirect('/', 302)
-    return render_template('MFA.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
+    return render_template('MFA.html', lang=yaml.load(transtable, Loader=yaml.FullLoader))
 
 
 def market(app: Flask, request: Request):
@@ -74,6 +78,8 @@ def market(app: Flask, request: Request):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
     if not access_token:
         redirect('/')
     user = player(access_token, entitlement, region, userid)
@@ -84,7 +90,7 @@ def market(app: Flask, request: Request):
         pc = True
     weapon0, weapon1, weapon2, weapon3 = {}, {}, {}, {}
     if user.down:
-        return render_template('maintenance.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
+        return render_template('maintenance.html', lang=yaml.load(transtable, Loader=yaml.FullLoader))
     if user.auth:
         shop = user.shop['SkinsPanelLayout']    # Flite the daily skin
         weapon0 = weapon(shop['SingleItemStoreOffers'][0]['OfferID'],
@@ -109,7 +115,7 @@ def market(app: Flask, request: Request):
                                weapon3={
                                    "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img, "levels": weapon3.levels, "chromas": weapon3.chromas, "id": 3},
                                player={'name': name, 'tag': tag, 'vp': user.vp, 'rp': user.rp, 'kc': user.kc}, pc=pc,
-                               lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader), accesstokenlogin=session.get('accesstokenlogin'))
+                               lang=yaml.load(transtable, Loader=yaml.FullLoader), accesstokenlogin=session.get('accesstokenlogin'))
     else:   # Login Expired
         # response = make_response(redirect('/', 302))
         # for cookie in request.cookies:
@@ -139,6 +145,8 @@ def night(app: Flask, request: Request):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
     if not name:
         redirect('/')
     user = player(access_token, entitlement, region, userid)
@@ -149,7 +157,7 @@ def night(app: Flask, request: Request):
         pc = True
     weapon0, weapon1, weapon2, weapon3, weapon4, weapon5 = {}, {}, {}, {}, {}, {}
     if user.down:
-        return render_template('maintenance.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
+        return render_template('maintenance.html', lang=yaml.load(transtable, Loader=yaml.FullLoader))
     if user.auth:
         nightmarket = user.shop.get('BonusStore')
         if nightmarket:
@@ -187,14 +195,14 @@ def night(app: Flask, request: Request):
                                         "name": weapon5.name, "cost": weapon5.cost, "img": weapon5.base_img, "discount": weapon5.discount, "per": weapon5.per, "levels": weapon5.levels, "chromas": weapon5.chromas, "id": 5},
                                     player={'name': name, 'tag': tag,
                                             'vp': user.vp, 'rp': user.rp, 'kc': user.kc},
-                                    pc=pc, lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader), accesstokenlogin=session.get('accesstokenlogin'))
+                                    pc=pc, lang=yaml.load(transtable, Loader=yaml.FullLoader), accesstokenlogin=session.get('accesstokenlogin'))
         else:
             return render_template('myMarket.html', night=True,
                                    player={'name': name, 'tag': tag,
                                            'vp': user.vp, 'rp': user.rp, 'kc': user.kc},
                                    pc=pc,
                                    nightmarket_notavaliable=True,
-                                   lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader), accesstokenlogin=session.get('accesstokenlogin'))
+                                   lang=yaml.load(transtable, Loader=yaml.FullLoader), accesstokenlogin=session.get('accesstokenlogin'))
     else:   # Login Expired
         return redirect('/api/reauth?redirect=/market/night')
 
@@ -214,6 +222,8 @@ def library(app: Flask, request: Request):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
     if 'android' in device.lower() or 'iphone' in device.lower():
         pc = False
     else:
@@ -255,13 +265,11 @@ def library(app: Flask, request: Request):
             conn.commit()
         skins = c.fetchall()
         if len(skins) == 0:
-            return render_template('library.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader), search_notfound=True, search=True, query=request.form.get('query'), pc=pc)
+            return render_template('library.html', lang=yaml.load(transtable, Loader=yaml.FullLoader), search_notfound=True, search=True, query=request.form.get('query'), pc=pc)
         else:
             weapon_list = []
-            levelup_info = dict(yaml.load(os.popen(
-                f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
-            description_to_del = dict(yaml.load(os.popen(
-                f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['description']
+            levelup_info = dict(yaml.load(transtable, Loader=yaml.FullLoader))['metadata']['level']
+            description_to_del = dict(yaml.load(transtable, Loader=yaml.FullLoader))['metadata']['description']
             for uuid, skin, data in list(skins):
                 try:
                     data = json.loads(data)
@@ -308,8 +316,7 @@ def library(app: Flask, request: Request):
                 weapon_list.append(
                     {"name": name, "img": base_img, "levels": levels, "chromas": chromas, "unlock": unlock})
             return render_template('library.html', weapon_list=weapon_list,
-                                   lang=yaml.load(os.popen(
-                                       f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader),
+                                   lang=yaml.load(transtable, Loader=yaml.FullLoader),
                                    search=True, query=request.form.get('query'), pc=pc)
     else:
         try:
@@ -349,8 +356,7 @@ def library(app: Flask, request: Request):
             weapon_list.append({"name": Weapon.name, "img": Weapon.base_img,
                                 "levels": Weapon.levels, "chromas": Weapon.chromas, "unlock": unlock})
         return render_template('library.html', weapon_list=weapon_list, page=page, count=count,
-                               lang=yaml.load(os.popen(
-                                   f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader),
+                               lang=yaml.load(transtable, Loader=yaml.FullLoader),
                                prev=f'/library?page={page-1}' if page != 1 else None, next=f'/library?page={page+1}' if page != ceil(count/perpage) else None, cur_page=page, pages=ceil(count/perpage), pc=pc)
 
 
@@ -368,6 +374,8 @@ def trans(app: Flask, request: Request, t):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
     if t in ['agents', 'maps', 'weapons', 'skins']:
         conn = sqlite3.connect('db/data.db')
         datalist = []
@@ -404,8 +412,7 @@ def trans(app: Flask, request: Request, t):
                 if {"en": i[0], "zhCN": i[1], "zhTW": i[2], "jaJP": i[3]} not in datalist:
                     datalist.append({"en": i[0], "zhCN": i[1],
                                     "zhTW": i[2], "jaJP": i[3]})
-        return render_template('trans.html', data=list(datalist), lang=yaml.load(os.popen(
-            f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
+        return render_template('trans.html', data=list(datalist), lang=yaml.load(transtable, Loader=yaml.FullLoader))
     else:
         abort(404)
 
@@ -437,6 +444,8 @@ def inventory(app: Flask, request: Request):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
     if lang == 'zh-CN':
         dictlang = 'zh-TW'
     else:
@@ -450,7 +459,7 @@ def inventory(app: Flask, request: Request):
     cookie = dict(session.get('cookie', {}))
     Player = player(access_token, entitlement, region, userid)
     if Player.down:
-        return render_template('maintenance.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
+        return render_template('maintenance.html', lang=yaml.load(transtable, Loader=yaml.FullLoader))
     if Player.auth:
         skins, owned_weapons = Player.getSkins()
         chromas, owned_chromas = Player.getChromas()
@@ -459,10 +468,10 @@ def inventory(app: Flask, request: Request):
         weapon_list = []
         VP_count = 0
         RP_count = len(owned_chromas)*15    # A chroma cost 15 RP
-        levelup_info = dict(yaml.load(os.popen(
-            f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
-        description_to_del = dict(yaml.load(os.popen(
-            f'cat lang/{dictlang}.yml').read(), Loader=yaml.FullLoader))['metadata']['description']
+        levelup_info = dict(yaml.load(transtable, Loader=yaml.FullLoader))['metadata']['level']
+        with open(f'lang/{dictlang}.yml', encoding='utf8') as f:
+            dict_transtable = f.read()
+        description_to_del = dict(yaml.load(dict_transtable, Loader=yaml.FullLoader))['metadata']['description']
         for skin in skins:
             if lang == 'en':
                 c.execute(
@@ -543,7 +552,7 @@ def inventory(app: Flask, request: Request):
             'rp': Player.rp,
             'kc': Player.kc
         }
-        return render_template('inventory.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader),
+        return render_template('inventory.html', lang=yaml.load(transtable, Loader=yaml.FullLoader),
                                player=p, weapon_list=weapon_list, costVP=VP_count, costRP=RP_count, accesstokenlogin=session.get('accesstokenlogin'))
     else:   # Login Expired
         return redirect('/api/reauth?redirect=/inventory')
@@ -575,6 +584,8 @@ def accessory(app: Flask, request: Request):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
     if not pname:
         redirect('/')
     user = player(access_token, entitlement, region, userid)
@@ -585,7 +596,7 @@ def accessory(app: Flask, request: Request):
         pc = True
     accessory_list = []
     if user.down:
-        return render_template('maintenance.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
+        return render_template('maintenance.html', lang=yaml.load(transtable, Loader=yaml.FullLoader))
     if user.auth:
         accessoryStore = user.shop.get('AccessoryStore')
         accessoryOfferList = accessoryStore.get('AccessoryStoreOffers', [])
@@ -648,7 +659,7 @@ def accessory(app: Flask, request: Request):
                                player={'name': pname, 'tag': tag,
                                        'vp': user.vp, 'rp': user.rp, 'kc': user.kc},
                                pc=pc,
-                               lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader), accesstokenlogin=session.get('accesstokenlogin'),
+                               lang=yaml.load(transtable, Loader=yaml.FullLoader), accesstokenlogin=session.get('accesstokenlogin'),
                                accessory_list=accessory_list)
     else:
         return redirect('/api/reauth?redirect=/market/accessory')

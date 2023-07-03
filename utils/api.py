@@ -22,6 +22,8 @@ def RiotLogin(app: Flask, request: Request):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
     username = request.form.get('Username')
     password = request.form.get('Password')
     checked_rule = request.form.get('CheckedRule')
@@ -32,7 +34,7 @@ def RiotLogin(app: Flask, request: Request):
     else:
         session['remember'] = False
     if username == '' or password == '' or not checked_eula or not checked_rule:
-        return render_template('index.html', infoerror=True, lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
+        return render_template('index.html', infoerror=True, lang=yaml.load(transtable, Loader=yaml.FullLoader))
     else:
         user = Auth(username, password)
         user.auth()
@@ -63,7 +65,7 @@ def RiotLogin(app: Flask, request: Request):
             return redirect('/2FA')
         else:
             response = make_response(
-                render_template('index.html', loginerror=True, lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)))
+                render_template('index.html', loginerror=True, lang=yaml.load(transtable, Loader=yaml.FullLoader)))
         return response
 
 
@@ -89,6 +91,8 @@ def verify(app: Flask, request: Request):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
     MFACode = request.form.get('MFACode')
     remember = request.form.get('remember')
     user = Auth(session.get('username'), session.get('password'),
@@ -120,7 +124,7 @@ def verify(app: Flask, request: Request):
         _thread.start_new_thread(UpdateOfferCache, (user.access_token, user.entitlement))
     else:
         response = make_response(
-            render_template('index.html', loginerror=True, lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)))
+            render_template('index.html', loginerror=True, lang=yaml.load(transtable, Loader=yaml.FullLoader)))
     return response
 
 
