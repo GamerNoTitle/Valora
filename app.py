@@ -13,6 +13,7 @@ from utils.Cache import UpdateCacheTimer, UpdatePriceTimer
 from utils.Register import *
 from utils.api import *
 from utils.Error import *
+from utils.Exception import *
 
 app = Flask(__name__)
 babel = Babel(app)
@@ -233,6 +234,27 @@ def internal_server_error_preview():
     else:
         lang = 'en'
     return render_template('500.html', error='This is a test-error.', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)), 500
+
+# @ app.route('/exception/expired')
+# def testExpired():
+#     raise ValoraExpiredException('Expired')
+
+@ app.errorhandler(ValoraExpiredException)
+def ValoraLoginExpired(error):
+    if request.args.get('lang'):
+        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
+            lang = request.args.get('lang')
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+            lang = str(request.accept_languages.best_match(
+                app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
+    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+        lang = str(request.accept_languages.best_match(
+            app.config['BABEL_LANGUAGES']))
+    else:
+        lang = 'en'
+    return render_template('expired.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
 
 
 if __name__ == '__main__':

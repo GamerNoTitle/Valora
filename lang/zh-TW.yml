@@ -156,7 +156,10 @@ market:
     videonotavaliable: 當前瀏覽器無法預覽視頻
   button:
     close: 關閉
-
+    levelpreview: 等級預覽
+    chromapreview: 炫彩預覽
+    return: 返回
+    
 nightmarket:
   welcome:
     # Welcome message format:
@@ -175,6 +178,9 @@ nightmarket:
     videonotavaliable: 當前瀏覽器無法預覽視頻
   button:
     close: 關閉
+    levelpreview: 等級預覽
+    chromapreview: 炫彩預覽
+    return: 返回
 
 library:
   title: 皮膚库 | Skin library
@@ -275,3 +281,9 @@ error:
     error: 你來到了一個無人所知的地方
     button:
       home: 返回首頁
+
+expired:
+  title: 登入失效 | Login Expired
+  detail: 登入失效，請點擊下方按鈕返回登入界面重新登入
+  button:
+    return: 返回登入頁面

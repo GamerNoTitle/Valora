@@ -19,11 +19,42 @@
 - 稳定版服务 (Master分支): [https://val.bili33.top](https://val.bili33.top)
 - 开发版服务 (Dev分支): [https://dev.val.bili33.top](https://dev.val.bili33.top)
 
+## 项目展示
+
+<details>
+<summary>点击展开</summary>
+<div align="center">
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/CN/login.png" alt="登录页面" title="登录页面">
+登录页面<br>
+<hr>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/CN/market.png" alt="每日商店" title="每日商店">
+每日商店<br>
+<hr>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/CN/skin-level-preview.png" alt="皮肤等级/炫彩预览" title="皮肤等级/炫彩预览">
+皮肤等级/炫彩预览<br>
+<hr>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/CN/accessory.png" alt="配件商店" title="配件商店">
+配件商店<br>
+<hr>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/CN/accessory-card-preview.png" alt="配件商店：玩家卡面展示" title="配件商店：玩家卡面展示">
+配件商店：玩家卡面展示<br>
+<hr>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/CN/inventory.png" alt="个人库存" title="个人库存">
+个人库存<br>
+<hr>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/CN/library.png" alt="皮肤库" title="皮肤库">
+皮肤库（无需登录）<br>
+<hr>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/CN/translation.png" alt="翻译表" title="翻译表">
+翻译表（无需登录）
+</div>
+</details>
+
 ## 自己搭建
 
 ### 使用Docker运行
 
-https://hub.docker.com/r/gamernotitle/vsc
+<https://hub.docker.com/r/gamernotitle/vsc>
 
 ### 在Railway上运行
 
@@ -38,7 +69,7 @@ https://hub.docker.com/r/gamernotitle/vsc
 > 在一些服务器上，你可能需要使用`pip3`来代替`pip`，同样的，在运行服务器的时候也可能需要使用`python3`来代替`python`和`py`
 
 ```shell
-$ pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 安装完成后，你可以在`app.py`中对服务的监听地址和端口进行修改，默认端口为8080
@@ -61,7 +92,7 @@ $ export REDIS_SSL=True # 如果你的Redis开了这个，那就得开，否则�
 使用如下命令打开服务器
 
 ```shell
-$ python app.py
+python app.py
 ```
 
 现在，你可以访问[http://127.0.0.1:8080](http://127.0.0.1:8080)，当你看到网站主页面的时候，就说明你成功啦！
@@ -73,10 +104,10 @@ $ python app.py
 VSC使用了`flask-profiler`这个轮子来帮助管理员来检测网站的运行情况，如果你需要将这个功能打开，你需要做如下的配置
 
 ```shell
-$ export PROFILER=1 # 非空都能打开这个功能
-$ export PROFILER_AUTH=True # 监控面板认证，不需要认证的话就留空，否则随便写点东西
-$ export PROFILER_USER=admin    # 设置面板账号密码
-$ export PROFILER_PASS=password
+export PROFILER=1 # 非空都能打开这个功能
+export PROFILER_AUTH=True # 监控面板认证，不需要认证的话就留空，否则随便写点东西
+export PROFILER_USER=admin    # 设置面板账号密码
+export PROFILER_PASS=password
 ```
 
 当你完成配置后，重新启动服务器，通过`/profiler`就可以访问到你的监控面板了
@@ -85,9 +116,9 @@ $ export PROFILER_PASS=password
 
 |    路径     |  参数名  |        可选项        |        作用        |                             示例                             |
 | :---------: | :------: | :------------------: | :----------------: | :----------------------------------------------------------: |
-|  （全局）   |   lang   | en/zh-CN/zh-TW/ja-JP | 更改网站显示的语言 |               https://val.bili33.top/?lang=en                |
-|  /library   |  query   |       （任意）       |   搜索皮肤的索引   | https://val.bili33.top/library/?query=/library?query=魔术火花 |
-| /api/reauth | redirect | `/market` `/market/night` `/inventory` | 重新认证后重定向到正确的页面 | https://val.bili33.top/api/reauth?redirect=/market |
+|  （全局）   |   lang   | en/zh-CN/zh-TW/ja-JP | 更改网站显示的语言 |               <https://val.bili33.top/?lang=en>                |
+|  /library   |  query   |       （任意）       |   搜索皮肤的索引   | <https://val.bili33.top/library/?query=/library?query=魔术火花> |
+| /api/reauth | redirect | `/market` `/market/night` `/inventory` | 重新认证后重定向到正确的页面 | <https://val.bili33.top/api/reauth?redirect=/market> |
 
 ## Credit
 

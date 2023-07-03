@@ -4,7 +4,7 @@
 
 # VLR | Valora: What it is in my VALORANT Store TODAY??
 
-English | [简体中文](https://github.com/GamerNoTitle/VSC/blob/master/docs/README_CN.md)
+English | [简体中文](https://github.com/GamerNoTitle/Valora/blob/master/docs/README_CN.md)
 
 This is a website that helps you peek your shop and night market of VALORANT. It's a project that I make on my spare time.
 
@@ -20,6 +20,39 @@ You can access [https://val.bili33.top](https://val.bili33.top) to start your sh
 
 - Stable Service (Master branch): [https://val.bili33.top](https://val.bili33.top)
 - Developing Service (Dev branch): [https://dev.val.bili33.top](https://dev.val.bili33.top)
+
+## Preview
+
+
+<details>
+<summary>Click to show</summary>
+<div align="center">
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/EN/login.png" alt="Login Page" title="Login Page">
+Login Page<br>
+<hr>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/EN/market.png" alt="Daily Shop" title="Daily Shop">
+Daily Shop<br>
+<hr>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/EN/skin-level-preview.png" alt="Skin Level/Chroma Preview" title="Skin Level/Chroma Preview">
+Skin Level/Chroma Preview<br>
+<hr>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/EN/acccessory.png" alt="Accessory Store" title="Accessory Store">
+Accessory Store<br>
+<hr>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/EN/accessory-card-preview.png" alt="Accessory Store Player Card Preview" title="Accessory Store Player Card Preview">
+Accessory Store Player Card Preview<br>
+<hr>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/EN/inventory.png" alt="Inventory" title="Inventory">
+Inventory<br>
+<hr>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/EN/library.png" alt="Skin Library" title="Skin Library">
+Skin Library (No login status needed)<br>
+<hr>
+<img src="https://cdn.jsdelivr.net/gh/Vikutorika/newassets@master/img/Github/Valora/EN/translation.png" alt="Translation Table" title="Translation Table">
+Translation Table (No login status needed)
+</div>
+</details>
+
 
 ## Build your own
 

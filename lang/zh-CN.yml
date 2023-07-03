@@ -160,6 +160,9 @@ market:
     videonotavaliable: 当前浏览器无法预览视频
   button:
     close: 关闭
+    levelpreview: 等级预览
+    chromapreview: 炫彩预览
+    return: 返回
 
 nightmarket:
   welcome:
@@ -179,6 +182,9 @@ nightmarket:
     videonotavaliable: 当前浏览器无法预览视频
   button:
     close: 关闭
+    levelpreview: 等级预览
+    chromapreview: 炫彩预览
+    return: 返回
 
 library:
   title: 皮肤库 | Skin Library
@@ -279,3 +285,9 @@ error:
     error: 你来到了一个无人所知的地方
     button:
       home: 返回首页
+
+expired:
+  title: Login Expired | 登录失效
+  detail: 登录失效，请点击下方按钮返回登录界面重新登陆
+  button:
+    return: 返回登录页面
