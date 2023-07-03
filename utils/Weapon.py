@@ -9,12 +9,14 @@ class weapon:
     def __init__(self, uuid: str, cost: int = 0, discount: int = 0, discountPersentage: int = 0, lang: str = 'en'):
         conn = sqlite3.connect('db/data.db')
         c = conn.cursor()
-        levelup_info = dict(yaml.load(os.popen(
-            f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
+        with open(f'lang/{lang}.yml', encoding='utf8') as f:
+            transtable = f.read()
+        levelup_info = dict(yaml.load(transtable, Loader=yaml.FullLoader))['metadata']['level']
         if lang == 'zh-CN':
             lang = 'zh-TW'
-        description_to_del = dict(yaml.load(os.popen(
-            f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['description']
+        with open(f'lang/{lang}.yml', encoding='utf8') as f:
+            transtable = f.read()
+        description_to_del = dict(yaml.load(transtable, Loader=yaml.FullLoader))['metadata']['description']
         self.uuid = uuid
         self.cost = cost
         self.weapon_id = None
@@ -77,12 +79,14 @@ class weaponlib:
     def __init__(self, uuid: str, name: str, cost: int = 0, discount: int = 0, discountPersentage: int = 0, lang: str = 'en'):
         conn = sqlite3.connect('db/data.db')
         c = conn.cursor()
-        levelup_info = dict(yaml.load(os.popen(
-            f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['level']
+        with open(f'lang/{lang}.yml', encoding='utf8') as f:
+            transtable = f.read()
+        levelup_info = dict(yaml.load(transtable, Loader=yaml.FullLoader))['metadata']['level']
         if lang == 'zh-CN':
             lang = 'zh-TW'
-        description_to_del = dict(yaml.load(os.popen(
-            f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))['metadata']['description']
+        with open(f'lang/{lang}.yml', encoding='utf8') as f:
+            transtable = f.read()
+        description_to_del = dict(yaml.load(transtable, Loader=yaml.FullLoader))['metadata']['description']
         self.uuid = uuid
         self.name = name
         self.cost = cost

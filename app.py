@@ -233,7 +233,9 @@ def internal_server_error_preview():
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
-    return render_template('500.html', error='This is a test-error.', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)), 500
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+            transtable = f.read()
+    return render_template('500.html', error='This is a test-error.', lang=yaml.load(transtable, Loader=yaml.FullLoader)), 500
 
 # @ app.route('/exception/expired')
 # def testExpired():
@@ -254,7 +256,9 @@ def ValoraLoginExpired(error):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
-    return render_template('expired.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader))
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
+    return render_template('expired.html', lang=yaml.load(transtable, Loader=yaml.FullLoader))
 
 
 if __name__ == '__main__':

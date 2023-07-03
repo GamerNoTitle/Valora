@@ -20,7 +20,9 @@ def internal_server_error(app: Flask, request: Request, e):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
-    return render_template('500.html', error=error_message.replace('\n', '<br>'), lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)), 500
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
+    return render_template('500.html', error=error_message.replace('\n', '<br>'), lang=yaml.load(transtable, Loader=yaml.FullLoader)), 500
 
 
 def not_found_error(app: Flask, request: Request, e):
@@ -37,7 +39,9 @@ def not_found_error(app: Flask, request: Request, e):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
-    return render_template('404.html', lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)), 404
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
+    return render_template('404.html', lang=yaml.load(transtable, Loader=yaml.FullLoader)), 404
 
 
 def requests_timeout_error(app: Flask, request: Request, e):
@@ -54,7 +58,9 @@ def requests_timeout_error(app: Flask, request: Request, e):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
-    return render_template('500.html', error='We are failed to connect to riot games API, please refresh this page and try again. <br>' + str(e), lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)), 500
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
+    return render_template('500.html', error='We are failed to connect to riot games API, please refresh this page and try again. <br>' + str(e), lang=yaml.load(transtable, Loader=yaml.FullLoader)), 500
 
 
 def sqlite3_error(app: Flask, request: Request, e):
@@ -71,4 +77,6 @@ def sqlite3_error(app: Flask, request: Request, e):
             app.config['BABEL_LANGUAGES']))
     else:
         lang = 'en'
-    return render_template('500.html', error='Server is currently under high load, we are unable to finish your requests at this time. Please try again later.<br>' + str(traceback.format_exc()).replace('\n', '<br>'), lang=yaml.load(os.popen(f'cat lang/{lang}.yml').read(), Loader=yaml.FullLoader)), 500
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
+    return render_template('500.html', error='Server is currently under high load, we are unable to finish your requests at this time. Please try again later.<br>' + str(traceback.format_exc()).replace('\n', '<br>'), lang=yaml.load(transtable, Loader=yaml.FullLoader)), 500
