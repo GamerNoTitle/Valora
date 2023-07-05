@@ -28,6 +28,7 @@ if type(session_type) != type(None):
         if redisurl == None or redisurl == '':
             redis_host = os.environ.get('REDIS_HOST')
             redis_port = os.environ.get('REDIS_PORT')
+            redis_user = os.environ.get('REDIS_USERNAME')
             redis_pass = os.environ.get('REDIS_PASSWORD')
             redis_ssl = os.environ.get('REDIS_SSL', False)
             if redis_host == None or redis_port == None or redis_pass == None:
@@ -35,7 +36,7 @@ if type(session_type) != type(None):
                 os._exit(1)
             else:
                 app.config['SESSION_REDIS'] = redis.Redis(
-                    host=redis_host, port=int(redis_port), password=redis_pass, ssl=redis_ssl)
+                    host=redis_host, port=int(redis_port), username=redis_user, password=redis_pass, ssl=redis_ssl)
         else:
             app.config['SESSION_REDIS'] = redis.from_url(redisurl)
         print('Redis has been set to session.')
