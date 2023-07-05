@@ -84,6 +84,7 @@ $ export REDIS_URL=<Your Redis URL>
 # If your redis url cannot be parsed
 $ export REDIS_HOST=<Your Redis Host>
 $ export REDIS_PORT=<Your Redis Port>
+$ export REDIS_USERNAME=<Your Redis Username if you have it>
 $ export REDIS_PASSWORD=<Your Redis Password>
 # Optional
 $ export REDIS_SSL=True # 如果你的Redis开了这个，那就得开，否则别开
