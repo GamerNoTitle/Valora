@@ -16,8 +16,8 @@
 
 你可以访问[https://val.bili33.top](https://val.bili33.top)来进行查询，服务器不存储账号密码
 
-- 稳定版服务 (Master分支): [https://val.bili33.top](https://val.bili33.top)
-- 开发版服务 (Dev分支): [https://dev.val.bili33.top](https://dev.val.bili33.top)
+- 稳定版服务 (Master分支)[![Better Stack Badge](https://uptime.betterstack.com/status-badges/v1/monitor/ppaf.svg)](https://uptime.betterstack.com/?utm_source=status_badge): [https://val.bili33.top](https://val.bili33.top)
+- 开发版服务 (Dev分支)[![Better Stack Badge](https://uptime.betterstack.com/status-badges/v1/monitor/rom0.svg)](https://uptime.betterstack.com/?utm_source=status_badge): [https://dev.val.bili33.top](https://dev.val.bili33.top)
 
 ## 项目展示
 
