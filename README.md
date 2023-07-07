@@ -18,8 +18,8 @@ You need to read FAQ before you use: [FAQ](https://gamernotitle.notion.site/VALO
 
 You can access [https://val.bili33.top](https://val.bili33.top) to start your shop peek. The production server will not storage your username & password
 
-- Stable Service (Master branch): [https://val.bili33.top](https://val.bili33.top)
-- Developing Service (Dev branch): [https://dev.val.bili33.top](https://dev.val.bili33.top)
+- Stable Service (Master branch)[![Better Stack Badge](https://uptime.betterstack.com/status-badges/v1/monitor/ppaf.svg)](https://uptime.betterstack.com/?utm_source=status_badge): [https://val.bili33.top](https://val.bili33.top)
+- Developing Service (Dev branch) [![Better Stack Badge](https://uptime.betterstack.com/status-badges/v1/monitor/rom0.svg)](https://uptime.betterstack.com/?utm_source=status_badge): [https://dev.val.bili33.top](https://dev.val.bili33.top)
 
 ## Preview
 
