@@ -107,8 +107,8 @@ login:
     login: 登錄
     tokenlogin: 使用 Access Token 登入
   alert:
-    nocheck: 請先正確輸入用戶名和密碼，並勾選下面兩項後再點登陸！
-    loginerror: 登陸出錯，請檢查帳號密碼，然後重試！
+    loginerror: 登入出錯，請稍後重試！
+    infoerror: 請提供正確的憑據並正確登入！
   modal:
     title: 使用 Access Token 登入
     button: 

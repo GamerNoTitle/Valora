@@ -108,8 +108,8 @@ login:
     login: ログイン
     tokenlogin: Access Token を使用してログイン
   alert:
-    nocheck: ユーザー名とパスワードを正しく入力し、ログインする前に下の2つのオプションを確認してください！
-    loginerror: ログインエラーが発生しました。アカウントパスワードを確認してから、再度お試しください！
+    loginerror: ログインエラーです。後でもう一度お試しください！
+    infoerror: 正しい資格情報を提供して正しくログインしてください！
   modal:
     title: Access Token を使用してログイン
     button:

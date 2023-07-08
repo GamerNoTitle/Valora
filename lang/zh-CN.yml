@@ -110,8 +110,8 @@ login:
     login: 登录
     tokenlogin: 使用 Access Token 登录
   alert:
-    nocheck: 请先正确输入用户名和密码，并勾选下面两项后再点登陆！
-    loginerror: 登录出错，请检查账号密码，然后重试！
+    loginerror: 登录出错，请稍后重试！
+    infoerror: 请提供正确的凭据并且正确登录！
   modal:
     title: 使用 Access Token 登录
     button: 

@@ -34,7 +34,7 @@ def RiotLogin(app: Flask, request: Request):
     else:
         session['remember'] = False
     if username == '' or password == '' or not checked_eula or not checked_rule:
-        return render_template('index.html', infoerror=True, lang=yaml.load(transtable, Loader=yaml.FullLoader))
+        return redirect('/?infoerror')
     else:
         user = Auth(username, password)
         user.auth()
