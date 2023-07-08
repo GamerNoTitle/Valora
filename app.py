@@ -5,6 +5,7 @@ import os
 import uuid
 import sentry_sdk
 import _thread
+import redis
 from flask import Flask, render_template, redirect, send_from_directory, request, abort
 from flask_babel import Babel
 from flask_session import Session
