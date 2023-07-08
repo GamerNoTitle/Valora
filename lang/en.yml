@@ -107,8 +107,8 @@ login:
     login: Login
     tokenlogin: Log in with Access Token
   alert:
-    nocheck: Please enter your username and password correctly, and check the two options below before clicking login!
-    loginerror: Login error, please check your account password and try again!
+    loginerror: Login error. Please try again later!
+    infoerror: Please provide correct credentials and login!
   modal:
     title: Log in with Access Token
     button: 

@@ -58,8 +58,15 @@
   </script>
   <!-- Easter Egg -->
   <script>(new Date().getDate() === 1 && new Date().getMonth() === 3) && document.write('<script src="https://cdn.bili33.top/gh/Vikutorika/newassets@master/js/smooth-April-Fools.js"><\/script>')</script>
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
-<script src="https://uptime.betterstack.com/widgets/announcement.js" data-id="165758" async="async" type="text/javascript"></script>
+<script src="https://uptime.betterstack.com/widgets/announcement.js" data-id="165758" async="async"
+  type="text/javascript"></script>
+
 <body class="index-page">
 
 
@@ -163,6 +170,18 @@
             <p>{{lang.login.front.description.line1}}</p>
             <p>{{lang.login.front.description.line2}}</p>
           </div>
+          <div class="container">
+            <div align="center" id="loginfailedtips" class="alert alert-danger text-white font-weight-bold hidden"
+              role="alert">
+              {{lang.login.alert.loginerror}}
+            </div>
+          </div>
+          <div class="container">
+            <div align="center" id="infoerrortips" class="alert alert-danger text-white font-weight-bold hidden"
+              role="alert">
+              {{lang.login.alert.infoerror}}
+            </div>
+          </div>
           <form role="form" name="login" method="post" autocomplete="off" action="/api/login">
             <div class="card-body">
               <div class="row">
@@ -208,20 +227,6 @@
                           for="flexSwitchCheckDefault">{{lang.login.form.checkbox.eula|safe}}</label>
                       </div>
                     </div>
-                    {% if loginerror %}
-                    <div class="container">
-                      <div align="center" class="alert alert-danger text-white font-weight-bold" role="alert">
-                        {{lang.login.alert.loginerror}}
-                      </div>
-                    </div>
-                    {% endif %}
-                    {% if infoerror %}
-                    <div class="container">
-                      <div align="center" class="alert alert-danger text-white font-weight-bold" role="alert">
-                        {{lang.login.alert.nocheck}}
-                      </div>
-                    </div>
-                    {% endif %}
                     <div class="col-md-12">
                       <button type="submit" class="btn bg-gradient-dark w-100" id="login" disabled><img
                           src="/assets/img/img-navi-valorant-white.svg">{{lang.login.button.login}}</button>
@@ -352,7 +357,7 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="https://status.val.bili33.top/" target="_blank">
-                      Status Page
+                    Status Page
                   </a>
                 </li>
               </ul>
@@ -390,8 +395,9 @@
                 All rights reserved. Copyright ©
                 <script>document.write(new Date().getFullYear())</script> <a href="https://bili33.top"
                   target="_blank"><u>GamerNoTitle</u></a>. | Open-Source project <a
-                  href="https://github.com/GamerNoTitle/Valora" target="_blank"><u>Valora</u></a> is avaliable on Github.
-                  <br> 
+                  href="https://github.com/GamerNoTitle/Valora" target="_blank"><u>Valora</u></a> is avaliable on
+                Github.
+                <br>
                 <a href="http://beian.miit.gov.cn/" class="nav-link" id="icp" target=_blank><img
                     src='https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png' width=20px height=20px> 沪ICP备
                   2021023713号</a>
@@ -405,9 +411,9 @@
   <script>
     // 获取当前页面的域名
     const domain = window.location.hostname;
-  
+
     // 判断域名是否符合要求
-    if (!domain.endsWith('bili33.top') && !domain.endsWith('.github.dev')) {
+    if (!domain.endsWith('bili33.top')) {
       // 如果不符合要求，则隐藏元素
       document.getElementById('icp').style.display = 'none';
     }
@@ -536,5 +542,27 @@
       // 如果所有条件都满足，则去掉按钮的disabled属性
       submitButton.disabled = false;
     }
+  </script>
+  <script>
+    // 获取当前浏览器访问的链接中的查询参数
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // 检测是否包含名为 "loginfailed" 的查询参数
+    if (urlParams.has('loginfailed')) {
+      // 移除 id 为 "loginfailedtips" 的元素的 "hidden" class
+      const loginFailedTips = document.getElementById('loginfailedtips');
+      if (loginFailedTips) {
+        loginFailedTips.classList.remove('hidden');
+      }
+    }
+
+    if (urlParams.has('infoerror')) {
+      // 移除 id 为 "loginfailedtips" 的元素的 "hidden" class
+      const infoErrorTips = document.getElementById('infoerrortips');
+      if (infoErrorTips) {
+        infoErrorTips.classList.remove('hidden');
+      }
+    }
+
   </script>
 </body>

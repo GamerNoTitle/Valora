@@ -8,6 +8,7 @@ from re import compile
 from colorama import Fore
 import time
 import sys
+from utils.Exception import ValoraLoginFailedException
 
 CIPHERS = [
     'ECDHE-ECDSA-AES128-GCM-SHA256',
@@ -53,8 +54,11 @@ class Auth:
 
     def auth(self, MFACode=''):
         tokens = self.authorize(MFACode)
-        if 'x' in tokens:
-            return
+        try:
+            if 'x' in tokens:
+                return
+        except TypeError:
+            raise ValoraLoginFailedException()
         self.authed = True
         self.access_token = tokens[0]
         self.id_token = tokens[1]

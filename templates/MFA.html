@@ -147,14 +147,15 @@
             <div class="col-md-6 ps-2">
               <label>{{lang.mfa.form.code.title}}</label>
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="{{lang.mfa.form.code.placeholder}}" name="MFACode">
+                <input type="text" class="form-control" id="mfacode" placeholder="{{lang.mfa.form.code.placeholder}}"
+                  name="MFACode">
               </div>
             </div>
             <br>
             <div class="row">
               <div class="col-md-12">
-                <button type="submit" class="btn bg-gradient-dark w-100"><img
-                    src="/assets/img/img-navi-valorant-white.svg">{{lang.mfa.button.confirm}}</button>
+                <button type="submit" class="btn bg-gradient-dark w-100" id="confirm"><img
+                    src="/assets/img/img-navi-valorant-white.svg" disabled>{{lang.mfa.button.confirm}}</button>
               </div>
             </div>
         </div>
@@ -330,11 +331,33 @@
     const domain = window.location.hostname;
 
     // 判断域名是否符合要求
-    if (!domain.endsWith('bili33.top') && !domain.endsWith('.github.dev')) {
+    if (!domain.endsWith('bili33.top')) {
       // 如果不符合要求，则隐藏元素
       document.getElementById('icp').style.display = 'none';
     }
   </script>
+  <script>
+    // 在DOM内容加载完成后执行初始化操作
+    document.addEventListener('DOMContentLoaded', function () {
+      // 获取输入框和按钮的引用
+      const mfaCodeInput = document.getElementById('mfacode');
+      const confirmButton = document.getElementById('confirm');
 
+      // 设置按钮初始状态为disabled
+      confirmButton.disabled = true;
+
+      // 监听输入框的输入事件
+      mfaCodeInput.addEventListener('input', function () {
+        // 获取输入框的值
+        const mfaCode = mfaCodeInput.value;
+
+        // 使用正则表达式验证输入的内容是否为6位数字
+        const isValid = /^\d{6}$/.test(mfaCode);
+
+        // 根据验证结果设置按钮的 disabled 属性
+        confirmButton.disabled = !isValid;
+      });
+    });  
+  </script>
 
 </body>
