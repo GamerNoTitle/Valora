@@ -90,8 +90,8 @@ login:
   front:
     title: Log in to your Riot account
     description:
-      line1: The server does not store the login name and password of the account
-      line2: Supports accounts with two-step verification, welcome to use it for those who value security!
+      line1: The server does not store the login name and password of the account. Supports accounts with two-step verification.
+      line2: Two-step verification is highly recommanded to enable, in order to avoid unnecessary troubles.
   form:
     username:
       title: Username

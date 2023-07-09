@@ -90,8 +90,8 @@ login:
   front:
     title: 登錄你的Riot賬號
     description:
-      line1: 伺服器不對賬號的登錄名和密碼進行存取
-      line2: 支持带有二步验证的账号，欢迎注重安全的各位使用！
+      line1: 伺服器不會存取您的登錄名和密碼，支援具有雙重認證的帳號
+      line2: 強烈建議開啟雙重認證，以避免不必要的麻煩
   form:
     username:
       title: 用戶名
