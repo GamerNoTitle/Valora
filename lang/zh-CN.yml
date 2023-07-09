@@ -93,8 +93,8 @@ login:
   front:
     title: 登陆你的Riot账号
     description:
-      line1: 服务器不对账号的登录名和密码进行存取
-      line2: 支持带有二步验证的账号，欢迎注重安全的各位使用！
+      line1: 服务器不对账号的登录名和密码进行存取，支持带有二步验证的账号
+      line2: 强烈建议开启二步验证，以避免不必要的麻烦
   form:
     username:
       title: 用户名
