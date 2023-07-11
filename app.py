@@ -10,6 +10,7 @@ from flask import Flask, render_template, redirect, send_from_directory, request
 from flask_babel import Babel
 from flask_session import Session
 from flask_profiler import Profiler
+from utils import Security
 from utils.Cache import UpdateCacheTimer, UpdatePriceTimer
 from utils.Register import *
 from utils.api import *
@@ -289,4 +290,5 @@ def ValoraLoginFailed(error):
 if __name__ == '__main__':
     _thread.start_new_thread(UpdateCacheTimer, ())
     _thread.start_new_thread(UpdatePriceTimer, ())
+    Security.generate()
     app.run(host='0.0.0.0', port=os.environ.get('PORT', 8080), debug=debug)

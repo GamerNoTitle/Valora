@@ -4,6 +4,7 @@ import yaml
 import _thread
 from parse import parse
 from flask import Flask, render_template, redirect, make_response, session, Request
+from utils import Security
 from utils.RiotLogin import Auth, SSLAdapter
 from utils.Cache import UpdateOfferCache
 from utils.Exception import *
@@ -61,7 +62,7 @@ def RiotLogin(app: Flask, request: Request):
             session['user'] = user
             session['user-session'] = user.session
             session['username'] = username
-            session['password'] = password
+            session['password'] = Security.encrypt(password)
             return redirect('/2FA')
         else:
             response = make_response(
@@ -95,7 +96,7 @@ def verify(app: Flask, request: Request):
         transtable = f.read()
     MFACode = request.form.get('MFACode')
     remember = request.form.get('remember')
-    user = Auth(session.get('username'), session.get('password'),
+    user = Auth(session.get('username'), Security.decrypt(session.get('password')),
                 session['user-session'])
     user.MFACode = MFACode
     user.MFA = True

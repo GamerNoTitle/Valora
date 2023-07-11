@@ -12,6 +12,8 @@
 
 [本项目的各个功能计划以及实现情况](https://github.com/users/GamerNoTitle/projects/1)
 
+**请不要把你在本网站的Cookie、SessionID或者是`/auth-info`页面的任何内容分享给第三人，这可能会导致账号安全问题**
+
 ## 快速开始
 
 你可以访问[https://val.bili33.top](https://val.bili33.top)来进行查询，服务器不存储账号密码
