@@ -204,7 +204,7 @@ def serve_sitemap():
     return send_from_directory('assets', 'sitemap.xml')
 
 @ app.route('/baiduSitemap.xml')
-def serve_sitemap():
+def serve_Baidusitemap():
     return send_from_directory('assets', 'baiduSitemap.xml')
 
 @ app.errorhandler(500)
