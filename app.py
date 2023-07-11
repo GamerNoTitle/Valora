@@ -203,6 +203,10 @@ def serve_robot():
 def serve_sitemap():
     return send_from_directory('assets', 'sitemap.xml')
 
+@ app.route('/baiduSitemap.xml')
+def serve_sitemap():
+    return send_from_directory('assets', 'baiduSitemap.xml')
+
 @ app.errorhandler(500)
 def internal_server_error_handler(e):
     return internal_server_error(app, request, e)
