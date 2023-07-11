@@ -212,7 +212,7 @@
             </td>
             <td class="text-center">
               {% if accessory.preview %}
-              <div class="gun-image"><a href="{{accessory.img|safe}}" data-fancybox="gallery"><img height="80px"
+              <div class="gun-image"><a href="{{accessory.img|safe}}" data-fancybox="gallery">{% if accessory.small %}<img height="80px" src={{accessory.small}}> {% endif %}<img height="80px"
                     src={{accessory.preview|safe}}></a></div>
               {% else %}
 

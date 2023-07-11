@@ -616,6 +616,7 @@ def accessory(app: Flask, request: Request):
                     name = data[0][0]
                     preview = None
                     img = None
+                    small = None
                 elif accessorySort in ['sprays', 'buddies']:
                     c.execute(
                         f'SELECT name, preview FROM {accessorySort} WHERE uuid = ?', (uuid,))
@@ -623,13 +624,15 @@ def accessory(app: Flask, request: Request):
                     name = data[0][0]
                     preview = data[0][1]
                     img = preview
+                    small = None
                 elif accessorySort == 'cards':
                     c.execute(
-                        'SELECT name, wide, large FROM cards WHERE uuid = ?', (uuid,))
+                        'SELECT name, small, wide, large FROM cards WHERE uuid = ?', (uuid,))
                     data = c.fetchall()
                     name = data[0][0]
-                    preview = data[0][1]
-                    img = data[0][2]
+                    small = data[0][1]
+                    preview = data[0][2]
+                    img = data[0][3]
             else:
                 if accessorySort == 'titles':
                     c.execute(
@@ -639,6 +642,7 @@ def accessory(app: Flask, request: Request):
                     name = data[0][0]
                     preview = None
                     img = None
+                    small = None
                 elif accessorySort in ['sprays', 'buddies']:
                     c.execute(
                         f'SELECT "name-{lang}", preview FROM {accessorySort} WHERE uuid = ?', (uuid,))
@@ -646,15 +650,17 @@ def accessory(app: Flask, request: Request):
                     name = data[0][0]
                     preview = data[0][1]
                     img = preview
+                    small = None
                 elif accessorySort == 'cards':
                     c.execute(
-                        f'SELECT "name-{lang}", wide, large FROM cards WHERE uuid = ?', (uuid,))
+                        f'SELECT "name-{lang}", small, wide, large FROM cards WHERE uuid = ?', (uuid,))
                     data = c.fetchall()
                     name = data[0][0]
-                    preview = data[0][1]
-                    img = data[0][2]
+                    small = data[0][1]
+                    preview = data[0][2]
+                    img = data[0][3]
             accessory_list.append(
-                {"name": name, "preview": preview, "cost": cost, "img": img})
+                {"name": name, "preview": preview, "cost": cost, "img": img, "small": small})
         return render_template('accessory.html',
                                player={'name': pname, 'tag': tag,
                                        'vp': user.vp, 'rp': user.rp, 'kc': user.kc},
