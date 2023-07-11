@@ -14,6 +14,8 @@ You need to read FAQ before you use: [FAQ](https://gamernotitle.notion.site/VALO
 
 [Project Milestones (CHINESE)](https://github.com/users/GamerNoTitle/projects/1)
 
+**DO NOT SHARE YOUR COOKIE, SESSION ID OR ANY CONTENT IN `/auth-info` PAGE TO OTHERS! THIS MAY CAUSE SECURITY PROBLEMS TO YOUR ACCOUNT**
+
 ## Quick Start
 
 You can access [https://val.bili33.top](https://val.bili33.top) to start your shop peek. The production server will not storage your username & password

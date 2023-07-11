@@ -13,3 +13,4 @@ pyyaml
 # pysqlite3
 flask-profiler
 bs4
+cryptography
