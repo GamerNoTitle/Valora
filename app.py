@@ -199,6 +199,9 @@ def serve_static(filename):
 def serve_robot():
     return send_from_directory('assets', 'robots.txt')
 
+@ app.route('/sitemap.xml')
+def serve_sitemap():
+    return send_from_directory('assets', 'sitemap.xml')
 
 @ app.errorhandler(500)
 def internal_server_error_handler(e):
