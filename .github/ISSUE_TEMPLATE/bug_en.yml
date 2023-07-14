@@ -1,6 +1,6 @@
 name: "🐛[English] Valora Issue Report"
 description: |
-  Thank you for taking the time to contribute to the updates and iterations of Valora! In the form below, fields marked with an asterisk (*) are required.
+  Thank you for taking the time to contribute to the updates and iterations of Valora!
 title: "[BUG/English]: "
 labels: ["bug"]
 body:

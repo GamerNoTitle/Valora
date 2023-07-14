@@ -1,6 +1,6 @@
 name: "🐛[繁體中文] Valora 問題報告"
 description: |
-  感謝您抽出時間為 Valora 的更新迭代做出貢獻！下面的表單中，帶有星號（*）的地方是必填項目。
+  感謝您抽出時間為 Valora 的更新迭代做出貢獻！
 title: "[BUG/繁體中文]: "
 labels: ["bug"]
 body:
