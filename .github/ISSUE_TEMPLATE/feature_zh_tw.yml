@@ -1,0 +1,30 @@
+name: "✨[繁體中文] Valora 功能建議"
+description: |
+  感謝您為 Valora 提出的建議！我會在考量可行性後，考慮是否加入該功能。
+title: "[Feature/繁體中文]: "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: 請選擇建議的方向
+      options:
+        - 網頁外觀
+        - 新興功能
+        - 其他建議
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: 請描述您的建議，如果有思維導圖等示意圖也可以附上
+      placeholder: 請輸入您的建議
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: 如果您能夠提供一下聯繫到您的方式，我將會不勝感激；當然不填也是可以的！
+      placeholder: 請填入聯繫方式
+    validations:
+      required: false

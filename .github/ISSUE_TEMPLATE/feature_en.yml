@@ -1,0 +1,30 @@
+name: "✨[English] Valora Feature Suggestion"
+description: |
+  Thank you for your suggestion for Valora! I will consider adding this feature after assessing its feasibility.
+title: "[Feature/English]: "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: Please select the direction of your suggestion
+      options:
+        - Web Appearance
+        - Emerging Features
+        - Other Suggestions
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Please describe your suggestion, and feel free to include any diagrams or visualizations.
+      placeholder: Enter your suggestion here
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: If you can provide a way to contact you, I would greatly appreciate it. However, leaving it blank is also fine!
+      placeholder: Enter your contact information
+    validations:
+      required: false

@@ -1,0 +1,59 @@
+name: "🐛[简体中文] Valora 问题报告"
+description: |
+  感谢你抽出时间来为 Valora 的更新迭代做出贡献！
+title: "[BUG/简体中文]: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: version
+    attributes:
+      label: 请选择你所使用的Valora版本
+      options:
+        - 正式版 https://val.bili33.top
+        - 开发版 https://dev.val.bili33.top
+        - 国服版 https://valcn.bili33.top
+        - 第三方版（请在下方输入你使用的Valora网址，第三方版本有可能不会得到技术支持）
+    validations:
+      required: true
+  - type: input
+    id: third-party
+    attributes:
+      label: 如果你选择了第三方版本，请在这里输入你使用的Valora网址
+      placeholder: 请输入第三方的版本的网址
+    validations:
+      required: false
+  - type: input
+    id: problem-url
+    attributes:
+      label: 请输入你遇到问题的网址（例如：https://val.bili33.top/market）
+      placeholder: 请输入遇到问题的网址
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce-steps
+    attributes:
+      label: 请提供复现的步骤
+      placeholder: 请在此输入复现的步骤
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 请贴入报错页面弹出的日志
+      render: shell
+    validations:
+      required: false
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: 请提供相关信息的截图
+      placeholder: 请在此贴入截图
+    validations:
+      required: false
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: 还有更多信息？请在下面附上
+      placeholder: 请在此处附加信息
+    validations:
+      required: false

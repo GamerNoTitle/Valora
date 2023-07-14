@@ -1,0 +1,59 @@
+name: "🐛[English] Valora Issue Report"
+description: |
+  Thank you for taking the time to contribute to the updates and iterations of Valora!
+title: "[BUG/English]: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: version
+    attributes:
+      label: Please select the Valora version you are using
+      options:
+        - Official Version https://val.bili33.top
+        - Development Version https://dev.val.bili33.top
+        - CN Version https://valcn.bili33.top
+        - Third-party Version (Please enter the Valora URL you are using in the field below. Note that third-party versions may not receive technical support.)
+    validations:
+      required: true
+  - type: input
+    id: third-party
+    attributes:
+      label: If you selected "third-party version", please enter the Valora URL you are using here
+      placeholder: Please enter the URL of the third-party version
+    validations:
+      required: false
+  - type: input
+    id: problem-url
+    attributes:
+      label: Please enter the URL where you encountered the issue (e.g., https://val.bili33.top/market)
+      placeholder: Please enter the URL of the issue
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce-steps
+    attributes:
+      label: Please provide the steps to reproduce the issue
+      placeholder: Please enter the steps to reproduce the issue here
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Please paste the logs displayed on the error page
+      render: shell
+    validations:
+      required: false
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Please provide screenshots of relevant information
+      placeholder: Please paste the screenshot here
+    validations:
+      required: false
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Any additional information? Please include it below
+      placeholder: Please enter additional information here
+    validations:
+      required: false

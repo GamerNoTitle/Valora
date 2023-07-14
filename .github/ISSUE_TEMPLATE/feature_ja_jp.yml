@@ -1,0 +1,30 @@
+name: "✨[日本語] Valora 機能提案"
+description: |
+  Valora への提案ありがとうございます！実現可能性を考慮した後に、その機能を追加するかどうかを検討します。
+title: "[Feature/日本語]: "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: 提案の方向を選択してください
+      options:
+        - ウェブの見た目
+        - 新しい機能
+        - その他の提案
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: 提案内容を説明してください。マインドマップや図表などがあれば、添付してください。
+      placeholder: 提案内容を入力してください
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: ご連絡いただける方法を提供いただければ幸いです。もちろん、空白でも構いません！
+      placeholder: 連絡先情報を入力してください
+    validations:
+      required: false

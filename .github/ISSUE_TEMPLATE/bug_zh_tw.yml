@@ -1,0 +1,59 @@
+name: "🐛[繁體中文] Valora 問題報告"
+description: |
+  感謝您抽出時間為 Valora 的更新迭代做出貢獻！
+title: "[BUG/繁體中文]: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: version
+    attributes:
+      label: 請選擇您所使用的 Valora 版本
+      options:
+        - 正式版 https://val.bili33.top
+        - 開發版 https://dev.val.bili33.top
+        - 國服版 https://valcn.bili33.top
+        - 第三方版（請在下方輸入您使用的 Valora 網址，第三方版本可能無法獲得技術支援）
+    validations:
+      required: true
+  - type: input
+    id: third-party
+    attributes:
+      label: 如果您選擇了第三方版本，請在此輸入您使用的 Valora 網址
+      placeholder: 請輸入第三方版本的網址
+    validations:
+      required: false
+  - type: input
+    id: problem-url
+    attributes:
+      label: 請輸入您遇到問題的網址（例如：https://val.bili33.top/market）
+      placeholder: 請輸入遇到問題的網址
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce-steps
+    attributes:
+      label: 請提供重現的步驟
+      placeholder: 請在此輸入重現的步驟
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 請貼入錯誤頁面彈出的日誌
+      render: shell
+    validations:
+      required: false
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: 請提供相關資訊的截圖
+      placeholder: 請在此貼入截圖
+    validations:
+      required: false
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: 還有其他更多資訊？請在下方附上
+      placeholder: 請在此處附加資訊
+    validations:
+      required: false
