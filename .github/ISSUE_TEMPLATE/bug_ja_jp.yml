@@ -1,0 +1,59 @@
+name: "[日本語] Valora 問題報告"
+description: |
+  Valora のアップデートと改善にご協力いただきありがとうございます！以下のフォームでは、* でマークされたフィールドは必須です。
+title: "[BUG/日本語]: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: version
+    attributes:
+      label: 使用している Valora のバージョンを選択してください
+      options:
+        - 正式版 https://val.bili33.top
+        - 開発版 https://dev.val.bili33.top
+        - 国内版 https://valcn.bili33.top
+        - サードパーティ版（使用している Valora の URL を下のフィールドに入力してください。ただし、サードパーティ版はテクニカルサポートを受けられない場合があります。）
+    validations:
+      required: true
+  - type: input
+    id: third-party
+    attributes:
+      label: サードパーティ版を選択した場合、使用している Valora の URL をここに入力してください
+      placeholder: サードパーティ版の URL を入力してください
+    validations:
+      required: false
+  - type: input
+    id: problem-url
+    attributes:
+      label: 問題が発生した URL を入力してください（例：https://val.bili33.top/market）
+      placeholder: 問題が発生した URL を入力してください
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce-steps
+    attributes:
+      label: 問題を再現する手順を教えてください
+      placeholder: 問題を再現する手順を入力してください
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: エラーページに表示されるログを貼り付けてください
+      render: shell
+    validations:
+      required: false
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: 関連情報のスクリーンショットを提供してください
+      placeholder: ここにスクリーンショットを貼り付けてください
+    validations:
+      required: false
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: その他の情報がありますか？以下に記入してください
+      placeholder: ここに追加情報を入力してください
+    validations:
+      required: false
