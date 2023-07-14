@@ -42,11 +42,12 @@ body:
       render: shell
     validations:
       required: false
-  - type: markdown
+  - type: textarea
     id: screenshot
     attributes:
       label: 请提供相关信息的截图
       placeholder: 请在此贴入截图
+      render: markdown
     validations:
       required: false
   - type: textarea
