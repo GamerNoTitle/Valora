@@ -4,6 +4,13 @@ import yaml
 import os
 import sqlite3
 
+tier_dict = {
+    '12683d76-48d7-84a3-4e09-6985794f0445': {'name': 'Select', 'img': '/assets/img/Select-edition-icon.webp'},
+    '0cebb8be-46d7-c12a-d306-e9907bfc5a25': {'name': 'Deluxe', 'img': '/assets/img/Deluxe-edition-icon.webp'},
+    '60bca009-4182-7998-dee7-b8a2558dc369': {'name': 'Premium', 'img': '/assets/img/Premium-edition-icon.webp'},
+    '411e4a55-4e59-7757-41f0-86a53f101bb5': {'name': 'Ultra', 'img': '/assets/img/Ultra-edition-icon.webp'},
+    'e046854e-406c-37f4-6607-19a9ba8426fc': {'name': 'Exclusive', 'img': '/assets/img/Exclusive-edition-icon.webp'}
+}
 
 class weapon:
     def __init__(self, uuid: str, cost: int = 0, discount: int = 0, discountPersentage: int = 0, lang: str = 'en'):
@@ -44,6 +51,8 @@ class weapon:
         self.levels = self.data['levels']    # Skin Levels
         self.chromas = self.data['chromas']  # Skin Chromas
         self.base_img = self.data['levels'][0]['displayIcon']
+        self.tier = self.data['contentTierUuid']
+        self.tier_img = tier_dict.get(self.tier).get('img')
         self.discount = discount
         self.per = discountPersentage
         for level in self.levels:
@@ -98,6 +107,8 @@ class weaponlib:
                 f'SELECT "data-{lang}" FROM skins WHERE uuid = ?', (self.uuid,))
         conn.commit()
         self.data = json.loads(c.fetchall()[0][0])
+        self.tier = self.data['contentTierUuid']
+        self.tier_img = tier_dict.get(self.tier).get('img')
         # with open(f'assets/data/{lang}.json', 'r', encoding='utf8') as f:
         #     self.data = json.loads(f.read())[self.uuid]
         # self.data = requests.get(

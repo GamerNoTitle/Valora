@@ -226,7 +226,7 @@
             </a>
           </div>
           <div class="card-body">
-            <h3 class="text-gradient text-primary mb-0 mt-2">{{weapon.name|safe}}</h3>
+            <h3 class="text-gradient text-primary mb-0 mt-2"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}}</h3>
             <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.unlock|safe}}</h3>
             <br>
             {% for level in weapon.levels %}
@@ -248,7 +248,7 @@
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title">{{weapon.name|safe}} {{level.displayName}}</h5>
+                    <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}} {{level.displayName}}</h5>
                   </div>
                   <div class="modal-body">
                     <video width=100% controls>
@@ -289,7 +289,7 @@
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title">{{weapon.name|safe}} {{chroma.displayName}}</h5>
+                    <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}} {{chroma.displayName}}</h5>
                   </div>
                   <div class="modal-body">
                     {% if chroma.streamedVideo %}
