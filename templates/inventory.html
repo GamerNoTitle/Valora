@@ -253,6 +253,7 @@
                   <div class="modal-body">
                     <video width=100% controls>
                       <source src="{{level.streamedVideo}}" type="video/mp4">
+                      <source src="{{level.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}" type="video/mp4">
                       {{lang.inventory.modal.videonotavaliable}}
                     </video>
                     <br>
@@ -294,6 +295,7 @@
                     {% if chroma.streamedVideo %}
                     <video width=100% controls>
                       <source src="{{chroma.streamedVideo}}" type="video/mp4">
+                      <source src="{{chroma.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}" type="video/mp4">
                       {{lang.inventory.modal.videonotavaliable}}
                     </video>
                     <br>
