@@ -22,6 +22,7 @@ You can access [https://val.bili33.top](https://val.bili33.top) to start your sh
 
 - Stable Service (Master branch)[![Better Stack Badge](https://uptime.betterstack.com/status-badges/v1/monitor/ppaf.svg)](https://uptime.betterstack.com/?utm_source=status_badge): [https://val.bili33.top](https://val.bili33.top)
 - Developing Service (Dev branch) [![Better Stack Badge](https://uptime.betterstack.com/status-badges/v1/monitor/rom0.svg)](https://uptime.betterstack.com/?utm_source=status_badge): [https://dev.val.bili33.top](https://dev.val.bili33.top)
+- Chinese Edition Service (Closed-source): [https://valcn.bili33.top](https://valcn.bili33.top)
 
 ## Preview
 
