@@ -20,6 +20,7 @@
 
 - 稳定版服务 (Master分支)[![Better Stack Badge](https://uptime.betterstack.com/status-badges/v1/monitor/ppaf.svg)](https://uptime.betterstack.com/?utm_source=status_badge): [https://val.bili33.top](https://val.bili33.top)
 - 开发版服务 (Dev分支)[![Better Stack Badge](https://uptime.betterstack.com/status-badges/v1/monitor/rom0.svg)](https://uptime.betterstack.com/?utm_source=status_badge): [https://dev.val.bili33.top](https://dev.val.bili33.top)
+- 马 <del>（Hua Teng）</del> 服版服务（闭源）: [https://valcn.bili33.top](https://valcn.bili33.top)
 
 ## 项目展示
 
