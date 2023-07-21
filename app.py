@@ -123,7 +123,7 @@ def inject_common_variables():
     if os.environ.get('ANNOUNCEMENT') and os.environ.get('ANNOUNCEMENT').startswith('http'):
         announcement_url = f"{os.environ.get('ANNOUNCEMENT')}/api/get"
         try:
-            announcement_response = requests.get(announcement_url, timeout=30)
+            announcement_response = requests.get(announcement_url, timeout=3)
             if announcement_response.status_code == 200:
                 announcement_json = announcement_response.json()
                 announcement = announcement_json["announcement"][g.lang]
