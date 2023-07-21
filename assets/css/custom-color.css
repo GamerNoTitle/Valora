@@ -129,14 +129,13 @@ td {
   color: #fff;
   padding: 1rem;
   position: fixed;
-  bottom: 30px;
-  left: 100px;
-  right: 100px;
+  bottom: 2%;
+  left: 3%;
+  right: 3%;
   z-index: 999;
   display: none;
   border-radius: 10px;
   /* 添加Flex布局，子元素自动换行 */
-  display: none;
   flex-wrap: wrap;
   justify-content: space-between;
 }
@@ -170,6 +169,46 @@ td {
 .container#market,
 .container#night {
   max-width: 1600px !important;
+}
+
+/* 公告弹窗适用于手机的样式 */
+@media (max-width: 767px) {
+  #announcementNotice {
+    background-color: #ea4450;
+    color: #fff;
+    padding: 1rem;
+    position: fixed;
+    z-index: 999;
+    display: none;
+    bottom: 1%;
+    left: 1%;
+    right: 1%;    /* 添加Flex布局，子元素自动换行 */
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  #announcementNotice p {
+    margin: 0;
+    /* 添加自动换行 */
+    word-wrap: break-word;
+  }
+  #announcementNotice h3 {
+    color: #FFF;
+    font-weight: bold;
+  }
+  #announcementBtn {
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-weight: bold;
+  }
+  /* 链接字体加粗并添加下划线，颜色固定为白色 */
+  #announcementNotice a {
+    text-decoration: underline;
+    color: #fff;
+    font-weight: bold;
+  }
+  
 }
 
 /* 公告淡出动画 */
