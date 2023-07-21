@@ -88,6 +88,9 @@ global:
     trans: 翻译对照
     inventory: 我的库存
     accessory: 配饰商店
+  announcement:
+    title: 你有新的公告，请查收！
+    button: 我知道了
 
 login:
   front:

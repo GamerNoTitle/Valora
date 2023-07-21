@@ -122,3 +122,58 @@ td {
   margin-left: auto;
 
 }
+
+/* 公告弹窗 */
+#announcementNotice {
+  background-color: #ea4450;
+  color: #fff;
+  padding: 1rem;
+  position: fixed;
+  bottom: 30px;
+  left: 100px;
+  right: 100px;
+  z-index: 999;
+  display: none;
+  border-radius: 10px;
+  /* 添加Flex布局，子元素自动换行 */
+  display: none;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#announcementNotice p {
+  margin: 0;
+  /* 添加自动换行 */
+  word-wrap: break-word;
+}
+#announcementNotice h3 {
+  color: #FFF;
+  font-weight: bold;
+}
+#announcementBtn {
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-weight: bold;
+}
+/* 链接字体加粗并添加下划线，颜色固定为白色 */
+#announcementNotice a {
+  text-decoration: underline;
+  color: #fff;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+.container#market,
+.container#night {
+  max-width: 1600px !important;
+}
+
+/* 公告淡出动画 */
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
