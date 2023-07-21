@@ -22,6 +22,8 @@ babel = Babel(app)
 app.config['BABEL_LANGUAGES'] = ['en', 'zh-CN', 'zh-TW', 'ja-JP']
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 session_type = os.environ.get('SESSION_TYPE')
+global_announcement = None
+global_announcement_id = None
 if type(session_type) != type(None):
     if session_type.lower() == 'redis':
         import redis
@@ -126,8 +128,14 @@ def inject_common_variables():
                 announcement_json = announcement_response.json()
                 announcement = announcement_json["announcement"][g.lang]
                 announcement_id = announcement_json["id"]
+                global global_announcement, global_announcement_id
+                global_announcement = announcement
+                global_announcement_id = announcement_id
         except (requests.exceptions.ConnectTimeout, requests.exceptions.Timeout, requests.exceptions.ReadTimeout):
             pass
+    if not announcement and not announcement_id:
+        announcement = global_announcement
+        announcement_id = global_announcement_id
     return dict(announcement=announcement, announcement_id=announcement_id)
 
 @app.route('/', methods=['GET'])

@@ -81,6 +81,7 @@
   type="text/javascript"></script>
 
 <body class="index-page">
+  {% if announcement and announcement_id %}
   <div id="announcementNotice">
     <div class="container">
       <div class="row align-items-center">
@@ -97,7 +98,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
     integrity="sha512-VK2zcvntEufaimc+efOYi622VN5ZacdnufnmX7zIhCPmjhKnOi9ZDMtg1/ug5l183f19gG1/cBstPO4D8N/Img=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+  {% endif %}
 
   <!-- Navbar -->
   <div class="container position-sticky z-index-sticky top-0">
@@ -456,8 +457,8 @@
                     </div>
                     <div class="modal-body">
                       <video width=100% controls>
-                        <source src="{{level.streamedVideo}}" type="video/mp4">
                         <source src="{{level.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}" type="video/mp4">
+                        <source src="{{level.streamedVideo}}" type="video/mp4">
                         {{lang.library.modal.videonotavaliable}}
                       </video>
                       <br>
@@ -492,8 +493,8 @@
                     <div class="modal-body">
                       {% if chroma.streamedVideo %}
                       <video width=100% controls>
-                        <source src="{{chroma.streamedVideo}}" type="video/mp4">
                         <source src="{{chroma.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}" type="video/mp4">
+                        <source src="{{chroma.streamedVideo}}" type="video/mp4">
                         {{lang.library.modal.videonotavaliable}}
                       </video>
                       <br>
