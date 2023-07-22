@@ -135,8 +135,12 @@ def inject_common_variables():
             except (requests.exceptions.ConnectTimeout, requests.exceptions.Timeout, requests.exceptions.ReadTimeout):
                 pass
         if not announcement and not announcement_id:
-            announcement = global_announcement[g.lang]
-            announcement_id = global_announcement_id
+            try:
+                announcement = global_announcement["announcement"][g.lang]
+                announcement_id = global_announcement_id
+            except (TypeError, KeyError): # When your announcement server is down and Valora didn't fetch any announcement before
+                announcement = 'Hello Valora!'
+                announcement_id = '404'
     return dict(announcement=announcement, announcement_id=announcement_id)
 
 @app.route('/', methods=['GET'])

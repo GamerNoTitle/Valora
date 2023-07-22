@@ -442,47 +442,51 @@
       document.getElementById('icp').style.display = 'none';
     }
   </script>
-    <script>
-      // 获取关闭按钮和悬浮窗元素
-      const announcementNotice = document.getElementById('announcementNotice');
-      const announcementBtn = document.getElementById('announcementBtn');
-  
-      // 关闭悬浮窗
-      function closeannouncementNotice() {
-        announcementNotice.style.animation = 'fadeOut 1s';
-        setTimeout(() => {
-          announcementNotice.style.display = 'none';
-        }, 1000);
+  <script>
+    // 获取关闭按钮和悬浮窗元素
+    const announcementNotice = document.getElementById('announcementNotice');
+    const announcementBtn = document.getElementById('announcementBtn');
+
+    // 关闭悬浮窗
+    function closeannouncementNotice() {
+      announcementNotice.style.animation = 'fadeOut 1s';
+      setTimeout(() => {
+        announcementNotice.style.display = 'none';
+      }, 1000);
+    }
+
+    // 设置关闭按钮的点击事件
+    announcementBtn.addEventListener('click', setLocalStorage);
+
+    // 检查是否设置了localStorage，如果设置了，则关闭悬浮窗
+    function checkLocalStorage() {
+      // 获取当前页面的announcement_id
+      const currentAnnouncementId = "{{announcement_id}}";
+      const currentAnnouncement = "{{announcement}}";
+
+      // 获取localStorage中保存的announcement_id
+      const localStorageValue = localStorage.getItem("announcementNoticeId");
+      const localStorageAnn = localStorage.getItem("announcementNotice");
+
+      // 如果localStorage中的announcement_id与当前页面的announcement_id相同，则不弹出悬浮窗
+      if (localStorageValue === currentAnnouncementId || localStorageAnn === currentAnnouncement) {
+        announcementNotice.style.display = 'none';
+      } else {
+        announcementNotice.style.display = 'flex';
       }
-  
-      // 设置关闭按钮的点击事件
-      announcementBtn.addEventListener('click', setLocalStorage);
-  
-      // 检查是否设置了localStorage，如果设置了，则关闭悬浮窗
-      function checkLocalStorage() {
-        // 获取当前页面的announcement_id
-        const currentAnnouncementId = "{{announcement_id}}";
-  
-        // 获取localStorage中保存的announcement_id
-        const localStorageValue = localStorage.getItem("announcementNoticeId");
-  
-        // 如果localStorage中的announcement_id与当前页面的announcement_id相同，则不弹出悬浮窗
-        if (localStorageValue === currentAnnouncementId) {
-          announcementNotice.style.display = 'none';
-        } else {
-          announcementNotice.style.display = 'flex';
-        }
-      }
-  
-      // 设置localStorage，并关闭悬浮窗
-      function setLocalStorage() {
-        const currentAnnouncementId = "{{announcement_id}}";
-        localStorage.setItem("announcementNoticeId", currentAnnouncementId);
-        closeannouncementNotice();
-      }
-  
-      // 在页面加载完成后检查localStorage
-      document.addEventListener('DOMContentLoaded', checkLocalStorage);
-    </script>
+    }
+
+    // 设置localStorage，并关闭悬浮窗
+    function setLocalStorage() {
+      const currentAnnouncementId = "{{announcement_id}}";
+      const currentAnnouncement = "{{announcement}}"
+      localStorage.setItem("announcementNoticeId", currentAnnouncementId);
+      localStorage.setItem("announcementNotice", currentAnnouncement);
+      closeannouncementNotice();
+    }
+
+    // 在页面加载完成后检查localStorage
+    document.addEventListener('DOMContentLoaded', checkLocalStorage);
+  </script>
   
 </body>

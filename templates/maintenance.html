@@ -385,12 +385,14 @@
     function checkLocalStorage() {
       // 获取当前页面的announcement_id
       const currentAnnouncementId = "{{announcement_id}}";
+      const currentAnnouncement = "{{announcement}}";
 
       // 获取localStorage中保存的announcement_id
       const localStorageValue = localStorage.getItem("announcementNoticeId");
+      const localStorageAnn = localStorage.getItem("announcementNotice");
 
       // 如果localStorage中的announcement_id与当前页面的announcement_id相同，则不弹出悬浮窗
-      if (localStorageValue === currentAnnouncementId) {
+      if (localStorageValue === currentAnnouncementId || localStorageAnn === currentAnnouncement) {
         announcementNotice.style.display = 'none';
       } else {
         announcementNotice.style.display = 'flex';
@@ -400,7 +402,9 @@
     // 设置localStorage，并关闭悬浮窗
     function setLocalStorage() {
       const currentAnnouncementId = "{{announcement_id}}";
+      const currentAnnouncement = "{{announcement}}"
       localStorage.setItem("announcementNoticeId", currentAnnouncementId);
+      localStorage.setItem("announcementNotice", currentAnnouncement);
       closeannouncementNotice();
     }
 
