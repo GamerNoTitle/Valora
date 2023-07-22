@@ -120,22 +120,23 @@ def inject_common_variables():
     # Announcement Function
     announcement = None
     announcement_id = None
-    if os.environ.get('ANNOUNCEMENT') and os.environ.get('ANNOUNCEMENT').startswith('http'):
-        announcement_url = f"{os.environ.get('ANNOUNCEMENT')}/api/get"
-        try:
-            announcement_response = requests.get(announcement_url, timeout=3)
-            if announcement_response.status_code == 200:
-                announcement_json = announcement_response.json()
-                announcement = announcement_json["announcement"][g.lang]
-                announcement_id = announcement_json["id"]
-                global global_announcement, global_announcement_id
-                global_announcement = announcement_json
-                global_announcement_id = announcement_id
-        except (requests.exceptions.ConnectTimeout, requests.exceptions.Timeout, requests.exceptions.ReadTimeout):
-            pass
-    if not announcement and not announcement_id:
-        announcement = global_announcement[g.lang]
-        announcement_id = global_announcement_id
+    if os.environ.get('ANNOUNCEMENT'):
+        if os.environ.get('ANNOUNCEMENT').startswith('http'):
+            announcement_url = f"{os.environ.get('ANNOUNCEMENT')}/api/get"
+            try:
+                announcement_response = requests.get(announcement_url, timeout=3)
+                if announcement_response.status_code == 200:
+                    announcement_json = announcement_response.json()
+                    announcement = announcement_json["announcement"][g.lang]
+                    announcement_id = announcement_json["id"]
+                    global global_announcement, global_announcement_id
+                    global_announcement = announcement_json
+                    global_announcement_id = announcement_id
+            except (requests.exceptions.ConnectTimeout, requests.exceptions.Timeout, requests.exceptions.ReadTimeout):
+                pass
+        if not announcement and not announcement_id:
+            announcement = global_announcement[g.lang]
+            announcement_id = global_announcement_id
     return dict(announcement=announcement, announcement_id=announcement_id)
 
 @app.route('/', methods=['GET'])
