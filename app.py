@@ -129,12 +129,12 @@ def inject_common_variables():
                 announcement = announcement_json["announcement"][g.lang]
                 announcement_id = announcement_json["id"]
                 global global_announcement, global_announcement_id
-                global_announcement = announcement
+                global_announcement = announcement_json
                 global_announcement_id = announcement_id
         except (requests.exceptions.ConnectTimeout, requests.exceptions.Timeout, requests.exceptions.ReadTimeout):
             pass
     if not announcement and not announcement_id:
-        announcement = global_announcement
+        announcement = global_announcement[g.lang]
         announcement_id = global_announcement_id
     return dict(announcement=announcement, announcement_id=announcement_id)
 
