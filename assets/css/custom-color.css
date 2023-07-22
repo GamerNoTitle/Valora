@@ -148,6 +148,9 @@ td {
   color: #FFF;
   font-weight: bold;
 }
+#announcementNotice code {
+  color: #FFF;
+}
 #announcementBtn {
   color: #fff;
   cursor: pointer;
