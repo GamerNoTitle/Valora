@@ -63,6 +63,10 @@ Translation Table (No login status needed)
 
 https://hub.docker.com/r/gamernotitle/vsc
 
+### Run on Zeabur
+
+[![Deploy on Zeabur](https://zeabur.com/button.svg)](https://dash.zeabur.com/templates/21HDN2)
+
 ### Run on Railway
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/JuUPyU?referralCode=U8coe_)
@@ -105,7 +109,9 @@ $ python app.py
 
 Now, you can access [http://127.0.0.1:8080](http://127.0.0.1:8080) (If you haven't changed it), and you will see your website.
 
-## Dashboard
+## More Features
+
+### Dashboard
 
 > For docker users, this feature will only monitor this alive container. Once u restart the container, this will reset. Since the data is saved in sqlite instead of Redis.
 
@@ -119,6 +125,16 @@ $ export PROFILER_PASS=password
 ```
 
 After u set them, u can access your dashboard from `/profiler`
+
+### Announcement System
+
+If you want to use announcement, you need to deploy [Valora-Announcement](https://github.com/GamerNoTitle/Valora-Announcement) first, and set a variable named `ANNOUNCEMENT` with your announcement system url
+
+```shell
+$ export ANNOUNCEMENT=<Your announcement system url>
+```
+
+After setting this, you can access to your Valora. Then you will find that the announcement is at the bottom of the page.
 
 ## Args
 
