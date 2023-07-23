@@ -57,7 +57,11 @@
 
 ### 使用Docker运行
 
-<https://hub.docker.com/r/gamernotitle/vsc>
+https://hub.docker.com/r/gamernotitle/vsc
+
+### 在Zeabur上运行
+
+[![Deploy on Zeabur](https://zeabur.com/button.svg)](https://dash.zeabur.com/templates/21HDN2)
 
 ### 在Railway上运行
 
@@ -101,7 +105,9 @@ python app.py
 
 现在，你可以访问[http://127.0.0.1:8080](http://127.0.0.1:8080)，当你看到网站主页面的时候，就说明你成功啦！
 
-## 监控面板
+## 更多功能
+
+### 性能监控面板
 
 > 此功能在容器部署的背景下只对当次容器开启状态有效，因为数据存在sqlite数据库内，而不是Redis
 
@@ -115,6 +121,16 @@ export PROFILER_PASS=password
 ```
 
 当你完成配置后，重新启动服务器，通过`/profiler`就可以访问到你的监控面板了
+
+### 网页公告
+
+如果你需要使用网页公告功能，你需要先部署[Valora-Announcement](https://github.com/GamerNoTitle/Valora-Announcement)，然后添加一个名为`ANNOUNCEMENT`的变量，内容为你的公告系统的链接
+
+```shell
+export ANNOUNCEMENT=<Your announcement system url>
+```
+
+添加完后重新打开Valora，你就会在页面的底部发现公告了~
 
 ## 参数项
 
