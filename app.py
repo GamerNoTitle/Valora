@@ -22,8 +22,15 @@ babel = Babel(app)
 app.config['BABEL_LANGUAGES'] = ['en', 'zh-CN', 'zh-TW', 'ja-JP']
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 session_type = os.environ.get('SESSION_TYPE')
-global_announcement = None
-global_announcement_id = None
+global_announcement = {
+    "announcement": {
+    "en": "If you see this message, it means that the maintainer of this Valora instance has already integrated the announcement system, but the announcement system is currently inaccessible. If you are a regular user, please contact the developer to resolve this issue; if you are a developer, please check if your announcement system can be accessed by Valora.",
+    "zh-CN": "如果你看到了这条提示，说明本Valora实例的维护者已经接入了公告系统，但是公告系统目前无法访问。如果你是普通用户，请联系开发者解决这个问题；如果你是开发者，请检查你的公告系统是否能被Valora访问。",
+    "zh-TW": "如果你看到了這條提示，說明本Valora實例的維護者已經接入了公告系統，但是公告系統目前無法訪問。如果你是普通用戶，請聯繫開發者解決這個問題；如果你是開發者，請檢查你的公告系統是否能被Valora訪問。",
+    "ja-JP": "このメッセージを見ると、このValoraインスタンスの管理者が既にお知らせシステムを統合していますが、現在お知らせシステムにアクセスできないことを意味します。一般ユーザーの場合は、開発者に連絡してこの問題を解決してください。開発者の場合は、Valoraからお知らせシステムにアクセスできるかどうかを確認してください。"
+    }
+}
+global_announcement_id = 404
 if type(session_type) != type(None):
     if session_type.lower() == 'redis':
         import redis
@@ -96,6 +103,7 @@ sentry_sdk.init(
     traces_sample_rate=1.0
 )
 
+
 def before_request():
     if request.args.get('lang'):
         if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
@@ -112,7 +120,9 @@ def before_request():
         lang = 'en'
     g.lang = lang
 
+
 app.before_request(before_request)  # Language Process
+
 
 @app.context_processor
 def inject_common_variables():
@@ -124,7 +134,8 @@ def inject_common_variables():
         if os.environ.get('ANNOUNCEMENT').startswith('http'):
             announcement_url = f"{os.environ.get('ANNOUNCEMENT')}/api/get"
             try:
-                announcement_response = requests.get(announcement_url, timeout=3)
+                announcement_response = requests.get(
+                    announcement_url, timeout=3)
                 if announcement_response.status_code == 200:
                     announcement_json = announcement_response.json()
                     announcement = announcement_json["announcement"][g.lang]
@@ -138,10 +149,12 @@ def inject_common_variables():
             try:
                 announcement = global_announcement["announcement"][g.lang]
                 announcement_id = global_announcement_id
-            except (TypeError, KeyError): # When your announcement server is down and Valora didn't fetch any announcement before
+            # When your announcement server is down and Valora didn't fetch any announcement before
+            except (TypeError, KeyError):
                 announcement = 'Hello Valora!'
                 announcement_id = '404'
     return dict(announcement=announcement, announcement_id=announcement_id)
+
 
 @app.route('/', methods=['GET'])
 def home_handler():
@@ -192,9 +205,11 @@ def trans_handler(t):
 def inventory_handler():
     return inventory(app, request, g.lang)
 
+
 @app.route('/market/accessory')
 def accessory_handler():
     return accessory(app, request, g.lang)
+
 
 @app.route('/profiler')
 def redirectprofiler():
@@ -247,13 +262,16 @@ def serve_static(filename):
 def serve_robot():
     return send_from_directory('assets', 'robots.txt')
 
+
 @ app.route('/sitemap.xml')
 def serve_sitemap():
     return send_from_directory('assets', 'sitemap.xml')
 
+
 @ app.route('/baiduSitemap.xml')
 def serve_Baidusitemap():
     return send_from_directory('assets', 'baiduSitemap.xml')
+
 
 @ app.errorhandler(500)
 def internal_server_error_handler(e):
@@ -275,6 +293,7 @@ def timeout_handler(e):
 @ app.errorhandler(sqlite3.OperationalError)
 def database_error_handler(e):
     return sqlite3_error(app, request, e)
+
 
 @ app.errorhandler(redis.exceptions.ConnectionError)
 def redis_connection_error_handler(e):
@@ -319,6 +338,7 @@ def internal_server_error_preview():
 # def testExpired():
 #     raise ValoraExpiredException('Expired')
 
+
 @ app.errorhandler(ValoraExpiredException)
 def ValoraLoginExpired(error):
     if request.args.get('lang'):
@@ -338,9 +358,11 @@ def ValoraLoginExpired(error):
         transtable = f.read()
     return render_template('expired.html', lang=yaml.load(transtable, Loader=yaml.FullLoader))
 
+
 @ app.errorhandler(ValoraLoginFailedException)
 def ValoraLoginFailed(error):
     return redirect('/?loginfailed')
+
 
 if __name__ == '__main__':
     _thread.start_new_thread(UpdateCacheTimer, ())
