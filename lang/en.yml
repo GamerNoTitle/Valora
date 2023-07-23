@@ -85,6 +85,9 @@ global:
     trans: Translation Table
     inventory: My Inventory
     accessory: Accessory Store
+  announcement:
+    title: New Announcement Arrival
+    button: I understand
 
 login:
   front:

@@ -8,20 +8,7 @@ from utils.GetPlayer import player
 from utils.Weapon import weapon, weaponlib
 
 
-def home(app: Flask, request: Request):
-    if request.args.get('lang'):
-        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
-            lang = request.args.get('lang')
-        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
-            lang = str(request.accept_languages.best_match(
-                app.config['BABEL_LANGUAGES']))
-        else:
-            lang = 'en'
-    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
-        lang = str(request.accept_languages.best_match(
-            app.config['BABEL_LANGUAGES']))
-    else:
-        lang = 'en'
+def home(app: Flask, request: Request, lang):
     with open(f'lang/{lang}.yml', encoding='utf8') as f:
         transtable = f.read()
     session["lang"] = str(request.accept_languages.best_match(
@@ -36,20 +23,7 @@ def home(app: Flask, request: Request):
     return response
 
 
-def mfa_auth(app: Flask, request: Request):
-    if request.args.get('lang'):
-        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
-            lang = request.args.get('lang')
-        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
-            lang = str(request.accept_languages.best_match(
-                app.config['BABEL_LANGUAGES']))
-        else:
-            lang = 'en'
-    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
-        lang = str(request.accept_languages.best_match(
-            app.config['BABEL_LANGUAGES']))
-    else:
-        lang = 'en'
+def mfa_auth(app: Flask, request: Request, lang):
     with open(f'lang/{lang}.yml', encoding='utf8') as f:
         transtable = f.read()
     if not session.get('username'):
@@ -57,7 +31,7 @@ def mfa_auth(app: Flask, request: Request):
     return render_template('MFA.html', lang=yaml.load(transtable, Loader=yaml.FullLoader))
 
 
-def market(app: Flask, request: Request):
+def market(app: Flask, request: Request, lang):
     # cookie = request.cookies
     access_token = session.get('access_token')
     entitlement = session.get('entitlement')
@@ -65,19 +39,6 @@ def market(app: Flask, request: Request):
     userid = session.get('user_id')
     name = session.get('username')
     tag = session.get('tag')
-    if request.args.get('lang'):
-        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
-            lang = request.args.get('lang')
-        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
-            lang = str(request.accept_languages.best_match(
-                app.config['BABEL_LANGUAGES']))
-        else:
-            lang = 'en'
-    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
-        lang = str(request.accept_languages.best_match(
-            app.config['BABEL_LANGUAGES']))
-    else:
-        lang = 'en'
     with open(f'lang/{lang}.yml', encoding='utf8') as f:
         transtable = f.read()
     if not access_token:
@@ -124,7 +85,7 @@ def market(app: Flask, request: Request):
         return redirect('/api/reauth?redirect=/market')
 
 
-def night(app: Flask, request: Request):
+def night(app: Flask, request: Request, lang):
     # cookie = request.cookies
     access_token = session.get('access_token')
     entitlement = session.get('entitlement')
@@ -132,19 +93,6 @@ def night(app: Flask, request: Request):
     userid = session.get('user_id')
     name = session.get('username')
     tag = session.get('tag')
-    if request.args.get('lang'):
-        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
-            lang = request.args.get('lang')
-        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
-            lang = str(request.accept_languages.best_match(
-                app.config['BABEL_LANGUAGES']))
-        else:
-            lang = 'en'
-    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
-        lang = str(request.accept_languages.best_match(
-            app.config['BABEL_LANGUAGES']))
-    else:
-        lang = 'en'
     with open(f'lang/{lang}.yml', encoding='utf8') as f:
         transtable = f.read()
     if not name:
@@ -207,7 +155,7 @@ def night(app: Flask, request: Request):
         return redirect('/api/reauth?redirect=/market/night')
 
 
-def library(app: Flask, request: Request):
+def library(app: Flask, request: Request, lang):
     tier_dict = {
     '12683d76-48d7-84a3-4e09-6985794f0445': {'name': 'Select', 'img': '/assets/img/Select-edition-icon.webp'},
     '0cebb8be-46d7-c12a-d306-e9907bfc5a25': {'name': 'Deluxe', 'img': '/assets/img/Deluxe-edition-icon.webp'},
@@ -216,19 +164,6 @@ def library(app: Flask, request: Request):
     'e046854e-406c-37f4-6607-19a9ba8426fc': {'name': 'Exclusive', 'img': '/assets/img/Exclusive-edition-icon.webp'}
     }
     device = request.headers.get('User-Agent', '')
-    if request.args.get('lang'):
-        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
-            lang = request.args.get('lang')
-        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
-            lang = str(request.accept_languages.best_match(
-                app.config['BABEL_LANGUAGES']))
-        else:
-            lang = 'en'
-    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
-        lang = str(request.accept_languages.best_match(
-            app.config['BABEL_LANGUAGES']))
-    else:
-        lang = 'en'
     with open(f'lang/{lang}.yml', encoding='utf8') as f:
         transtable = f.read()
     if 'android' in device.lower() or 'iphone' in device.lower():
@@ -369,20 +304,7 @@ def library(app: Flask, request: Request):
                                prev=f'/library?page={page-1}' if page != 1 else None, next=f'/library?page={page+1}' if page != ceil(count/perpage) else None, cur_page=page, pages=ceil(count/perpage), pc=pc)
 
 
-def trans(app: Flask, request: Request, t):
-    if request.args.get('lang'):
-        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
-            lang = request.args.get('lang')
-        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
-            lang = str(request.accept_languages.best_match(
-                app.config['BABEL_LANGUAGES']))
-        else:
-            lang = 'en'
-    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
-        lang = str(request.accept_languages.best_match(
-            app.config['BABEL_LANGUAGES']))
-    else:
-        lang = 'en'
+def trans(app: Flask, request: Request, t, lang):
     with open(f'lang/{lang}.yml', encoding='utf8') as f:
         transtable = f.read()
     if t in ['agents', 'maps', 'weapons', 'skins']:
@@ -426,7 +348,7 @@ def trans(app: Flask, request: Request, t):
         abort(404)
 
 
-def auth_info(app: Flask, request: Request):
+def auth_info(app: Flask, request: Request, lang):
     cookie = request.cookies
     access_token = session.get('access_token')
     entitlement = session.get('entitlement')
@@ -439,7 +361,7 @@ def auth_info(app: Flask, request: Request):
     return render_template('auth-info.html', access_token=access_token, entitlement=entitlement, region=region, userid=userid, name=name, tag=tag, cookie=cookie, ua=ua)
 
 
-def inventory(app: Flask, request: Request):
+def inventory(app: Flask, request: Request, lang):
     tier_dict = {
         '12683d76-48d7-84a3-4e09-6985794f0445': {'name': 'Select', 'img': '/assets/img/Select-edition-icon.webp'},
         '0cebb8be-46d7-c12a-d306-e9907bfc5a25': {'name': 'Deluxe', 'img': '/assets/img/Deluxe-edition-icon.webp'},
@@ -447,19 +369,6 @@ def inventory(app: Flask, request: Request):
         '411e4a55-4e59-7757-41f0-86a53f101bb5': {'name': 'Ultra', 'img': '/assets/img/Ultra-edition-icon.webp'},
         'e046854e-406c-37f4-6607-19a9ba8426fc': {'name': 'Exclusive', 'img': '/assets/img/Exclusive-edition-icon.webp'}
     }
-    if request.args.get('lang'):
-        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
-            lang = request.args.get('lang')
-        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
-            lang = str(request.accept_languages.best_match(
-                app.config['BABEL_LANGUAGES']))
-        else:
-            lang = 'en'
-    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
-        lang = str(request.accept_languages.best_match(
-            app.config['BABEL_LANGUAGES']))
-    else:
-        lang = 'en'
     with open(f'lang/{lang}.yml', encoding='utf8') as f:
         transtable = f.read()
     if lang == 'zh-CN':
@@ -576,7 +485,7 @@ def inventory(app: Flask, request: Request):
         return redirect('/api/reauth?redirect=/inventory')
 
 
-def accessory(app: Flask, request: Request):
+def accessory(app: Flask, request: Request, lang):
     sortmap = {
         "d5f120f8-ff8c-4aac-92ea-f2b5acbe9475": "sprays",
         "dd3bf334-87f3-40bd-b043-682a57a8dc3a": "buddies",
@@ -589,19 +498,6 @@ def accessory(app: Flask, request: Request):
     userid = session.get('user_id')
     pname = session.get('username')
     tag = session.get('tag')
-    if request.args.get('lang'):
-        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
-            lang = request.args.get('lang')
-        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
-            lang = str(request.accept_languages.best_match(
-                app.config['BABEL_LANGUAGES']))
-        else:
-            lang = 'en'
-    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
-        lang = str(request.accept_languages.best_match(
-            app.config['BABEL_LANGUAGES']))
-    else:
-        lang = 'en'
     with open(f'lang/{lang}.yml', encoding='utf8') as f:
         transtable = f.read()
     if not pname:

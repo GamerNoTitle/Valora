@@ -6,7 +6,7 @@ import uuid
 import sentry_sdk
 import _thread
 import redis
-from flask import Flask, render_template, redirect, send_from_directory, request, abort
+from flask import Flask, render_template, redirect, send_from_directory, request, abort, g
 from flask_babel import Babel
 from flask_session import Session
 from flask_profiler import Profiler
@@ -22,6 +22,8 @@ babel = Babel(app)
 app.config['BABEL_LANGUAGES'] = ['en', 'zh-CN', 'zh-TW', 'ja-JP']
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 session_type = os.environ.get('SESSION_TYPE')
+global_announcement = None
+global_announcement_id = None
 if type(session_type) != type(None):
     if session_type.lower() == 'redis':
         import redis
@@ -94,20 +96,66 @@ sentry_sdk.init(
     traces_sample_rate=1.0
 )
 
+def before_request():
+    if request.args.get('lang'):
+        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
+            lang = request.args.get('lang')
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+            lang = str(request.accept_languages.best_match(
+                app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
+    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+        lang = str(request.accept_languages.best_match(
+            app.config['BABEL_LANGUAGES']))
+    else:
+        lang = 'en'
+    g.lang = lang
+
+app.before_request(before_request)  # Language Process
+
+@app.context_processor
+def inject_common_variables():
+    # Inject variables to templates
+    # Announcement Function
+    announcement = None
+    announcement_id = None
+    if os.environ.get('ANNOUNCEMENT'):
+        if os.environ.get('ANNOUNCEMENT').startswith('http'):
+            announcement_url = f"{os.environ.get('ANNOUNCEMENT')}/api/get"
+            try:
+                announcement_response = requests.get(announcement_url, timeout=3)
+                if announcement_response.status_code == 200:
+                    announcement_json = announcement_response.json()
+                    announcement = announcement_json["announcement"][g.lang]
+                    announcement_id = announcement_json["id"]
+                    global global_announcement, global_announcement_id
+                    global_announcement = announcement_json
+                    global_announcement_id = announcement_id
+            except (requests.exceptions.ConnectTimeout, requests.exceptions.Timeout, requests.exceptions.ReadTimeout):
+                pass
+        if not announcement and not announcement_id:
+            try:
+                announcement = global_announcement["announcement"][g.lang]
+                announcement_id = global_announcement_id
+            except (TypeError, KeyError): # When your announcement server is down and Valora didn't fetch any announcement before
+                announcement = 'Hello Valora!'
+                announcement_id = '404'
+    return dict(announcement=announcement, announcement_id=announcement_id)
 
 @app.route('/', methods=['GET'])
 def home_handler():
-    return home(app, request)
+    return home(app, request, g.lang)
 
 
 @app.route('/market', methods=['GET'])
 def market_handler():
-    return market(app, request)
+    return market(app, request, g.lang)
 
 
 @ app.route('/market/night', methods=['GET'])
 def night_handler():
-    return night(app, request)
+    return night(app, request, g.lang)
 
 
 @ app.route('/EULA', methods=["GET", "POST"])
@@ -117,17 +165,17 @@ def EULA():
 
 @ app.route('/2FA', methods=["GET", "POST"])
 def MFAuth_handler():
-    return mfa_auth(app, request)
+    return mfa_auth(app, request, g.lang)
 
 
 @ app.route('/auth-info')
 def authinfo_handler():
-    return auth_info(app, request)
+    return auth_info(app, request, g.lang)
 
 
 @ app.route('/library', methods=["GET", "POST"])
 def library_handler():
-    return library(app, request)
+    return library(app, request, g.lang)
 
 
 @app.route('/trans')
@@ -137,16 +185,16 @@ def transDefault():
 
 @app.route('/trans/<t>')
 def trans_handler(t):
-    return trans(app, request, t)
+    return trans(app, request, t, g.lang)
 
 
 @app.route('/inventory')
 def inventory_handler():
-    return inventory(app, request)
+    return inventory(app, request, g.lang)
 
 @app.route('/market/accessory')
 def accessory_handler():
-    return accessory(app, request)
+    return accessory(app, request, g.lang)
 
 @app.route('/profiler')
 def redirectprofiler():

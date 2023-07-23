@@ -85,6 +85,9 @@ global:
     trans: 翻訳対照
     inventory: インベントリー
     accessory: アクセサリーショップ
+  announcement:
+    title: 新しいお知らせが到着しました
+    button: 了解しました
 
 
 login:

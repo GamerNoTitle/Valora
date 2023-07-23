@@ -61,12 +61,32 @@
 
     gtag('config', 'G-PZYM17KPGT');
   </script>
+  <!-- Custom CSS -->
+  <link href="/assets/css/custom-color.css" rel="stylesheet" />
+
 </head>
 <script src="https://uptime.betterstack.com/widgets/announcement.js" data-id="165758" async="async"
   type="text/javascript"></script>
 
 <body class="index-page">
-
+  {% if announcement and announcement_id %}
+  <div id="announcementNotice">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3>{{lang.global.announcement.title}}</h3>
+          <p>{{announcement|safe}}</p>
+        </div>
+        <div class="col-auto">
+          <button type="button" id="announcementBtn">{{lang.global.announcement.button}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
+    integrity="sha512-VK2zcvntEufaimc+efOYi622VN5ZacdnufnmX7zIhCPmjhKnOi9ZDMtg1/ug5l183f19gG1/cBstPO4D8N/Img=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  {% endif %}
 
   <!-- Navbar -->
   <div class="container position-sticky z-index-sticky top-0">
@@ -334,7 +354,7 @@
                   target="_blank"><u>GamerNoTitle</u></a>. | Open-Source project <a
                   href="https://github.com/GamerNoTitle/Valora" target="_blank"><u>Valora</u></a> is avaliable on
                 Github.
-                <a href="http://beian.miit.gov.cn/" class="nav-link" id="icp-as" target=_blank><img
+                <a href="http://beian.miit.gov.cn/" class="nav-link" id="icp" target=_blank><img
                     src='https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png' width=20px height=20px> 沪ICP备
                   2021023713号</a>
               </p>
@@ -376,6 +396,52 @@
         confirmButton.disabled = !isValid;
       });
     });  
+  </script>
+  <script>
+    // 获取关闭按钮和悬浮窗元素
+    const announcementNotice = document.getElementById('announcementNotice');
+    const announcementBtn = document.getElementById('announcementBtn');
+
+    // 关闭悬浮窗
+    function closeannouncementNotice() {
+      announcementNotice.style.animation = 'fadeOut 1s';
+      setTimeout(() => {
+        announcementNotice.style.display = 'none';
+      }, 1000);
+    }
+
+    // 设置关闭按钮的点击事件
+    announcementBtn.addEventListener('click', setLocalStorage);
+
+    // 检查是否设置了localStorage，如果设置了，则关闭悬浮窗
+    function checkLocalStorage() {
+      // 获取当前页面的announcement_id
+      const currentAnnouncementId = "{{announcement_id}}";
+      const currentAnnouncement = "{{announcement}}";
+
+      // 获取localStorage中保存的announcement_id
+      const localStorageValue = localStorage.getItem("announcementNoticeId");
+      const localStorageAnn = localStorage.getItem("announcementNotice");
+
+      // 如果localStorage中的announcement_id与当前页面的announcement_id相同，则不弹出悬浮窗
+      if (localStorageValue === currentAnnouncementId || localStorageAnn === currentAnnouncement) {
+        announcementNotice.style.display = 'none';
+      } else {
+        announcementNotice.style.display = 'flex';
+      }
+    }
+
+    // 设置localStorage，并关闭悬浮窗
+    function setLocalStorage() {
+      const currentAnnouncementId = "{{announcement_id}}";
+      const currentAnnouncement = "{{announcement}}"
+      localStorage.setItem("announcementNoticeId", currentAnnouncementId);
+      localStorage.setItem("announcementNotice", currentAnnouncement);
+      closeannouncementNotice();
+    }
+
+    // 在页面加载完成后检查localStorage
+    document.addEventListener('DOMContentLoaded', checkLocalStorage);
   </script>
 
 </body>
