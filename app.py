@@ -22,8 +22,13 @@ babel = Babel(app)
 app.config['BABEL_LANGUAGES'] = ['en', 'zh-CN', 'zh-TW', 'ja-JP']
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 session_type = os.environ.get('SESSION_TYPE')
-global_announcement = None
-global_announcement_id = None
+global_announcement = {
+    "en": "If you see this message, it means that the maintainer of this Valora instance has already integrated the announcement system, but the announcement system is currently inaccessible. If you are a regular user, please contact the developer to resolve this issue; if you are a developer, please check if your announcement system can be accessed by Valora.",
+    "zh-CN": "如果你看到了这条提示，说明本Valora实例的维护者已经接入了公告系统，但是公告系统目前无法访问。如果你是普通用户，请联系开发者解决这个问题；如果你是开发者，请检查你的公告系统是否能被Valora访问。",
+    "zh-TW": "如果你看到了這條提示，說明本Valora實例的維護者已經接入了公告系統，但是公告系統目前無法訪問。如果你是普通用戶，請聯繫開發者解決這個問題；如果你是開發者，請檢查你的公告系統是否能被Valora訪問。",
+    "ja-JP": "このメッセージを見ると、このValoraインスタンスの管理者が既にお知らせシステムを統合していますが、現在お知らせシステムにアクセスできないことを意味します。一般ユーザーの場合は、開発者に連絡してこの問題を解決してください。開発者の場合は、Valoraからお知らせシステムにアクセスできるかどうかを確認してください。"
+}
+global_announcement_id = 404
 if type(session_type) != type(None):
     if session_type.lower() == 'redis':
         import redis
