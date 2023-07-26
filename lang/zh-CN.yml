@@ -71,6 +71,9 @@ global:
     trans: 翻译对照表
     inventory: 我的库存
     accessory: 配饰商店
+    spray: 喷漆预览
+    card: 卡面预览
+    title: 称号预览
   description:
     line1: 瓦罗兰特（无畏契约）商店查看，让你不用登陆游戏也能够查看每日商店（仅支持国际服）
     line2: 所有的登录名和密码服务器均不进行存取，仅用于登录
@@ -88,6 +91,7 @@ global:
     trans: 翻译对照
     inventory: 我的库存
     accessory: 配饰商店
+    accessorylib: 配饰总览
   announcement:
     title: 你有新的公告，请查收！
     button: 我知道了
@@ -265,6 +269,19 @@ accessory:
     name: 配饰名称
     preview: 配饰预览
     cost: 配饰价格
+
+accessorylib:
+  search: 推荐使用 <kbd>Ctrl</kbd> + <kbd>F</kbd> 来使用搜索
+  spray:
+    title: 配饰预览：喷漆 | Accessory - Spary
+  title:
+    title: 配饰预览：称号 | Accessory - Title
+  card:
+    title: 配饰预览：卡面 | Accessory - Card
+  button:
+    spray: 喷漆
+    title: 称号
+    card: 卡面
 
 down:
   title: 正在计划中的维护

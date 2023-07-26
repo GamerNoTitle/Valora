@@ -68,6 +68,9 @@ global:
     trans: 翻譯對照表
     inventory: インベントリー
     accessory: アクセサリーショップ
+    spray: スプレープレビュー
+    card: カードプレビュー
+    title: 称号プレビュー
   description:
     line1: VALORANTショップビュー。ゲームにログインせずにデイリーショップを確認できます
     line2: ログイン名とパスワードはサーバーに保存されず、ログインにのみ使用されます。
@@ -85,6 +88,7 @@ global:
     trans: 翻訳対照
     inventory: インベントリー
     accessory: アクセサリーショップ
+    accessorylib: アクセサリーライブラリー
   announcement:
     title: 新しいお知らせが到着しました
     button: 了解しました
@@ -264,6 +268,19 @@ accessory:
     name: アクセサリー名
     preview: アクセサリーのプレビュー
     cost: アクセサリーの価格
+
+accessorylib:
+  search: 検索には<kbd>Ctrl</kbd> + <kbd>F</kbd>を使用することをお勧めします
+  spray:
+    title: アクセサリー - スプレー
+  title:
+    title: アクセサリー - 称号
+  card:
+    title: アクセサリー - カード
+  button:
+    spray: スプレー
+    title: 称号
+    card: カード
 
 down:
   title: 予定されているメンテナンス中

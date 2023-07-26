@@ -13,7 +13,7 @@
     href="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/favicon.png">
   <link rel="icon" type="image/png" href="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/favicon.png">
   <title>
-    {{lang.global.title.accessory}} | Valora | GamerNoTitle
+    {{lang.global.title.card}} | Valora | GamerNoTitle
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -37,11 +37,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.esm.min.js"
     integrity="sha512-ruQ4xI8Jfep9W+qJQ8FLbxsjPVR0WvEt31XNw0mZxri2Nya9eQr7VTFsi+S7OvW0bIUI7vxF8zoaPNSq/PsvxA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script>
-    if (document.location.pathname != "/market/accessory") {
-      window.location = document.location.origin + "/market/accessory"
-    }
-  </script>
   <!-- 引入 fancybox CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
   <script defer data-site="val.bili33.top" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
@@ -60,20 +55,27 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
-
-  <!-- Custom CSS -->
-  <link href="/assets/css/custom-color.css" rel="stylesheet" />
+  <style>
+    .alert-pink {
+      color: #fb7299;
+      background-color: #fb7299;
+      border-color: #ffffff;
+    }
+  </style>
   <!-- Easter Egg -->
   <script>(new Date().getDate() === 1 && new Date().getMonth() === 3) && document.write('<script src="https://cdn.bili33.top/gh/Vikutorika/newassets@master/js/smooth-April-Fools.js"><\/script>')</script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZYM17KPGT"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-PZYM17KPGT');
   </script>
+  <!-- Custom CSS -->
+  <link href="/assets/css/custom-color.css" rel="stylesheet" />
+
 </head>
 <script src="https://uptime.betterstack.com/widgets/announcement.js" data-id="165758" async="async"
   type="text/javascript"></script>
@@ -180,126 +182,57 @@
   <div class="container-fluid px-0 overflow-hidden">
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
-        <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg"><i class="fas fa-shopping-cart"></i>
-            {{lang.global.button.dailyshop}}</button></a>
-        <a href="/market/night"><button type="button" class="btn bg-gradient-mint btn-lg"><i
-              class="fas fa-shopping-bag"></i></i>
-            {{lang.global.button.nightmarket}}</button></a>
-        <a href="/inventory"><button type="button" class="btn bg-gradient-pink btn-lg"><i class="fas fa-warehouse"></i>
-            {{lang.global.button.inventory}}</button></a>
+        <a href="/"><button type="button" class="btn bg-gradient-info btn-lg"><i class="fas fa-home"></i>
+            {{lang.global.button.home}}</button></a>
         <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
             {{lang.global.button.trans}}</button></a>
-        <a href="/library/accessory" target="_blank"><button type="button"
-              class="btn bg-gradient-sr-sliver-wolf btn-lg"><i class="fas fa-spray-can"></i>
-              {{lang.global.button.accessorylib}}</button></a>
-        <br>
-        <a href="//account.riotgames.com" target="_blank"><button type="button"
-            class="btn bg-gradient-secondary btn-lg"><i class="fas fa-user-circle"></i>
-            {{lang.global.button.account}}</button></a>
-        <a href="/library"><button type="button" class="btn bg-gradient-success btn-lg"><i class="fas fa-book"></i>
-            {{lang.global.button.library}}</button></a>
         <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i
-              class="fas fa-coins"></i> {{lang.global.button.sponsor}}</button></a>
-        <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg"><i
-              class="fas fa-door-open"></i>
-            {{lang.global.button.logout}}</button></a>
+              class="fas fa-coins"></i>
+            {{lang.global.button.sponsor}}</button></a>
       </div>
     </div>
   </div>
 
   <div class="container">
-    <div class="row text-center py-2 mt-3">
-      <div class="col-12 mx-auto">
-        <div class="alert alert-pink text-white rounded" role="alert">
-          <span class="alert-icon"><i class="ni ni-like-2"></i></span>
-          {{lang.accessory.welcome.opening}} {% if not accesstokenlogin
-          %}<strong>{{player.name}}</strong>#<strong>{{player.tag}}</strong><br> {% else %} <strong>N/A</strong><br> {%
-          endif %}
-          {{lang.accessory.welcome.credit}} <img
-            src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/VP.png" height=16px width=16px>
-          <strong>{{player.vp}}</strong> <img
-            src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/RP.png" height=16px width=16px>
-          <strong>{{player.rp}}</strong> <img
-            src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/KC.png" height=16px width=16px>
-          <strong>{{player.kc}}</strong>
+    <a href="/library/accessory/card">
+      <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.accessorylib.card.title}}</h1>
+    </a>
+    <br>
+    <div width="100%">
+      <div class="container-fluid px-0 overflow-hidden">
+        <div class="row text-center py-2 mt-3">
+          <div class="col-12 mx-auto">
+            <a href="/library/accessory/spray"><button type="button"
+                class="btn bg-gradient-sr-sliver-wolf btn-lg"><i class="fas fa-puzzle-piece"></i> {{lang.accessorylib.button.spray}}</button></a>
+            <a href="/library/accessory/title"><button type="button"
+                class="btn bg-gradient-cold-sea btn-lg"><i class="fas fa-heading"></i> {{lang.accessorylib.button.title}}</button></a>
+            <a href="/library/accessory/card"><button type="button"
+                class="btn bg-gradient-purple-pink btn-lg"><i class="fas fa-id-card-alt"></i> {{lang.accessorylib.button.card}}</button></a>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  {% if pc %}
-  <!-- Desktop Devices -->
-  <div class="container">
-    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.accessory.title}}</h1>
+    </div>  
     <br>
-    <div class="table-responsive">
-      <table class="table" id="market-table" width=100%>
-        <thead>
-          <tr>
-            <th class="text-center">{{lang.accessory.table.name}}</th>
-            <th class="text-center">{{lang.accessory.table.preview}}</th>
-            <th class="text-center"><img
-                src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/KC-black.png" width=24px
-                height=24px>
-              {{lang.accessory.table.cost}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for accessory in accessory_list %}
-          <tr>
-            <td class="text-center">
-              <h3 class="text-gradient text-primary mb-0 mt-2">{{accessory.name|safe}}</h3>
-            </td>
-            <td class="text-center">
-              {% if accessory.preview %}
-              <div class="gun-image"><a href="{{accessory.img|safe}}" data-fancybox="gallery">{% if accessory.small
-                  %}<img height="80px" src={{accessory.small}}> {% endif %}<img height="80px"
-                    src={{accessory.preview|safe}}></a></div>
-              {% else %}
-
-              {% endif %}
-            </td>
-            <td class="text-center">
-              <h3 class="text-gradient text-dark mb-0 mt-2">{{accessory.cost|safe}}</h3>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
   </div>
 
-  {% else %}
-  <!-- Mobile Devices -->
   <div class="container">
-    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.accessory.title}}</h1>
-    <br>
     <div class="row">
-      {% for accessory in accessory_list %}
+      {% for card in cards %}
       <div class="col-md-4">
         <div class="card mb-4 shadow-sm rounded">
-          {% if accessory.preview %}
           <div class="gun-image">
-            <a href="{{accessory.img|safe}}" data-fancybox="gallery">
-              <img height=auto width=100% class="text-center" src={{accessory.preview|safe}}>
-            </a>
+            <a href="{{card.large|safe}}" data-fancybox="gallery"><img width=100% src={{card.wide|safe}}></a>
           </div>
-          {% endif %}
           <div class="card-body">
-            <h3 class="text-gradient text-primary mb-0 mt-2">{{accessory.name|safe}}</h3>
-            <h3 class="text-gradient text-dark mb-0 mt-2"><img
-                src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/KC-black.png" width=24px
-                height=24px>
-              {{accessory.cost|safe}}</h3>
+            <h3 class="text-gradient text-primary mb-0 mt-2">{{card.name|safe}}</h3>
+            <br>
           </div>
         </div>
       </div>
       {% endfor %}
     </div>
   </div>
-  </div>
-  </div>
 
-  {% endif %}
   <section>
     <footer class="footer pt-5 mt-5">
       <hr class="horizontal dark mb-5">
@@ -335,58 +268,58 @@
               </ul>
               <!-- <li class="nav-item"> -->
               <!-- <a href="http://beian.miit.gov.cn/" class="nav-link" target=_blank><img
-                  src='https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png' width=20px height=20px> 沪ICP备
-                2021023713号</a> -->
+                    src='https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png' width=20px height=20px> 沪ICP备
+                  2021023713号</a> -->
               <!-- </li> -->
             </div>
           </div>
           <div class="col-md-2 col-sm-6 col-6 mb-4">
             <!-- <div>
-              <h6 class="text-gradient text-primary text-sm">Company</h6>
-              <ul class="flex-column ms-n3 nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="https://www.creative-tim.com/presentation" target="_blank">
-                    About Us
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://www.creative-tim.com/templates/free" target="_blank">
-                    Freebies
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://www.creative-tim.com/templates/premium" target="_blank">
-                    Premium Tools
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://www.creative-tim.com/blog" target="_blank">
-                    Blog
-                  </a>
-                </li>
-              </ul>
-            </div> -->
+                <h6 class="text-gradient text-primary text-sm">Company</h6>
+                <ul class="flex-column ms-n3 nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://www.creative-tim.com/presentation" target="_blank">
+                      About Us
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://www.creative-tim.com/templates/free" target="_blank">
+                      Freebies
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://www.creative-tim.com/templates/premium" target="_blank">
+                      Premium Tools
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://www.creative-tim.com/blog" target="_blank">
+                      Blog
+                    </a>
+                  </li>
+                </ul>
+              </div> -->
           </div>
           <div class="col-md-2 col-sm-6 col-6 mb-4">
             <div>
               <!-- <h6 class="text-gradient text-primary text-sm">Resources</h6>
-              <ul class="flex-column ms-n3 nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="https://iradesign.io/" target="_blank">
-                    Illustrations
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://www.creative-tim.com/bits" target="_blank">
-                    Bits &amp; Snippets
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://www.creative-tim.com/affiliates/new" target="_blank">
-                    Affiliate Program
-                  </a>
-                </li>
-              </ul> -->
+                <ul class="flex-column ms-n3 nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://iradesign.io/" target="_blank">
+                      Illustrations
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://www.creative-tim.com/bits" target="_blank">
+                      Bits &amp; Snippets
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://www.creative-tim.com/affiliates/new" target="_blank">
+                      Affiliate Program
+                    </a>
+                  </li>
+                </ul> -->
             </div>
           </div>
           <div class="col-md-2 col-sm-6 col-6 mb-4">

@@ -14,7 +14,7 @@
     <link rel="icon" type="image/png"
         href="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/favicon.png">
     <title>
-        {{lang.global.title.trans}} | Valora | GamerNoTitle
+        {{lang.global.title.title}} | Valora | GamerNoTitle
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -194,9 +194,6 @@
                 <a href="/library"><button type="button" class="btn bg-gradient-success btn-lg"><i
                             class="fas fa-book"></i>
                         {{lang.global.button.library}}</button></a>
-                <a href="/library/accessory" target="_blank"><button type="button"
-                        class="btn bg-gradient-sr-sliver-wolf btn-lg"><i class="fas fa-spray-can"></i>
-                        {{lang.global.button.accessorylib}}</button></a>
                 <a href="//bili33.top/sponsors" target="_blank"><button type="button"
                         class="btn bg-gradient-primary btn-lg"><i class="fas fa-coins"></i>
                         {{lang.global.button.sponsor}}</button></a>
@@ -205,22 +202,26 @@
     </div>
 
     <div width="100%">
-        <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.trans.title}}</h1>
-        <br>
-        <div class="container-fluid px-0 overflow-hidden">
-            <div class="row text-center py-2 mt-3">
-                <div class="col-12 mx-auto">
-                    <a href="/trans/agents"><button type="button"
-                            class="btn bg-gradient-primary btn-lg">{{lang.trans.button.agents}}</button></a>
-                    <a href="/trans/maps"><button type="button"
-                            class="btn bg-gradient-primary btn-lg">{{lang.trans.button.maps}}</button></a>
-                    <a href="/trans/skins"><button type="button"
-                            class="btn bg-gradient-primary btn-lg">{{lang.trans.button.skins}}</button></a>
-                    <a href="/trans/weapons"><button type="button"
-                            class="btn bg-gradient-primary btn-lg">{{lang.trans.button.weapons}}</button></a>
+        <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.accessorylib.title.title}}</h1>
+        <hr>
+        <div width="100%">
+            <div class="container-fluid px-0 overflow-hidden">
+                <div class="row text-center py-2 mt-3">
+                    <div class="col-12 mx-auto">
+                        <a href="/library/accessory/spray"><button type="button"
+                                class="btn bg-gradient-sr-sliver-wolf btn-lg"><i class="fas fa-puzzle-piece"></i>
+                                {{lang.accessorylib.button.spray}}</button></a>
+                        <a href="/library/accessory/title"><button type="button"
+                                class="btn bg-gradient-cold-sea btn-lg"><i class="fas fa-heading"></i>
+                                {{lang.accessorylib.button.title}}</button></a>
+                        <a href="/library/accessory/card"><button type="button"
+                                class="btn bg-gradient-purple-pink btn-lg"><i class="fas fa-id-card-alt"></i>
+                                {{lang.accessorylib.button.card}}</button></a>
+                    </div>
                 </div>
             </div>
         </div>
+        <br>
         <div class="table-responsive table-bordered" width="100%">
             <table class="table" width="100%">
                 <thead>
@@ -232,22 +233,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for data in data %}
+                    {% for title in titles %}
                     <tr>
                         <td class="text-center">
-                            <h3 class="text-gradient text-primary mb-0 mt-2">{{data.en}}</h3>
+                            <h3 class="text-gradient text-primary mb-0 mt-2">{{title.en|replace(' Title', '')}}</h3>
                         </td>
                         <td class="text-center">
-                            <h3 class="text-gradient text-dark mb-0 mt-2">{{data.zhCN}}</h3>
+                            <h3 class="text-gradient text-dark mb-0 mt-2">{{title.zhCN|replace(' 称号', '')}}</h3>
                         </td>
                         <td class="text-center">
-                            <h3 class="text-gradient text-dark mb-0 mt-2">{{data.zhTW}}</h3>
+                            <h3 class="text-gradient text-dark mb-0 mt-2">{{title.zhTW|replace(' 稱號', '')}}</h3>
                         </td>
                         <td class="text-center">
-                            <h3 class="text-gradient text-dark mb-0 mt-2">{{data.jaJP}}</h3>
+                            <h3 class="text-gradient text-dark mb-0 mt-2">{{title.jaJP|replace(' タイトル', '')}}</h3>
                         </td>
-                        {% endfor %}
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

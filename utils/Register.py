@@ -467,10 +467,10 @@ def inventory(app: Flask, request: Request, lang):
                 {"name": name, "img": base_img, "levels": levels, "chromas": chromas, "unlock": unlock, "tier": tier_img})
             try:
                 VP_count += int(unlock.replace(
-                    '<img src="/assets/img/VP-black.png" width="32px" height="32px"> ', ''))
-            except ValueError:
+                    '<img src="/assets/img/VP-black.png" width="32px" height="32px"> ', '').replace('(Bundle)', ''))
+            except ValueError:  # Not plain number text
                 pass
-            except AttributeError:
+            except AttributeError:  # Temporary no price yet
                 pass
         p = {
             'name': uname,
@@ -583,3 +583,84 @@ def accessory(app: Flask, request: Request, lang):
                                accessory_list=accessory_list)
     else:
         return redirect('/api/reauth?redirect=/market/accessory')
+
+def accessory_library(app: Flask, request: Request, t, lang):
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
+    if t not in ['spray', 'title', 'card']:
+        abort(404)
+    if t == 'spray':
+        sprays = []
+        conn = sqlite3.connect('db/data.db')
+        c = conn.cursor()
+        if lang == 'en':
+            c.execute('SELECT uuid, name, preview FROM sprays')
+        else:
+            if lang == 'zh-CN':
+                qlang = 'zh-TW'
+            else:
+                qlang = lang
+            c.execute(f'SELECT uuid, "name-{qlang}", preview FROM sprays')
+        conn.commit()
+        data = c.fetchall()
+        for spary in data:
+            sprays.append({
+                "uuid": spary[0],
+                "name": spary[1],
+                "preview": spary[2]
+            })
+        return render_template('spray.html', 
+        lang=yaml.load(transtable, Loader=yaml.FullLoader),
+        spray_list=sprays)
+    elif t == 'title':
+        titles = []
+        conn = sqlite3.connect('db/data.db')
+        c = conn.cursor()
+        c.execute('SELECT uuid, name, "name-zh-CN", "name-zh-TW", "name-ja-JP" FROM titles')
+        conn.commit()
+        data = c.fetchall()
+        for title in data:
+            if 'VCT' in str(title[1]) or 'LOCK//IN' in str(title[1]) or '2022 Game Changers' in str(title[1]) or 'None' in str(title[1]): 
+                # VCT Competitors' title, not for players
+                # And also this will not display in game if you dont have it
+                # None for unexcepted errors
+                continue
+            titles.append(
+                {
+                    'uuid': title[0],
+                    'en': title[1],
+                    'zhCN': title[2],
+                    'zhTW': title[3],
+                    'jaJP': title[4]
+                }
+            )
+        return render_template('title.html',
+        lang=yaml.load(transtable, Loader=yaml.FullLoader),
+        titles=titles)
+    elif t == 'card':
+        cards = []
+        conn = sqlite3.connect('db/data.db')
+        c = conn.cursor()
+        if lang == 'en':
+            c.execute('SELECT uuid, name, small, wide, large FROM cards')
+        else:
+            if lang == 'zh-CN':
+                qlang = 'zh-TW'
+            else:
+                qlang = lang
+            c.execute(f'SELECT uuid, "name-{qlang}", small, wide, large FROM cards')
+        conn.commit()
+        data = c.fetchall()
+        for card in data:
+            cards.append({
+                'uuid': card[0],
+                'name': card[1],
+                'small': card[2],
+                'wide': card[3],
+                'large': card[4]
+            })
+        return render_template('card.html',
+        lang=yaml.load(transtable, Loader=yaml.FullLoader),
+        cards=cards)
+    else:
+        abort(404)

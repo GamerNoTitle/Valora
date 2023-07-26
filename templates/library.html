@@ -68,7 +68,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZYM17KPGT"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-PZYM17KPGT');
@@ -186,6 +186,9 @@
             {{lang.global.button.home}}</button></a>
         <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
             {{lang.global.button.trans}}</button></a>
+        <a href="/library/accessory" target="_blank"><button type="button"
+            class="btn bg-gradient-sr-sliver-wolf btn-lg"><i class="fas fa-spray-can"></i>
+            {{lang.global.button.accessorylib}}</button></a>
         <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i
               class="fas fa-coins"></i>
             {{lang.global.button.sponsor}}</button></a>
@@ -437,7 +440,8 @@
               </a>
             </div>
             <div class="card-body">
-              <h3 class="text-gradient text-primary mb-0 mt-2"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}}</h3>
+              <h3 class="text-gradient text-primary mb-0 mt-2"><img src={{weapon.tier}} height="28px" width="28px">
+                {{weapon.name|safe}}</h3>
               <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.unlock|safe}}</h3>
               <br>
               {% for level in weapon.levels %}
@@ -453,11 +457,13 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}} {{level.displayName}}</h5>
+                      <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}}
+                        {{level.displayName}}</h5>
                     </div>
                     <div class="modal-body">
                       <video width=100% controls>
-                        <source src="{{level.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}" type="video/mp4">
+                        <source src="{{level.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}"
+                          type="video/mp4">
                         <source src="{{level.streamedVideo}}" type="video/mp4">
                         {{lang.library.modal.videonotavaliable}}
                       </video>
@@ -488,12 +494,14 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}} {{chroma.displayName}}</h5>
+                      <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}}
+                        {{chroma.displayName}}</h5>
                     </div>
                     <div class="modal-body">
                       {% if chroma.streamedVideo %}
                       <video width=100% controls>
-                        <source src="{{chroma.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}" type="video/mp4">
+                        <source src="{{chroma.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}"
+                          type="video/mp4">
                         <source src="{{chroma.streamedVideo}}" type="video/mp4">
                         {{lang.library.modal.videonotavaliable}}
                       </video>
@@ -702,11 +710,12 @@
                     href="https://github.com/GamerNoTitle/Valora" target="_blank"><u>Valora</u></a> is avaliable on
                   Github.
                   <a href="http://beian.miit.gov.cn/" class="nav-link" id="icp" target=_blank><img
-                      src='https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png' width=20px height=20px> 沪ICP备
+                      src='https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png' width=20px height=20px>
+                    沪ICP备
                     2021023713号</a>
                 </p>
               </div>
-              </div>
+            </div>
           </div>
         </div>
       </footer>
@@ -735,51 +744,51 @@
         });
       });
     </script>
-  <script>
-    // 获取关闭按钮和悬浮窗元素
-    const announcementNotice = document.getElementById('announcementNotice');
-    const announcementBtn = document.getElementById('announcementBtn');
+    <script>
+      // 获取关闭按钮和悬浮窗元素
+      const announcementNotice = document.getElementById('announcementNotice');
+      const announcementBtn = document.getElementById('announcementBtn');
 
-    // 关闭悬浮窗
-    function closeannouncementNotice() {
-      announcementNotice.style.animation = 'fadeOut 1s';
-      setTimeout(() => {
-        announcementNotice.style.display = 'none';
-      }, 1000);
-    }
-
-    // 设置关闭按钮的点击事件
-    announcementBtn.addEventListener('click', setLocalStorage);
-
-    // 检查是否设置了localStorage，如果设置了，则关闭悬浮窗
-    function checkLocalStorage() {
-      // 获取当前页面的announcement_id
-      const currentAnnouncementId = "{{announcement_id}}";
-      const currentAnnouncement = "{{announcement}}";
-
-      // 获取localStorage中保存的announcement_id
-      const localStorageValue = localStorage.getItem("announcementNoticeId");
-      const localStorageAnn = localStorage.getItem("announcementNotice");
-
-      // 如果localStorage中的announcement_id与当前页面的announcement_id相同，则不弹出悬浮窗
-      if (localStorageValue === currentAnnouncementId || localStorageAnn === currentAnnouncement) {
-        announcementNotice.style.display = 'none';
-      } else {
-        announcementNotice.style.display = 'flex';
+      // 关闭悬浮窗
+      function closeannouncementNotice() {
+        announcementNotice.style.animation = 'fadeOut 1s';
+        setTimeout(() => {
+          announcementNotice.style.display = 'none';
+        }, 1000);
       }
-    }
 
-    // 设置localStorage，并关闭悬浮窗
-    function setLocalStorage() {
-      const currentAnnouncementId = "{{announcement_id}}";
-      const currentAnnouncement = "{{announcement}}"
-      localStorage.setItem("announcementNoticeId", currentAnnouncementId);
-      localStorage.setItem("announcementNotice", currentAnnouncement);
-      closeannouncementNotice();
-    }
+      // 设置关闭按钮的点击事件
+      announcementBtn.addEventListener('click', setLocalStorage);
 
-    // 在页面加载完成后检查localStorage
-    document.addEventListener('DOMContentLoaded', checkLocalStorage);
-  </script>
+      // 检查是否设置了localStorage，如果设置了，则关闭悬浮窗
+      function checkLocalStorage() {
+        // 获取当前页面的announcement_id
+        const currentAnnouncementId = "{{announcement_id}}";
+        const currentAnnouncement = "{{announcement}}";
+
+        // 获取localStorage中保存的announcement_id
+        const localStorageValue = localStorage.getItem("announcementNoticeId");
+        const localStorageAnn = localStorage.getItem("announcementNotice");
+
+        // 如果localStorage中的announcement_id与当前页面的announcement_id相同，则不弹出悬浮窗
+        if (localStorageValue === currentAnnouncementId || localStorageAnn === currentAnnouncement) {
+          announcementNotice.style.display = 'none';
+        } else {
+          announcementNotice.style.display = 'flex';
+        }
+      }
+
+      // 设置localStorage，并关闭悬浮窗
+      function setLocalStorage() {
+        const currentAnnouncementId = "{{announcement_id}}";
+        const currentAnnouncement = "{{announcement}}"
+        localStorage.setItem("announcementNoticeId", currentAnnouncementId);
+        localStorage.setItem("announcementNotice", currentAnnouncement);
+        closeannouncementNotice();
+      }
+
+      // 在页面加载完成后检查localStorage
+      document.addEventListener('DOMContentLoaded', checkLocalStorage);
+    </script>
 
 </body>
