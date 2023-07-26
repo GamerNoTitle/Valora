@@ -190,6 +190,13 @@ def authinfo_handler():
 def library_handler():
     return library(app, request, g.lang)
 
+@app.route('/library/accessory')
+def accessory_lib_default_handler():
+    return redirect('/library/accessory/spray')
+
+@ app.route('/library/accessory/<t>')
+def accessory_lib_handler(t):
+    return accessory_library(app, request, t, g.lang)
 
 @app.route('/trans')
 def transDefault():

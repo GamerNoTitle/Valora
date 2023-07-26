@@ -68,6 +68,9 @@ global:
     trans: Translation Table
     inventory: My Inventory
     accessory: Accessory Store
+    spray: Spray Preview
+    card: Player Card Preview
+    title: Player Title Preview
   description:
     line1: Valorant shop checker, help you peek your shop & nightmarket without open your game.
     line2: All usernames and passwords are not stored on the server and are only used for login.
@@ -263,6 +266,15 @@ accessory:
     name: Accessory Name
     preview: Accessory Preview
     cost: Accessory Price
+
+accessorylib:
+  search: Use <kbd>Ctrl</kbd> + <kbd>F</kbd> for searching
+  spray:
+    title: Accessory - Spary
+  title:
+    title: Accessory - Title
+  card:
+    title: Accessory - Card
 
 
 down:
