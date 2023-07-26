@@ -88,6 +88,7 @@ global:
     trans: Translation Table
     inventory: My Inventory
     accessory: Accessory Store
+    accessorylib: Accessory Library
   announcement:
     title: New Announcement Arrival
     button: I understand
@@ -270,11 +271,15 @@ accessory:
 accessorylib:
   search: Use <kbd>Ctrl</kbd> + <kbd>F</kbd> for searching
   spray:
-    title: Accessory - Spary
+    title: Accessory - Spray
   title:
     title: Accessory - Title
   card:
     title: Accessory - Card
+  button:
+    spray: Sprays
+    title: Player Titles
+    card: Player Cards
 
 
 down:

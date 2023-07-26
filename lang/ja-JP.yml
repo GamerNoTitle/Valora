@@ -88,6 +88,7 @@ global:
     trans: 翻訳対照
     inventory: インベントリー
     accessory: アクセサリーショップ
+    accessorylib: アクセサリーライブラリー
   announcement:
     title: 新しいお知らせが到着しました
     button: 了解しました
@@ -276,6 +277,10 @@ accessorylib:
     title: アクセサリー - 称号
   card:
     title: アクセサリー - カード
+  button:
+    spray: スプレー
+    title: 称号
+    card: カード
 
 down:
   title: 予定されているメンテナンス中
