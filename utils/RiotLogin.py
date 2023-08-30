@@ -45,7 +45,7 @@ class Auth:
         self.username = username
         self.password = password
         self.session = requests.Session() if not session else session
-        self.session.headers = OrderedDict({"User-Agent": "RiotClient/58.0.0.4640299.4552318 %s (Windows;10;;Professional, x64)",
+        self.session.headers = OrderedDict({"User-Agent": f"RiotClient/{requests.get('https://valorant-api.com/v1/version').json()['data']['riotClientBuild']} riot-status (Windows;10;;Professional, x64)",
                                            "Accept-Language": "en-US,en;q=0.9", "Accept": "application/json, text/plain, */*"})
         self.session.mount('https://', SSLAdapter())
         self.authed = False
@@ -64,7 +64,7 @@ class Auth:
         self.id_token = tokens[1]
 
         self.base_headers = {
-            'User-Agent': "RiotClient/58.0.0.4640299.4552318 %s (Windows;10;;Professional, x64)", 'Authorization': f'Bearer {self.access_token}', }
+            'User-Agent': f"RiotClient/{requests.get('https://valorant-api.com/v1/version').json()['data']['riotClientBuild']} riot-status (Windows;10;;Professional, x64)", 'Authorization': f'Bearer {self.access_token}', }
         self.session.headers.update(self.base_headers)
 
         self.entitlement = self.get_entitlement_token()
