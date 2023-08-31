@@ -65,7 +65,7 @@ https://hub.docker.com/r/gamernotitle/vsc
 
 ### Run on Zeabur
 
-[![Deploy on Zeabur](https://zeabur.com/button.svg)](https://dash.zeabur.com/templates/21HDN2)
+[![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/21HDN2?referralCode=GamerNoTitle)
 
 ### Run on Railway
 

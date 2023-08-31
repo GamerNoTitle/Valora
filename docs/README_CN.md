@@ -61,7 +61,7 @@ https://hub.docker.com/r/gamernotitle/vsc
 
 ### 在Zeabur上运行
 
-[![Deploy on Zeabur](https://zeabur.com/button.svg)](https://dash.zeabur.com/templates/21HDN2)
+[![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/21HDN2?referralCode=GamerNoTitle)
 
 ### 在Railway上运行
 
