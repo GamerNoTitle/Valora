@@ -554,8 +554,8 @@ def accessory(app: Flask, request: Request, lang):
                     data = c.fetchall()
                     # data = [('Hard Carry Title',)]
                     name = data[0][0]
-                    preview = None
-                    img = None
+                    preview = '/assets/img/title-red.png'
+                    img = preview
                     small = None
                 elif accessorySort in ['sprays', 'buddies']:
                     c.execute(
