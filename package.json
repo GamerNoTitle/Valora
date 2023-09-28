@@ -1,0 +1,18 @@
+{
+  "name": "valora",
+  "version": "1.0.0",
+  "description": "VLR (Valora) is a website that can help you check your VALORANT daily store/night market/accessory store without opening the game or downloading an APP | 瓦罗兰特商店查询，无需安装任何软件即可帮助你查询每日商店、黑市和配件商店的网页",
+  "main": "app.py",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git clone https://github.com/GamerNoTitle/Valora.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
