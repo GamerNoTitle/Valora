@@ -146,6 +146,8 @@ def reauth(app: Flask, request: Request):
                     'https://playvalorant.com/opt_in#access_token={access_token}&scope=openid&iss=https%3A%2F%2Fauth.riotgames.com&id_token={id_token}&token_type=Bearer&session_state={session_state}&expires_in=3600', data)
                 try:
                     access_token = parsed['access_token']
+                    if access_token == None:
+                        raise ValoraExpiredException('Login Expired')
                 except TypeError:
                     raise ValoraExpiredException('Login Expired')
             entitle_url = 'https://entitlements.auth.riotgames.com/api/token/v1'
