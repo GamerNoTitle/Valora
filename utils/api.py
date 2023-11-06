@@ -6,7 +6,7 @@ from parse import parse
 from flask import Flask, render_template, redirect, make_response, session, Request
 from utils import Security
 from utils.RiotLogin import Auth, SSLAdapter
-from utils.Cache import UpdateOfferCache
+from utils.Cache import UpdatePriceOffer
 from utils.Exception import *
 
 def RiotLogin(app: Flask, request: Request):
@@ -57,7 +57,7 @@ def RiotLogin(app: Flask, request: Request):
             session['cookie'] = user.session.cookies
             session['user-session'] = user.session
             response.status_code = 302
-            _thread.start_new_thread(UpdateOfferCache, (user.access_token, user.entitlement))
+            _thread.start_new_thread(UpdatePriceOffer, (user.access_token, user.entitlement, user.Region))
         elif user.MFA:
             session['user'] = user
             session['user-session'] = user.session
@@ -122,7 +122,7 @@ def verify(app: Flask, request: Request):
         # For security. Once the password has been used to login in successfully, set password as useless strings
         session['password'] = '***'
         response.status_code = 302
-        _thread.start_new_thread(UpdateOfferCache, (user.access_token, user.entitlement))
+        _thread.start_new_thread(UpdatePriceOffer, (user.access_token, user.entitlement, user.Region))
     else:
         response = make_response(
             render_template('index.html', loginerror=True, lang=yaml.load(transtable, Loader=yaml.FullLoader)))
@@ -146,20 +146,35 @@ def reauth(app: Flask, request: Request):
                     'https://playvalorant.com/opt_in#access_token={access_token}&scope=openid&iss=https%3A%2F%2Fauth.riotgames.com&id_token={id_token}&token_type=Bearer&session_state={session_state}&expires_in=3600', data)
                 try:
                     access_token = parsed['access_token']
+                    if access_token == None:
+                        raise ValoraExpiredException('Login Expired')
                 except TypeError:
                     raise ValoraExpiredException('Login Expired')
+            else:
+                response = make_response(redirect('/', 302))
+                for cookie in request.cookies:
+                    response.delete_cookie(cookie)
+                session.clear()
+                return response
             entitle_url = 'https://entitlements.auth.riotgames.com/api/token/v1'
-            headers = {
-                'Content-Type': 'application/json',
-                'Authorization': f'Bearer {access_token}'
-            }
+            try:
+                headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': f'Bearer {access_token}'
+                }
+            except UnboundLocalError:
+                response = make_response(redirect('/', 302))
+                for cookie in request.cookies:
+                    response.delete_cookie(cookie)
+                session.clear()
+                return response
             res = s.post(entitle_url, headers=headers)
             entitlement = res.json().get('entitlements_token')
             session['access_token'] = access_token
             session['entitlement'] = entitlement
             session['user-session'] = s
             session['cookie'] = s.cookies
-            _thread.start_new_thread(UpdateOfferCache, (access_token, entitlement))
+            _thread.start_new_thread(UpdatePriceOffer, (access_token, entitlement, session['region']))
             return redirect(redirect_loc)
         else:
             response = make_response(redirect('/', 302))

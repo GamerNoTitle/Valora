@@ -54,27 +54,32 @@ def market(app: Flask, request: Request, lang):
         return render_template('maintenance.html', lang=yaml.load(transtable, Loader=yaml.FullLoader))
     if user.auth:
         shop = user.shop['SkinsPanelLayout']    # Flite the daily skin
-        weapon0 = weapon(shop['SingleItemStoreOffers'][0]['OfferID'],
-                         shop['SingleItemStoreOffers'][0]["Cost"]["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], lang=str(
-                             lang))
-        weapon1 = weapon(shop['SingleItemStoreOffers'][1]['OfferID'],
-                         shop['SingleItemStoreOffers'][1]["Cost"]["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], lang=str(
-            lang))
-        weapon2 = weapon(shop['SingleItemStoreOffers'][2]['OfferID'],
-                         shop['SingleItemStoreOffers'][2]["Cost"]["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], lang=str(
-            lang))
-        weapon3 = weapon(shop['SingleItemStoreOffers'][3]['OfferID'],
-                         shop['SingleItemStoreOffers'][3]["Cost"]["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], lang=str(
-            lang))
+        weapon_list = []
+        for weapon_item in shop['SingleItemStoreOffers']:
+            weapon_target = weapon(weapon_item['OfferID'], weapon_item["Cost"]["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], lang=str(lang))
+            weapon_list.append({"name": weapon_target.name, "cost": weapon_target.cost, "img": weapon_target.base_img, "levels": weapon_target.levels, "chromas": weapon_target.chromas, "id": 0, "tier": weapon_target.tier_img})
+        # weapon0 = weapon(shop['SingleItemStoreOffers'][0]['OfferID'],
+        #                  shop['SingleItemStoreOffers'][0]["Cost"]["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], lang=str(
+        #                      lang))
+        # weapon1 = weapon(shop['SingleItemStoreOffers'][1]['OfferID'],
+        #                  shop['SingleItemStoreOffers'][1]["Cost"]["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], lang=str(
+        #     lang))
+        # weapon2 = weapon(shop['SingleItemStoreOffers'][2]['OfferID'],
+        #                  shop['SingleItemStoreOffers'][2]["Cost"]["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], lang=str(
+        #     lang))
+        # weapon3 = weapon(shop['SingleItemStoreOffers'][3]['OfferID'],
+        #                  shop['SingleItemStoreOffers'][3]["Cost"]["85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741"], lang=str(
+        #     lang))
         return render_template('myMarket.html', market=True,
-                               weapon0={
-                                   "name": weapon0.name, "cost": weapon0.cost, "img": weapon0.base_img, "levels": weapon0.levels, "chromas": weapon0.chromas, "id": 0, "tier": weapon0.tier_img},
-                               weapon1={
-                                   "name": weapon1.name, "cost": weapon1.cost, "img": weapon1.base_img, "levels": weapon1.levels, "chromas": weapon1.chromas, "id": 1, "tier": weapon1.tier_img},
-                               weapon2={
-                                   "name": weapon2.name, "cost": weapon2.cost, "img": weapon2.base_img, "levels": weapon2.levels, "chromas": weapon2.chromas, "id": 2, "tier": weapon2.tier_img},
-                               weapon3={
-                                   "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img, "levels": weapon3.levels, "chromas": weapon3.chromas, "id": 3, "tier": weapon3.tier_img},
+                            #    weapon0={
+                            #        "name": weapon0.name, "cost": weapon0.cost, "img": weapon0.base_img, "levels": weapon0.levels, "chromas": weapon0.chromas, "id": 0, "tier": weapon0.tier_img},
+                            #    weapon1={
+                            #        "name": weapon1.name, "cost": weapon1.cost, "img": weapon1.base_img, "levels": weapon1.levels, "chromas": weapon1.chromas, "id": 1, "tier": weapon1.tier_img},
+                            #    weapon2={
+                            #        "name": weapon2.name, "cost": weapon2.cost, "img": weapon2.base_img, "levels": weapon2.levels, "chromas": weapon2.chromas, "id": 2, "tier": weapon2.tier_img},
+                            #    weapon3={
+                            #        "name": weapon3.name, "cost": weapon3.cost, "img": weapon3.base_img, "levels": weapon3.levels, "chromas": weapon3.chromas, "id": 3, "tier": weapon3.tier_img},
+                            weapon_list = weapon_list,
                                player={'name': name, 'tag': tag, 'vp': user.vp, 'rp': user.rp, 'kc': user.kc}, pc=pc,
                                lang=yaml.load(transtable, Loader=yaml.FullLoader), accesstokenlogin=session.get('accesstokenlogin'))
     else:   # Login Expired

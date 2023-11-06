@@ -5,6 +5,7 @@ import os
 import time
 import datetime
 from bs4 import BeautifulSoup
+from utils.Exception import ValoraCacheUpdateFailedException
 
 sc_link = 'https://valorant-api.com/v1/weapons/skins?language=zh-CN'
 tc_link = 'https://valorant-api.com/v1/weapons/skins?language=zh-TW'
@@ -378,47 +379,16 @@ def UpdateCache():
 
 
 def UpdateCacheTimer():
-    while True:
-        start_time = datetime.datetime.now()
-        UpdateCache()
-        end_time = datetime.datetime.now()
-        print(f'Cache Updated. Used {end_time - start_time}')
-        time.sleep(3600)
+    try:
+        while True:
+            start_time = datetime.datetime.now()
+            UpdateCache()
+            end_time = datetime.datetime.now()
+            print(f'Cache Updated. Used {end_time - start_time}')
+            time.sleep(3600)
+    except Exception as e:
+        raise ValoraCacheUpdateFailedException(msg = e, func = UpdateCacheTimer)
 
-
-def UpdateOfferCache(access_token: str, entitlement: str):  # Offer is currently USELESS
-    pass
-    # print('Updating Store Offers')
-    # url = 'https://pd.ap.a.pvp.net/store/v1/offers'
-    # headers = {
-    #     'Authorization': f'Bearer {access_token}',
-    #     'X-Riot-Entitlements-JWT': entitlement,
-    #     'X-Riot-ClientPlatform': 'ew0KCSJwbGF0Zm9ybVR5cGUiOiAiUEMiLA0KCSJwbGF0Zm9ybU9TIjogIldpbmRvd3MiLA0KCSJwbGF0Zm9ybU9TVmVyc2lvbiI6ICIxMC4wLjE5MDQyLjEuMjU2LjY0Yml0IiwNCgkicGxhdGZvcm1DaGlwc2V0IjogIlVua25vd24iDQp9',
-    #     'X-Riot-ClientVersion': requests.get('https://valorant-api.com/v1/version').json()['data']['riotClientVersion'],
-    #     'Content-Type': 'application/json'
-    # }
-    # try:
-    #     data = requests.get(url, headers=headers).json()
-    #     offers = data['Offers']
-    #     conn = sqlite3.connect('db/data.db')
-    #     c = conn.cursor()
-    #     try:
-    #         c.execute('CREATE TABLE offers (uuid TEXT PRIMARY KEY, vp TEXT, isBundle)')
-    #         conn.commit()
-    #     except:
-    #         pass
-    #     for offer in offers:
-    #         isBundle = True if offer.get('DiscountedPercent') else False
-    #         try:
-    #             c.execute('INSERT INTO offers ([uuid], vp, isBundle) VALUES (?, ?, ?)', (offer['OfferID'], offer.get("Cost", {}).get("85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741", 0), isBundle))
-    #             conn.commit()
-    #         except sqlite3.IntegrityError:  # If the data is existed, we will not do any update
-    #             pass
-    #             # c.execute('UPDATE offers SET vp = ?, isBundle = ? WHERE uuid = ?', (offer.get("Cost", {}).get("85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741", 0), isBundle, offer['OfferID']))
-    #     print('Store Offers Updated')
-    #     conn.close()
-    # except KeyError:
-    #     print('Unable to update Offers')
 
 
 def UpdatePriceCache():
@@ -469,8 +439,9 @@ def UpdatePriceCache():
                                   (f'{source} {unlock}', weapon_name))
                     if c.rowcount == 0 and weapon == 'Tactical_Knife':  # ONLY KNIFE will trigger this condition
                         if source == 'Store':   # This skin can be unlocked through store
-                            c.execute(
-                                'UPDATE skinlevels SET unlock = ? WHERE name LIKE ?', (f'{vp_img} {unlock}', name))
+                            # c.execute(
+                            #     'UPDATE skinlevels SET unlock = ? WHERE name LIKE ?', (f'{vp_img} {unlock}', name))
+                            pass
                         else:
                             c.execute(
                                 'UPDATE skinlevels SET unlock = ? WHERE name LIKE ?', (f'{source} {unlock}', name))
@@ -479,17 +450,49 @@ def UpdatePriceCache():
                 conn.commit()
         print(f'{weapon.replace("_", " ")} has been Updated.')
 
+def UpdatePriceOffer(access_token, entitlement, region):
+    servers = {
+        'ap': 'https://pd.ap.a.pvp.net',
+        'na': 'https://pd.na.a.pvp.net',
+        'eu': 'https://pd.eu.a.pvp.net',
+        'kr': 'https://pd.kr.a.pvp.net'
+    }
+    __header = {
+            'Authorization': f'Bearer {access_token}',
+            'X-Riot-Entitlements-JWT': entitlement,
+            'X-Riot-ClientPlatform': 'ew0KCSJwbGF0Zm9ybVR5cGUiOiAiUEMiLA0KCSJwbGF0Zm9ybU9TIjogIldpbmRvd3MiLA0KCSJwbGF0Zm9ybU9TVmVyc2lvbiI6ICIxMC4wLjE5MDQyLjEuMjU2LjY0Yml0IiwNCgkicGxhdGZvcm1DaGlwc2V0IjogIlVua25vd24iDQp9',
+            'X-Riot-ClientVersion': requests.get('https://valorant-api.com/v1/version', timeout=30).json()['data']['riotClientVersion'],
+            'Content-Type': 'application/json'
+        }
+    server = servers[region]
+    response = requests.get(
+        f'{server}/store/v1/offers', headers=__header, timeout=30)
+    conn = sqlite3.connect('db/data.db')
+    vp_img = '<img src="/assets/img/VP-black.png" width="32px" height="32px">'
+    for offer in response.json()["Offers"]:
+        cost = offer.get("Cost").get("85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741")
+        isDirectPurchase = offer.get('IsDirectPurchase')
+        ItemID = offer.get('Rewards')[0].get('ItemID')
+        ItemTypeID = offer.get('Rewards')[0].get('ItemTypeID')
+        if isDirectPurchase and ItemTypeID == 'e7c63390-eda7-46e0-bb7a-a6abdacd2433':
+            print(f"Updating {ItemID} with price {cost}")
+            c = conn.cursor()
+            c.execute("UPDATE skinlevels SET unlock = ? WHERE uuid = ?", (f'{vp_img} {cost}', ItemID))
+    conn.commit()            
 
 def UpdatePriceTimer():
-    while True:
-        print('Update Price Cache Task has Started.')
-        time.sleep(120)
-        start_time = datetime.datetime.now()
-        UpdatePriceCache()
-        end_time = datetime.datetime.now()
-        print(f'Price Cache has been Updated. Used {end_time - start_time}')
-        # Update this twice a day
-        time.sleep(3600*12)
+    try:
+        while True:
+            print('Update Price Cache Task has Started.')
+            time.sleep(120)
+            start_time = datetime.datetime.now()
+            UpdatePriceCache()
+            end_time = datetime.datetime.now()
+            print(f'Price Cache has been Updated. Used {end_time - start_time}')
+            # Update this twice a day
+            time.sleep(3600*12)
+    except Exception as e:
+        raise ValoraCacheUpdateFailedException(msg = e, func = UpdatePriceTimer)
 
 
 if __name__ == '__main__':

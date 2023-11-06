@@ -253,7 +253,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for weapon in [weapon0, weapon1, weapon2, weapon3] %}
+          {% for weapon in weapon_list %}
           {% if weapon.levels|length > 1 %}
           <script>
             function toggleButtons_levels_{{ weapon.id }} () {
@@ -711,7 +711,7 @@
     <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.market.title}}</h1>
     <br>
     <div class="row">
-      {% for weapon in [weapon0, weapon1, weapon2, weapon3] %}
+      {% for weapon in weapon_list %}
       <div class="col-md-4">
         <div class="card mb-4 shadow-sm rounded">
           <div class="gun-image">
