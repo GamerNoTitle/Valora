@@ -150,11 +150,24 @@ def reauth(app: Flask, request: Request):
                         raise ValoraExpiredException('Login Expired')
                 except TypeError:
                     raise ValoraExpiredException('Login Expired')
+            else:
+                response = make_response(redirect('/', 302))
+                for cookie in request.cookies:
+                    response.delete_cookie(cookie)
+                session.clear()
+                return response
             entitle_url = 'https://entitlements.auth.riotgames.com/api/token/v1'
-            headers = {
-                'Content-Type': 'application/json',
-                'Authorization': f'Bearer {access_token}'
-            }
+            try:
+                headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': f'Bearer {access_token}'
+                }
+            except UnboundLocalError:
+                response = make_response(redirect('/', 302))
+                for cookie in request.cookies:
+                    response.delete_cookie(cookie)
+                session.clear()
+                return response
             res = s.post(entitle_url, headers=headers)
             entitlement = res.json().get('entitlements_token')
             session['access_token'] = access_token
