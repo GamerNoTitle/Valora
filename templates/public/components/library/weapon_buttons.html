@@ -1,0 +1,150 @@
+{% if pc %}
+<div class="container-fluid px-0 overflow-hidden">
+  <div class="row text-center py-2 mt-3">
+    <div class="col-12 mx-auto">
+      <a href="/library?query={{lang.metadata.weapon.classic}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.classic}}</button></a>
+      <a href="/library?query={{lang.metadata.weapon.shorty}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.shorty}}</button></a>
+      <a href="/library?query={{lang.metadata.weapon.frenzy}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.frenzy}}</button></a>
+      <a href="/library?query={{lang.metadata.weapon.ghost}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.ghost}}</button></a>
+      <a href="/library?query={{lang.metadata.weapon.sheriff}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.sheriff}}</button></a>
+      <a href="/library?query={{lang.metadata.weapon.stinger}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.stinger}}</button></a>
+      <div class="row"></div>
+      <a href="/library?query={{lang.metadata.weapon.spectre}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.spectre}}</button></a>
+      <a href="/library?query={{lang.metadata.weapon.bucky}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.bucky}}</button></a>
+      <a href="/library?query={{lang.metadata.weapon.judge}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.judge}}</button></a>
+      <a href="/library?query={{lang.metadata.weapon.bulldog}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.bulldog}}</button></a>
+      <a href="/library?query={{lang.metadata.weapon.guardian}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.guardian}}</button></a>
+      <a href="/library?query={{lang.metadata.weapon.phantom}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.phantom}}</button></a>
+      <div class="row"></div>
+      <a href="/library?query={{lang.metadata.weapon.vandal}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.vandal}}</button></a>
+      <a href="/library?query={{lang.metadata.weapon.marshal}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.marshal}}</button></a>
+      <a href="/library?query={{lang.metadata.weapon.operator}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.operator}}</button></a>
+      <a href="/library?query={{lang.metadata.weapon.ares}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.ares}}</button></a>
+      <a href="/library?query={{lang.metadata.weapon.odin}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.odin}}</button></a>
+      <a href="/library?query={{lang.metadata.weapon.melee}}"><button type="button"
+          class="btn bg-gradient-primary btn-lg">{{lang.library.button.weapon.melee}}</button></a>
+    </div>
+  </div>
+</div>
+{% else %}
+<!-- Mobile Devices -->
+<div class="container py-4">
+  <div class="row">
+    <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+      <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal" data-bs-target="#sortlist">
+        {{lang.library.button.sort}}
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="sortlist" tabindex="-1" role="dialog" aria-labelledby="sortlist" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label={{lang.library.button.close}}>
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" align="center">
+        <a href="/library?query={{lang.metadata.weapon.classic}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.classic}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.shorty}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.shorty}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.frenzy}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.frenzy}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.ghost}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.ghost}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.sheriff}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.sheriff}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.stinger}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.stinger}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.spectre}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.spectre}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.bucky}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.bucky}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.judge}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.judge}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.bulldog}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.bulldog}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.guardian}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.guardian}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.phantom}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.phantom}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.vandal}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.vandal}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.marshal}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.marshal}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.operator}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.operator}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.ares}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.ares}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.odin}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.odin}}</button>
+        </a>
+        <a href="/library?query={{lang.metadata.weapon.melee}}">
+          <button type="button" class="btn bg-gradient-primary btn-lg"
+            width=100%>{{lang.library.button.weapon.melee}}</button>
+        </a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-primary"
+          data-bs-dismiss="modal">{{lang.library.button.close}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}

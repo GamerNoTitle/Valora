@@ -171,11 +171,6 @@ def night_handler():
     return night(app, request, g.lang)
 
 
-@ app.route('/EULA', methods=["GET", "POST"])
-def EULA():
-    return render_template('EULA.html')
-
-
 @ app.route('/2FA', methods=["GET", "POST"])
 def MFAuth_handler():
     return mfa_auth(app, request, g.lang)
@@ -224,6 +219,12 @@ def redirectprofiler():
         return redirect('/flask-profiler')
     else:
         abort(404)
+
+@app.route('/preview/<file>')
+def preview_handler(file):
+    with open(f'lang/{g.lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
+    return render_template(f'{file}.html', lang=yaml.load(transtable, Loader=yaml.FullLoader))
 
 # The following are api paths
 
@@ -373,6 +374,6 @@ def ValoraLoginFailed(error):
 
 if __name__ == '__main__':
     _thread.start_new_thread(UpdateCacheTimer, ())
-    _thread.start_new_thread(UpdatePriceTimer, ())
+    # _thread.start_new_thread(UpdatePriceTimer, ())
     Security.generate()
     app.run(host='0.0.0.0', port=os.environ.get('PORT', 8080), debug=debug)

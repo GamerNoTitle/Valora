@@ -1,218 +1,23 @@
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="keywords" content="Valorant, Skin, 瓦罗兰特, 无畏契约">
-  <meta name="description"
-    content="Valora (also named Valorant Shop Checker) is a site that helps you check your valorant daily shop and night market without opening the game or installing an app." />
-  <meta name="author" content="GamerNoTitle, GamerNoTitle@outlook.com">
-  <meta name="copyright" content="Copyright &copy; 2023 GamerNoTitle. All rights reserved.">
-  <meta name="baidu-site-verification" content="codeva-TGDaXGUlDE" />
-  <link rel="apple-touch-icon" sizes="76x76"
-    href="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/favicon.png">
-  <link rel="icon" type="image/png" href="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/favicon.png">
   <title>
     {% if market %}{{lang.global.title.dailyshop}}{% elif night %}{{lang.global.title.nightmarket}}{% else
     %}{{lang.global.title.shopdefault}}{% endif %} | Valora | GamerNoTitle
   </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  <!-- Nucleo Icons -->
-  <link href="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link id="pagestyle"
-    href="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/css/soft-design-system.css?v=1.0.9"
-    rel="stylesheet" />
-  <!-- Bootstrap 5 modals -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
-    integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js"
-    integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.esm.min.js"
-    integrity="sha512-ruQ4xI8Jfep9W+qJQ8FLbxsjPVR0WvEt31XNw0mZxri2Nya9eQr7VTFsi+S7OvW0bIUI7vxF8zoaPNSq/PsvxA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script>
-    if (document.location.pathname != "/market" && document.location.pathname != "/market/night") {
-      window.location = document.location.origin + "/market"
-    }
-  </script>
-  <!-- 引入 fancybox CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
-  <script defer data-site="val.bili33.top" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
-  <!-- 引入 jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-  <!-- 引入 fancybox JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-
-  <script>
-    var _hmt = _hmt || [];
-    (function () {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?0c92d1638b51d9e5eeb143e3c16ba3e7";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-  <!-- Custom CSS -->
-  <link href="/assets/css/custom-color.css" rel="stylesheet" />
-  <!-- Easter Egg -->
-  <script>(new Date().getDate() === 1 && new Date().getMonth() === 3) && document.write('<script src="https://cdn.bili33.top/gh/Vikutorika/newassets@master/js/smooth-April-Fools.js"><\/script>')</script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZYM17KPGT"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-PZYM17KPGT');
-  </script>
+  {% include 'public/head.html' %}
 </head>
-<script src="https://uptime.betterstack.com/widgets/announcement.js" data-id="165758" async="async"
-  type="text/javascript"></script>
 
 <body class="index-page">
-  {% if announcement and announcement_id %}
-  <div id="announcementNotice">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col">
-          <h3>{{lang.global.announcement.title}}</h3>
-          <p>{{announcement|safe}}</p>
-        </div>
-        <div class="col-auto">
-          <button type="button" id="announcementBtn">{{lang.global.announcement.button}}</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
-    integrity="sha512-VK2zcvntEufaimc+efOYi622VN5ZacdnufnmX7zIhCPmjhKnOi9ZDMtg1/ug5l183f19gG1/cBstPO4D8N/Img=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  {% endif %}
+  {% include 'public/body.html' %}
 
+  {% include 'public/components/announcement.html' %}
 
-  <!-- Navbar -->
-  <div class="container position-sticky z-index-sticky top-0">
-    <div class="row">
-      <div class="col-12">
-        <nav
-          class="navbar navbar-expand-lg  blur blur-rounded top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
-          <div class="container-fluid px-0">
-            <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip"
-              title="Valorant Shop Checker | 瓦罗兰特商店查看" data-placement="bottom">
-              Valora | {{lang.global.nav.title}}
-            </a>
-            <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
-              <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
-                <li class="nav-item dropdown dropdown-hover mx-2">
-                <li class="nav-item ms-lg-auto">
-                  <a class="nav-link nav-link-icon me-2" href="https://github.com/GamerNoTitle/Valora" target="_blank">
-                    <i class="fa fa-github me-1"></i>
-                    <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
-                      data-bs-placement="bottom" title="在Github查看本项目">Github</p>
-                  </a>
-                </li>
-                <li class="nav-item my-auto ms-3 ms-lg-0">
-                  <a href="https://t.me/PaffChannel" class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i
-                      class="ni ni-send"></i> Telegram</a>
-                  <a href="https://gamernotitle.notion.site/gamernotitle/Valora-FAQ-86f072f8cebf4a8d9453a795b24cd507"
-                    class="btn btn-sm btn-primary btn-round mb-0 me-1 mt-2 mt-md-0"><i class="fas fa-question"></i>
-                    FAQ</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <!-- End Navbar -->
-      </div>
-    </div>
-  </div>
+  {% include 'public/components/nav.html' %}
 
-  <header class="header-2">
-    <div class="page-header min-vh-75 relative"
-      style="background-image: url('https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/1159991.jpg')">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-7 text-center mx-auto">
-            <style>
-              svg {
-                fill: #fff
-              }
-            </style>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 690 98.9">
-              <path
-                d="M615.11 19.15h24.69l.08 75.59c0 .97.79 1.77 1.77 1.77l14.14-.01c.98 0 1.77-.79 1.77-1.77l-.08-75.58h30.96c.91 0 1.43-1.06.85-1.77l-10.6-13.26a4.68 4.68 0 0 0-3.65-1.76h-59.93c-.98 0-1.77.79-1.77 1.77v13.26c0 .96.79 1.76 1.77 1.76M19.25 94.75 91.67 4.13c.57-.71.06-1.77-.85-1.77H72.71c-1.42 0-2.77.65-3.65 1.76L17.68 68.4V4.12c0-.98-.79-1.77-1.77-1.77H1.77C.79 2.35 0 3.14 0 4.12v90.62c0 .98.79 1.77 1.77 1.77H15.6c1.42 0 2.76-.65 3.65-1.76m51.06 0 24.91-31.17 24.91 31.17a4.685 4.685 0 0 0 3.66 1.76h13.83c.98 0 1.77-.79 1.77-1.77V4.12c0-.97-.79-1.77-1.77-1.77h-11.6c-2.84 0-5.53 1.29-7.31 3.51L47.69 94.73c-.57.71-.06 1.77.85 1.77h18.11c1.43.01 2.77-.64 3.66-1.75m51.39-66.21v41.75l-16.68-20.87 16.68-20.88zm404.37 66.19L453.65 4.11A4.68 4.68 0 0 0 450 2.35h-13.84c-.98 0-1.77.79-1.77 1.77v90.62c0 .98.79 1.77 1.77 1.77h13.83c1.42 0 2.77-.65 3.65-1.76l24.91-31.17 24.91 31.17a4.68 4.68 0 0 0 3.65 1.76h18.11c.91 0 1.42-1.06.85-1.78m-57.33-45.31L452.05 70.3V28.54l16.69 20.88zM269.45 0c-27.3 0-49.43 22.13-49.43 49.43s22.13 49.43 49.43 49.43 49.43-22.13 49.43-49.43C318.89 22.13 296.75 0 269.45 0m0 82.06c-17.54 0-31.75-14.61-31.75-32.63 0-18.02 14.21-32.64 31.75-32.64S301.2 31.4 301.2 49.43c.01 18.02-14.21 32.63-31.75 32.63M583.38 4.12V68.4L532 4.11a4.68 4.68 0 0 0-3.65-1.76H514.5c-.97 0-1.77.79-1.77 1.77v43.67c0 1.06.36 2.09 1.03 2.92l14.71 18.41c.65.81 1.95.35 1.95-.68v-38l51.39 64.31a4.68 4.68 0 0 0 3.65 1.76h13.83c.98 0 1.77-.79 1.77-1.77V4.12c0-.97-.79-1.77-1.77-1.77h-14.14c-.98 0-1.77.8-1.77 1.77M410.62 23.76V4.12c0-.98-.79-1.77-1.77-1.77h-72.37c-.98 0-1.77.79-1.77 1.77v90.62c0 .98.79 1.77 1.77 1.77h14.14c.98 0 1.77-.79 1.77-1.77V19.16h40.55l-27.37 34.26c-.51.64-.51 1.56 0 2.21l31.27 39.13a4.68 4.68 0 0 0 3.65 1.76h18.11c.91 0 1.42-1.06.85-1.77l-32.14-40.21 22.28-27.84c.66-.85 1.03-1.88 1.03-2.94M162.39 96.51h41.96c1.42 0 2.77-.65 3.65-1.76l10.6-13.27c.57-.71.06-1.77-.85-1.77H178.3V4.12c0-.98-.79-1.77-1.77-1.77h-14.14c-.98 0-1.77.79-1.77 1.77v90.62c0 .97.8 1.77 1.77 1.77">
-              </path>
-            </svg>
-            <br>
-            <p class="lead text-white mt-3">{{lang.global.description.line1}}<br />{{lang.global.description.line2}}
-            </p>
-          </div>
-        </div>
-      </div>
+  {% include 'public/components/header.html' %}
 
-      <div class="position-absolute w-100 z-index-1 bottom-0">
-        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-          viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
-          <defs>
-            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-          </defs>
-          <g class="moving-waves">
-            <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(255,255,255,0.40)" />
-            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.35)" />
-            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.25)" />
-            <use xlink:href="#gentle-wave" x="48" y="8" fill="rgba(255,255,255,0.20)" />
-            <use xlink:href="#gentle-wave" x="48" y="13" fill="rgba(255,255,255,0.15)" />
-            <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(255,255,255,0.95)" />
-          </g>
-        </svg>
-      </div>
-    </div>
-  </header>
-
-  <div class="container-fluid px-0 overflow-hidden">
-    <div class="row text-center py-2 mt-3">
-      <div class="col-12 mx-auto">
-        {% if night %}
-        <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg"><i class="fas fa-shopping-cart"></i>
-            {{lang.global.button.dailyshop}}</button></a>
-        {% else %}
-        <a href="/market/night"><button type="button" class="btn bg-gradient-info btn-lg"><i
-              class="fas fa-shopping-bag"></i></i>
-            {{lang.global.button.nightmarket}}</button></a>
-        {% endif %}
-        <a href="/market/accessory"><button type="button" class="btn bg-gradient-mint btn-lg"><i
-              class="fas fa-spray-can"></i>
-            {{lang.global.button.accessory}}</button></a>
-        <a href="/inventory"><button type="button" class="btn bg-gradient-pink btn-lg"><i class="fas fa-warehouse"></i>
-            {{lang.global.button.inventory}}</button></a>
-        <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
-            {{lang.global.button.trans}}</button></a>
-        <a href="/library/accessory"><button type="button"
-              class="btn bg-gradient-sr-sliver-wolf btn-lg"><i class="fas fa-gem"></i>
-              {{lang.global.button.accessorylib}}</button></a>
-        <br>
-        <a href="//account.riotgames.com" target="_blank"><button type="button"
-            class="btn bg-gradient-secondary btn-lg"><i class="fas fa-user-circle"></i>
-            {{lang.global.button.account}}</button></a>
-        <a href="/library"><button type="button" class="btn bg-gradient-success btn-lg"><i class="fas fa-book"></i>
-            {{lang.global.button.library}}</button></a>
-        <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i
-              class="fas fa-coins"></i> {{lang.global.button.sponsor}}</button></a>
-        <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg"><i
-              class="fas fa-door-open"></i>
-            {{lang.global.button.logout}}</button></a>
-      </div>
-    </div>
-  </div>
+  {% include 'public/components/market/buttons.html' %}
 
   <div class="container">
     <div class="row text-center py-2 mt-3">
@@ -233,478 +38,6 @@
       </div>
     </div>
   </div>
-  {% if pc %}
-  <!-- Desktop Devices -->
-  {% if market %}
-  <div class="container-table">
-    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.market.title}}</h1>
-    <br>
-    <div class="table-responsive">
-      <table class="table" id="market-table" width=100%>
-        <thead>
-          <tr>
-            <th class="text-center">{{lang.market.table.skinname}}</th>
-            <th class="text-center">{{lang.market.table.skinimg}}</th>
-            <th class="text-center"><img
-                src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/VP-black.png" width=24px
-                height=24px>
-              {{lang.market.table.skincost}}</th>
-            <th class="text-center">{{lang.market.table.skinpreview}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for weapon in weapon_list %}
-          {% if weapon.levels|length > 1 %}
-          <script>
-            function toggleButtons_levels_{{ weapon.id }} () {
-              var self = document.getElementById('WEAPON-{{ weapon.id }}-LEVELS')
-              var chromas = document.getElementById("WEAPON-{{ weapon.id }}-CHROMAS")
-              var close = document.getElementById('WEAPON-{{ weapon.id }}-CLOSE')
-              try {
-                self.classList.add("hidden")
-              } catch (error) { undefined }
-              try {
-                chromas.classList.add("hidden")
-              } catch (error) { undefined }
-              try {
-                close.classList.remove("hidden")
-              } catch (error) { undefined }
-              {% for level in weapon.levels %}
-              {% if level.displayName != '' %}
-              var button{{ level.uuid | replace('-', '')
-            }} = document.getElementById("WEAPON-BTN-{{level.uuid}}");
-            if (button{{ level.uuid | replace('-', '') }}.classList.contains("hidden")) {
-                  button{{ level.uuid | replace('-', '') }}.classList.remove("hidden");
-            } else {
-                  button{{ level.uuid | replace('-', '') }}.classList.add("hidden");
-            }
-            {% endif %}
-            {% endfor %}
-              }
-          </script>
-          {% endif %}
-          {% if weapon.chromas|length > 1 %}
-          <script>
-            function toggleButtons_chromas_{{ weapon.id }} () {
-              var self = document.getElementById('WEAPON-{{ weapon.id }}-CHROMAS')
-              var levels = document.getElementById("WEAPON-{{ weapon.id }}-LEVELS")
-              var close = document.getElementById('WEAPON-{{ weapon.id }}-CLOSE')
-              try {
-                self.classList.add("hidden")
-              } catch (error) { undefined }
-              try {
-                levels.classList.add("hidden")
-              } catch (error) { undefined }
-              try {
-                close.classList.remove("hidden")
-              } catch (error) { undefined }
-              {% for chroma in weapon.chromas %}
-              {% if chroma.displayName != '' %}
-              var button{{ chroma.uuid | replace('-', '')
-            }} = document.getElementById("WEAPON-BTN-{{chroma.uuid}}");
-            if (button{{ chroma.uuid | replace('-', '') }}.classList.contains("hidden")) {
-                  button{{ chroma.uuid | replace('-', '') }}.classList.remove("hidden");
-            } else {
-                  button{{ chroma.uuid | replace('-', '') }}.classList.add("hidden");
-            }
-            {% endif %}
-            {% endfor %}
-              }
-          </script>
-          {% endif %}
-          {% if weapon.levels|length > 1 or weapon.chromas|length > 1 %}
-          <script>
-            function close_{{ weapon.id }} () {
-              var self = document.getElementById("WEAPON-{{ weapon.id }}-CLOSE")
-              var levels = document.getElementById("WEAPON-{{ weapon.id }}-LEVELS")
-              var chromas = document.getElementById("WEAPON-{{ weapon.id }}-CHROMAS")
-              try {
-                self.classList.add('hidden')
-              }
-              catch (error) {
-                undefined
-              }
-              try {
-                levels.classList.remove('hidden')
-              } catch (error) { undefined }
-              try {
-                chromas.classList.remove('hidden')
-              } catch (error) { undefined }
-              {% for level in weapon.levels %}
-              {% if level.displayName != '' %}
-              var button{{ level.uuid | replace('-', '')
-            }} = document.getElementById("WEAPON-BTN-{{level.uuid}}");
-              button{{ level.uuid | replace('-', '') }}.classList.add("hidden");
-            {% endif %}
-            {% endfor %}
-
-            {% for chroma in weapon.chromas %}
-            {% if chroma.displayName != '' %}
-            var button{{ chroma.uuid | replace('-', '')
-            }} = document.getElementById("WEAPON-BTN-{{chroma.uuid}}");
-              button{{ chroma.uuid | replace('-', '') }}.classList.add("hidden");
-            {% endif %}
-            {% endfor %}
-            }
-          </script>
-          {% endif %}
-
-          <tr>
-            <td class="text-center">
-              <h3 class="text-gradient text-primary mb-0 mt-2"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}}</h3>
-            </td>
-            <td class="text-center">
-              <div class="gun-image"><a href="{{weapon.img|safe}}" data-fancybox="gallery"><img height=50px
-                    src={{weapon.img|safe}}></a></div>
-            </td>
-            <td class="text-center">
-              <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.cost|safe}}</h3>
-            </td>
-            <td>
-              {% if weapon.levels|length > 1 or weapon.chromas|length > 1 %}
-              <button type="button" class="btn bg-gradient-danger hidden" id="WEAPON-{{ weapon.id }}-CLOSE"
-                onclick="close_{{ weapon.id }}()">
-                {{ lang.market.button.return }}
-              </button>
-              {% endif %}
-              {% if weapon.levels|length > 1 %}
-              <button type="button" class="btn bg-gradient-primary" id="WEAPON-{{ weapon.id }}-LEVELS"
-                onclick="toggleButtons_levels_{{ weapon.id }}()">
-                {{ lang.market.button.levelpreview }}
-              </button>
-              {% endif %}
-              {% if weapon.chromas|length > 1%}
-              <button type="button" class="btn bg-gradient-primary" id="WEAPON-{{ weapon.id }}-CHROMAS"
-                onclick="toggleButtons_chromas_{{ weapon.id }}()">
-                {{ lang.market.button.chromapreview }}
-              </button>
-              {% endif %}
-              {% for level in weapon.levels %}
-              {% if level.displayName != '' %}
-              <!-- Button trigger modal -->
-              <button type="button" class="btn bg-gradient-primary hidden" data-bs-toggle="modal"
-                data-bs-target="#WEAPON-{{level.uuid|escape}}" id="WEAPON-BTN-{{level.uuid|escape}}">
-                {{level.displayName}}: {{level.levelItem}}
-              </button>
-
-              <!-- Modal -->
-              <div class="modal fade" id="WEAPON-{{level.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}} {{level.displayName}}</h5>
-                    </div>
-                    <div class="modal-body">
-                      <video width=100% controls>
-                        <source src="{{level.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}" type="video/mp4">
-                        <source src="{{level.streamedVideo}}" type="video/mp4">
-                        {{lang.market.modal.videonotavaliable}}
-                      </video>
-                      <br>
-                      <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
-                        请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn bg-gradient-primary"
-                        data-bs-dismiss="modal">{{lang.market.button.close}}</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {% endif %}
-              {% endfor %}
-              <!-- <br> -->
-              {% for chroma in weapon.chromas %}
-              {% if chroma.displayName != '' %}
-              <!-- Button trigger modal -->
-              <button type="button" class="btn bg-gradient-primary hidden" data-bs-toggle="modal"
-                data-bs-target="#WEAPON-{{chroma.uuid|escape}}" id="WEAPON-BTN-{{chroma.uuid|escape}}">
-                {{chroma.displayName}}
-              </button>
-
-              <!-- Modal -->
-              <div class="modal fade" id="WEAPON-{{chroma.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}} {{chroma.displayName}}</h5>
-                    </div>
-                    <div class="modal-body">
-                      {% if chroma.streamedVideo %}
-                      <video width=100% controls>
-                        <source src="{{chroma.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}" type="video/mp4">
-                        <source src="{{chroma.streamedVideo}}" type="video/mp4">
-                        {{lang.market.modal.videonotavaliable}}
-                      </video>
-                      <br>
-                      <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
-                        请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
-                      {% else %}
-                      <img width="100%" src="{{chroma.fullRender}}">
-                      {% endif %}
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn bg-gradient-primary"
-                        data-bs-dismiss="modal">{{lang.market.button.close}}</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              </script>
-              {% endif %}
-              {% endfor %}
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
-  {% endif %}
-
-  {% if night %}
-  {% if nightmarket_notavaliable %}
-  <div class="container">
-    <div class="row text-center py-2 mt-3">
-      <div class="col-12 mx-auto">
-        <div class="alert alert-danger text-white rounded" role="alert">
-          {{lang.nightmarket.notavaliable}}
-        </div>
-        <br>
-        <a href="https://status.riotgames.com/valorant"> <button type="button" class="btn bg-gradient-danger"
-            data-bs-dismiss="modal">VALORANT Services Status</button>
-        </a>
-      </div>
-    </div>
-  </div>
-  {% else %}
-  <div class="container-table">
-    <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.nightmarket.title}}</h1>
-    <br>
-    <div class="table-responsive">
-      <table class="table" id="market-table">
-        <thead>
-          <tr>
-            <th class="text-center">{{lang.nightmarket.table.skinname}}</th>
-            <th class="text-center">{{lang.nightmarket.table.skinimg}}</th>
-            <th class="text-center"><img
-                src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/VP-black.png" width=24px
-                height=24px>
-              {{lang.nightmarket.table.skincost}}</th>
-            <th class="text-center">{{lang.nightmarket.table.skinpreview}}</th>
-          </tr>
-        </thead>
-        {% for weapon in [weapon0, weapon1, weapon2, weapon3, weapon4, weapon5] %}
-        {% if weapon.levels|length > 1 %}
-        <script>
-          function toggleButtons_levels_{{ weapon.id }} () {
-            var self = document.getElementById('WEAPON-{{ weapon.id }}-LEVELS')
-            var chromas = document.getElementById("WEAPON-{{ weapon.id }}-CHROMAS")
-            var close = document.getElementById('WEAPON-{{ weapon.id }}-CLOSE')
-            try {
-              self.classList.add("hidden")
-            } catch (error) { undefined }
-            try {
-              chromas.classList.add("hidden")
-            } catch (error) { undefined }
-            try {
-              close.classList.remove("hidden")
-            } catch (error) { undefined }
-            {% for level in weapon.levels %}
-            {% if level.displayName != '' %}
-            var button{{ level.uuid | replace('-', '')
-          }} = document.getElementById("WEAPON-BTN-{{level.uuid}}");
-          if (button{{ level.uuid | replace('-', '') }}.classList.contains("hidden")) {
-                button{{ level.uuid | replace('-', '') }}.classList.remove("hidden");
-          } else {
-                button{{ level.uuid | replace('-', '') }}.classList.add("hidden");
-          }
-          {% endif %}
-          {% endfor %}
-            }
-        </script>
-        {% endif %}
-        {% if weapon.chromas|length > 1 %}
-        <script>
-          function toggleButtons_chromas_{{ weapon.id }} () {
-            var self = document.getElementById('WEAPON-{{ weapon.id }}-CHROMAS')
-            var levels = document.getElementById("WEAPON-{{ weapon.id }}-LEVELS")
-            var close = document.getElementById('WEAPON-{{ weapon.id }}-CLOSE')
-            try {
-              self.classList.add("hidden")
-            } catch (error) { undefined }
-            try {
-              levels.classList.add("hidden")
-            } catch (error) { undefined }
-            try {
-              close.classList.remove("hidden")
-            } catch (error) { undefined }
-            {% for chroma in weapon.chromas %}
-            {% if chroma.displayName != '' %}
-            var button{{ chroma.uuid | replace('-', '')
-          }} = document.getElementById("WEAPON-BTN-{{chroma.uuid}}");
-          if (button{{ chroma.uuid | replace('-', '') }}.classList.contains("hidden")) {
-                button{{ chroma.uuid | replace('-', '') }}.classList.remove("hidden");
-          } else {
-                button{{ chroma.uuid | replace('-', '') }}.classList.add("hidden");
-          }
-          {% endif %}
-          {% endfor %}
-            }
-        </script>
-        {% endif %}
-        {% if weapon.levels|length > 1 or weapon.chromas|length > 1 %}
-        <script>
-          function close_{{ weapon.id }} () {
-            var self = document.getElementById("WEAPON-{{ weapon.id }}-CLOSE")
-            var levels = document.getElementById("WEAPON-{{ weapon.id }}-LEVELS")
-            var chromas = document.getElementById("WEAPON-{{ weapon.id }}-CHROMAS")
-            try {
-              self.classList.add('hidden')
-            }
-            catch (error) {
-              undefined
-            }
-            try {
-              levels.classList.remove('hidden')
-            } catch (error) { undefined }
-            try {
-              chromas.classList.remove('hidden')
-            } catch (error) { undefined }
-            {% for level in weapon.levels %}
-            {% if level.displayName != '' %}
-            var button{{ level.uuid | replace('-', '')
-          }} = document.getElementById("WEAPON-BTN-{{level.uuid}}");
-            button{{ level.uuid | replace('-', '') }}.classList.add("hidden");
-          {% endif %}
-          {% endfor %}
-
-          {% for chroma in weapon.chromas %}
-          {% if chroma.displayName != '' %}
-          var button{{ chroma.uuid | replace('-', '')
-          }} = document.getElementById("WEAPON-BTN-{{chroma.uuid}}");
-            button{{ chroma.uuid | replace('-', '') }}.classList.add("hidden");
-          {% endif %}
-          {% endfor %}
-          }
-        </script>
-        {% endif %}
-        <tr>
-          <td class="text-center">
-            <h3 class="text-gradient text-primary mb-0 mt-2"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}}</h3>
-          </td>
-          <td class="text-center">
-            <div class="gun-image"><a href="{{weapon.img|safe}}" data-fancybox="gallery"><img height=50px
-                  src={{weapon.img|safe}}></a></div>
-          </td>
-          <td class="text-center">
-            <h3 class="text-gradient text-dark mb-0 mt-2">{{weapon.cost|safe}} → {{weapon.discount|safe}}
-              ({{weapon.per|safe}}% off)</h3>
-          </td>
-          <td>
-            {% if weapon.levels|length > 1 or weapon.chromas|length > 1 %}
-            <button type="button" class="btn bg-gradient-danger hidden" id="WEAPON-{{ weapon.id }}-CLOSE"
-              onclick="close_{{ weapon.id }}()">
-              {{ lang.market.button.return }}
-            </button>
-            {% endif %}
-            {% if weapon.levels|length > 1 %}
-            <button type="button" class="btn bg-gradient-primary" id="WEAPON-{{ weapon.id }}-LEVELS"
-              onclick="toggleButtons_levels_{{ weapon.id }}()">
-              {{ lang.market.button.levelpreview }}
-            </button>
-            {% endif %}
-            {% if weapon.chromas|length > 1%}
-            <button type="button" class="btn bg-gradient-primary" id="WEAPON-{{ weapon.id }}-CHROMAS"
-              onclick="toggleButtons_chromas_{{ weapon.id }}()">
-              {{ lang.market.button.chromapreview }}
-            </button>
-            {% endif %}
-            {% for level in weapon.levels %}
-            {% if level.displayName != '' %}
-            <!-- Button trigger modal -->
-            <button type="button" class="btn bg-gradient-primary hidden" data-bs-toggle="modal"
-              data-bs-target="#WEAPON-{{level.uuid|escape}}" id="WEAPON-BTN-{{level.uuid|escape}}">
-              {{level.displayName}}: {{level.levelItem}}
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="WEAPON-{{level.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}} {{level.displayName}}</h5>
-                  </div>
-                  <div class="modal-body">
-                    <video width=100% controls>
-                      <source src="{{level.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}" type="video/mp4">
-                      <source src="{{level.streamedVideo}}" type="video/mp4">
-                      {{lang.market.modal.videonotavaliable}}
-                    </video>
-                    <br>
-                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
-                    请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary"
-                      data-bs-dismiss="modal">{{lang.market.button.close}}</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-            <!-- <br> -->
-            {% for chroma in weapon.chromas %}
-            {% if chroma.displayName != '' %}
-            <!-- Button trigger modal -->
-            <button type="button" class="btn bg-gradient-primary hidden" data-bs-toggle="modal"
-              data-bs-target="#WEAPON-{{chroma.uuid|escape}}" id="WEAPON-BTN-{{chroma.uuid|escape}}">
-              {{chroma.displayName}}
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="WEAPON-{{chroma.uuid|escape}}" tabindex="-1" role="dialog" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}} {{chroma.displayName}}</h5>
-                  </div>
-                  <div class="modal-body">
-                    {% if chroma.streamedVideo %}
-                    <video width=100% controls>
-                      <source src="{{chroma.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}" type="video/mp4">
-                      <source src="{{chroma.streamedVideo}}" type="video/mp4">
-                      {{lang.market.modal.videonotavaliable}}
-                    </video>
-                    <br>
-                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
-                    请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
-                    {% else %}
-                    <img width="100%" src="{{chroma.fullRender}}">
-                    {% endif %}
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary"
-                      data-bs-dismiss="modal">{{lang.market.button.close}}</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            </script>
-            {% endif %}
-            {% endfor %}
-          </td>
-        </tr>
-        {% endfor %}
-
-      </table>
-    </div>
-  </div>
-  {% endif %}
-  {% endif %}
-
-  {% else %}
   <!-- Mobile Devices -->
   {% if market %}
   <div class="container">
@@ -720,7 +53,8 @@
             </a>
           </div>
           <div class="card-body">
-            <h3 class="text-gradient text-primary mb-0 mt-2"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}}</h3>
+            <h3 class="text-gradient text-primary mb-0 mt-2"><img src={{weapon.tier}} height="28px" width="28px">
+              {{weapon.name|safe}}</h3>
             <h3 class="text-gradient text-dark mb-0 mt-2"><img
                 src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/VP-black.png" width=24px
                 height=24px>
@@ -739,11 +73,13 @@
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}} {{level.displayName}}</h5>
+                    <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}}
+                      {{level.displayName}}</h5>
                   </div>
                   <div class="modal-body">
                     <video width=100% controls>
-                      <source src="{{level.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}" type="video/mp4">
+                      <source src="{{level.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}"
+                        type="video/mp4">
                       <source src="{{level.streamedVideo}}" type="video/mp4">
                       {{lang.market.modal.videonotavaliable}}
                     </video>
@@ -774,12 +110,14 @@
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}} {{chroma.displayName}}</h5>
+                    <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}}
+                      {{chroma.displayName}}</h5>
                   </div>
                   <div class="modal-body">
                     {% if chroma.streamedVideo %}
                     <video width=100% controls>
-                      <source src="{{chroma.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}" type="video/mp4">
+                      <source src="{{chroma.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}"
+                        type="video/mp4">
                       <source src="{{chroma.streamedVideo}}" type="video/mp4">
                       {{lang.market.modal.videonotavaliable}}
                     </video>
@@ -838,7 +176,8 @@
             </a>
           </div>
           <div class="card-body">
-            <h3 class="text-gradient text-primary mb-0 mt-2"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}}</h3>
+            <h3 class="text-gradient text-primary mb-0 mt-2"><img src={{weapon.tier}} height="28px" width="28px">
+              {{weapon.name|safe}}</h3>
             <h3 class="text-gradient text-dark mb-0 mt-2"><img
                 src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/VP-black.png" width=24px
                 height=24px>
@@ -857,11 +196,13 @@
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}} {{level.displayName}}</h5>
+                    <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}}
+                      {{level.displayName}}</h5>
                   </div>
                   <div class="modal-body">
                     <video width=100% controls>
-                      <source src="{{level.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}" type="video/mp4">
+                      <source src="{{level.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}"
+                        type="video/mp4">
                       <source src="{{level.streamedVideo}}" type="video/mp4">
                       {{lang.nightmarket.modal.videonotavaliable}}
                     </video>
@@ -892,12 +233,14 @@
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}} {{chroma.displayName}}</h5>
+                    <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}}
+                      {{chroma.displayName}}</h5>
                   </div>
                   <div class="modal-body">
                     {% if chroma.streamedVideo %}
                     <video width=100% controls>
-                      <source src="{{chroma.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}" type="video/mp4">
+                      <source src="{{chroma.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}"
+                        type="video/mp4">
                       <source src="{{chroma.streamedVideo}}" type="video/mp4">
                       {{lang.nightmarket.modal.videonotavaliable}}
                     </video>
@@ -915,252 +258,17 @@
                 </div>
               </div>
             </div>
-            {% endif %}
-            {% endfor %}
           </div>
+          {% endif %}
+          {% endfor %}
         </div>
       </div>
-      {% endfor %}
     </div>
+    {% endfor %}
+  </div>
   </div>
   {% endif %}
   {% endif %}
 
-  {% endif %}
-  <section>
-    <footer class="footer pt-5 mt-5">
-      <hr class="horizontal dark mb-5">
-      <div class="container">
-        <div class=" row">
-          <div class="col-md-3 mb-4 ms-auto">
-            <div>
-              <h6 class="text-gradient text-primary font-weight-bolder">GamerNoTitle</h6>
-            </div>
-            <div>
-              <h6 class="mt-3 mb-2 opacity-8">Social</h6>
-              <ul class="d-flex flex-row ms-n3 nav">
-                <li class="nav-item">
-                  <a class="nav-link pe-1" href="https://bili33.top" target="_blank">
-                    <i class="fas fa-home text-lg opacity-8" aria-hidden="true"></i>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pe-1" href="https://twitter.com/GamerNoTitle" target="_blank">
-                    <i class="fab fa-twitter text-lg opacity-8" aria-hidden="true"></i>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pe-1" href="https://github.com/GamerNoTitle" target="_blank">
-                    <i class="fab fa-github text-lg opacity-8" aria-hidden="true"></i>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link pe-1" href="https://www.youtube.com/@GamerNoTitle" target="_blank">
-                    <i class="fab fa-youtube text-lg opacity-8" aria-hidden="true"></i>
-                  </a>
-                </li>
-              </ul>
-              <!-- <li class="nav-item"> -->
-              <!-- <a href="http://beian.miit.gov.cn/" class="nav-link" target=_blank><img
-                  src='https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png' width=20px height=20px> 沪ICP备
-                2021023713号</a> -->
-              <!-- </li> -->
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-6 col-6 mb-4">
-            <!-- <div>
-              <h6 class="text-gradient text-primary text-sm">Company</h6>
-              <ul class="flex-column ms-n3 nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="https://www.creative-tim.com/presentation" target="_blank">
-                    About Us
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://www.creative-tim.com/templates/free" target="_blank">
-                    Freebies
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://www.creative-tim.com/templates/premium" target="_blank">
-                    Premium Tools
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://www.creative-tim.com/blog" target="_blank">
-                    Blog
-                  </a>
-                </li>
-              </ul>
-            </div> -->
-          </div>
-          <div class="col-md-2 col-sm-6 col-6 mb-4">
-            <div>
-              <!-- <h6 class="text-gradient text-primary text-sm">Resources</h6>
-              <ul class="flex-column ms-n3 nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="https://iradesign.io/" target="_blank">
-                    Illustrations
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://www.creative-tim.com/bits" target="_blank">
-                    Bits &amp; Snippets
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://www.creative-tim.com/affiliates/new" target="_blank">
-                    Affiliate Program
-                  </a>
-                </li>
-              </ul> -->
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-6 col-6 mb-4">
-            <div>
-              <h6 class="text-gradient text-primary text-sm">Help &amp; Support</h6>
-              <ul class="flex-column ms-n3 nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="https://t.me/PaffChannel" target="_blank">
-                    Telegram Channel
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://t.me/DohnaNyan" target="_blank">
-                    Telegram Group
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://bili33.top/sponsors" target="_blank">
-                    Sponsorships
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="https://status.val.bili33.top/" target="_blank">
-                    Status Page
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-2 col-sm-6 col-6 mb-4 me-auto">
-            <div>
-              <h6 class="text-gradient text-primary text-sm">Legal</h6>
-              <ul class="flex-column ms-n3 nav">
-                <li class="nav-item">
-                  <a class="nav-link"
-                    href="https://gamernotitle.notion.site/gamernotitle/VSC-FAQ-86f072f8cebf4a8d9453a795b24cd507"
-                    target="_blank">
-                    FAQ
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link"
-                    href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#12ddcd236fdb4c6abf205eb55587ccbc"
-                    target="_blank">
-                    Disclaimer
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/EULA" target="_blank">
-                    Licenses (EULA)
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="text-center">
-              <p class="my-4 text-sm">
-                <strong>
-                  <p class="text-danger text-gradient">Riot Games, Valorant, and any associated logos are trademarks,
-                    service marks, and/or
-                    registered trademarks of Riotgames, lnc. Valora is not associated with Riot Games, lnc.</p>
-                </strong>
-                All rights reserved. Copyright ©
-                <script>document.write(new Date().getFullYear())</script> <a href="https://bili33.top"
-                  target="_blank"><u>GamerNoTitle</u></a>. | Open-Source project <a
-                  href="https://github.com/GamerNoTitle/Valora" target="_blank"><u>Valora</u></a> is avaliable on
-                Github.
-                <a href="http://beian.miit.gov.cn/" class="nav-link" id="icp" target=_blank><img
-                    src='https://img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png' width=20px height=20px> 沪ICP备
-                  2021023713号</a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </section>
-  <script>
-    // 获取当前页面的域名
-    const domain = window.location.hostname;
-
-    // 判断域名是否符合要求
-    if (!domain.endsWith('bili33.top')) {
-      // 如果不符合要求，则隐藏元素
-      document.getElementById('icp').style.display = 'none';
-    }
-  </script>
-  <script>
-    $(document).ready(function () {
-      $("[data-fancybox]").fancybox({
-        buttons: [
-          "zoom",
-          "slideShow",
-          "fullScreen",
-          "download",
-          "thumbs",
-          "close"
-        ]
-      });
-    });
-  </script>
-  <script>
-    // 获取关闭按钮和悬浮窗元素
-    const announcementNotice = document.getElementById('announcementNotice');
-    const announcementBtn = document.getElementById('announcementBtn');
-
-    // 关闭悬浮窗
-    function closeannouncementNotice() {
-      announcementNotice.style.animation = 'fadeOut 1s';
-      setTimeout(() => {
-        announcementNotice.style.display = 'none';
-      }, 1000);
-    }
-
-    // 设置关闭按钮的点击事件
-    announcementBtn.addEventListener('click', setLocalStorage);
-
-    // 检查是否设置了localStorage，如果设置了，则关闭悬浮窗
-    function checkLocalStorage() {
-      // 获取当前页面的announcement_id
-      const currentAnnouncementId = "{{announcement_id}}";
-      const currentAnnouncement = `{{announcement}}`;
-
-      // 获取localStorage中保存的announcement_id
-      const localStorageValue = localStorage.getItem("announcementNoticeId");
-      const localStorageAnn = localStorage.getItem("announcementNotice");
-
-      // 如果localStorage中的announcement_id与当前页面的announcement_id相同，则不弹出悬浮窗
-      if (localStorageValue === currentAnnouncementId || localStorageAnn === currentAnnouncement) {
-        announcementNotice.style.display = 'none';
-      } else {
-        announcementNotice.style.display = 'flex';
-      }
-    }
-
-    // 设置localStorage，并关闭悬浮窗
-    function setLocalStorage() {
-      const currentAnnouncementId = "{{announcement_id}}";
-      const currentAnnouncement = `{{announcement}}`
-      localStorage.setItem("announcementNoticeId", currentAnnouncementId);
-      localStorage.setItem("announcementNotice", currentAnnouncement);
-      closeannouncementNotice();
-    }
-
-    // 在页面加载完成后检查localStorage
-    document.addEventListener('DOMContentLoaded', checkLocalStorage);
-  </script>
-
+  {% include 'public/footer.html' %}
 </body>

@@ -430,10 +430,9 @@ def UpdatePriceCache():
                 conn = sqlite3.connect('db/data.db')
                 c = conn.cursor()
                 try:
-                    vp_img = '<img src="/assets/img/VP-black.png" width="32px" height="32px">'
                     if source == 'Store':   # This skin can be unlocked through store
                         c.execute('UPDATE skinlevels SET unlock = ? WHERE name LIKE ?',
-                                  (f'{vp_img} {unlock}', weapon_name))
+                                  (f'{unlock}', weapon_name))
                     else:
                         c.execute('UPDATE skinlevels SET unlock = ? WHERE name LIKE ?',
                                   (f'{source} {unlock}', weapon_name))
@@ -475,9 +474,9 @@ def UpdatePriceOffer(access_token, entitlement, region):
         ItemID = offer.get('Rewards')[0].get('ItemID')
         ItemTypeID = offer.get('Rewards')[0].get('ItemTypeID')
         if isDirectPurchase and ItemTypeID == 'e7c63390-eda7-46e0-bb7a-a6abdacd2433':
-            print(f"Updating {ItemID} with price {cost}")
+            # print(f"Updating {ItemID} with price {cost}")
             c = conn.cursor()
-            c.execute("UPDATE skinlevels SET unlock = ? WHERE uuid = ?", (f'{vp_img} {cost}', ItemID))
+            c.execute("UPDATE skinlevels SET unlock = ? WHERE uuid = ?", (f'{cost}', ItemID))
     conn.commit()            
 
 def UpdatePriceTimer():

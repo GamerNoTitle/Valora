@@ -1,0 +1,25 @@
+{% if not search %}
+<div class="container-fluid px-0 overflow-hidden">
+  <div class="row text-center py-2 mt-3">
+    <div class="col-12 mx-auto">
+      {% if prev %}
+      <a href="{{prev}}"><button type="button" class="btn bg-gradient-primary"><i
+            class="fas fa-arrow-left"></i>
+          {{lang.library.button.prev}}</button></a>
+      {% else %}
+      <a><button type="button" class="btn bg-gradient-primary" disabled><i class="fas fa-arrow-left"></i>
+          {{lang.library.button.prev}}</button></a>
+      {% endif %}
+      <strong size=12px class="text-gradient text-primary mb-0 mt-2">{{cur_page}} / {{pages}}</strong>
+      {% if next %}
+      <a href="{{next}}"><button type="button" class="btn bg-gradient-primary">{{lang.library.button.next}}
+          <i class="fas fa-arrow-right"></i>
+        </button></a>
+      {% else %}
+      <a><button type="button" class="btn bg-gradient-primary" disabled>{{lang.library.button.next}}
+          <i class="fas fa-arrow-right"></i> </button></a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}
