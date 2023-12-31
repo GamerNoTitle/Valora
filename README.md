@@ -1,5 +1,5 @@
 <div align="center">
-<img src='https://cdn.jsdelivr.net/gh/GamerNoTitle/VALORA@dev/assets/img/head.png'>
+<img height="250px" width="250px" src='https://timg.bili33.top/file/e1f42660817e0c13a22af.png'>
 </div>
 
 # VLR | Valora: What it is in my VALORANT Store TODAY??
