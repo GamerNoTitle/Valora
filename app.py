@@ -220,11 +220,11 @@ def redirectprofiler():
     else:
         abort(404)
 
-@app.route('/preview/<file>')
-def preview_handler(file):
-    with open(f'lang/{g.lang}.yml', encoding='utf8') as f:
-        transtable = f.read()
-    return render_template(f'{file}.html', lang=yaml.load(transtable, Loader=yaml.FullLoader))
+# @app.route('/preview/<file>')
+# def preview_handler(file):
+#     with open(f'lang/{g.lang}.yml', encoding='utf8') as f:
+#         transtable = f.read()
+#     return render_template(f'{file}.html', lang=yaml.load(transtable, Loader=yaml.FullLoader))
 
 # The following are api paths
 
