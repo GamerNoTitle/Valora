@@ -625,7 +625,7 @@ def accessory_library(app: Flask, request: Request, t, lang):
         conn.commit()
         data = c.fetchall()
         for title in data:
-            if 'VCT' in str(title[1]) or 'LOCK//IN' in str(title[1]) or '2022 Game Changers' in str(title[1]) or 'None' in str(title[1]): 
+            if 'VCT' in str(title[1]) or 'LOCK//IN' in str(title[1]) or 'Game Changer' in str(title[1]) or 'None' in str(title[1]) or 'PREMIER' in str(title[1]) or 'Premier' in str(title[1]): 
                 # VCT Competitors' title, not for players
                 # And also this will not display in game if you dont have it
                 # None for unexcepted errors

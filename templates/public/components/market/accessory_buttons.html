@@ -1,0 +1,40 @@
+<div class="container-fluid px-0 overflow-hidden">
+    <div class="row text-center py-2 mt-3">
+        <div class="col-12 mx-auto">
+            <a href="/market"><button type="button" class="btn bg-gradient-info btn-lg"><i
+                        class="fas fa-shopping-cart"></i>
+                    {{lang.global.button.dailyshop}}</button></a>
+            {% if not pc %}<br>{% endif %}
+            <a href="/market/night"><button type="button" class="btn bg-gradient-mint btn-lg"><i
+                        class="fas fa-shopping-bag"></i></i>
+                    {{lang.global.button.nightmarket}}</button></a>
+            {% if not pc %}<br>{% endif %}
+            <a href="/inventory"><button type="button" class="btn bg-gradient-pink btn-lg"><i
+                        class="fas fa-warehouse"></i>
+                    {{lang.global.button.inventory}}</button></a>
+            {% if not pc %}<br>{% endif %}
+            <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i
+                        class="fas fa-language"></i>
+                    {{lang.global.button.trans}}</button></a>
+            {% if not pc %}<br>{% endif %}
+            <a href="/library/accessory"><button type="button" class="btn bg-gradient-sr-sliver-wolf btn-lg"><i
+                        class="fas fa-gem"></i>
+                    {{lang.global.button.accessorylib}}</button></a>
+            <br>
+            <a href="//account.riotgames.com" target="_blank"><button type="button"
+                    class="btn bg-gradient-secondary btn-lg"><i class="fas fa-user-circle"></i>
+                    {{lang.global.button.account}}</button></a>
+            {% if not pc %}<br>{% endif %}
+            <a href="/library"><button type="button" class="btn bg-gradient-success btn-lg"><i class="fas fa-book"></i>
+                    {{lang.global.button.library}}</button></a>
+            {% if not pc %}<br>{% endif %}
+            <a href="//bili33.top/sponsors" target="_blank"><button type="button"
+                    class="btn bg-gradient-primary btn-lg"><i class="fas fa-coins"></i>
+                    {{lang.global.button.sponsor}}</button></a>
+            {% if not pc %}<br>{% endif %}
+            <a href="/api/logout"><button type="button" class="btn bg-gradient-danger btn-lg"><i
+                        class="fas fa-door-open"></i>
+                    {{lang.global.button.logout}}</button></a>
+        </div>
+    </div>
+</div>
