@@ -132,4 +132,130 @@
 
 {% include 'public/footer.html' %}
 
+  <!-- Modal -->
+  <div class="modal fade" id="cklogin" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{lang.login.modal.title}}</h5>
+        </div>
+        <div class="modal-body">
+          <div align="center">
+            <p>{{lang.login.modal.reminder|safe}}</p>
+          </div>
+          <form role="form" name="search" method="post" autocomplete="off" action="/api/cklogin">
+            <div class="row">
+              <label>{{lang.login.modal.form.token.title}}</label>
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="{{lang.login.modal.form.token.placeholder}}"
+                  name="accesstoken" id="accesstoken-input" oninput="checkInputs()">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <label>{{lang.login.modal.form.userid.title}}</label>
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="{{lang.login.modal.form.userid.placeholder}}"
+                  name="userid" id="userid-input" oninput="checkInputs()">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <label>{{lang.login.modal.form.region.title}}</label>
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="{{lang.login.modal.form.region.placeholder}}"
+                  name="region" id="region-input" oninput="checkInputs()">
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-check form-switch mb-4">
+                  <input class="form-check-input" type="checkbox" name="CheckedEULA" id="checked-eula-input"
+                    onchange="checkInputs()">
+                  <label class="form-check-label"
+                    for="flexSwitchCheckDefault">{{lang.login.form.checkbox.eula|safe}}</label>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="submit" class="btn bg-gradient-dark w-100" id="tokenlogin-submit" disabled><img
+                      src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/img-navi-valorant-white.svg">{{lang.login.modal.form.login}}</button>
+                </div>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn bg-gradient-primary"
+            data-bs-dismiss="modal">{{lang.login.modal.form.close}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function checkLoginInputs() {
+      const usernameInput = document.getElementsByName('Username')[0];
+      const passwordInput = document.getElementsByName('Password')[0];
+      const checkedRuleInput = document.getElementsByName('CheckedRule')[0];
+      const checkedEULAInput = document.getElementsByName('CheckedEULA')[0];
+      const submitButton = document.getElementById('login');
+
+      // 检查username和password是否非空
+      if (usernameInput.value.trim() === '' || passwordInput.value.trim() === '') {
+        submitButton.disabled = true;
+        return;
+      }
+
+      // 检查checkbox是否都勾选
+      if (!checkedRuleInput.checked || !checkedEULAInput.checked) {
+        submitButton.disabled = true;
+        return;
+      }
+
+      // 如果所有条件都满足，则去掉按钮的disabled属性
+      submitButton.disabled = false;
+    }
+  </script>
+
+  <script>
+    function checkInputs() {
+      const accessTokenInput = document.getElementById('accesstoken-input');
+      const userIdInput = document.getElementById('userid-input');
+      const regionInput = document.getElementById('region-input');
+      const checkedEULAInput = document.getElementById('checked-eula-input');
+      const submitButton = document.getElementById('tokenlogin-submit');
+
+      // 检查accessToken是否非空
+      if (accessTokenInput.value.trim() === '') {
+        submitButton.disabled = true;
+        return;
+      }
+
+      // 检查userId是否为UUID格式
+      const uuidRegex = /^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/;
+      if (!uuidRegex.test(userIdInput.value)) {
+        submitButton.disabled = true;
+        return;
+      }
+
+      // 检查region是否为有效的地区代码
+      const validRegions = ['ap', 'kr', 'eu', 'na'];
+      if (!validRegions.includes(regionInput.value.toLowerCase())) {
+        submitButton.disabled = true;
+        return;
+      }
+
+      // 检查checkbox是否都勾选
+      if (!checkedEULAInput.checked) {
+        submitButton.disabled = true;
+        return;
+      }
+
+      // 如果所有条件都满足，则去掉按钮的disabled属性
+      submitButton.disabled = false;
+    }
+  </script>
+
   </body>
