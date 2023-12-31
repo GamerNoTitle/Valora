@@ -17,7 +17,7 @@
   <title>
     Valora | GamerNoTitle
   </title>
-{% include 'public/head.html' %}
+  {% include 'public/head.html' %}
 </head>
 {% include 'public/body.html' %}
 
@@ -28,234 +28,232 @@
 {% include 'public/components/header.html' %}
 
 <div class="container-fluid px-0 overflow-hidden">
-    <div class="row text-center py-2 mt-3">
-      <div class="col-12 mx-auto">
-        <a href="/library"><button type="button" class="btn bg-gradient-success btn-lg"><i class="fas fa-book"></i>
-            {{lang.global.button.library}}</button></a>
-        <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
-            {{lang.global.button.trans}}</button></a>
-        <a href="/library/accessory"><button type="button"
-            class="btn bg-gradient-sr-sliver-wolf btn-lg"><i class="fas fa-gem"></i>
-            {{lang.global.button.accessorylib}}</button></a>
-        <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i
-              class="ni ni-atom"></i> {{lang.global.button.sponsor}}</button></a>
+  <div class="row text-center py-2 mt-3">
+    <div class="col-12 mx-auto">
+      <a href="/library"><button type="button" class="btn bg-gradient-success btn-lg"><i class="fas fa-book"></i>
+          {{lang.global.button.library}}</button></a>
+      <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
+          {{lang.global.button.trans}}</button></a>
+      <a href="/library/accessory"><button type="button" class="btn bg-gradient-sr-sliver-wolf btn-lg"><i
+            class="fas fa-gem"></i>
+          {{lang.global.button.accessorylib}}</button></a>
+      <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i
+            class="ni ni-atom"></i> {{lang.global.button.sponsor}}</button></a>
 
-      </div>
     </div>
   </div>
+</div>
 
-  <section>
-    <div class="container py-4">
-      <div class="row">
-        <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
-          <h3 class="text-center">{{lang.login.front.title}}</h3>
-          <div align="center">
-            <p>{{lang.login.front.description.line1}}</p>
-            <p>{{lang.login.front.description.line2}}</p>
-          </div>
-          <div class="container">
-            <div align="center" id="loginfailedtips" class="alert alert-danger text-white font-weight-bold hidden"
-              role="alert">
-              {{lang.login.alert.loginerror}}
-            </div>
-          </div>
-          <div class="container">
-            <div align="center" id="infoerrortips" class="alert alert-danger text-white font-weight-bold hidden"
-              role="alert">
-              {{lang.login.alert.infoerror}}
-            </div>
-          </div>
-          <form role="form" name="login" method="post" autocomplete="off" action="/api/login">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <label>{{lang.login.form.username.title}}</label>
-                  <div class="input-group mb-4">
-                    <input class="form-control" placeholder="{{lang.login.form.username.placeholder}}" name="Username"
-                      type="text" onchange="checkLoginInputs()">
-                  </div>
-                </div>
-                <div class="col-md-6 ps-2">
-                  <label>{{lang.login.form.password.title}}</label>
-                  <div class="input-group">
-                    <input type="password" class="form-control" placeholder="{{lang.login.form.password.placeholder}}"
-                      name="Password" onchange="checkLoginInputs()">
-                  </div>
-                </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-check form-switch mb-4">
-                    <input class="form-check-input" type="checkbox" name="CheckedRemember"
-                      onchange="checkLoginInputs()">
-                    <label class="form-check-label"
-                      for="flexSwitchCheckDefault">{{lang.login.form.checkbox.remember}}</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-check form-switch mb-4">
-                      <input class="form-check-input" type="checkbox" name="CheckedRule" onchange="checkLoginInputs()">
-                      <label class="form-check-label"
-                        for="flexSwitchCheckDefault">{{lang.login.form.checkbox.nostorage}}</label>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-check form-switch mb-4">
-                        <input class="form-check-input" type="checkbox" name="CheckedEULA"
-                          onchange="checkLoginInputs()">
-                        <label class="form-check-label"
-                          for="flexSwitchCheckDefault">{{lang.login.form.checkbox.eula|safe}}</label>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <button type="submit" class="btn bg-gradient-dark w-100" id="login" disabled><img
-                          src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/img-navi-valorant-white.svg">{{lang.login.button.login}}</button>
-                    </div>
-                    <div class="col-md-12">
-                      <button type="button" class="btn bg-gradient-dark w-100" data-bs-toggle="modal"
-                        data-bs-target="#cklogin"><img
-                          src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/img-navi-valorant-white.svg">{{lang.login.button.tokenlogin}}</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </form>
-
+<section>
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+        <h3 class="text-center">{{lang.login.front.title}}</h3>
+        <div align="center">
+          <p>{{lang.login.front.description.line1}}</p>
+          <p>{{lang.login.front.description.line2}}</p>
         </div>
-      </div>
-    </div>
-
-  </section>
-
-{% include 'public/footer.html' %}
-
-  <!-- Modal -->
-  <div class="modal fade" id="cklogin" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{lang.login.modal.title}}</h5>
-        </div>
-        <div class="modal-body">
-          <div align="center">
-            <p>{{lang.login.modal.reminder|safe}}</p>
+        <div class="container">
+          <div align="center" id="loginfailedtips" class="alert alert-danger text-white font-weight-bold hidden"
+            role="alert">
+            {{lang.login.alert.loginerror}}
           </div>
-          <form role="form" name="search" method="post" autocomplete="off" action="/api/cklogin">
+        </div>
+        <div class="container">
+          <div align="center" id="infoerrortips" class="alert alert-danger text-white font-weight-bold hidden"
+            role="alert">
+            {{lang.login.alert.infoerror}}
+          </div>
+        </div>
+        <form role="form" name="login" method="post" autocomplete="off" action="/api/login">
+          <div class="card-body">
             <div class="row">
-              <label>{{lang.login.modal.form.token.title}}</label>
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="{{lang.login.modal.form.token.placeholder}}"
-                  name="accesstoken" id="accesstoken-input" oninput="checkInputs()">
+              <div class="col-md-6">
+                <label>{{lang.login.form.username.title}}</label>
+                <div class="input-group mb-4">
+                  <input class="form-control" placeholder="{{lang.login.form.username.placeholder}}" name="Username"
+                    type="text" onchange="checkLoginInputs()">
+                </div>
               </div>
-            </div>
-            <br>
-            <div class="row">
-              <label>{{lang.login.modal.form.userid.title}}</label>
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="{{lang.login.modal.form.userid.placeholder}}"
-                  name="userid" id="userid-input" oninput="checkInputs()">
-              </div>
-            </div>
-            <br>
-            <div class="row">
-              <label>{{lang.login.modal.form.region.title}}</label>
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="{{lang.login.modal.form.region.placeholder}}"
-                  name="region" id="region-input" oninput="checkInputs()">
+              <div class="col-md-6 ps-2">
+                <label>{{lang.login.form.password.title}}</label>
+                <div class="input-group">
+                  <input type="password" class="form-control" placeholder="{{lang.login.form.password.placeholder}}"
+                    name="Password" onchange="checkLoginInputs()">
+                </div>
               </div>
             </div>
             <br>
             <div class="row">
               <div class="col-md-12">
                 <div class="form-check form-switch mb-4">
-                  <input class="form-check-input" type="checkbox" name="CheckedEULA" id="checked-eula-input"
-                    onchange="checkInputs()">
+                  <input class="form-check-input" type="checkbox" name="CheckedRemember" onchange="checkLoginInputs()">
                   <label class="form-check-label"
-                    for="flexSwitchCheckDefault">{{lang.login.form.checkbox.eula|safe}}</label>
+                    for="flexSwitchCheckDefault">{{lang.login.form.checkbox.remember}}</label>
                 </div>
               </div>
-              <br>
               <div class="row">
                 <div class="col-md-12">
-                  <button type="submit" class="btn bg-gradient-dark w-100" id="tokenlogin-submit" disabled><img
-                      src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/img-navi-valorant-white.svg">{{lang.login.modal.form.login}}</button>
+                  <div class="form-check form-switch mb-4">
+                    <input class="form-check-input" type="checkbox" name="CheckedRule" onchange="checkLoginInputs()">
+                    <label class="form-check-label"
+                      for="flexSwitchCheckDefault">{{lang.login.form.checkbox.nostorage}}</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-check form-switch mb-4">
+                      <input class="form-check-input" type="checkbox" name="CheckedEULA" onchange="checkLoginInputs()">
+                      <label class="form-check-label"
+                        for="flexSwitchCheckDefault">{{lang.login.form.checkbox.eula|safe}}</label>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <button type="submit" class="btn bg-gradient-dark w-100" id="login" disabled><img
+                        src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/img-navi-valorant-white.svg">{{lang.login.button.login}}</button>
+                  </div>
+                  <div class="col-md-12">
+                    <button type="button" class="btn bg-gradient-dark w-100" data-bs-toggle="modal"
+                      data-bs-target="#cklogin"><img
+                        src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/img-navi-valorant-white.svg">{{lang.login.button.tokenlogin}}</button>
+                  </div>
                 </div>
               </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn bg-gradient-primary"
-            data-bs-dismiss="modal">{{lang.login.modal.form.close}}</button>
-        </div>
+            </div>
+        </form>
+
       </div>
     </div>
   </div>
 
-  <script>
-    function checkLoginInputs() {
-      const usernameInput = document.getElementsByName('Username')[0];
-      const passwordInput = document.getElementsByName('Password')[0];
-      const checkedRuleInput = document.getElementsByName('CheckedRule')[0];
-      const checkedEULAInput = document.getElementsByName('CheckedEULA')[0];
-      const submitButton = document.getElementById('login');
+</section>
 
-      // 检查username和password是否非空
-      if (usernameInput.value.trim() === '' || passwordInput.value.trim() === '') {
-        submitButton.disabled = true;
-        return;
-      }
+{% include 'public/footer.html' %}
 
-      // 检查checkbox是否都勾选
-      if (!checkedRuleInput.checked || !checkedEULAInput.checked) {
-        submitButton.disabled = true;
-        return;
-      }
+<!-- Modal -->
+<div class="modal fade" id="cklogin" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{lang.login.modal.title}}</h5>
+      </div>
+      <div class="modal-body">
+        <div align="center">
+          <p>{{lang.login.modal.reminder|safe}}</p>
+        </div>
+        <form role="form" name="search" method="post" autocomplete="off" action="/api/cklogin">
+          <div class="row">
+            <label>{{lang.login.modal.form.token.title}}</label>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="{{lang.login.modal.form.token.placeholder}}"
+                name="accesstoken" id="accesstoken-input" oninput="checkInputs()">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <label>{{lang.login.modal.form.userid.title}}</label>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="{{lang.login.modal.form.userid.placeholder}}"
+                name="userid" id="userid-input" oninput="checkInputs()">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <label>{{lang.login.modal.form.region.title}}</label>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="{{lang.login.modal.form.region.placeholder}}"
+                name="region" id="region-input" oninput="checkInputs()">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-check form-switch mb-4">
+                <input class="form-check-input" type="checkbox" name="CheckedEULA" id="checked-eula-input"
+                  onchange="checkInputs()">
+                <label class="form-check-label"
+                  for="flexSwitchCheckDefault">{{lang.login.form.checkbox.eula|safe}}</label>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-12">
+                <button type="submit" class="btn bg-gradient-dark w-100" id="tokenlogin-submit" disabled><img
+                    src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/img-navi-valorant-white.svg">{{lang.login.modal.form.login}}</button>
+              </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-primary"
+          data-bs-dismiss="modal">{{lang.login.modal.form.close}}</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-      // 如果所有条件都满足，则去掉按钮的disabled属性
-      submitButton.disabled = false;
+<script>
+  function checkLoginInputs() {
+    const usernameInput = document.getElementsByName('Username')[0];
+    const passwordInput = document.getElementsByName('Password')[0];
+    const checkedRuleInput = document.getElementsByName('CheckedRule')[0];
+    const checkedEULAInput = document.getElementsByName('CheckedEULA')[0];
+    const submitButton = document.getElementById('login');
+
+    // 检查username和password是否非空
+    if (usernameInput.value.trim() === '' || passwordInput.value.trim() === '') {
+      submitButton.disabled = true;
+      return;
     }
-  </script>
 
-  <script>
-    function checkInputs() {
-      const accessTokenInput = document.getElementById('accesstoken-input');
-      const userIdInput = document.getElementById('userid-input');
-      const regionInput = document.getElementById('region-input');
-      const checkedEULAInput = document.getElementById('checked-eula-input');
-      const submitButton = document.getElementById('tokenlogin-submit');
-
-      // 检查accessToken是否非空
-      if (accessTokenInput.value.trim() === '') {
-        submitButton.disabled = true;
-        return;
-      }
-
-      // 检查userId是否为UUID格式
-      const uuidRegex = /^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/;
-      if (!uuidRegex.test(userIdInput.value)) {
-        submitButton.disabled = true;
-        return;
-      }
-
-      // 检查region是否为有效的地区代码
-      const validRegions = ['ap', 'kr', 'eu', 'na'];
-      if (!validRegions.includes(regionInput.value.toLowerCase())) {
-        submitButton.disabled = true;
-        return;
-      }
-
-      // 检查checkbox是否都勾选
-      if (!checkedEULAInput.checked) {
-        submitButton.disabled = true;
-        return;
-      }
-
-      // 如果所有条件都满足，则去掉按钮的disabled属性
-      submitButton.disabled = false;
+    // 检查checkbox是否都勾选
+    if (!checkedRuleInput.checked || !checkedEULAInput.checked) {
+      submitButton.disabled = true;
+      return;
     }
-  </script>
 
-  </body>
+    // 如果所有条件都满足，则去掉按钮的disabled属性
+    submitButton.disabled = false;
+  }
+</script>
+
+<script>
+  function checkInputs() {
+    const accessTokenInput = document.getElementById('accesstoken-input');
+    const userIdInput = document.getElementById('userid-input');
+    const regionInput = document.getElementById('region-input');
+    const checkedEULAInput = document.getElementById('checked-eula-input');
+    const submitButton = document.getElementById('tokenlogin-submit');
+
+    // 检查accessToken是否非空
+    if (accessTokenInput.value.trim() === '') {
+      submitButton.disabled = true;
+      return;
+    }
+
+    // 检查userId是否为UUID格式
+    const uuidRegex = /^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/;
+    if (!uuidRegex.test(userIdInput.value)) {
+      submitButton.disabled = true;
+      return;
+    }
+
+    // 检查region是否为有效的地区代码
+    const validRegions = ['ap', 'kr', 'eu', 'na'];
+    if (!validRegions.includes(regionInput.value.toLowerCase())) {
+      submitButton.disabled = true;
+      return;
+    }
+
+    // 检查checkbox是否都勾选
+    if (!checkedEULAInput.checked) {
+      submitButton.disabled = true;
+      return;
+    }
+
+    // 如果所有条件都满足，则去掉按钮的disabled属性
+    submitButton.disabled = false;
+  }
+</script>
+
+</body>

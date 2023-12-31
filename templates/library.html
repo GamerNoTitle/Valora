@@ -10,15 +10,15 @@
 
 <body class="index-page">
 
-{% include 'public/body.html' %}
+  {% include 'public/body.html' %}
 
-{% include 'public/components/announcement.html' %}
+  {% include 'public/components/announcement.html' %}
 
-{% include 'public/components/nav.html' %}
+  {% include 'public/components/nav.html' %}
 
-{% include 'public/components/header.html' %}
+  {% include 'public/components/header.html' %}
 
-{% include 'public/components/library/buttons.html' %}
+  {% include 'public/components/library/buttons.html' %}
 
   <div class="container">
     <a href="/library">
@@ -93,7 +93,8 @@
             <div class="card-body">
               <h3 class="text-gradient text-primary mb-0 mt-2"><img src={{weapon.tier}} height="28px" width="28px">
                 {{weapon.name|safe}}</h3>
-              <h3 class="text-gradient text-dark mb-0 mt-2"><img src="/assets/img/VP-black.png" width="32px" height="32px"> {{weapon.unlock|replace("None","0")}}</h3>
+              <h3 class="text-gradient text-dark mb-0 mt-2"><img src="/assets/img/VP-black.png" width="32px"
+                  height="32px"> {{weapon.unlock|replace("None","0")}}</h3>
               <br>
               {% for level in weapon.levels %}
               {% if level.displayName != '' %}

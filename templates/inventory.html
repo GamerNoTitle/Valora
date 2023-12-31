@@ -13,11 +13,11 @@
   {% include 'public/body.html' %}
 
   {% include 'public/components/announcement.html' %}
-  
+
   {% include 'public/components/nav.html' %}
-  
+
   {% include 'public/components/header.html' %}
-  
+
   <div class="container-fluid px-0 overflow-hidden">
     <div class="row text-center py-2 mt-3">
       <div class="col-12 mx-auto">
@@ -31,9 +31,9 @@
             {{lang.global.button.accessory}}</button></a>
         <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
             {{lang.global.button.trans}}</button></a>
-        <a href="/library/accessory"><button type="button"
-              class="btn bg-gradient-sr-sliver-wolf btn-lg"><i class="fas fa-gem"></i>
-              {{lang.global.button.accessorylib}}</button></a>
+        <a href="/library/accessory"><button type="button" class="btn bg-gradient-sr-sliver-wolf btn-lg"><i
+              class="fas fa-gem"></i>
+            {{lang.global.button.accessorylib}}</button></a>
         <br>
         <a href="//account.riotgames.com" target="_blank"><button type="button"
             class="btn bg-gradient-secondary btn-lg"><i class="fas fa-user-circle"></i>
@@ -94,8 +94,10 @@
             </a>
           </div>
           <div class="card-body">
-            <h3 class="text-gradient text-primary mb-0 mt-2"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}}</h3>
-            <h3 class="text-gradient text-dark mb-0 mt-2"><img src="/assets/img/VP-black.png" width="32px" height="32px"> {{weapon.unlock|replace("None","0")}}</h3>
+            <h3 class="text-gradient text-primary mb-0 mt-2"><img src={{weapon.tier}} height="28px" width="28px">
+              {{weapon.name|safe}}</h3>
+            <h3 class="text-gradient text-dark mb-0 mt-2"><img src="/assets/img/VP-black.png" width="32px"
+                height="32px"> {{weapon.unlock|replace("None","0")}}</h3>
             <br>
             {% for level in weapon.levels %}
             {% if level.displayName != '' %}
@@ -116,11 +118,13 @@
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}} {{level.displayName}}</h5>
+                    <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}}
+                      {{level.displayName}}</h5>
                   </div>
                   <div class="modal-body">
                     <video width=100% controls>
-                      <source src="{{level.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}" type="video/mp4">
+                      <source src="{{level.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}"
+                        type="video/mp4">
                       <source src="{{level.streamedVideo}}" type="video/mp4">
                       {{lang.inventory.modal.videonotavaliable}}
                     </video>
@@ -157,12 +161,14 @@
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}} {{chroma.displayName}}</h5>
+                    <h5 class="modal-title"><img src={{weapon.tier}} height="28px" width="28px"> {{weapon.name|safe}}
+                      {{chroma.displayName}}</h5>
                   </div>
                   <div class="modal-body">
                     {% if chroma.streamedVideo %}
                     <video width=100% controls>
-                      <source src="{{chroma.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}" type="video/mp4">
+                      <source src="{{chroma.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}"
+                        type="video/mp4">
                       <source src="{{chroma.streamedVideo}}" type="video/mp4">
                       {{lang.inventory.modal.videonotavaliable}}
                     </video>
@@ -189,6 +195,6 @@
       {% endfor %}
     </div>
   </div>
-{% include 'public/footer.html' %}
+  {% include 'public/footer.html' %}
 
 </body>

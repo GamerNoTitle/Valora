@@ -4,53 +4,26 @@
   <title>
     {{lang.global.title.card}} | Valora | GamerNoTitle
   </title>
-{% include 'public/head.html' %}
+  {% include 'public/head.html' %}
 </head>
 
 <body class="index-page">
   {% include 'public/body.html' %}
 
   {% include 'public/components/announcement.html' %}
-  
+
   {% include 'public/components/nav.html' %}
-  
+
   {% include 'public/components/header.html' %}
-  <div class="container-fluid px-0 overflow-hidden">
-    <div class="row text-center py-2 mt-3">
-      <div class="col-12 mx-auto">
-        <a href="/"><button type="button" class="btn bg-gradient-info btn-lg"><i class="fas fa-home"></i>
-            {{lang.global.button.home}}</button></a>
-        <a href="/library"><button type="button" class="btn bg-gradient-success btn-lg"><i
-            class="fas fa-book"></i>
-          {{lang.global.button.library}}</button></a>
-        <a href="/trans"><button type="button" class="btn bg-gradient-warning btn-lg"><i class="fas fa-language"></i>
-            {{lang.global.button.trans}}</button></a>
-        <a href="//bili33.top/sponsors" target="_blank"><button type="button" class="btn bg-gradient-primary btn-lg"><i
-              class="fas fa-coins"></i>
-            {{lang.global.button.sponsor}}</button></a>
-      </div>
-    </div>
-  </div>
+
+  {% include "public/components/library/accessory_buttons.html" %}
 
   <div class="container">
     <a href="/library/accessory/card">
       <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.accessorylib.card.title}}</h1>
     </a>
     <br>
-    <div width="100%">
-      <div class="container-fluid px-0 overflow-hidden">
-        <div class="row text-center py-2 mt-3">
-          <div class="col-12 mx-auto">
-            <a href="/library/accessory/spray"><button type="button"
-                class="btn bg-gradient-sr-sliver-wolf btn-lg"><i class="fas fa-puzzle-piece"></i> {{lang.accessorylib.button.spray}}</button></a>
-            <a href="/library/accessory/title"><button type="button"
-                class="btn bg-gradient-cold-sea btn-lg"><i class="fas fa-heading"></i> {{lang.accessorylib.button.title}}</button></a>
-            <a href="/library/accessory/card"><button type="button"
-                class="btn bg-gradient-purple-pink btn-lg"><i class="fas fa-id-card-alt"></i> {{lang.accessorylib.button.card}}</button></a>
-          </div>
-        </div>
-      </div>
-    </div>  
+    {% include "public/components/library/item_buttons.html" %}
     <br>
   </div>
 
