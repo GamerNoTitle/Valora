@@ -5,6 +5,11 @@
     {% if market %}{{lang.global.title.dailyshop}}{% elif night %}{{lang.global.title.nightmarket}}{% else
     %}{{lang.global.title.shopdefault}}{% endif %} | Valora | GamerNoTitle
   </title>
+  <script>
+    if (document.location.pathname != "/market" && document.location.pathname != "/market/night") {
+      window.location = document.location.origin + "/market"
+    }
+  </script>
   {% include 'public/head.html' %}
 </head>
 
