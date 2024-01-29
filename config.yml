@@ -33,3 +33,6 @@ PROFILER_PASS: password
 # If you want to use announcement, deploy Valora-Announcement first
 # Enter your announcement url below. For example: https://ann.val.bili33.top
 ANNOUNCEMENT: 
+
+# ========== DEBUG ========== #
+DEBUG: false
