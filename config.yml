@@ -1,0 +1,35 @@
+# Configuration for SESSION_TYPE, choose between 'filesystem' or 'redis'
+SESSION_TYPE: filesystem 
+
+# Redis configuration
+# Provide your Redis URL
+REDIS_URL: 
+# If your Redis URL cannot be parsed, you need to fill them below perspectively
+# ========== REDIS CONFIG ========== #
+# Redis server host
+REDIS_HOST: 
+# Redis server port
+REDIS_PORT: 
+# Redis username (if applicable)
+REDIS_USERNAME: 
+# Redis password
+REDIS_PASSWORD: 
+# Optional Redis configuration
+# Set to True if your Redis server supports SSL, otherwise, do not configure this to avoid application timeout
+REDIS_SSL: false
+
+# ========== DASHBOARD CONFIG ========== #
+# Configuration for Flask Profiler
+# Enable Flask Profiler 
+# Set this to "true" in order to enable it
+PROFILER: false
+# Enable Basic Auth for the dashboard (set to True)
+PROFILER_AUTH: true
+# Set your credentials for Basic Auth
+PROFILER_USER: admin
+PROFILER_PASS: password
+
+# ========== ANNOUNCEMENT CONFIG ========== #
+# If you want to use announcement, deploy Valora-Announcement first
+# Enter your announcement url below. For example: https://ann.val.bili33.top
+ANNOUNCEMENT: 

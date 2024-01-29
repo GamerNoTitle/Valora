@@ -160,7 +160,7 @@ def UpdateCache():
               "Standard Stinger", "Standard Spectre",
               "Standard Bucky", "Standard Judge",
               "Standard Bulldog", "Standard Guardian", "Standard Phantom", "Standard Vandal",
-              "Standard Marshal", "Standard Operator",
+              "Standard Marshal", "Standard Operator", "Standard Outlaw",
               "Standard Ares", "Standard Odin",
               "Melee"]
     conn = sqlite3.connect('db/data.db')
@@ -387,67 +387,8 @@ def UpdateCacheTimer():
             print(f'Cache Updated. Used {end_time - start_time}')
             time.sleep(3600)
     except Exception as e:
-        raise ValoraCacheUpdateFailedException(msg = e, func = UpdateCacheTimer)
-
-
-
-def UpdatePriceCache():
-    print('Start Updating Price Cache')
-    weapons = [
-        "Classic", "Shorty", "Frenzy", "Ghost", "Sheriff",
-        "Stinger", "Spectre",
-        "Bucky", "Judge",
-        "Bulldog", "Guardian", "Phantom", "Vandal",
-        "Marshal", "Operator",
-        "Ares", "Odin",
-        "Tactical_Knife"]
-    base_url = 'https://valorant.fandom.com/wiki'  # Get price data from wiki
-    for weapon in weapons:
-        print(f'Updating {weapon.replace("_", " ")}')
-        res = requests.get(f'{base_url}/{weapon}', timeout=30)
-        html = res.text
-        soup = BeautifulSoup(html, 'html.parser')
-        tables = soup.find_all('table', class_='wikitable sortable')
-        if len(tables) > 0:
-            table = tables[0]
-            for row in table.find_all('tr'):
-                cells = row.find_all('td')
-                if len(cells) == 0:
-                    continue
-                content = [cell.text for cell in cells]
-                # Content Format: [Image, Edition, Collection, Source, Cost/Unlock, (Upgrades), (Chromas)]
-                if weapon != 'Tactical_Knife':
-                    collection = content[2].replace('\n', '')
-                    source = content[3].replace('\n', '')
-                    unlock = content[4].replace('\n', '')
-                    weapon_name = f'{collection} {weapon}'
-                else:
-                    collection = content[1].replace('\n', '')
-                    name = content[2].replace('\n', '')
-                    source = content[3].replace('\n', '')
-                    unlock = content[4].replace('\n', '')
-                    weapon_name = f'{collection} {name}'
-                conn = sqlite3.connect('db/data.db')
-                c = conn.cursor()
-                try:
-                    if source == 'Store':   # This skin can be unlocked through store
-                        c.execute('UPDATE skinlevels SET unlock = ? WHERE name LIKE ?',
-                                  (f'{unlock}', weapon_name))
-                    else:
-                        c.execute('UPDATE skinlevels SET unlock = ? WHERE name LIKE ?',
-                                  (f'{source} {unlock}', weapon_name))
-                    if c.rowcount == 0 and weapon == 'Tactical_Knife':  # ONLY KNIFE will trigger this condition
-                        if source == 'Store':   # This skin can be unlocked through store
-                            # c.execute(
-                            #     'UPDATE skinlevels SET unlock = ? WHERE name LIKE ?', (f'{vp_img} {unlock}', name))
-                            pass
-                        else:
-                            c.execute(
-                                'UPDATE skinlevels SET unlock = ? WHERE name LIKE ?', (f'{source} {unlock}', name))
-                except Exception as e:
-                    print(e)
-                conn.commit()
-        print(f'{weapon.replace("_", " ")} has been Updated.')
+        # raise ValoraCacheUpdateFailedException(msg = e, func = UpdateCacheTimer)
+        pass
 
 def UpdatePriceOffer(access_token, entitlement, region):
     servers = {
@@ -479,21 +420,22 @@ def UpdatePriceOffer(access_token, entitlement, region):
             c.execute("UPDATE skinlevels SET unlock = ? WHERE uuid = ?", (f'{cost}', ItemID))
     conn.commit()            
 
-def UpdatePriceTimer():
-    try:
-        while True:
-            print('Update Price Cache Task has Started.')
-            time.sleep(120)
-            start_time = datetime.datetime.now()
-            UpdatePriceCache()
-            end_time = datetime.datetime.now()
-            print(f'Price Cache has been Updated. Used {end_time - start_time}')
-            # Update this twice a day
-            time.sleep(3600*12)
-    except Exception as e:
-        raise ValoraCacheUpdateFailedException(msg = e, func = UpdatePriceTimer)
+# def UpdatePriceTimer():
+#     try:
+#         while True:
+#             print('Update Price Cache Task has Started.')
+#             time.sleep(120)
+#             start_time = datetime.datetime.now()
+#             # UpdatePriceCache()
+#             end_time = datetime.datetime.now()
+#             print(f'Price Cache has been Updated. Used {end_time - start_time}')
+#             # Update this twice a day
+#             time.sleep(3600*12)
+#     except Exception as e:
+#         print(e)
+#         raise ValoraCacheUpdateFailedException(msg = e, func = UpdatePriceTimer)
 
 
-if __name__ == '__main__':
-    UpdateCache()
-    UpdatePriceCache()
+# if __name__ == '__main__':
+#     UpdateCache()
+#     # UpdatePriceCache()
