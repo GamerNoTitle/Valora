@@ -11,17 +11,18 @@ from flask_babel import Babel
 from flask_session import Session
 from flask_profiler import Profiler
 from utils import Security
-from utils.Cache import UpdateCacheTimer, UpdatePriceTimer
+from utils.Cache import UpdateCacheTimer #, UpdatePriceTimer
 from utils.Register import *
 from utils.api import *
 from utils.Error import *
 from utils.Exception import *
+from utils.Conf import ReadConf
 
 app = Flask(__name__)
 babel = Babel(app)
 app.config['BABEL_LANGUAGES'] = ['en', 'zh-CN', 'zh-TW', 'ja-JP']
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
-session_type = os.environ.get('SESSION_TYPE')
+session_type = ReadConf('SESSION_TYPE', 'filesystem')
 global_announcement = {
     "announcement": {
     "en": "If you see this message, it means that the maintainer of this Valora instance has already integrated the announcement system, but the announcement system is currently inaccessible. If you are a regular user, please contact the developer to resolve this issue; if you are a developer, please check if your announcement system can be accessed by Valora.",
@@ -35,13 +36,13 @@ if type(session_type) != type(None):
     if session_type.lower() == 'redis':
         import redis
         app.config['SESSION_TYPE'] = 'redis'
-        redisurl = os.environ.get('REDIS_URL')
+        redisurl = ReadConf('REDIS_URL')
         if redisurl == None or redisurl == '':
-            redis_host = os.environ.get('REDIS_HOST')
-            redis_port = os.environ.get('REDIS_PORT')
-            redis_user = os.environ.get('REDIS_USERNAME')
-            redis_pass = os.environ.get('REDIS_PASSWORD')
-            redis_ssl = os.environ.get('REDIS_SSL', False)
+            redis_host = ReadConf('REDIS_HOST')
+            redis_port = ReadConf('REDIS_PORT')
+            redis_user = ReadConf('REDIS_USERNAME')
+            redis_pass = ReadConf('REDIS_PASSWORD')
+            redis_ssl = ReadConf('REDIS_SSL')
             if redis_host == None or redis_port == None or redis_pass == None:
                 print('Redis url is not set.')
                 os._exit(1)
@@ -56,8 +57,11 @@ if type(session_type) != type(None):
         app.secret_key = secret
         app.config['SECRET_KEY'] = secret
         app.config['SESSION_TYPE'] = 'filesystem'
-        print(
-            f'Unsupported session type: {session_type}. Now it has been set to filesystem.')
+        if session_type != 'filesystem':
+            print(
+                f'Unsupported session type: {session_type}. Now it has been set to filesystem.')
+        else:
+            print('Session type has been set to filesystem')
 else:
     secret = str(uuid.uuid4())
     app.secret_key = secret
@@ -68,14 +72,14 @@ else:
 # You need to declare necessary configuration to initialize
 # flask-profiler as follows:
 app.config["flask_profiler"] = {
-    "enabled": os.environ.get('PROFILER'),
+    "enabled": ReadConf('PROFILER'),
     "storage": {
         "engine": "sqlite"
     },
     "basicAuth": {
-        "enabled": os.environ.get('PROFILER_AUTH', False),
-        "username": os.environ.get('PROFILER_USER'),
-        "password": os.environ.get('PROFILER_PASS')
+        "enabled": ReadConf('PROFILER_AUTH'),
+        "username": ReadConf('PROFILER_USER'),
+        "password": ReadConf('PROFILER_PASS')
     },
     "ignore": [
         "^/assets/.*"
@@ -376,4 +380,4 @@ if __name__ == '__main__':
     _thread.start_new_thread(UpdateCacheTimer, ())
     # _thread.start_new_thread(UpdatePriceTimer, ())
     Security.generate()
-    app.run(host='0.0.0.0', port=os.environ.get('PORT', 8080), debug=debug)
+    app.run(host='0.0.0.0', port=os.environ.get('PORT', 8080), debug=ReadConf('DEBUG', False))

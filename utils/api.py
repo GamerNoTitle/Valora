@@ -41,18 +41,11 @@ def RiotLogin(app: Flask, request: Request):
         user.auth()
         if user.authed:
             response = make_response(redirect('/market'))
-            response.set_cookie('access_token', user.access_token)
-            response.set_cookie('entitlement_token', user.entitlement)
-            response.set_cookie('region', user.Region)
-            response.set_cookie('username', user.Name)
-            response.set_cookie('tag', user.Tag)
-            response.set_cookie('user_id', user.Sub)
-            response.set_cookie('logged', '1')
             session['access_token'] = user.access_token
             session['entitlement'] = user.entitlement
             session['region'] = user.Region
-            session['username'] = user.Name
-            session['tag'] = user.Tag
+            session['username'] = user.Name if user.Name else '(not set)'
+            session['tag'] = user.Tag if user.Tag else '(not set)'
             session['user_id'] = user.Sub
             session['cookie'] = user.session.cookies
             session['user-session'] = user.session
@@ -105,13 +98,6 @@ def verify(app: Flask, request: Request):
     user.auth(MFACode)
     if user.authed:
         response = make_response(redirect('/market', 302))
-        response.set_cookie('access_token', user.access_token)
-        response.set_cookie('entitlement_token', user.entitlement)
-        response.set_cookie('region', user.Region)
-        response.set_cookie('username', user.Name)
-        response.set_cookie('tag', user.Tag)
-        response.set_cookie('user_id', user.Sub)
-        response.set_cookie('logged', '1')
         session['access_token'] = user.access_token
         session['entitlement'] = user.entitlement
         session['region'] = user.Region
@@ -170,10 +156,16 @@ def reauth(app: Flask, request: Request):
                 return response
             res = s.post(entitle_url, headers=headers)
             entitlement = res.json().get('entitlements_token')
+            res = s.get('https://auth.riotgames.com/userinfo', json={})
+            name = res.json()['acct']['game_name']
+            tag = res.json()['acct']['tag_line']
+            print(type(name), name, type(tag), tag)
             session['access_token'] = access_token
             session['entitlement'] = entitlement
             session['user-session'] = s
             session['cookie'] = s.cookies
+            session['username'] = name if name else '(not set)'
+            session['tag'] = tag if tag else '(not set)'
             _thread.start_new_thread(UpdatePriceOffer, (access_token, entitlement, session['region']))
             return redirect(redirect_loc)
         else:
