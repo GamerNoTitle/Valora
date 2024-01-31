@@ -156,16 +156,16 @@ def reauth(app: Flask, request: Request):
                 return response
             res = s.post(entitle_url, headers=headers)
             entitlement = res.json().get('entitlements_token')
-            res = s.get('https://auth.riotgames.com/userinfo', json={})
-            name = res.json()['acct']['game_name']
-            tag = res.json()['acct']['tag_line']
-            print(type(name), name, type(tag), tag)
+            # res = s.get('https://auth.riotgames.com/userinfo', json={})
+            # name = res.json()['acct']['game_name']
+            # tag = res.json()['acct']['tag_line']
+            # print(type(name), name, type(tag), tag)
             session['access_token'] = access_token
             session['entitlement'] = entitlement
             session['user-session'] = s
             session['cookie'] = s.cookies
-            session['username'] = name if name else '(not set)'
-            session['tag'] = tag if tag else '(not set)'
+            # session['username'] = name if name else '(not set)'
+            # session['tag'] = tag if tag else '(not set)'
             _thread.start_new_thread(UpdatePriceOffer, (access_token, entitlement, session['region']))
             return redirect(redirect_loc)
         else:
