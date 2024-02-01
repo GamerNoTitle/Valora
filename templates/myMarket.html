@@ -172,7 +172,7 @@
     <h1 class="text-gradient text-primary mb-0 mt-2" align="center">{{lang.nightmarket.title}}</h1>
     <br>
     <div class="row">
-      {% for weapon in [weapon0, weapon1, weapon2, weapon3, weapon4, weapon5] %}
+      {% for weapon in weapon_list %}
       <div class="col-md-4">
         <div class="card mb-4 shadow-sm rounded">
           <div class="gun-image">
@@ -186,7 +186,7 @@
             <h3 class="text-gradient text-dark mb-0 mt-2"><img
                 src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/VP-black.png" width=24px
                 height=24px>
-              {{weapon.cost|safe}} → {{weapon.discount|safe}} ({{weapon.per|safe}}% off)</h3>
+                {{weapon.cost|safe}} → {{weapon.discount|safe}} ({{weapon.per|safe}}% off)</h3>
             <br>
             {% for level in weapon.levels %}
             {% if level.displayName != '' %}
@@ -212,8 +212,8 @@
                       {{lang.nightmarket.modal.videonotavaliable}}
                     </video>
                     <br>
-                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
-                      请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
+                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
+                    </p> -->
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn bg-gradient-primary"
@@ -230,7 +230,7 @@
             <!-- Button trigger modal -->
             <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal"
               data-bs-target="#WEAPON-{{chroma.uuid|escape}}">
-              {{chroma.displayName|safe}}
+              {{chroma.displayName}}
             </button>
 
             <!-- Modal -->
@@ -250,27 +250,26 @@
                       {{lang.nightmarket.modal.videonotavaliable}}
                     </video>
                     <br>
-                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">
-                      请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）</p> -->
+                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
+                    </p> -->
+                    {% else %}
+                    <img width="100%" src="{{chroma.fullRender}}"> {% endif %}
                   </div>
-                  {% else %}
-                  <img width=100% src="{{chroma.fullRender}}">
-                  {% endif %}
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn bg-gradient-primary"
-                    data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
+                  <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-primary"
+                      data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
+                  </div>
                 </div>
               </div>
             </div>
+            </script>
+            {% endif %}
+            {% endfor %}
           </div>
-          {% endif %}
-          {% endfor %}
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-  </div>
   </div>
   {% endif %}
   {% endif %}

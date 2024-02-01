@@ -156,7 +156,8 @@ def reauth(app: Flask, request: Request):
                 return response
             res = s.post(entitle_url, headers=headers)
             entitlement = res.json().get('entitlements_token')
-            # res = s.get('https://auth.riotgames.com/userinfo', json={})
+            # res = s.get('https://auth.riotgames.com/userinfo', headers={'Authorization': f'Bearer {access_token}'})
+            # print(res.text)
             # name = res.json()['acct']['game_name']
             # tag = res.json()['acct']['tag_line']
             # print(type(name), name, type(tag), tag)
