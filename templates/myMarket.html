@@ -82,18 +82,16 @@
                       {{level.displayName}}</h5>
                   </div>
                   <div class="modal-body">
-                    <video width=100% controls>
+                    <video id="{{level.streamedVideo}}" width=100% controls>
                       <source src="{{level.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}"
                         type="video/mp4">
                       <source src="{{level.streamedVideo}}" type="video/mp4">
                       {{lang.market.modal.videonotavaliable}}
                     </video>
                     <br>
-                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
-                    </p> -->
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary"
+                    <button type="button" class="btn bg-gradient-primary" onclick="closeVideo('{{level.streamedVideo}}')"
                       data-bs-dismiss="modal">{{lang.market.button.close}}</button>
                   </div>
                 </div>
@@ -120,20 +118,18 @@
                   </div>
                   <div class="modal-body">
                     {% if chroma.streamedVideo %}
-                    <video width=100% controls>
+                    <video id="{{chroma.streamedVideo}}" width=100% controls>
                       <source src="{{chroma.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}"
                         type="video/mp4">
                       <source src="{{chroma.streamedVideo}}" type="video/mp4">
                       {{lang.market.modal.videonotavaliable}}
                     </video>
                     <br>
-                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
-                    </p> -->
                     {% else %}
                     <img width="100%" src="{{chroma.fullRender}}"> {% endif %}
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary"
+                    <button type="button" class="btn bg-gradient-primary" onclick="closeVideo('{{chroma.streamedVideo}}')"
                       data-bs-dismiss="modal">{{lang.market.button.close}}</button>
                   </div>
                 </div>
@@ -205,18 +201,16 @@
                       {{level.displayName}}</h5>
                   </div>
                   <div class="modal-body">
-                    <video width=100% controls>
+                    <video id="{{level.streamedVideo}}" width=100% controls>
                       <source src="{{level.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}"
                         type="video/mp4">
                       <source src="{{level.streamedVideo}}" type="video/mp4">
                       {{lang.nightmarket.modal.videonotavaliable}}
                     </video>
                     <br>
-                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
-                    </p> -->
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary"
+                    <button type="button" class="btn bg-gradient-primary" onclick="closeVideo('{{level.streamedVideo}}')"
                       data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
                   </div>
                 </div>
@@ -243,20 +237,18 @@
                   </div>
                   <div class="modal-body">
                     {% if chroma.streamedVideo %}
-                    <video width=100% controls>
+                    <video id="{{chroma.streamedVideo}}" width=100% controls>
                       <source src="{{chroma.streamedVideo|replace('valorant.dyn.riotcdn.net', 'cdn.val.qq.com')}}"
                         type="video/mp4">
                       <source src="{{chroma.streamedVideo}}" type="video/mp4">
                       {{lang.nightmarket.modal.videonotavaliable}}
                     </video>
                     <br>
-                    <!-- <p class="text-gradient text-danger mb-0 mt-2" align="center">请先暂停播放视频后再关闭窗口，否则视频会一直播放（这是个bug但是我还没修）
-                    </p> -->
                     {% else %}
                     <img width="100%" src="{{chroma.fullRender}}"> {% endif %}
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-primary"
+                    <button type="button" class="btn bg-gradient-primary" onclick="closeVideo('{{chroma.streamedVideo}}')"
                       data-bs-dismiss="modal">{{lang.nightmarket.button.close}}</button>
                   </div>
                 </div>
@@ -276,3 +268,14 @@
 
   {% include 'public/footer.html' %}
 </body>
+<script>
+    function closeVideo(videoId) {
+        var video = document.getElementById(videoId);
+        if (video) {
+            video.pause();
+            video.currentTime = 0;
+        } else {
+            console.log('No video element found with id: ' + videoId);
+        }
+    }
+</script>
