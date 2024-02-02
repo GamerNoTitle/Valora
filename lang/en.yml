@@ -58,6 +58,7 @@ metadata:
     KillEffect: Every time you kill an enemy, a custom visual effect and sound plays
     AttackerDefenderSwap: The skin design changes if you are Attacker or Defender
     TopFrag: Aura is active only when player has the most kills in the game
+    Animation: During Inspect animation, a custom music track plays for 30 seconds.
 
 global:
   title:

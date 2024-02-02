@@ -58,6 +58,7 @@ metadata:
     KillEffect: 每次擊殺敵人時，都會播放專屬視覺特效及音效
     AttackerDefenderSwap: 此造型設計會因你是攻擊方或守備方而變化
     TopFrag: 在對戰中取得最多擊殺時才會顯示光環
+    Animation: 查看武器動畫期間，會播放一段30秒的專屬配樂
 
 global:
   title:
