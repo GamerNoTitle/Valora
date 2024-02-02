@@ -58,6 +58,7 @@ metadata:
     KillEffect: 敵をキルするたびに、カスタムビジュアルエフェクトとオーディオが再生される
     AttackerDefenderSwap: アタック時とディフェンス時でスキンのデザインが変化
     TopFrag: オーラは試合中に最多キルを獲得している間のみ発動
+    Animation: 武器を見る動作中、専用の楽曲が 30 秒再生される
 
 global:
   title:
