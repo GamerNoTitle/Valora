@@ -61,7 +61,7 @@ Translation Table (No login status needed)
 
 ### Something about configuration
 
-> ![Tip]
+> ![TIP]
 > You can use `config.yml` to change your configuration. You can also use `export` linux command to do this.
 > However, the priority of config is `env(export)` > `file(config.yml)`
 
