@@ -59,6 +59,14 @@ Translation Table (No login status needed)
 
 ## Build your own
 
+### Something about configuration
+
+> [!TIP]
+> 
+> You can use `config.yml` to change your configuration. You can also use `export` linux command to do this.
+> 
+> However, the priority of config is `env(export)` > `file(config.yml)`
+
 ### Run on Docker
 
 https://hub.docker.com/r/gamernotitle/vsc
