@@ -378,11 +378,40 @@ def UpdateCache():
     print('All Data Updated')
     
 
+def UpdateLimitBuyingWeapon():
+    print('Updating Limit Buying items...')
+    # Connect to the database
+    conn = sqlite3.connect('db/data.db')
+    cursor = conn.cursor()
+
+    # Set the 'unlock' column to 2675 for skins where the name starts with "Champion" and ends with "Vandal" or "Phantom", and isLevelup is empty.
+    cursor.execute("UPDATE skinlevels SET unlock = 2675 WHERE lower(name) LIKE 'champion%' AND (lower(name) LIKE '%vandal' OR lower(name) LIKE '%phantom') AND isLevelup IS NULL")
+
+    # Set the 'unlock' column to 2340 for skins where the name starts with "VCT x " and ends with "classic", and isLevelup is empty.
+    cursor.execute("UPDATE skinlevels SET unlock = '2340(Bundle)' WHERE lower(name) LIKE 'vct x %classic' AND isLevelup IS NULL")
+
+    # Set the 'unlock' column to 5350 for skins where the name starts with "Champion" and the data column contains "Equippables/Melee/", and isLevelup is empty.
+    cursor.execute("UPDATE skinlevels SET unlock = 5350 WHERE lower(name) LIKE 'champion%' AND data LIKE '%Equippables/Melee/%' AND isLevelup IS NULL")
+
+    # Set the 'unlock' column to 4710 for the skin named "Ignite Fan", and isLevelup is empty.
+    cursor.execute("UPDATE skinlevels SET unlock = '4710(Bundle)' WHERE lower(name) = 'ignite fan' AND isLevelup IS NULL")
+
+    # Set the 'unlock' column to 5440 for the skin named "VCT LOCK//IN Misericórdia", and isLevelup is empty.
+    cursor.execute("UPDATE skinlevels SET unlock = '5440(Bundle)' WHERE lower(name) = 'vct lock//in misericórdia' AND isLevelup IS NULL")
+
+    # Commit changes and close the connection
+    conn.commit()
+    conn.close()
+    print('Done!')
+            
+    
 def UpdateCacheTimer():
     try:
         while True:
             start_time = datetime.datetime.now()
             UpdateCache()
+            UpdateLimitBuyingWeapon()
+            UpdatePriceByInternalAccount()
             end_time = datetime.datetime.now()
             print(f'Cache Updated. Used {end_time - start_time}')
             time.sleep(3600)
