@@ -140,6 +140,7 @@ mfa:
     description:
       line1: 請前往你的綁定郵箱獲取驗證碼後，在這裡填入
       line2: 伺服器不對賬號的登錄名和密碼進行存取
+  tip: 如果你通过Valora登录的时候无法在邮箱内收到验证码，你可以前往<u><a href='https://account.riotgames.com/'>拳头账号管理页面</a></u>进行登录，然后把邮件里收到的验证码填到下面的框框内。
   form:
     code:
       title: 二步驗證碼

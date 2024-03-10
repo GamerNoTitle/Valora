@@ -140,6 +140,7 @@ mfa:
     description:
       line1: Please go to your bound email to get the verification code and fill it in here
       line2: The server does not store the login name and password of the account
+  tip: If you cannot receive the 2-step code in your email, you can go to <u><a href='https://account.riotgames.com/'>Riot Games Login Page</a></u> to request a login, and input the code you receive in the following box.
   form:
     code:
       title: Two-Step Verification Code
