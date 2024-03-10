@@ -411,7 +411,6 @@ def UpdateCacheTimer():
             start_time = datetime.datetime.now()
             UpdateCache()
             UpdateLimitBuyingWeapon()
-            UpdatePriceByInternalAccount()
             end_time = datetime.datetime.now()
             print(f'Cache Updated. Used {end_time - start_time}')
             time.sleep(3600)
