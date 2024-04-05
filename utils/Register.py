@@ -237,7 +237,7 @@ def library(app: Flask, request: Request, lang):
                     print(uuid, skin, data)
                 levels = data['levels']    # Skin Levels
                 chromas = data['chromas']  # Skin Chromas
-                base_img = data['levels'][0]['displayIcon']
+                base_img = data['displayIcon']
                 name = skin
                 tier = data['contentTierUuid']
                 tier_img = tier_dict.get(tier).get('img')
@@ -446,7 +446,7 @@ def inventory(app: Flask, request: Request, lang):
                     continue
             levels = data['levels']    # Skin Levels
             chromas = data['chromas']  # Skin Chromas
-            base_img = data['levels'][0]['displayIcon']
+            base_img = data['displayIcon']
             tier = data['contentTierUuid']
             tier_img = tier_dict.get(tier).get('img')
             for level in levels:
