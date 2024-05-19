@@ -399,10 +399,24 @@ def UpdateLimitBuyingWeapon():
     # Set the 'unlock' column to 5440 for the skin named "VCT LOCK//IN Misericórdia", and isLevelup is empty.
     cursor.execute("UPDATE skinlevels SET unlock = '5440(Bundle)' WHERE lower(name) = 'vct lock//in misericórdia' AND isLevelup IS NULL")
 
+    # Set the 'unlock' column to 1630 for skins where the name contains "VCT", "Classic", and one of the specified identifiers, and isLevelup is empty.
+    teams = ['AG', 'BLG', 'DRG', 'EDG', 'FPX', 'JDG', 'NOVA', 'TEC', 'TE', 'TYL', 'WOL']
+    placeholders = ' OR '.join(["lower(name) LIKE '%' || ? || '%'"] * len(teams))
+    query = f"""
+        UPDATE skinlevels 
+        SET unlock = '1630(Bundle)' 
+        WHERE lower(name) LIKE '%vct%' 
+        AND lower(name) LIKE '%classic%' 
+        AND ({placeholders})
+        AND isLevelup IS NULL
+    """
+    cursor.execute(query, [team.lower() for team in teams])
+
     # Commit changes and close the connection
     conn.commit()
     conn.close()
     print('Done!')
+
             
     
 def UpdateCacheTimer():
