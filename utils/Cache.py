@@ -388,7 +388,7 @@ def UpdateLimitBuyingWeapon():
     cursor.execute("UPDATE skinlevels SET unlock = 2675 WHERE lower(name) LIKE 'champion%' AND (lower(name) LIKE '%vandal' OR lower(name) LIKE '%phantom') AND isLevelup IS NULL")
 
     # Set the 'unlock' column to 2340 for skins where the name starts with "VCT x " and ends with "classic", and isLevelup is empty.
-    cursor.execute("UPDATE skinlevels SET unlock = '2340(Bundle)' WHERE lower(name) LIKE 'vct x %classic' AND isLevelup IS NULL")
+    # cursor.execute("UPDATE skinlevels SET unlock = '2340(Bundle)' WHERE lower(name) LIKE 'vct x %classic' AND isLevelup IS NULL")
 
     # Set the 'unlock' column to 5350 for skins where the name starts with "Champion" and the data column contains "Equippables/Melee/", and isLevelup is empty.
     cursor.execute("UPDATE skinlevels SET unlock = 5350 WHERE lower(name) LIKE 'champion%' AND data LIKE '%Equippables/Melee/%' AND isLevelup IS NULL")
@@ -399,12 +399,25 @@ def UpdateLimitBuyingWeapon():
     # Set the 'unlock' column to 5440 for the skin named "VCT LOCK//IN Misericórdia", and isLevelup is empty.
     cursor.execute("UPDATE skinlevels SET unlock = '5440(Bundle)' WHERE lower(name) = 'vct lock//in misericórdia' AND isLevelup IS NULL")
 
+    # Set the 'unlock' column to 2340 for skins where the name contains "VCT", "Classic", and one of the specified identifiers, and isLevelup is empty.
+    teams = ['100T', 'C9', 'EG', 'FUR', 'G2', 'KRÜ', 'LEV', 'LOUD', 'MIBR', 'NRG', 'SEN', 'BBL', 'FNC', 'FUT', 'M8', 'GX', 'KC', 'KOI', 'NAVI', 'TH', 'TL', 'VIT', 'BLD', 'DFM', 'DRX', 'GEN', 'GE', 'PRX', 'RRQ', 'T1', 'TLN', 'TS', 'ZETA']
+    placeholders = ' OR '.join(["lower(name) LIKE '%' || ? || '%'"] * len(teams))
+    query = f"""
+        UPDATE skinlevels 
+        SET unlock = '2340(Bundle)' 
+        WHERE lower(name) LIKE '%vct%' 
+        AND lower(name) LIKE '%classic%' 
+        AND ({placeholders})
+        AND isLevelup IS NULL
+    """
+    cursor.execute(query, [team.lower() for team in teams])
+    
     # Set the 'unlock' column to 1630 for skins where the name contains "VCT", "Classic", and one of the specified identifiers, and isLevelup is empty.
     teams = ['AG', 'BLG', 'DRG', 'EDG', 'FPX', 'JDG', 'NOVA', 'TEC', 'TE', 'TYL', 'WOL']
     placeholders = ' OR '.join(["lower(name) LIKE '%' || ? || '%'"] * len(teams))
     query = f"""
         UPDATE skinlevels 
-        SET unlock = '1630(Bundle)' 
+        SET unlock = '1880(Bundle)' 
         WHERE lower(name) LIKE '%vct%' 
         AND lower(name) LIKE '%classic%' 
         AND ({placeholders})
