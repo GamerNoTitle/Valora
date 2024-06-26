@@ -188,7 +188,7 @@ def library(app: Flask, request: Request, lang):
         pc = False
     else:
         pc = True
-    if request.form.get('query') or request.args.get('query'):
+    if request.form.get('query') or request.args.get('query'):  # User Search for a paticular skin
         if request.form.get('query'):
             query = '%' + request.form.get('query') + '%'
         else:
@@ -242,6 +242,8 @@ def library(app: Flask, request: Request, lang):
                 tier = data['contentTierUuid']
                 tier_img = tier_dict.get(tier).get('img')
                 for level in levels:
+                    if not base_img:
+                        base_img = level['displayIcon']
                     level['uuid'] = level['uuid'].upper()
                     c.execute(
                         'SELECT isLevelup, unlock FROM skinlevels WHERE uuid = ?', (level['uuid'].lower(), ))
@@ -277,6 +279,7 @@ def library(app: Flask, request: Request, lang):
                             levelup_info['level'] + ' 5', '')   # Clear out extra level symbols
                 weapon_list.append(
                     {"name": name, "img": base_img, "levels": levels, "chromas": chromas, "unlock": unlock, "tier": tier_img})
+            print(json.dumps(weapon_list))
             return render_template('library.html', weapon_list=weapon_list,
                                    lang=yaml.load(transtable, Loader=yaml.FullLoader),
                                    search=True, query=request.form.get('query'), pc=pc)
