@@ -159,8 +159,6 @@ After setting this, you can access to your Valora. Then you will find that the a
 
 [Soft-ui-design-system](https://github.com/creativetimofficial/soft-ui-design-system)
 
-[VALORANT Fandom Wiki (Price Data Source)](https://valorant.fandom.com/wiki/VALORANT_Wiki)
-
 ## Referrance
 
 There's no any good doc on the network (at least i didn't find that). Here's my doc. (I find one and edit based on the doc [https://ultronxr2ws.notion.site/UAIOSC-valorant-GitHub-Valorant-API-0ac20cd4c5b744148a74c6cd0f3380dc](https://ultronxr2ws.notion.site/UAIOSC-valorant-GitHub-Valorant-API-0ac20cd4c5b744148a74c6cd0f3380dc))
