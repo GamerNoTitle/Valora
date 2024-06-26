@@ -170,22 +170,22 @@ def market_handler():
     return market(app, request, g.lang)
 
 
-@ app.route('/market/night', methods=['GET'])
+@app.route('/market/night', methods=['GET'])
 def night_handler():
     return night(app, request, g.lang)
 
 
-@ app.route('/2FA', methods=["GET", "POST"])
+@app.route('/2FA', methods=["GET", "POST"])
 def MFAuth_handler():
     return mfa_auth(app, request, g.lang)
 
 
-@ app.route('/auth-info')
+@app.route('/auth-info')
 def authinfo_handler():
     return auth_info(app, request, g.lang)
 
 
-@ app.route('/library', methods=["GET", "POST"])
+@app.route('/library', methods=["GET", "POST"])
 def library_handler():
     return library(app, request, g.lang)
 
@@ -193,7 +193,7 @@ def library_handler():
 def accessory_lib_default_handler():
     return redirect('/library/accessory/spray')
 
-@ app.route('/library/accessory/<t>')
+@app.route('/library/accessory/<t>')
 def accessory_lib_handler(t):
     return accessory_library(app, request, t, g.lang)
 
@@ -233,54 +233,57 @@ def redirectprofiler():
 # The following are api paths
 
 
-@ app.route('/api/login', methods=['POST'])
+@app.route('/api/login', methods=['POST'])
 def RiotLogin_handler():
     return RiotLogin(app, request)
 
 
-@ app.route('/api/logout', methods=['GET', 'POST'])
+@app.route('/api/logout', methods=['GET', 'POST'])
 def logout_handler():
     return logout(app, request)
 
 
-@ app.route('/api/verify', methods=['GET', 'POST'])
+@app.route('/api/verify', methods=['GET', 'POST'])
 def verify_handler():
     return verify(app, request)
 
 
-@ app.route('/api/reauth')
+@app.route('/api/reauth')
 def reauth_handler():
     return reauth(app, request)
 
 
-@ app.route('/api/reset')
+@app.route('/api/reset')
 def reset_handler():
     return reset(app, request)
 
 
-@ app.route('/api/cklogin', methods=['POST'])
+@app.route('/api/cklogin', methods=['POST'])
 def cklogin_handler():
     return cklogin(app, request)
 
 # Other Functions
 
+@app.route('/db/data.db')
+def send_db():
+    return send_from_directory('db', 'data.db')
 
-@ app.route('/assets/<path:filename>')
+@app.route('/assets/<path:filename>')
 def serve_static(filename):
     return send_from_directory('assets', filename)
 
 
-@ app.route('/robots.txt')
+@app.route('/robots.txt')
 def serve_robot():
     return send_from_directory('assets', 'robots.txt')
 
 
-@ app.route('/sitemap.xml')
+@app.route('/sitemap.xml')
 def serve_sitemap():
     return send_from_directory('assets', 'sitemap.xml')
 
 
-@ app.route('/baiduSitemap.xml')
+@app.route('/baiduSitemap.xml')
 def serve_Baidusitemap():
     return send_from_directory('assets', 'baiduSitemap.xml')
 
@@ -327,7 +330,7 @@ def redis_connection_error_handler(e):
     return render_template('500.html', error=str(e), lang=yaml.load(transtable, Loader=yaml.FullLoader)), 500
 
 
-@ app.route('/error/500', methods=['GET'])
+@app.route('/error/500', methods=['GET'])
 def internal_server_error_preview():
     if request.args.get('lang'):
         if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
@@ -346,7 +349,7 @@ def internal_server_error_preview():
         transtable = f.read()
     return render_template('500.html', error='This is a test-error.', lang=yaml.load(transtable, Loader=yaml.FullLoader)), 500
 
-# @ app.route('/exception/expired')
+# @app.route('/exception/expired')
 # def testExpired():
 #     raise ValoraExpiredException('Expired')
 

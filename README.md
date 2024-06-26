@@ -26,7 +26,6 @@ You can access [https://val.bili33.top](https://val.bili33.top) to start your sh
 
 ## Preview
 
-
 <details>
 <summary>Click to show</summary>
 <div align="center">
@@ -159,8 +158,6 @@ After setting this, you can access to your Valora. Then you will find that the a
 [Valorant-API](https://valorant-api.com/)
 
 [Soft-ui-design-system](https://github.com/creativetimofficial/soft-ui-design-system)
-
-[VALORANT Fandom Wiki (Price Data Source)](https://valorant.fandom.com/wiki/VALORANT_Wiki)
 
 ## Referrance
 
