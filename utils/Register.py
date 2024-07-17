@@ -254,8 +254,9 @@ def library(app: Flask, request: Request, lang):
                     level['displayName'] = level['displayName'].replace(name, '').replace('\n', '').replace(
                         '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '').replace('。', '')
                     for descr in dict(description_to_del).values():
-                        level['displayName'] = level['displayName'].replace(
-                            descr, '')
+                        for subdescr in descr:
+                            level['displayName'] = level['displayName'].replace(
+                                subdescr, '')
                     try:
                         if level['levelItem'] == None:
                             level['levelItem'] = levelup_info['EEquippableSkinLevelItem::VFX']
@@ -279,7 +280,6 @@ def library(app: Flask, request: Request, lang):
                             levelup_info['level'] + ' 5', '')   # Clear out extra level symbols
                 weapon_list.append(
                     {"name": name, "img": base_img, "levels": levels, "chromas": chromas, "unlock": unlock, "tier": tier_img})
-            print(json.dumps(weapon_list))
             return render_template('library.html', weapon_list=weapon_list,
                                    lang=yaml.load(transtable, Loader=yaml.FullLoader),
                                    search=True, query=request.form.get('query'), pc=pc)
@@ -457,8 +457,9 @@ def inventory(app: Flask, request: Request, lang):
                 level['displayName'] = level['displayName'].replace(name, '').replace('\n', '').replace(
                     '（', '').replace('）', '').replace(' / ', '').replace('／', '/').replace('(', '').replace(')', '').replace('：', '').replace(' - ', '').replace('。', '')
                 for descr in dict(description_to_del).values():
-                    level['displayName'] = level['displayName'].replace(
-                        descr, '')
+                    for subdescr in descr:
+                        level['displayName'] = level['displayName'].replace(
+                            subdescr, '')
                 try:
                     if level['levelItem'] == None:
                         level['levelItem'] = levelup_info['EEquippableSkinLevelItem::VFX']

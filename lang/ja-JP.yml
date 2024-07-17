@@ -54,11 +54,18 @@ metadata:
     # Available language: ar-AE / de-DE / en-US / es-ES / es-MX / fr-FR / id-ID / it-IT / ja-JP / ko-KR / pl-PL / pt-BR / ru-RU / th-TH / tr-TR / vi-VN / zh-CN / zh-TW
     # For China mainland players, all the names of the guns are using zh-TW, cause this program does not support Valorant from Tencent.
     # example: https://valorant-api.com/v1/weapons/skinlevels/a117218e-4f0e-0cca-7758-7ea30b08ac05?language=zh-CN
-    Voiceover: ローカライズされた音声は、お住まいの地域によって異なる可能性があります
-    KillEffect: 敵をキルするたびに、カスタムビジュアルエフェクトとオーディオが再生される
-    AttackerDefenderSwap: アタック時とディフェンス時でスキンのデザインが変化
-    TopFrag: オーラは試合中に最多キルを獲得している間のみ発動
-    Animation: 武器を見る動作中、専用の楽曲が 30 秒再生される
+    Voiceover: 
+      - ローカライズされた音声は、お住まいの地域によって異なる可能性があります
+    KillEffect: 
+      - 敵をキルするたびに、カスタムビジュアルエフェクトとオーディオが再生される
+    AttackerDefenderSwap: 
+      - アタック時とディフェンス時でスキンのデザインが変化
+    TopFrag: 
+      - オーラは試合中に最多キルを獲得している間のみ発動
+    Animation: 
+      - 武器を見る動作中、専用の楽曲が 30 秒再生される
+    VFX:
+      - 「武器を見る」を素早く2回押すとレインボーエフェクトが発動
 
 global:
   title:
