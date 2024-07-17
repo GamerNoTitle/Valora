@@ -54,18 +54,11 @@ metadata:
     # Available language: ar-AE / de-DE / en-US / es-ES / es-MX / fr-FR / id-ID / it-IT / ja-JP / ko-KR / pl-PL / pt-BR / ru-RU / th-TH / tr-TR / vi-VN / zh-CN / zh-TW
     # For China mainland players, all the names of the guns are using zh-TW, cause this program does not support Valorant from Tencent.
     # example: https://valorant-api.com/v1/weapons/skinlevels/a117218e-4f0e-0cca-7758-7ea30b08ac05?language=zh-CN
-    Voiceover: 
-      - Localized voice-over may differ in your region
-    KillEffect: 
-      - Every time you kill an enemy, a custom visual effect and sound plays
-    AttackerDefenderSwap: 
-      - The skin design changes if you are Attacker or Defender
-    TopFrag: 
-      - Aura is active only when player has the most kills in the game
-    Animation: 
-      - During Inspect animation, a custom music track plays for 30 seconds.
-    VFX:
-      - Press inspect twice quickly to trigger rainbow effect
+    Voiceover: Localized voice-over may differ in your region
+    KillEffect: Every time you kill an enemy, a custom visual effect and sound plays
+    AttackerDefenderSwap: The skin design changes if you are Attacker or Defender
+    TopFrag: Aura is active only when player has the most kills in the game
+    Animation: During Inspect animation, a custom music track plays for 30 seconds.
 
 global:
   title:
