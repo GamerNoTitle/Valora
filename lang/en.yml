@@ -66,6 +66,8 @@ metadata:
       - During Inspect animation, a custom music track plays for 30 seconds.
     VFX:
       - Press inspect twice quickly to trigger rainbow effect
+    Finisher:
+      - Inspect your Phantom inside the Finisher to trigger the Champion's pose
 
 global:
   title:

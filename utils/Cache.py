@@ -180,28 +180,28 @@ def UpdateCache():
         if lang == 'en':
             for i in data['data']:
                 try:
-                    c.execute(f'INSERT INTO skinlevels ([uuid], name, data) VALUES (?, ?, ?)', (
+                    c.execute('INSERT INTO skinlevels (uuid, name, data) VALUES (?, ?, ?)', (
                         i["uuid"], i["displayName"], json.dumps(i)))
                     conn.commit()
                 except sqlite3.IntegrityError:
-                    c.execute(f'UPDATE skinlevels SET name = ?, data = ? WHERE uuid = ?',
-                              (i["displayName"], json.dumps(i), i["uuid"]))
+                    # 如果条目存在且数据列为空，则更新数据
+                    c.execute('UPDATE skinlevels SET name = COALESCE(NULLIF(name, ""), ?), data = COALESCE(NULLIF(data, ""), ?) WHERE uuid = ?',
+                            (i["displayName"], json.dumps(i), i["uuid"]))
                     conn.commit()
                 if 'Lv1_PrimaryAsset' not in json.dumps(i):
-                    c.execute(f'UPDATE skinlevels SET isLevelup = ? WHERE uuid = ?',
-                              (True, i["uuid"]))
+                    c.execute('UPDATE skinlevels SET isLevelup = COALESCE(NULLIF(isLevelup, ""), ?) WHERE uuid = ?', (True, i["uuid"]))
                     conn.commit()
         else:
             for i in data['data']:
-                c.execute(f'UPDATE skinlevels SET "name-{lang}" = ?, "data-{lang}" = ? WHERE uuid = ?',
-                          (i["displayName"], json.dumps(i), i["uuid"]))
+                c.execute('UPDATE skinlevels SET "name-{}" = COALESCE(NULLIF("name-{}", ""), ?), "data-{}" = COALESCE(NULLIF("data-{}", ""), ?) WHERE uuid = ?'.format(lang, lang, lang, lang),
+                        (i["displayName"], json.dumps(i), i["uuid"]))
                 conn.commit()
                 if 'ShooterGame/Content/Equippables/Melee/' in json.dumps(i):
-                    c.execute(f'UPDATE melee SET "name-{lang}" = ?, "data-{lang}" = ? WHERE uuid = ?',
-                              (i["displayName"], json.dumps(i), i["uuid"]))
+                    c.execute('UPDATE melee SET "name-{}" = COALESCE(NULLIF("name-{}", ""), ?), "data-{}" = COALESCE(NULLIF("data-{}", ""), ?) WHERE uuid = ?'.format(lang, lang, lang, lang),
+                            (i["displayName"], json.dumps(i), i["uuid"]))
                     conn.commit()
-    conn.close()
-
+        conn.close()
+    
     for lang, link in LinkAgentsmap:
         print('Updating Agents Data of ' + lang)
         conn = sqlite3.connect('db/data.db')
