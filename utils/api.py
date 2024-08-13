@@ -1,13 +1,17 @@
 import os
+import httpx
 import requests
 import yaml
 import _thread
+import jwt
 from parse import parse
 from flask import Flask, render_template, redirect, make_response, session, Request
 from utils import Security
 from utils.RiotLogin import Auth, SSLAdapter
 from utils.Cache import UpdatePriceOffer
 from utils.Exception import *
+from utils.Tools import decode_jwt
+from urllib.parse import urlparse, parse_qs
 
 def RiotLogin(app: Flask, request: Request):
     if request.args.get('lang'):
@@ -214,3 +218,61 @@ def cklogin(app: Flask, request: Request):
     response = make_response(redirect('/market'))
     return response
 
+def cookieLogin(app: Flask, request: Request):
+    cookie = request.form.get("cookie")
+    if cookie == None:
+        return redirect('/?infoerror')
+    client = httpx.Client(
+        headers = {
+                "User-Agent": f"RiotClient/{httpx.get('https://valorant-api.com/v1/version').json()['data']['riotClientBuild']} rso-auth (Windows;10;;Professional, x64)"
+            }
+    )
+    # Initalize client
+    client.get("https://authenticate.riotgames.com/?client_id=prod-xsso-playvalorant&method=riot_identity&platform=web&security_profile=low")
+    
+    # Prepare to login
+    client.get("https://account.riotgames.com")
+    cookie_pairs = cookie.split("; ")
+    for pair in cookie_pairs:
+        key, value = pair.split("=", 1)
+        client.cookies.set(key, value)
+    response = client.get("https://auth.riotgames.com/authorize?redirect_uri=https%3A%2F%2Fplayvalorant.com%2Fopt_in&client_id=play-valorant-web-prod&response_type=token%20id_token&nonce=1")
+    # Extract access_token and id_token from URL
+    parsed_url = urlparse(str(response.url))
+    query_params = parse_qs(parsed_url.fragment)
+    access_token = query_params.get('access_token', [None])[0]
+    id_token = query_params.get('id_token', [None])[0]
+    # Extract sub from id_token payload
+    id_token_payload_dict = jwt.decode(id_token, options={"verify_signature": False})
+    sub = id_token_payload_dict.get('sub')
+    entitlement = httpx.get(
+        "https://entitlements.auth.riotgames.com/api/token/v1",
+        headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': f'Bearer {access_token}'
+                }
+        ).json().get('entitlements_token')
+    userinfo = client.get("https://account.riotgames.com/api/account/v1/user").json()
+    game_name = userinfo.get('alias', {}).get('game_name')
+    tag_line = userinfo.get('alias', {}).get('tag_line')
+    regioninfo = httpx.put(
+        "https://riot-geo.pas.si.riotgames.com/pas/v1/product/valorant",
+        json = {
+            "id_token": id_token
+        },
+        headers = {
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {access_token}",
+        }
+    )
+    region = regioninfo.json()["affinities"]["live"]
+    session["access_token"] = access_token
+    session["entitlement"] = entitlement
+    session["user_id"] = sub
+    session["cookie"] = client.cookies
+    session["region"] = region
+    session["username"] = game_name
+    session["tag"] = tag_line
+    session["user-session"] = client
+    response = make_response(redirect('/market'))
+    return response

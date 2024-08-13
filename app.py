@@ -235,8 +235,8 @@ def redirectprofiler():
 
 @app.route('/api/login', methods=['POST'])
 def RiotLogin_handler():
-    return RiotLogin(app, request)
-
+    # return RiotLogin(app, request)
+    return cookieLogin(app, request)
 
 @app.route('/api/logout', methods=['GET', 'POST'])
 def logout_handler():

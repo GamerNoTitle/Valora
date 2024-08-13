@@ -14,3 +14,4 @@ pyyaml
 flask-profiler
 bs4
 cryptography
+pyjwt
