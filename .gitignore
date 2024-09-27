@@ -7,3 +7,4 @@ env.sh
 flask_profiler.sql
 test*
 *.pem
+temp*

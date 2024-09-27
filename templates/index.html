@@ -67,7 +67,7 @@
         </div>
         <form role="form" name="login" method="post" autocomplete="off" action="/api/login">
           <div class="card-body">
-            <div class="row">
+            <!-- <div class="row">
               <div class="col-md-6">
                 <label>{{lang.login.form.username.title}}</label>
                 <div class="input-group mb-4">
@@ -80,6 +80,13 @@
                 <div class="input-group">
                   <input type="password" class="form-control" placeholder="{{lang.login.form.password.placeholder}}"
                     name="Password" onchange="checkLoginInputs()">
+                </div>
+              </div> -->
+              <div class="col-md-6 ps-2 w-100">
+                <label>{{lang.login.form.cookie.title}}</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="{{lang.login.form.cookie.placeholder}}"
+                    name="cookie" onchange="checkLoginInputs()">
                 </div>
               </div>
             </div>
@@ -194,18 +201,23 @@
 
 <script>
   function checkLoginInputs() {
-    const usernameInput = document.getElementsByName('Username')[0];
-    const passwordInput = document.getElementsByName('Password')[0];
+    // const usernameInput = document.getElementsByName('Username')[0];
+    // const passwordInput = document.getElementsByName('Password')[0];
+    const cookieInput = document.getElementsByName('cookie')[0];
     const checkedRuleInput = document.getElementsByName('CheckedRule')[0];
     const checkedEULAInput = document.getElementsByName('CheckedEULA')[0];
     const submitButton = document.getElementById('login');
 
     // 检查username和password是否非空
-    if (usernameInput.value.trim() === '' || passwordInput.value.trim() === '') {
+    // if (usernameInput.value.trim() === '' || passwordInput.value.trim() === '') {
+    //   submitButton.disabled = true;
+    //   return;
+    // }
+
+    if (cookieInput.value.trim() === '') {
       submitButton.disabled = true;
       return;
     }
-
     // 检查checkbox是否都勾选
     if (!checkedRuleInput.checked || !checkedEULAInput.checked) {
       submitButton.disabled = true;
