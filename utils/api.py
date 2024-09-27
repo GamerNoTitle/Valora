@@ -1,6 +1,7 @@
 import os
 import httpx
 import requests
+import httpx
 import yaml
 import _thread
 import jwt
@@ -198,22 +199,20 @@ def cklogin(app: Flask, request: Request):
     access = request.form.get('accesstoken')
     userid = request.form.get('userid')
     # Get Riotgames Session
-    s = requests.session()
-    s.mount('https://', SSLAdapter())
+    client = httpx.Client()
     access_token = access
     entitle_url = 'https://entitlements.auth.riotgames.com/api/token/v1'
     headers = {
         'Content-Type': 'application/json',
         'Authorization': f'Bearer {access_token}'
     }
-    res = s.post(entitle_url, headers=headers)
+    res = client.post(entitle_url, headers=headers)
+    print(res.text)
     entitlement = res.json().get('entitlements_token')
     session['access_token'] = access_token
     session['entitlement'] = entitlement
     session['region'] = request.form.get('region', 'ap')
-    session['user-session'] = s
     session['user_id'] = userid
-    session['cookie'] = s.cookies
     session['accesstokenlogin'] = True
     response = make_response(redirect('/market'))
     return response

@@ -13,7 +13,7 @@ class api:
     def __init__(self):
         self.accountXP = '/account-xp/v1/players/'
         self.mmr = '/mmr/v1/players/'
-        self.store = '/store/v2/storefront/'
+        self.store = '/store/v3/storefront/'
         self.wallet = '/store/v1/wallet/'
         self.owned = '/store/v1/entitlements/'
 Api = api()
@@ -55,7 +55,7 @@ class player:
         self.server = server
         self.user_id = user_id
         self.down = False
-        response = requests.get(
+        response = requests.post(
             f'{server}{Api.store}{user_id}', headers=self.__header, timeout=30)
         if response.status_code >= 500:
             self.down = True
@@ -66,6 +66,9 @@ class player:
             else:
                 raise requests.exceptions.ConnectionError(f'It seems that Riot Games server run into an error ({response.status_code}): ' + response.text)
         if not self.down:
+            print("Response.text: ", response.text)
+            print(response.status_code)
+            print(f'{server}{Api.store}{user_id}')
             self.shop = response.json()
             if response.status_code == 400 or response.status_code == 404:
                 self.auth = False
