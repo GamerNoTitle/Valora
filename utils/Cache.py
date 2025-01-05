@@ -464,7 +464,7 @@ def UpdatePriceOffer(access_token, entitlement, region):
         f'{server}/store/v1/offers', headers=__header, timeout=30)
     conn = sqlite3.connect('db/data.db')
     vp_img = '<img src="/assets/img/VP-black.png" width="32px" height="32px">'
-    for offer in response.json()["Offers"]:
+    for offer in response.json().get("data", {}).get("Offers", []):
         cost = offer.get("Cost").get("85ad13f7-3d1b-5128-9eb2-7cd8ee0b5741")
         isDirectPurchase = offer.get('IsDirectPurchase')
         ItemID = offer.get('Rewards')[0].get('ItemID')
