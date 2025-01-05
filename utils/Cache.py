@@ -437,6 +437,7 @@ def UpdateCacheTimer():
         while True:
             start_time = datetime.datetime.now()
             UpdateCache()
+            UpdatePriceOffer()
             UpdateLimitBuyingWeapon()
             end_time = datetime.datetime.now()
             print(f'Cache Updated. Used {end_time - start_time}')
