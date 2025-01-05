@@ -445,7 +445,7 @@ def UpdateCacheTimer():
         # raise ValoraCacheUpdateFailedException(msg = e, func = UpdateCacheTimer)
         pass
 
-def UpdatePriceOffer(access_token, entitlement, region):
+def UpdatePriceOffer(access_token=None, entitlement=None, region=None):
     servers = {
         'ap': 'https://pd.ap.a.pvp.net',
         'na': 'https://pd.na.a.pvp.net',
@@ -461,7 +461,7 @@ def UpdatePriceOffer(access_token, entitlement, region):
         }
     server = servers[region]
     response = requests.get(
-        f'{server}/store/v1/offers', headers=__header, timeout=30)
+        f'https://api.valorantfiles.com/v4/store-offers', timeout=30)
     conn = sqlite3.connect('db/data.db')
     vp_img = '<img src="/assets/img/VP-black.png" width="32px" height="32px">'
     for offer in response.json().get("data", {}).get("Offers", []):
