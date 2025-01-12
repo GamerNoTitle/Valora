@@ -120,6 +120,9 @@ login:
       remember: Stay logged in
       nostorage: I understand that the website will only use my login name and password to log into my account.
       eula: I have already read <a href="https://gamernotitle.notion.site/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507" class="text-dark" target="_blank"><u>FAQ</u></a> and agreed <a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#12ddcd236fdb4c6abf205eb55587ccbc" class="text-dark" target="_blank"><u>DISCLAMER</u></a>.
+    cookie:
+      title: Cookie
+      placeholder: 请输入你的Cookie
   button:
     login: Login
     tokenlogin: Log in with Access Token
@@ -143,6 +146,7 @@ login:
         placeholder: Please enter the region of your account
       login: Log in with Access Token
       close: Close
+
 mfa:
   front:
     title: Two-Step Verification
